@@ -20,6 +20,11 @@
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
     body {
       font-family: 'Source Sans 3', Arial, sans-serif;
       background: var(--weiss);
@@ -32,11 +37,13 @@
     #bereiche {
       display: flex;
       flex-wrap: wrap;
+      width: 100%;
     }
 
     .bereich-btn {
       flex: 1 1 120px;
-      padding: 0.875rem 1rem;
+      min-width: 0;
+      padding: 0.875rem 0.75rem;
       background: var(--grau-hell);
       border: none;
       border-right: 2px solid var(--weiss);
@@ -69,10 +76,11 @@
     /* ── Gruppen-Grid ─────────────────────────────── */
     #gruppen {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
       gap: 2px;
       background: var(--grau-hell);
       margin-top: 2px;
+      width: 100%;
     }
 
     .gruppe-card {
@@ -321,6 +329,17 @@
       zeigeLeer('Fehler beim Laden der Gruppen.');
       console.error(err);
     });
+
+    // ── Auto-Resize: Höhe an Eltern-Seite melden ──
+    function meldeHoehe() {
+      const h = document.documentElement.scrollHeight;
+      window.parent.postMessage({ type: 'gidk-resize', height: h }, '*');
+    }
+
+    // Nach jedem Render und bei Fenstergrößenänderung melden
+    const resizeObserver = new ResizeObserver(meldeHoehe);
+    resizeObserver.observe(document.body);
+    window.addEventListener('resize', meldeHoehe);
   </script>
 
 </body>
