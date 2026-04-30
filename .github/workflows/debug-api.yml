@@ -1,0 +1,17 @@
+name: Debug API
+
+on:
+  workflow_dispatch:
+
+jobs:
+  debug:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: API-Diagnose
+        env:
+          CHURCHTOOLS_TOKEN: ${{ secrets.CHURCHTOOLS_TOKEN }}
+        run: node scripts/debug-api.js
