@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gruppen – Gemeinde Konkordia</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Konkordia CI ─────────────────────────────── */
+    :root {
+      --rot:        #bb2232;
+      --rot-dunkel: #70141e;
+      --grau-dunkel: #4d4d4d;
+      --grau:        #999999;
+      --grau-hell:   #e6e6e6;
+      --weiss:       #ffffff;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans 3', Arial, sans-serif;
+      background: var(--weiss);
+      color: var(--grau-dunkel);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* ── Bereich-Navigation ───────────────────────── */
+    #bereiche {
+      display: flex;
+      flex-wrap: wrap;
+    }
+
+    .bereich-btn {
+      flex: 1 1 120px;
+      padding: 0.875rem 1rem;
+      background: var(--grau-hell);
+      border: none;
+      border-right: 2px solid var(--weiss);
+      border-bottom: 4px solid transparent;
+      cursor: pointer;
+      font-family: 'Oswald', Arial, sans-serif;
+      font-size: 0.9rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--grau-dunkel);
+      transition: background 0.15s, color 0.15s, border-color 0.15s;
+      text-align: center;
+    }
+
+    .bereich-btn:last-child { border-right: none; }
+
+    .bereich-btn:hover {
+      background: var(--rot-dunkel);
+      color: var(--weiss);
+      border-bottom-color: var(--rot-dunkel);
+    }
+
+    .bereich-btn.active {
+      background: var(--rot);
+      color: var(--weiss);
+      border-bottom-color: var(--rot-dunkel);
+    }
+
+    /* ── Gruppen-Grid ─────────────────────────────── */
+    #gruppen {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 2px;
+      background: var(--grau-hell);
+      margin-top: 2px;
+    }
+
+    .gruppe-card {
+      background: var(--weiss);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gruppe-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: var(--grau-hell);
+    }
+
+    .gruppe-body {
+      padding: 1rem 1.1rem 1.2rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .gruppe-name {
+      font-family: 'Oswald', Arial, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--rot);
+      line-height: 1.2;
+    }
+
+    .gruppe-desc {
+      font-size: 0.875rem;
+      color: var(--grau-dunkel);
+      flex: 1;
+      /* max 4 Zeilen mit Ellipsis */
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .gruppe-actions {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.45rem 0.9rem;
+      font-family: 'Oswald', Arial, sans-serif;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+    }
+
+    .btn-primary {
+      background: var(--rot);
+      color: var(--weiss);
+    }
+
+    .btn-primary:hover {
+      background: var(--rot-dunkel);
+      color: var(--weiss);
+    }
+
+    /* ── Leer-Zustand ─────────────────────────────── */
+    #leer {
+      padding: 2.5rem 1rem;
+      text-align: center;
+      color: var(--grau);
+      font-size: 0.9rem;
+      display: none;
+    }
+
+    /* ── Lade-Indikator ───────────────────────────── */
+    #laden {
+      padding: 2rem 1rem;
+      text-align: center;
+      color: var(--grau);
+      font-size: 0.9rem;
+    }
+  </style>
+</head>
+<body>
+
+  <nav id="bereiche"></nav>
+  <div id="gruppen"></div>
+  <p id="leer">Keine Gruppen vorhanden.</p>
+  <p id="laden">Wird geladen …</p>
+
+  <script>
+    const BASE = 'https://jcdappen.github.io/Gruppenmodul';
+    const params = new URLSearchParams(location.search);
+    const vParam = (params.get('v') || '').trim().toLowerCase();
+
+    function norm(s) {
+      return s.toLowerCase()
+        .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+        .replace(/[^a-z0-9]/g, '');
+    }
+
+    async function main() {
+      const dataUrl = location.hostname === 'localhost' || location.protocol === 'file:'
+        ? 'data/gruppen.json'
+        : `${BASE}/data/gruppen.json`;
+
+      const res = await fetch(dataUrl);
+      if (!res.ok) throw new Error('Daten konnten nicht geladen werden.');
+      const { groups } = await res.json();
+
+      document.getElementById('laden').style.display = 'none';
+
+      // Visionsbereich finden
+      const vb = groups.find(g =>
+        norm(g.name).includes(norm(vParam)) ||
+        norm(vParam).includes(norm(g.name))
+      );
+
+      if (!vb) {
+        zeigeLeer('Visionsbereich nicht gefunden.');
+        return;
+      }
+
+      // Bereiche = direkte Kinder des Visionsbereichs
+      const bereiche = groups.filter(g => String(g.parentGroupId) === String(vb.id));
+
+      if (bereiche.length === 0) {
+        zeigeLeer('Keine Bereiche vorhanden.');
+        return;
+      }
+
+      // Navigation aufbauen
+      const nav = document.getElementById('bereiche');
+      bereiche.forEach((b, i) => {
+        const btn = document.createElement('button');
+        btn.className = 'bereich-btn' + (i === 0 ? ' active' : '');
+        btn.textContent = b.name;
+        btn.dataset.id = b.id;
+        btn.addEventListener('click', () => {
+          document.querySelectorAll('.bereich-btn').forEach(x => x.classList.remove('active'));
+          btn.classList.add('active');
+          zeigeGruppen(b.id, groups);
+        });
+        nav.appendChild(btn);
+      });
+
+      // Ersten Bereich anzeigen
+      zeigeGruppen(bereiche[0].id, groups);
+    }
+
+    function zeigeGruppen(bereichId, groups) {
+      const untergruppen = groups.filter(g => String(g.parentGroupId) === String(bereichId));
+      const grid = document.getElementById('gruppen');
+      grid.innerHTML = '';
+
+      if (untergruppen.length === 0) {
+        zeigeLeer('Keine Gruppen in diesem Bereich.');
+        return;
+      }
+      document.getElementById('leer').style.display = 'none';
+
+      untergruppen.forEach(g => {
+        const card = document.createElement('div');
+        card.className = 'gruppe-card';
+
+        // Bild
+        const img = document.createElement('img');
+        img.className = 'gruppe-img';
+        img.alt = g.name;
+        img.loading = 'lazy';
+
+        const localImg = g.localImage
+          ? (location.hostname === 'localhost' || location.protocol === 'file:'
+              ? g.localImage
+              : `${BASE}/${g.localImage}`)
+          : null;
+        const fallback = location.hostname === 'localhost' || location.protocol === 'file:'
+          ? 'assets/images/fallback.svg'
+          : `${BASE}/assets/images/fallback.svg`;
+
+        img.src = localImg || fallback;
+        img.onerror = () => { img.src = fallback; img.onerror = null; };
+        card.appendChild(img);
+
+        // Inhalt
+        const body = document.createElement('div');
+        body.className = 'gruppe-body';
+
+        const name = document.createElement('div');
+        name.className = 'gruppe-name';
+        name.textContent = g.name;
+        body.appendChild(name);
+
+        if (g.description) {
+          const desc = document.createElement('p');
+          desc.className = 'gruppe-desc';
+          desc.textContent = g.description;
+          body.appendChild(desc);
+        }
+
+        const actions = document.createElement('div');
+        actions.className = 'gruppe-actions';
+
+        if (g.publicUrl) {
+          const link = document.createElement('a');
+          link.className = 'btn btn-primary';
+          link.href = g.publicUrl;
+          link.target = '_blank';
+          link.rel = 'noopener noreferrer';
+          link.textContent = 'Mehr erfahren';
+          actions.appendChild(link);
+
+          const kontakt = document.createElement('a');
+          kontakt.className = 'btn btn-primary';
+          kontakt.href = g.publicUrl + '#contact';
+          kontakt.target = '_blank';
+          kontakt.rel = 'noopener noreferrer';
+          kontakt.textContent = 'Kontakt';
+          actions.appendChild(kontakt);
+        }
+
+        body.appendChild(actions);
+        card.appendChild(body);
+        grid.appendChild(card);
+      });
+    }
+
+    function zeigeLeer(msg) {
+      const el = document.getElementById('leer');
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    main().catch(err => {
+      document.getElementById('laden').style.display = 'none';
+      zeigeLeer('Fehler beim Laden der Gruppen.');
+      console.error(err);
+    });
+  </script>
+
+</body>
+</html>
