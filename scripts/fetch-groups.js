@@ -110,8 +110,8 @@ async function main() {
     return p;
   }
 
-  const result = [];
-
+  // Erst alle Gruppen als flache Map aufbauen
+  const byId = new Map();
   for (const group of groups) {
     const id = group.id;
     process.stdout.write(`[${id}] ${group.name} … `);
@@ -120,15 +120,12 @@ async function main() {
     const info     = details?.information ?? {};
     const settings = details?.settings ?? {};
 
-    // Öffentliche Homepage-URL
     const hash      = info.groupHomepage ?? details?.groupHomepage ?? null;
     const publicUrl = hash ? `${BASE_URL}/grouphomepages/${hash}` : null;
 
-    // Gruppenbild herunterladen
     const imageUrl   = info.imageUrl ?? details?.imageUrl ?? null;
     const localImage = await downloadImage(id, imageUrl);
 
-    // Leiter ermitteln
     const members = await getGroupMembers(id);
     const leaders = [];
     for (const m of members) {
@@ -139,16 +136,15 @@ async function main() {
           id:        person.id,
           firstName: person.firstName,
           lastName:  person.lastName,
-          // kein Foto – DSGVO; nur Name für internen Gebrauch
         });
       }
     }
 
-    result.push({
+    byId.set(id, {
       id,
       name:          group.name,
       groupTypeId:   group.groupTypeId,
-      parentGroupId: group.parentGroupId ?? info.parentGroupId ?? null,
+      parentGroupId: null,   // wird im zweiten Schritt gesetzt
       description:   info.note ?? null,
       publicUrl,
       localImage,
@@ -160,20 +156,30 @@ async function main() {
       childGroupIds: [],
     });
 
-    console.log(localImage ? `OK (Bild gespeichert)` : 'OK');
+    console.log(localImage ? 'OK (Bild)' : 'OK');
   }
 
-  // childGroupIds befüllen
-  for (const g of result) {
-    if (g.parentGroupId) {
-      const parent = result.find(p => p.id === g.parentGroupId);
-      if (parent) parent.childGroupIds.push(g.id);
+  // Eltern-Kind-Beziehungen über API-Filter aufbauen
+  console.log('\nBaue Hierarchie über parentGroupId-Abfragen …');
+  for (const [parentId] of byId) {
+    const children = await getAllPages('/groups', { parentGroupId: parentId });
+    for (const child of children) {
+      const entry = byId.get(child.id);
+      if (entry) {
+        entry.parentGroupId = parentId;
+        const parent = byId.get(parentId);
+        if (parent && !parent.childGroupIds.includes(child.id)) {
+          parent.childGroupIds.push(child.id);
+        }
+      }
     }
   }
 
+  const result = [...byId.values()];
   const output = { generatedAt: new Date().toISOString(), groups: result };
   fs.writeFileSync(OUT_PATH, JSON.stringify(output, null, 2), 'utf8');
   console.log(`\nGespeichert: ${OUT_PATH}`);
+  console.log(`Gruppen mit Parent: ${result.filter(g => g.parentGroupId).length}`);
 }
 
 main().catch(err => {
