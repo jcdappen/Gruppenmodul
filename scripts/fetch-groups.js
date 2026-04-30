@@ -54,7 +54,7 @@ async function getChildren(groupId) {
     const res = await apiGet(`/groups/${groupId}/children`);
     const items = res.data ?? res ?? [];
     if (!Array.isArray(items)) return [];
-    return items.map(g => g.id).filter(id => id != null);
+    return items.map(g => parseInt(g.domainIdentifier ?? g.id, 10)).filter(id => !isNaN(id));
   } catch {
     return [];
   }
