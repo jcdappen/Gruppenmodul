@@ -1,0 +1,38 @@
+name: Gruppen abrufen
+
+on:
+  schedule:
+    - cron: '0 4 * * *'   # täglich um 04:00 UTC
+  workflow_dispatch:        # manuell auslösbar
+
+jobs:
+  fetch:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Node.js einrichten
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+
+      - name: Gruppen abrufen
+        env:
+          CHURCHTOOLS_TOKEN: ${{ secrets.CHURCHTOOLS_TOKEN }}
+        run: node scripts/fetch-groups.js
+
+      - name: Änderungen committen
+        run: |
+          git config user.name  "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add data/gruppen.json
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen."
+          else
+            git commit -m "chore: Gruppen aktualisiert $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+            git push
+          fi
