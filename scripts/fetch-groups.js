@@ -48,33 +48,14 @@ async function getAllPages(endpoint, params = {}) {
 // Gruppentyp-IDs aus den Daten ableiten – kein fester Wert
 // Visionsbereiche: groupTypeId der bekannten Visions-Gruppen (wird automatisch erkannt)
 
-// Untergruppen einer Gruppe über deren Homepage-URL ermitteln
-async function getChildrenViaHomepage(groupHomepageUrl) {
-  if (!groupHomepageUrl) return [];
+// Direkte Untergruppen einer Gruppe über /groups/{id}/children
+async function getChildren(groupId) {
   try {
-    const hash = groupHomepageUrl.split('/').pop();
-    if (!hash) return [];
-    const res = await apiGet(`/grouphomepages/${hash}`);
-
-    // Rohe Struktur loggen beim ersten Aufruf
-    if (!getChildrenViaHomepage._logged) {
-      getChildrenViaHomepage._logged = true;
-      console.log('  [DEBUG grouphomepages]', JSON.stringify(res).slice(0, 500));
-    }
-
-    // Flexibel: data könnte Array, Objekt mit data[], oder direkt items sein
-    let items = res.data ?? res.groups ?? res.items ?? res;
-    if (!Array.isArray(items)) {
-      // Versuche alle Array-Werte im Objekt
-      items = Object.values(res).find(v => Array.isArray(v)) ?? [];
-    }
-
-    return items
-      .filter(item => item.domainType === 'group' || item.type === 'group')
-      .map(item => parseInt(item.domainIdentifier ?? item.id, 10))
-      .filter(id => !isNaN(id));
-  } catch (e) {
-    console.error('  Homepage-Fehler:', e.message);
+    const res = await apiGet(`/groups/${groupId}/children`);
+    const items = res.data ?? res ?? [];
+    if (!Array.isArray(items)) return [];
+    return items.map(g => g.id).filter(id => id != null);
+  } catch {
     return [];
   }
 }
@@ -147,13 +128,11 @@ async function main() {
     console.log(localImage ? 'OK (Bild)' : 'OK');
   }
 
-  // Hierarchie über grouphomepages aufbauen
-  console.log('\nBaue Hierarchie über grouphomepages …');
+  // Hierarchie über /groups/{id}/children aufbauen
+  console.log('\nBaue Hierarchie über /children …');
   let linkedCount = 0;
   for (const [parentId, parentGroup] of byId) {
-    if (!parentGroup.publicUrl) continue;
-
-    const childIds = await getChildrenViaHomepage(parentGroup.publicUrl);
+    const childIds = await getChildren(parentId);
     for (const childId of childIds) {
       const child = byId.get(childId);
       if (!child) continue;
