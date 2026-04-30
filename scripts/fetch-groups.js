@@ -45,7 +45,30 @@ async function getAllPages(endpoint, params = {}) {
   return results;
 }
 
-// Bild herunterladen und lokal speichern; gibt relativen Pfad zurück oder null
+// Gruppentyp-IDs aus den Daten ableiten – kein fester Wert
+// Visionsbereiche: groupTypeId der bekannten Visions-Gruppen (wird automatisch erkannt)
+
+// Untergruppen einer Gruppe über deren Homepage-URL ermitteln
+async function getChildrenViaHomepage(groupHomepageUrl) {
+  if (!groupHomepageUrl) return [];
+  try {
+    // Hash aus URL extrahieren: …/grouphomepage/{hash}
+    const hash = groupHomepageUrl.split('/').pop();
+    if (!hash) return [];
+    const data = await apiGet(`/grouphomepages/${hash}`);
+    const items = data.data ?? [];
+    // domainIdentifier = Gruppen-ID als String
+    return items
+      .filter(item => item.domainType === 'group')
+      .map(item => parseInt(item.domainIdentifier, 10))
+      .filter(id => !isNaN(id));
+  } catch (e) {
+    console.error('  Homepage-Fehler:', e.message);
+    return [];
+  }
+}
+
+// Bild herunterladen und lokal speichern
 async function downloadImage(groupId, imageUrl) {
   if (!imageUrl) return null;
   try {
@@ -53,16 +76,13 @@ async function downloadImage(groupId, imageUrl) {
       headers: { Authorization: `Login ${TOKEN}` },
     });
     if (!res.ok) return null;
-
     const contentType = res.headers.get('content-type') || '';
     const ext = contentType.includes('png') ? 'png'
                : contentType.includes('gif') ? 'gif'
                : 'jpg';
     const filename = `group-${groupId}.${ext}`;
-    const localPath = path.join(IMG_DIR, filename);
-
     const buf = Buffer.from(await res.arrayBuffer());
-    fs.writeFileSync(localPath, buf);
+    fs.writeFileSync(path.join(IMG_DIR, filename), buf);
     return `assets/images/${filename}`;
   } catch {
     return null;
@@ -78,41 +98,14 @@ async function getGroupDetails(groupId) {
   }
 }
 
-async function getGroupMembers(groupId) {
-  try {
-    const data = await apiGet(`/groups/${groupId}/members`);
-    return data.data ?? data ?? [];
-  } catch {
-    return [];
-  }
-}
-
-async function getPerson(personId) {
-  try {
-    const data = await apiGet(`/persons/${personId}`);
-    return data.data ?? data;
-  } catch {
-    return null;
-  }
-}
-
 async function main() {
   console.log('Lade alle Gruppen …');
-  const groups = await getAllPages('/groups');
-  console.log(`${groups.length} Gruppen gefunden.\n`);
+  const allGroups = await getAllPages('/groups');
+  console.log(`${allGroups.length} Gruppen gefunden.\n`);
 
-  const personCache = {};
-
-  async function fetchPerson(personId) {
-    if (personCache[personId] !== undefined) return personCache[personId];
-    const p = await getPerson(personId);
-    personCache[personId] = p;
-    return p;
-  }
-
-  // Erst alle Gruppen als flache Map aufbauen
+  // Alle Gruppen als Map aufbauen (mit Details)
   const byId = new Map();
-  for (const group of groups) {
+  for (const group of allGroups) {
     const id = group.id;
     process.stdout.write(`[${id}] ${group.name} … `);
 
@@ -120,66 +113,58 @@ async function main() {
     const info     = details?.information ?? {};
     const settings = details?.settings ?? {};
 
-    const hash      = info.groupHomepage ?? details?.groupHomepage ?? null;
-    const publicUrl = hash ? `${BASE_URL}/grouphomepages/${hash}` : null;
-
-    const imageUrl   = info.imageUrl ?? details?.imageUrl ?? null;
-    const localImage = await downloadImage(id, imageUrl);
-
-    const members = await getGroupMembers(id);
-    const leaders = [];
-    for (const m of members) {
-      if (!m.isLeader) continue;
-      const person = await fetchPerson(m.personId);
-      if (person) {
-        leaders.push({
-          id:        person.id,
-          firstName: person.firstName,
-          lastName:  person.lastName,
-        });
-      }
-    }
+    const homepageUrl = info.groupHomepageUrl ?? null;
+    const imageUrl    = info.imageUrl || null;
+    const localImage  = imageUrl ? await downloadImage(id, imageUrl) : null;
 
     byId.set(id, {
       id,
-      name:          group.name,
-      groupTypeId:   group.groupTypeId,
-      parentGroupId: null,   // wird im zweiten Schritt gesetzt
-      description:   info.note ?? null,
-      publicUrl,
+      name:             group.name,
+      groupTypeId:      info.groupTypeId ?? group.information?.groupTypeId ?? null,
+      parentGroupId:    null,    // wird über Homepage-Hierarchie gesetzt
+      description:      info.note || null,
+      publicUrl:        homepageUrl ?? null,
       localImage,
       settings: {
         isHidden: settings.isHidden ?? null,
         modules:  settings.modules  ?? [],
       },
-      leaders,
+      leaders:      [],
       childGroupIds: [],
     });
 
     console.log(localImage ? 'OK (Bild)' : 'OK');
   }
 
-  // Eltern-Kind-Beziehungen über API-Filter aufbauen
-  console.log('\nBaue Hierarchie über parentGroupId-Abfragen …');
-  for (const [parentId] of byId) {
-    const children = await getAllPages('/groups', { parentGroupId: parentId });
-    for (const child of children) {
-      const entry = byId.get(child.id);
-      if (entry) {
-        entry.parentGroupId = parentId;
-        const parent = byId.get(parentId);
-        if (parent && !parent.childGroupIds.includes(child.id)) {
-          parent.childGroupIds.push(child.id);
-        }
+  // Hierarchie über grouphomepages aufbauen
+  console.log('\nBaue Hierarchie über grouphomepages …');
+  let linkedCount = 0;
+  for (const [parentId, parentGroup] of byId) {
+    if (!parentGroup.publicUrl) continue;
+
+    const childIds = await getChildrenViaHomepage(parentGroup.publicUrl);
+    for (const childId of childIds) {
+      const child = byId.get(childId);
+      if (!child) continue;
+      if (child.parentGroupId === null) {
+        child.parentGroupId = parentId;
+        linkedCount++;
+      }
+      if (!parentGroup.childGroupIds.includes(childId)) {
+        parentGroup.childGroupIds.push(childId);
       }
     }
+    if (childIds.length > 0) {
+      console.log(`  ${parentGroup.name} → ${childIds.length} Kinder`);
+    }
   }
+  console.log(`${linkedCount} Gruppen verknüpft.\n`);
 
   const result = [...byId.values()];
   const output = { generatedAt: new Date().toISOString(), groups: result };
   fs.writeFileSync(OUT_PATH, JSON.stringify(output, null, 2), 'utf8');
-  console.log(`\nGespeichert: ${OUT_PATH}`);
-  console.log(`Gruppen mit Parent: ${result.filter(g => g.parentGroupId).length}`);
+  console.log(`Gespeichert: ${OUT_PATH}`);
+  console.log(`Gruppen mit Parent: ${result.filter(g => g.parentGroupId !== null).length}`);
 }
 
 main().catch(err => {
