@@ -7,53 +7,63 @@ const TOKEN    = process.env.CHURCHTOOLS_TOKEN;
 
 if (!TOKEN) { console.error('CHURCHTOOLS_TOKEN fehlt'); process.exit(1); }
 
-async function apiGet(endpoint, params = {}) {
-  const url = new URL(`${API_BASE}${endpoint}`);
-  for (const [k, v] of Object.entries(params)) url.searchParams.set(k, v);
-  const res = await fetch(url.toString(), {
+async function get(url, params = {}) {
+  const u = new URL(url);
+  for (const [k, v] of Object.entries(params)) u.searchParams.set(k, v);
+  const res = await fetch(u.toString(), {
     headers: { Authorization: `Login ${TOKEN}`, Accept: 'application/json' },
   });
-  return res.json();
+  const text = await res.text();
+  try { return { status: res.status, body: JSON.parse(text) }; }
+  catch { return { status: res.status, body: text.slice(0, 300) }; }
 }
 
 async function main() {
-  // 1. Gesamtanzahl aller Gruppen (ohne Filter)
-  console.log('\n=== Alle Gruppen: Gesamtanzahl ===');
-  const all = await apiGet('/groups', { limit: 1 });
-  console.log('Total (ohne Filter):', all?.meta?.pagination?.total ?? '?');
+  // 1. Interne Legacy-API (churchtools-ajax)
+  console.log('\n=== Legacy Ajax: getGroupTree ===');
+  const tree = await get(`${BASE_URL}/index.php`, {
+    q: 'churchservice/ajax',
+    func: 'getGroupTree',
+  });
+  console.log('Status:', tree.status);
+  console.log(JSON.stringify(tree.body).slice(0, 1000));
 
-  // 2. parentGroupId=296 – wie viele total?
-  console.log('\n=== ?parentGroupId=296: Gesamtanzahl + erste Namen ===');
-  const byParent = await apiGet('/groups', { parentGroupId: 296, limit: 100 });
-  const byParentTotal = byParent?.meta?.pagination?.total ?? byParent?.data?.length ?? '?';
-  console.log('Total:', byParentTotal);
-  (byParent?.data ?? []).forEach(g => console.log(' -', g.id, g.name));
+  // 2. Interne API: Gruppenstruktur
+  console.log('\n=== Legacy Ajax: getAllGroupTypes ===');
+  const types = await get(`${BASE_URL}/index.php`, {
+    q: 'churchdb/ajax',
+    func: 'getGroups',
+  });
+  console.log('Status:', types.status);
+  console.log(JSON.stringify(types.body).slice(0, 1000));
 
-  // 3. Alternative Parameter testen
-  console.log('\n=== ?groupTypeId=5 (Visionsbereich-Typ) ===');
-  const byType5 = await apiGet('/groups', { groupTypeId: 5, limit: 100 });
-  console.log('Total groupTypeId=5:', byType5?.meta?.pagination?.total ?? byType5?.data?.length ?? '?');
-  (byType5?.data ?? []).forEach(g => console.log(' -', g.id, g.name, '| groupTypeId:', g.information?.groupTypeId));
+  // 3. Neuer Endpunkt: /api/groups mit campusId oder anderen Feldern
+  console.log('\n=== GET /api/groups – Meta-Felder von Leben mit Gott (296) ===');
+  const g296 = await get(`${API_BASE}/groups/296`);
+  // Alle Top-Level-Felder ausgeben
+  const data = g296.body?.data ?? g296.body;
+  console.log('Top-Level-Felder:', Object.keys(data ?? {}));
+  console.log('information-Felder:', Object.keys(data?.information ?? {}));
 
-  // 4. Alle groupTypeIds aus allen Gruppen auflisten
-  console.log('\n=== Alle vorhandenen groupTypeIds ===');
-  const allGroups = await apiGet('/groups', { limit: 100 });
-  const typeMap = {};
-  for (const g of allGroups?.data ?? []) {
-    const tid = g.information?.groupTypeId ?? 'unknown';
-    if (!typeMap[tid]) typeMap[tid] = [];
-    typeMap[tid].push(g.name);
+  // 4. Versuche /api/groups?limit=100 und schau ob irgendein Feld parent enthält
+  console.log('\n=== Suche nach parent-Feldern in Gruppenobjekten ===');
+  const allGroups = await get(`${API_BASE}/groups`, { limit: 100 });
+  const groups = allGroups.body?.data ?? [];
+  const withParent = groups.filter(g => {
+    const str = JSON.stringify(g).toLowerCase();
+    return str.includes('parent') || str.includes('uber') || str.includes('ober');
+  });
+  if (withParent.length > 0) {
+    console.log('Gruppen mit parent-Feldern:');
+    withParent.forEach(g => console.log(g.id, g.name, '→', JSON.stringify(g).slice(0, 300)));
+  } else {
+    console.log('Keine parent-Felder in Gruppenobjekten gefunden.');
   }
-  for (const [tid, names] of Object.entries(typeMap).sort()) {
-    console.log(`groupTypeId ${tid}: ${names.join(', ')}`);
-  }
 
-  // 5. Mitglieder von "Leben mit Gott" (id 296)
-  console.log('\n=== Mitglieder von "Leben mit Gott" (296) ===');
-  const members = await apiGet('/groups/296/members');
-  (members?.data ?? members ?? []).slice(0, 5).forEach(m =>
-    console.log(' -', JSON.stringify(m).slice(0, 200))
-  );
+  // 5. Versuche /api/v2/... oder andere API-Versionen
+  console.log('\n=== GET /api/v2/groups (falls vorhanden) ===');
+  const v2 = await get(`${BASE_URL}/api/v2/groups`, { limit: 5 });
+  console.log('Status:', v2.status, '| Body:', JSON.stringify(v2.body).slice(0, 200));
 }
 
 main().catch(console.error);
