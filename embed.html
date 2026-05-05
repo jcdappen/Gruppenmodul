@@ -8,14 +8,19 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
   <style>
-    /* ── Konkordia CI ─────────────────────────────── */
     :root {
-      --rot:        #bb2232;
-      --rot-dunkel: #70141e;
-      --grau-dunkel: #4d4d4d;
-      --grau:        #999999;
-      --grau-hell:   #e6e6e6;
+      --rot:         #bb2232;
+      --rot-dunkel:  #8f1926;
+      --rot-hell:    #f9eced;
+      --grau-dunkel: #3a3a3a;
+      --grau-mittel: #717171;
+      --grau-hell:   #f0f0f0;
+      --grau-border: #e2e2e2;
       --weiss:       #ffffff;
+      --radius-card: 16px;
+      --radius-btn:  50px;
+      --shadow:      0 2px 12px rgba(0,0,0,0.09);
+      --shadow-hover:0 6px 24px rgba(0,0,0,0.14);
     }
 
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -27,66 +32,74 @@
 
     body {
       font-family: 'Source Sans 3', Arial, sans-serif;
-      background: var(--weiss);
+      background: #fafafa;
       color: var(--grau-dunkel);
       font-size: 15px;
       line-height: 1.5;
     }
 
-    /* ── Bereich-Navigation ───────────────────────── */
+    /* ── Tab-Navigation ───────────────────────────── */
     #bereiche {
       display: flex;
+      gap: 0.5rem;
+      padding: 1.25rem 1rem 0;
       flex-wrap: wrap;
-      width: 100%;
+      border-bottom: 2px solid var(--grau-border);
+      background: var(--weiss);
     }
 
     .bereich-btn {
-      flex: 1 1 120px;
-      min-width: 0;
-      padding: 0.875rem 0.75rem;
-      background: var(--grau-hell);
-      border: none;
-      border-right: 2px solid var(--weiss);
-      border-bottom: 4px solid transparent;
+      padding: 0.55rem 1.2rem;
+      background: transparent;
+      border: 2px solid var(--grau-border);
+      border-bottom: none;
+      border-radius: 10px 10px 0 0;
       cursor: pointer;
       font-family: 'Oswald', Arial, sans-serif;
-      font-size: 0.9rem;
-      font-weight: 600;
+      font-size: 0.85rem;
+      font-weight: 500;
       text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--grau-dunkel);
-      transition: background 0.15s, color 0.15s, border-color 0.15s;
-      text-align: center;
+      letter-spacing: 0.07em;
+      color: var(--grau-mittel);
+      transition: color 0.2s, background 0.2s, border-color 0.2s;
+      position: relative;
+      bottom: -2px;
     }
 
-    .bereich-btn:last-child { border-right: none; }
-
     .bereich-btn:hover {
-      background: var(--rot-dunkel);
-      color: var(--weiss);
-      border-bottom-color: var(--rot-dunkel);
+      color: var(--rot);
+      background: var(--rot-hell);
     }
 
     .bereich-btn.active {
-      background: var(--rot);
-      color: var(--weiss);
-      border-bottom-color: var(--rot-dunkel);
+      color: var(--rot);
+      border-color: var(--grau-border);
+      border-bottom-color: var(--weiss);
+      background: var(--weiss);
+      font-weight: 600;
     }
 
     /* ── Gruppen-Grid ─────────────────────────────── */
     #gruppen {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(min(240px, 100%), 1fr));
-      gap: 2px;
-      background: var(--grau-hell);
-      margin-top: 2px;
-      width: 100%;
+      grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+      gap: 1.25rem;
+      padding: 1.5rem 1rem;
     }
 
     .gruppe-card {
       background: var(--weiss);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
+      overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .gruppe-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
     }
 
     .gruppe-img {
@@ -94,56 +107,55 @@
       aspect-ratio: 16 / 9;
       object-fit: cover;
       display: block;
-      background: var(--grau-hell);
+      background: var(--rot-hell);
     }
 
     .gruppe-body {
-      padding: 1rem 1.1rem 1.2rem;
+      padding: 1.1rem 1.25rem 1.3rem;
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 0.4rem;
+      gap: 0.5rem;
     }
 
     .gruppe-name {
       font-family: 'Oswald', Arial, sans-serif;
-      font-size: 1.05rem;
+      font-size: 1.1rem;
       font-weight: 600;
       text-transform: uppercase;
-      letter-spacing: 0.05em;
-      color: var(--rot);
+      letter-spacing: 0.04em;
+      color: var(--grau-dunkel);
       line-height: 1.2;
     }
 
     .gruppe-desc {
-      font-size: 0.875rem;
-      color: var(--grau-dunkel);
+      font-size: 0.9rem;
+      color: var(--grau-mittel);
       flex: 1;
-      /* max 4 Zeilen mit Ellipsis */
       display: -webkit-box;
-      -webkit-line-clamp: 4;
+      -webkit-line-clamp: 6;
       -webkit-box-orient: vertical;
       overflow: hidden;
     }
 
     .gruppe-actions {
       display: flex;
-      gap: 0.5rem;
-      margin-top: 0.75rem;
+      gap: 0.6rem;
+      margin-top: 1rem;
       flex-wrap: wrap;
     }
 
     .btn {
       display: inline-block;
-      padding: 0.45rem 0.9rem;
-      font-family: 'Oswald', Arial, sans-serif;
-      font-size: 0.8rem;
+      padding: 0.45rem 1.1rem;
+      font-family: 'Source Sans 3', Arial, sans-serif;
+      font-size: 0.85rem;
       font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
       text-decoration: none;
       cursor: pointer;
-      border: none;
+      border-radius: var(--radius-btn);
+      border: 2px solid transparent;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
     }
 
     .btn-primary {
@@ -153,14 +165,23 @@
 
     .btn-primary:hover {
       background: var(--rot-dunkel);
-      color: var(--weiss);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--rot);
+      border-color: var(--rot);
+    }
+
+    .btn-outline:hover {
+      background: var(--rot-hell);
     }
 
     /* ── Leer-Zustand ─────────────────────────────── */
     #leer {
       padding: 2.5rem 1rem;
       text-align: center;
-      color: var(--grau);
+      color: var(--grau-mittel);
       font-size: 0.9rem;
       display: none;
     }
@@ -169,7 +190,7 @@
     #laden {
       padding: 2rem 1rem;
       text-align: center;
-      color: var(--grau);
+      color: var(--grau-mittel);
       font-size: 0.9rem;
     }
   </style>
@@ -304,7 +325,7 @@
           actions.appendChild(link);
 
           const kontakt = document.createElement('a');
-          kontakt.className = 'btn btn-primary';
+          kontakt.className = 'btn btn-outline';
           kontakt.href = g.publicUrl + '#contact';
           kontakt.target = '_blank';
           kontakt.rel = 'noopener noreferrer';
