@@ -1,0 +1,142 @@
+---
+name: churchtools-gruppenmodul
+description: >
+  Aufbau und Pflege des ChurchTools Gruppen-Moduls für Gemeinde Konkordia.
+  Verwende diesen Skill wenn Johannes am Gruppenmodul arbeitet – neue Features,
+  API-Probleme, Design-Anpassungen oder Deployment-Fragen.
+metadata:
+  version: 1.0.0
+  repo: jcdappen/Gruppenmodul
+  branch: main
+  github-pages: https://jcdappen.github.io/Gruppenmodul/
+---
+
+# ChurchTools Gruppen-Modul – Skill
+
+## Projekt-Überblick
+
+Vier einbettbare iframes für gemeinde-konkordia.de, je einer pro Visionsbereich.
+Daten werden täglich automatisch aus ChurchTools abgerufen und auf GitHub Pages bereitgestellt.
+
+**Embed-URL-Schema:**
+```
+https://jcdappen.github.io/Gruppenmodul/embed.html?v=leben-mit-gott
+https://jcdappen.github.io/Gruppenmodul/embed.html?v=leben-in-transformation
+https://jcdappen.github.io/Gruppenmodul/embed.html?v=leben-in-gemeinschaft
+https://jcdappen.github.io/Gruppenmodul/embed.html?v=leben-in-der-welt
+```
+
+**Einbettung auf der Website (einmalig pro Seite):**
+```html
+<script>
+  window.addEventListener('message', function(e) {
+    if (!e.data || e.data.type !== 'gidk-resize') return;
+    document.querySelectorAll('iframe[data-gidk]').forEach(function(f) {
+      if (f.contentWindow === e.source) f.style.height = e.data.height + 'px';
+    });
+  });
+</script>
+
+<iframe data-gidk
+  src="https://jcdappen.github.io/Gruppenmodul/embed.html?v=leben-mit-gott"
+  width="100%" height="0" frameborder="0" scrolling="no"
+  style="border:none;width:100%;display:block;overflow:hidden;"></iframe>
+```
+
+---
+
+## Datei-Struktur
+
+```
+Gruppenmodul/
+├── .github/workflows/
+│   ├── fetch-groups.yml     # täglich 04:00 UTC + manuell
+│   └── debug-api.yml        # manuell: API-Diagnose
+├── data/
+│   └── gruppen.json         # generiert, nicht manuell bearbeiten
+├── scripts/
+│   ├── fetch-groups.js      # Haupt-Script
+│   └── debug-api.js         # Diagnose-Hilfsmittel
+├── assets/images/
+│   ├── fallback.svg         # Platzhalter-Kreuz im Konkordia-CI
+│   └── group-{id}.jpg       # automatisch heruntergeladen
+├── embed.html               # die vier iframes
+└── index.html               # einfache Übersichtsseite
+```
+
+---
+
+## ChurchTools API – Erkenntnisse
+
+**Basis:**
+```
+BASE_URL: https://gemeindekonkordia.church.tools
+API_BASE: https://gemeindekonkordia.church.tools/api
+Auth:     Authorization: Login ${CHURCHTOOLS_TOKEN}
+```
+
+**Was funktioniert:**
+| Endpunkt | Zweck |
+|---|---|
+| `GET /api/groups?limit=100&page=N` | Alle Gruppen paginiert abrufen |
+| `GET /api/groups/{id}` | Gruppendetails (information, settings) |
+| `GET /api/groups/{id}/children` | ✅ Direkte Untergruppen – gibt `domainIdentifier` (String!) nicht `id` |
+| `GET /api/groups/{id}/members` | Mitglieder + Rollen |
+| `GET /api/persons/{id}` | Personen-Details |
+
+**Was NICHT funktioniert (wird ignoriert):**
+- `GET /api/groups?parentGroupId={id}` → gibt immer ALLE Gruppen zurück (Filter ignoriert)
+- `GET /api/groups?groupTypeId={id}` → gibt immer ALLE Gruppen zurück (Filter ignoriert)
+- `GET /api/groupTypes` → 404
+- `GET /api/groups/{id}/subgroups` → 404
+
+**Wichtige Besonderheiten:**
+- `/groups/{id}/children` gibt Objekte mit `domainIdentifier` (String) zurück, NICHT `id`
+  → `parseInt(item.domainIdentifier, 10)` verwenden
+- `information.groupHomepageUrl` enthält die vollständige URL (nicht nur den Hash)
+- `information.imageUrl` für Gruppenbilder (kann leer sein)
+- Gruppenbilder müssen mit Auth-Header heruntergeladen werden
+
+**GroupTypeId-Bedeutung in dieser Instanz:**
+| groupTypeId | Bedeutung |
+|---|---|
+| 1 | Kleingruppen |
+| 2 | Teams / Dienste |
+| 3 | Online / Digital |
+| 4 | Events / Kurse |
+| 5 | Visionsbereiche ← Einstiegspunkt der Hierarchie |
+| 7 | Jüngerschaftsgruppen |
+| 9 | Gebet / Kurse |
+
+**Hierarchie aufbauen:**
+```js
+// Für jede Gruppe: Kinder über /children abrufen
+const res = await apiGet(`/groups/${groupId}/children`);
+const childIds = (res.data ?? [])
+  .map(item => parseInt(item.domainIdentifier, 10))
+  .filter(id => !isNaN(id));
+```
+
+---
+
+## GitHub Secret
+
+`CHURCHTOOLS_TOKEN` → Settings → Secrets and variables → Actions
+
+---
+
+## Design
+
+Konkordia CI (siehe seo-audit-konkordia.skill für vollständigen Styleguide):
+- Primärfarbe: `#bb2232` (--gidk-rot-logo)
+- Headlines: Oswald (Google Fonts Fallback für Grotesque SC)
+- Fließtext: Source Sans 3 (Google Fonts Fallback für Gothic 720/725)
+- Geometrisch, kantige Formen, kein border-radius
+
+---
+
+## DSGVO
+
+- Keine persönlichen Daten (kein Foto, keine E-Mail der Leiter) im iframe
+- Weiterleitung auf ChurchTools-Gruppenseite (`publicUrl`) für Kontakt
+- ChurchTools übernimmt dort den Datenschutz
