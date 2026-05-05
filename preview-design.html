@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Design-Vorschau – Gruppenmodul</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@500;600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --rot:         #bb2232;
+      --rot-dunkel:  #8f1926;
+      --rot-hell:    #f9eced;
+      --grau-dunkel: #3a3a3a;
+      --grau-mittel: #717171;
+      --grau-hell:   #f0f0f0;
+      --grau-border: #e2e2e2;
+      --weiss:       #ffffff;
+      --radius-card: 16px;
+      --radius-btn:  50px;
+      --shadow:      0 2px 12px rgba(0,0,0,0.09);
+      --shadow-hover:0 6px 24px rgba(0,0,0,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans 3', Arial, sans-serif;
+      background: #fafafa;
+      color: var(--grau-dunkel);
+      font-size: 15px;
+      line-height: 1.5;
+      padding: 0 0 2rem;
+    }
+
+    /* ── Vergleichsleiste ─────────────────────────── */
+    .compare-bar {
+      background: #222;
+      color: #fff;
+      text-align: center;
+      font-size: 0.8rem;
+      padding: 0.5rem 1rem;
+      letter-spacing: 0.05em;
+      font-family: monospace;
+    }
+    .compare-bar span { color: #f87171; }
+
+    /* ── Tab-Navigation (Pill-Stil) ───────────────── */
+    #bereiche {
+      display: flex;
+      gap: 0.5rem;
+      padding: 1.25rem 1rem 0;
+      flex-wrap: wrap;
+      border-bottom: 2px solid var(--grau-border);
+      background: var(--weiss);
+    }
+
+    .bereich-btn {
+      padding: 0.55rem 1.2rem;
+      background: transparent;
+      border: 2px solid var(--grau-border);
+      border-bottom: none;
+      border-radius: 10px 10px 0 0;
+      cursor: pointer;
+      font-family: 'Oswald', Arial, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.07em;
+      color: var(--grau-mittel);
+      transition: color 0.2s, background 0.2s, border-color 0.2s;
+      position: relative;
+      bottom: -2px;
+    }
+
+    .bereich-btn:hover {
+      color: var(--rot);
+      border-color: var(--grau-border);
+      background: var(--rot-hell);
+    }
+
+    .bereich-btn.active {
+      color: var(--rot);
+      border-color: var(--grau-border);
+      border-bottom-color: var(--weiss);
+      background: var(--weiss);
+      font-weight: 600;
+    }
+
+    /* ── Gruppen-Grid ─────────────────────────────── */
+    #gruppen {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+      gap: 1.25rem;
+      padding: 1.5rem 1rem;
+      background: transparent;
+    }
+
+    .gruppe-card {
+      background: var(--weiss);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      overflow: hidden;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .gruppe-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-3px);
+    }
+
+    .gruppe-img {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      display: block;
+      background: var(--grau-hell);
+    }
+
+    /* Fallback-Icon zentriert */
+    .gruppe-img-wrap {
+      position: relative;
+    }
+    .gruppe-img-placeholder {
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      background: var(--rot-hell);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gruppe-img-placeholder svg {
+      width: 48px;
+      height: 48px;
+      opacity: 0.35;
+    }
+
+    .gruppe-body {
+      padding: 1.1rem 1.25rem 1.3rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .gruppe-name {
+      font-family: 'Oswald', Arial, sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: var(--grau-dunkel);
+      line-height: 1.2;
+    }
+
+    .gruppe-desc {
+      font-size: 0.875rem;
+      color: var(--grau-mittel);
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 3;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .gruppe-actions {
+      display: flex;
+      gap: 0.6rem;
+      margin-top: 0.9rem;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 0.45rem 1.1rem;
+      font-family: 'Source Sans 3', Arial, sans-serif;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border-radius: var(--radius-btn);
+      border: 2px solid transparent;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .btn-primary {
+      background: var(--rot);
+      color: var(--weiss);
+    }
+    .btn-primary:hover {
+      background: var(--rot-dunkel);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--rot);
+      border-color: var(--rot);
+    }
+    .btn-outline:hover {
+      background: var(--rot-hell);
+    }
+
+    /* ── Seiten-Padding Hinweis ───────────────────── */
+    .hinweis {
+      font-size: 0.78rem;
+      color: var(--grau-mittel);
+      text-align: center;
+      padding: 0 1rem;
+      font-family: monospace;
+    }
+  </style>
+</head>
+<body>
+
+<div class="compare-bar">
+  VORSCHAU – Neues Design · <span>Noch nicht live</span> · embed.html bleibt unverändert
+</div>
+
+<!-- Tab-Navigation -->
+<nav id="bereiche">
+  <button class="bereich-btn active">Gebet</button>
+  <button class="bereich-btn">Kurse</button>
+</nav>
+
+<!-- Gruppen-Grid mit Mock-Daten -->
+<div id="gruppen">
+
+  <!-- Karte 1: mit Bild -->
+  <div class="gruppe-card">
+    <div style="width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#c8a0a5,#e8c5c8);display:flex;align-items:center;justify-content:center;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21C12 21 4 13.5 4 8a8 8 0 0 1 16 0c0 5.5-8 13-8 13z"/></svg>
+    </div>
+    <div class="gruppe-body">
+      <div class="gruppe-name">Gebetsteam</div>
+      <p class="gruppe-desc">In Matthäus 18 Vers 20 steht: »Denn wo zwei oder drei zusammenkommen, die zu mir gehören, bin ich mitten unter ihnen.« Deswegen glauben wir, dass gemeinsames Gebet ein wichtiger Schlüssel ist, um Gottes Stimme zu hören.</p>
+      <div class="gruppe-actions">
+        <a class="btn btn-primary" href="#">Mehr erfahren</a>
+        <a class="btn btn-outline" href="#">Kontakt</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Karte 2: ohne Bild → Placeholder -->
+  <div class="gruppe-card">
+    <div class="gruppe-img-placeholder">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#bb2232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2a2 2 0 0 0-2 2v5H4a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h5v5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-5h5a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-5V4a2 2 0 0 0-2-2h-2z"/></svg>
+    </div>
+    <div class="gruppe-body">
+      <div class="gruppe-name">Kontemplation</div>
+      <p class="gruppe-desc">Gott ist ein Gott der Gegenwart. Wie er dich findet, so nimmt und empfängt er dich, nicht als das, was du gewesen, sondern als das, was du jetzt bist.</p>
+      <div class="gruppe-actions">
+        <a class="btn btn-primary" href="#">Mehr erfahren</a>
+        <a class="btn btn-outline" href="#">Kontakt</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Karte 3 -->
+  <div class="gruppe-card">
+    <div style="width:100%;aspect-ratio:16/9;background:linear-gradient(135deg,#a0b8c8,#c5d8e8);display:flex;align-items:center;justify-content:center;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="52" height="52" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.6)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+    </div>
+    <div class="gruppe-body">
+      <div class="gruppe-name">Morgengebet</div>
+      <p class="gruppe-desc">Jeden Dienstag starten wir gemeinsam in den Tag – mit Stille, Gebet und Fürsprache füreinander. Offen für alle, die Gottes Nähe suchen.</p>
+      <div class="gruppe-actions">
+        <a class="btn btn-primary" href="#">Mehr erfahren</a>
+        <a class="btn btn-outline" href="#">Kontakt</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<p class="hinweis">Mock-Daten · Echte Gruppen werden aus ChurchTools geladen</p>
+
+</body>
+</html>
