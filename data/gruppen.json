@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-06T06:27:48.660Z",
+  "generatedAt": "2026-05-07T06:32:54.847Z",
   "groups": [
     {
       "id": 124,
@@ -757,7 +757,7 @@
       "parentGroupId": null,
       "description": "Herzlich Willkommen in der Gemeinde in der Konkordia. Wir freuen uns, dass du mit uns Kontakt aufnehmen möchtest.\n\nGerne würden wir dich kennenlernen, deine Fragen beantworten, für dich beten und dir weitere Informationen zukommen lassen, wenn du das Formular ausfüllst.\n\nWir freuen uns auf dich! \nDein Gemeinde in der Konkordia Team",
       "publicUrl": null,
-      "localImage": null,
+      "localImage": "assets/images/group-251.png",
       "settings": {
         "isHidden": false,
         "modules": []
