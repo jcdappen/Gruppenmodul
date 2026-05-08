@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-07T06:32:54.847Z",
+  "generatedAt": "2026-05-08T05:54:22.557Z",
   "groups": [
     {
       "id": 124,
@@ -38,7 +38,7 @@
       "parentGroupId": 351,
       "description": "Alpha ist eine Serie von rund zehn Treffen, die in entspannter Atmosphäre stattfinden.\n\nBei jedem der Treffen gibt es ein gemeinsames Essen, ein Thema und Gesprächsgruppen.\n\nDazu laden wir herzlich ein.\n\nStart ist ab der KW 4.\nBitte gebe bei der Anmeldung die Wochentage und die Uhrzeit an, die für dich machbar sind.\nVielen herzlichen Dank!\n\nDeine Gemeinde in der Konkordia Bühl",
       "publicUrl": null,
-      "localImage": null,
+      "localImage": "assets/images/group-321.jpg",
       "settings": {
         "isHidden": false,
         "modules": []
@@ -757,7 +757,7 @@
       "parentGroupId": null,
       "description": "Herzlich Willkommen in der Gemeinde in der Konkordia. Wir freuen uns, dass du mit uns Kontakt aufnehmen möchtest.\n\nGerne würden wir dich kennenlernen, deine Fragen beantworten, für dich beten und dir weitere Informationen zukommen lassen, wenn du das Formular ausfüllst.\n\nWir freuen uns auf dich! \nDein Gemeinde in der Konkordia Team",
       "publicUrl": null,
-      "localImage": "assets/images/group-251.png",
+      "localImage": null,
       "settings": {
         "isHidden": false,
         "modules": []
