@@ -4,9 +4,36 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Gruppen – Gemeinde Konkordia</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@600&family=Source+Sans+3:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet" />
+  <style>
+    @font-face {
+      font-family: 'GrotesqueSC';
+      src: url('https://jcdappen.github.io/Gruppenmodul/assets/fonts/GrotesqueRegSC.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gothic720';
+      src: url('https://jcdappen.github.io/Gruppenmodul/assets/fonts/gothic720l.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gothic720';
+      src: url('https://jcdappen.github.io/Gruppenmodul/assets/fonts/gothic720li.ttf') format('truetype');
+      font-weight: 300;
+      font-style: italic;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gothic725';
+      src: url('https://jcdappen.github.io/Gruppenmodul/assets/fonts/gothic725b.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
   <style>
     :root {
       --rot:         #bb2232;
@@ -31,7 +58,7 @@
     }
 
     body {
-      font-family: 'Source Sans 3', Arial, sans-serif;
+      font-family: 'Gothic720', Arial, sans-serif;
       background: #fafafa;
       color: var(--grau-dunkel);
       font-size: 15px;
@@ -55,7 +82,7 @@
       border-bottom: none;
       border-radius: 10px 10px 0 0;
       cursor: pointer;
-      font-family: 'Oswald', Arial, sans-serif;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
       font-size: 0.85rem;
       font-weight: 500;
       text-transform: uppercase;
@@ -119,7 +146,7 @@
     }
 
     .gruppe-name {
-      font-family: 'Oswald', Arial, sans-serif;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
       font-size: 1.1rem;
       font-weight: 600;
       text-transform: uppercase;
@@ -148,7 +175,7 @@
     .btn {
       display: inline-block;
       padding: 0.45rem 1.1rem;
-      font-family: 'Source Sans 3', Arial, sans-serif;
+      font-family: 'Gothic720', Arial, sans-serif;
       font-size: 0.85rem;
       font-weight: 600;
       text-decoration: none;
