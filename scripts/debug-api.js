@@ -17,19 +17,19 @@ async function get(url) {
 }
 
 async function main() {
-  // Vollständige API-Antwort für Alpha-Kurs (321) – Bildfeld finden
-  console.log('=== GET /api/groups/321 (Alpha-Kurs) ===');
-  const r = await get(`${API_BASE}/groups/321`);
-  const info = r.body?.data?.information ?? r.body?.information ?? {};
-  console.log('Status:', r.status);
-  console.log('information:', JSON.stringify(info, null, 2));
+  // Bild-Download für Alpha-Kurs (321) testen
+  const imageUrl = 'https://gemeindekonkordia.church.tools/images/931/0f9213a292188bed8dbde85e7c17076c8f746d7db419a0beb5ffece631f4d6bc';
 
-  // Gebetsteam (62) zum Vergleich
-  console.log('\n=== GET /api/groups/62 (Gebetsteam) ===');
-  const r2 = await get(`${API_BASE}/groups/62`);
-  const info2 = r2.body?.data?.information ?? r2.body?.information ?? {};
-  console.log('Status:', r2.status);
-  console.log('information:', JSON.stringify(info2, null, 2));
+  console.log('=== Bild-Download Test (Alpha-Kurs) ===');
+  console.log('URL:', imageUrl);
+
+  // Mit Auth-Header
+  const r1 = await fetch(imageUrl, { headers: { Authorization: `Login ${TOKEN}` } });
+  console.log('Mit Auth-Header → Status:', r1.status, r1.headers.get('content-type'));
+
+  // Ohne Auth-Header
+  const r2 = await fetch(imageUrl);
+  console.log('Ohne Auth-Header → Status:', r2.status, r2.headers.get('content-type'));
 }
 
 main().catch(console.error);
