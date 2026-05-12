@@ -17,28 +17,19 @@ async function get(url) {
 }
 
 async function main() {
-  // 1. /groups/296/children
-  console.log('=== GET /api/groups/296/children ===');
-  const r1 = await get(`${API_BASE}/groups/296/children`);
-  console.log('Status:', r1.status);
-  console.log(JSON.stringify(r1.body).slice(0, 500));
+  // Vollständige API-Antwort für Alpha-Kurs (321) – Bildfeld finden
+  console.log('=== GET /api/groups/321 (Alpha-Kurs) ===');
+  const r = await get(`${API_BASE}/groups/321`);
+  const info = r.body?.data?.information ?? r.body?.information ?? {};
+  console.log('Status:', r.status);
+  console.log('information:', JSON.stringify(info, null, 2));
 
-  // 2. Alle verfügbaren Unter-Endpunkte von /groups/296
-  for (const sub of ['children', 'subgroups', 'tree', 'hierarchy', 'members', 'tags']) {
-    const r = await get(`${API_BASE}/groups/296/${sub}`);
-    console.log(`\n/groups/296/${sub} → Status: ${r.status} | ${JSON.stringify(r.body).slice(0, 150)}`);
-  }
-
-  // 3. Schaue ob Leben mit Gott (296) irgendwo als parentGroup auftaucht
-  console.log('\n=== Suche nach parentGroup=296 in allen Feldern ===');
-  const allRes = await get(`${API_BASE}/groups?limit=100`);
-  const groups = allRes.body?.data ?? [];
-  groups.forEach(g => {
-    const str = JSON.stringify(g);
-    if (str.includes('296') && g.id !== 296) {
-      console.log(`Gruppe ${g.id} ${g.name} enthält 296:`, str.slice(0, 300));
-    }
-  });
+  // Gebetsteam (62) zum Vergleich
+  console.log('\n=== GET /api/groups/62 (Gebetsteam) ===');
+  const r2 = await get(`${API_BASE}/groups/62`);
+  const info2 = r2.body?.data?.information ?? r2.body?.information ?? {};
+  console.log('Status:', r2.status);
+  console.log('information:', JSON.stringify(info2, null, 2));
 }
 
 main().catch(console.error);
