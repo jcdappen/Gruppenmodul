@@ -105,9 +105,10 @@ async function main() {
     const info     = details?.information ?? {};
     const settings = details?.settings ?? {};
 
-    const homepageUrl = info.groupHomepageUrl ?? null;
     const imageUrl    = info.imageUrl || null;
     const localImage  = imageUrl ? await downloadImage(id, imageUrl) : null;
+    const isHidden    = settings.isHidden ?? false;
+    const publicUrl   = isHidden ? null : `${BASE_URL}/publicgroup/${id}`;
 
     byId.set(id, {
       id,
@@ -115,7 +116,7 @@ async function main() {
       groupTypeId:      info.groupTypeId ?? group.information?.groupTypeId ?? null,
       parentGroupId:    null,    // wird über Homepage-Hierarchie gesetzt
       description:      info.note || null,
-      publicUrl:        homepageUrl ?? null,
+      publicUrl,
       localImage,
       settings: {
         isHidden: settings.isHidden ?? null,
