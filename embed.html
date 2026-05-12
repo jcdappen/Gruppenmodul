@@ -236,7 +236,7 @@
       }
 
       // Bereiche = direkte Kinder des Visionsbereichs
-      const bereiche = groups.filter(g => String(g.parentGroupId) === String(vb.id));
+      const bereiche = groups.filter(g => (g.parentGroupIds || []).includes(vb.id));
 
       if (bereiche.length === 0) {
         zeigeLeer('Keine Bereiche vorhanden.');
@@ -263,7 +263,7 @@
     }
 
     function zeigeGruppen(bereichId, groups) {
-      const untergruppen = groups.filter(g => String(g.parentGroupId) === String(bereichId));
+      const untergruppen = groups.filter(g => (g.parentGroupIds || []).includes(bereichId));
       const grid = document.getElementById('gruppen');
       grid.innerHTML = '';
 

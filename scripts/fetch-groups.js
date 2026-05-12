@@ -114,7 +114,7 @@ async function main() {
       id,
       name:             group.name,
       groupTypeId:      info.groupTypeId ?? group.information?.groupTypeId ?? null,
-      parentGroupId:    null,    // wird über Homepage-Hierarchie gesetzt
+      parentGroupIds:   [],      // wird über Homepage-Hierarchie gesetzt
       description:      info.note || null,
       publicUrl,
       localImage,
@@ -137,8 +137,8 @@ async function main() {
     for (const childId of childIds) {
       const child = byId.get(childId);
       if (!child) continue;
-      if (child.parentGroupId === null) {
-        child.parentGroupId = parentId;
+      if (!child.parentGroupIds.includes(parentId)) {
+        child.parentGroupIds.push(parentId);
         linkedCount++;
       }
       if (!parentGroup.childGroupIds.includes(childId)) {
