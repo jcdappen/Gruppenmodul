@@ -1,21 +1,15 @@
 #!/usr/bin/env node
 'use strict';
 
-const fs   = require('fs');
-const path = require('path');
-
 const BASE_URL  = 'https://gemeindekonkordia.church.tools';
 const API_BASE  = `${BASE_URL}/api`;
 const TOKEN     = process.env.CHURCHTOOLS_TOKEN;
-const IMG_DIR   = path.join(__dirname, '..', 'assets', 'images');
-const OUT_PATH  = path.join(__dirname, '..', 'data', 'gruppen.json');
+const OUT_PATH  = require('path').join(__dirname, '..', 'data', 'gruppen.json');
 
 if (!TOKEN) {
   console.error('Fehler: CHURCHTOOLS_TOKEN ist nicht gesetzt.');
   process.exit(1);
 }
-
-fs.mkdirSync(IMG_DIR, { recursive: true });
 
 async function apiGet(endpoint, params = {}) {
   const url = new URL(`${API_BASE}${endpoint}`);
@@ -45,10 +39,6 @@ async function getAllPages(endpoint, params = {}) {
   return results;
 }
 
-// Gruppentyp-IDs aus den Daten ableiten – kein fester Wert
-// Visionsbereiche: groupTypeId der bekannten Visions-Gruppen (wird automatisch erkannt)
-
-// Direkte Untergruppen einer Gruppe über /groups/{id}/children
 async function getChildren(groupId) {
   try {
     const res = await apiGet(`/groups/${groupId}/children`);
@@ -57,27 +47,6 @@ async function getChildren(groupId) {
     return items.map(g => parseInt(g.domainIdentifier ?? g.id, 10)).filter(id => !isNaN(id));
   } catch {
     return [];
-  }
-}
-
-// Bild herunterladen und lokal speichern
-async function downloadImage(groupId, imageUrl) {
-  if (!imageUrl) return null;
-  try {
-    const res = await fetch(imageUrl, {
-      headers: { Authorization: `Login ${TOKEN}` },
-    });
-    if (!res.ok) return null;
-    const contentType = res.headers.get('content-type') || '';
-    const ext = contentType.includes('png') ? 'png'
-               : contentType.includes('gif') ? 'gif'
-               : 'jpg';
-    const filename = `group-${groupId}.${ext}`;
-    const buf = Buffer.from(await res.arrayBuffer());
-    fs.writeFileSync(path.join(IMG_DIR, filename), buf);
-    return `assets/images/${filename}`;
-  } catch {
-    return null;
   }
 }
 
@@ -95,7 +64,6 @@ async function main() {
   const allGroups = await getAllPages('/groups');
   console.log(`${allGroups.length} Gruppen gefunden.\n`);
 
-  // Alle Gruppen als Map aufbauen (mit Details)
   const byId = new Map();
   for (const group of allGroups) {
     const id = group.id;
@@ -105,19 +73,18 @@ async function main() {
     const info     = details?.information ?? {};
     const settings = details?.settings ?? {};
 
-    const imageUrl    = info.imageUrl || null;
-    const localImage  = imageUrl ? await downloadImage(id, imageUrl) : null;
-    const isHidden    = settings.isHidden ?? false;
-    const publicUrl   = isHidden ? null : `${BASE_URL}/publicgroup/${id}`;
+    const imageUrl  = info.imageUrl || null;
+    const isHidden  = settings.isHidden ?? false;
+    const publicUrl = isHidden ? null : `${BASE_URL}/publicgroup/${id}`;
 
     byId.set(id, {
       id,
-      name:             group.name,
-      groupTypeId:      info.groupTypeId ?? group.information?.groupTypeId ?? null,
-      parentGroupIds:   [],      // wird über Homepage-Hierarchie gesetzt
-      description:      info.note || null,
+      name:          group.name,
+      groupTypeId:   info.groupTypeId ?? group.information?.groupTypeId ?? null,
+      parentGroupIds: [],
+      description:   info.note || null,
       publicUrl,
-      localImage,
+      imageUrl,
       settings: {
         isHidden: settings.isHidden ?? null,
         modules:  settings.modules  ?? [],
@@ -126,10 +93,9 @@ async function main() {
       childGroupIds: [],
     });
 
-    console.log(localImage ? 'OK (Bild)' : 'OK');
+    console.log(imageUrl ? 'OK (Bild)' : 'OK');
   }
 
-  // Hierarchie über /groups/{id}/children aufbauen
   console.log('\nBaue Hierarchie über /children …');
   let linkedCount = 0;
   for (const [parentId, parentGroup] of byId) {
@@ -153,9 +119,8 @@ async function main() {
 
   const result = [...byId.values()];
   const output = { generatedAt: new Date().toISOString(), groups: result };
-  fs.writeFileSync(OUT_PATH, JSON.stringify(output, null, 2), 'utf8');
-  console.log(`Gespeichert: ${OUT_PATH}`);
-  console.log(`Gruppen mit Parent: ${result.filter(g => g.parentGroupId !== null).length}`);
+  require('fs').writeFileSync(OUT_PATH, JSON.stringify(output, null, 2), 'utf8');
+  console.log(`Gespeichert: ${OUT_PATH} (${result.length} Gruppen)`);
 }
 
 main().catch(err => {
