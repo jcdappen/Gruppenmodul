@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-05T06:13:15.072Z",
+  "generatedAt": "2026-05-12T15:05:55.794Z",
   "groups": [
     {
       "id": 124,
@@ -62,8 +62,7 @@
       "childGroupIds": [
         337,
         314,
-        277,
-        115
+        277
       ]
     },
     {
@@ -382,7 +381,7 @@
       "groupTypeId": 2,
       "parentGroupId": 348,
       "description": "In Matthäus 18 Vers 20 steht: „Denn wo zwei oder drei zusammenkommen, die zu mir gehören, bin ich mitten unter ihnen.« Deswegen glauben wir, dass gemeinsames Gebet ein wichtiger Schlüssel ist, um Gottes Stimme zu hören und den Plan für seine Kirche und die Stadt, in der wir leben, zu erfahren.",
-      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/62",
+      "publicUrl": "https://gemeindekonkordia.church.tools/grouphomepage/DVPuBj1awrDMgdz4xzaZpvcqTyhww5xo",
       "localImage": null,
       "settings": {
         "isHidden": false,
@@ -443,7 +442,7 @@
       "id": 115,
       "name": "Gott und die Welt Kurs",
       "groupTypeId": 4,
-      "parentGroupId": 195,
+      "parentGroupId": 88,
       "description": "**Was Christen glauben**\n\nEin Seminar der Gemeinde in der Konkordia\n\nFRAGEN SIE SICH\n\nWo komme ich her?\nWozu lebe ich?\nWas passiert mit mir nach dem Tod?\nGibt es Gott – und wenn ja, wie kann ich ihn kennen lernen und mit ihm leben?\nWie kann ich ein gelingendes Leben führen?",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/115",
       "localImage": null,
