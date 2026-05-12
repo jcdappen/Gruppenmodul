@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-12T17:17:43.985Z",
+  "generatedAt": "2026-05-12T18:08:57.551Z",
   "groups": [
     {
       "id": 124,
@@ -40,7 +40,7 @@
       ],
       "description": "Alpha ist eine Serie von rund zehn Treffen, die in entspannter Atmosphäre stattfinden.\n\nBei jedem der Treffen gibt es ein gemeinsames Essen, ein Thema und Gesprächsgruppen.\n\nDazu laden wir herzlich ein.\n\nStart ist ab der KW 4.\nBitte gebe bei der Anmeldung die Wochentage und die Uhrzeit an, die für dich machbar sind.\nVielen herzlichen Dank!\n\nDeine Gemeinde in der Konkordia Bühl",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/321",
-      "localImage": "assets/images/group-321.jpg",
+      "localImage": null,
       "settings": {
         "isHidden": false,
         "modules": []
@@ -768,7 +768,7 @@
       "parentGroupIds": [],
       "description": "Gib einfach Stichwörter ein und dann bekommst du passende Kleingruppen vorgeschlagen.\n\nMit einem Klick auf \"Jetzt Anmelden\" kannst du den Leiter kontaktieren. Daraufhin bekommst eine E-Mail in der du die Anmeldung bestätigen musst. Bitte sieh auch in deinem Spam-Ordner nach. Der Leiter wird sich dann bei dir melden.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/95",
-      "localImage": "assets/images/group-95.jpg",
+      "localImage": null,
       "settings": {
         "isHidden": false,
         "modules": []
@@ -962,7 +962,7 @@
       ],
       "description": "Bei einer Mama daheim genießen wir im Mutter-Kind-Kreis die Gemeinschaft mit anderen Müttern.\nWir trinken Kaffee, reden, spielen und hören jeweils einen kurzen christlichen Impuls, der uns als Mamas ermutigt und weiter hilft.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/44",
-      "localImage": "assets/images/group-44.jpg",
+      "localImage": null,
       "settings": {
         "isHidden": false,
         "modules": []
