@@ -60,26 +60,6 @@ async function getChildren(groupId) {
   }
 }
 
-// Bild herunterladen und lokal speichern
-async function downloadImage(groupId, imageUrl) {
-  if (!imageUrl) return null;
-  try {
-    const res = await fetch(imageUrl, {
-      headers: { Authorization: `Login ${TOKEN}` },
-    });
-    if (!res.ok) return null;
-    const contentType = res.headers.get('content-type') || '';
-    const ext = contentType.includes('png') ? 'png'
-               : contentType.includes('gif') ? 'gif'
-               : 'jpg';
-    const filename = `group-${groupId}.${ext}`;
-    const buf = Buffer.from(await res.arrayBuffer());
-    fs.writeFileSync(path.join(IMG_DIR, filename), buf);
-    return `assets/images/${filename}`;
-  } catch {
-    return null;
-  }
-}
 
 async function getGroupDetails(groupId) {
   try {
@@ -106,7 +86,6 @@ async function main() {
     const settings = details?.settings ?? {};
 
     const imageUrl    = info.imageUrl || null;
-    const localImage  = imageUrl ? await downloadImage(id, imageUrl) : null;
     const isHidden    = settings.isHidden ?? false;
     const publicUrl   = isHidden ? null : `${BASE_URL}/publicgroup/${id}`;
 
@@ -114,10 +93,10 @@ async function main() {
       id,
       name:             group.name,
       groupTypeId:      info.groupTypeId ?? group.information?.groupTypeId ?? null,
-      parentGroupIds:   [],      // wird über Homepage-Hierarchie gesetzt
+      parentGroupIds:   [],
       description:      info.note || null,
       publicUrl,
-      localImage,
+      imageUrl,
       settings: {
         isHidden: settings.isHidden ?? null,
         modules:  settings.modules  ?? [],
@@ -126,7 +105,7 @@ async function main() {
       childGroupIds: [],
     });
 
-    console.log(localImage ? 'OK (Bild)' : 'OK');
+    console.log(imageUrl ? 'OK (Bild)' : 'OK');
   }
 
   // Hierarchie über /groups/{id}/children aufbauen

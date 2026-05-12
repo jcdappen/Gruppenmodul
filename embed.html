@@ -283,16 +283,11 @@
         img.alt = g.name;
         img.loading = 'lazy';
 
-        const localImg = g.localImage
-          ? (location.hostname === 'localhost' || location.protocol === 'file:'
-              ? g.localImage
-              : `${BASE}/${g.localImage}`)
-          : null;
         const fallback = location.hostname === 'localhost' || location.protocol === 'file:'
           ? 'assets/images/fallback.svg'
           : `${BASE}/assets/images/fallback.svg`;
 
-        img.src = localImg || fallback;
+        img.src = g.imageUrl ? `${g.imageUrl}?w=800&q=85&fm=webp` : fallback;
         img.onerror = () => { img.src = fallback; img.onerror = null; };
         card.appendChild(img);
 
