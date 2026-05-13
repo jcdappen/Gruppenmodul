@@ -67,6 +67,21 @@
       flex: 1;
     }
 
+    .description {
+      font-size: 0.875rem;
+      color: #444;
+      flex: 1;
+    }
+
+    .description p {
+      margin-bottom: 0.5rem;
+      flex: unset;
+    }
+
+    .description p:last-child {
+      margin-bottom: 0;
+    }
+
     .leaders {
       display: flex;
       flex-wrap: wrap;
@@ -170,8 +185,18 @@
         card.appendChild(title);
 
         if (g.description) {
-          const desc = document.createElement('p');
-          desc.textContent = g.description;
+          const desc = document.createElement('div');
+          const escaped = g.description
+            .replace(/&/g, '&amp;')
+            .replace(/</g, '&lt;')
+            .replace(/>/g, '&gt;');
+          const html = escaped
+            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+            .split(/\n\n+/)
+            .map(p => `<p>${p.replace(/\n/g, '<br>')}</p>`)
+            .join('');
+          desc.innerHTML = html;
+          desc.className = 'description';
           card.appendChild(desc);
         }
 
