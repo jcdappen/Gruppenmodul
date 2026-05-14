@@ -17,28 +17,20 @@ async function get(path) {
 }
 
 async function main() {
-  // Erste paar Gruppen holen
-  console.log('=== Gruppen laden ===');
-  const groups = await get('/groups?limit=5&page=1');
-  const items = groups.body?.data ?? [];
-  console.log(`${items.length} Gruppen gefunden`);
+  // Gruppen mit Mitgliedern suchen: bekannte Gruppen testen
+  const testIds = [19, 16, 59, 321, 9, 8, 22]; // Audiotechnik, Beamertechnik, Begrüßung, Alpha-Kurs, ...
 
-  if (items.length === 0) { console.log(JSON.stringify(groups.body, null, 2)); return; }
-
-  // Für die erste Gruppe: Members-Endpunkt testen
-  const testGroup = items[0];
-  console.log(`\n=== Members für Gruppe ${testGroup.id} (${testGroup.name}) ===`);
-  const members = await get(`/groups/${testGroup.id}/members`);
-  console.log('Status:', members.status);
-  console.log(JSON.stringify(members.body, null, 2));
-
-  // Zweite Gruppe falls verfügbar
-  if (items.length > 1) {
-    const g2 = items[1];
-    console.log(`\n=== Members für Gruppe ${g2.id} (${g2.name}) ===`);
-    const m2 = await get(`/groups/${g2.id}/members`);
-    console.log('Status:', m2.status);
-    console.log(JSON.stringify(m2.body?.data?.slice(0, 3) ?? m2.body, null, 2));
+  for (const id of testIds) {
+    const r = await get(`/groups/${id}/members`);
+    const items = r.body?.data ?? r.body ?? [];
+    const count = Array.isArray(items) ? items.length : '?';
+    if (count > 0) {
+      console.log(`\n=== Gruppe ${id}: ${count} Mitglieder ===`);
+      console.log(JSON.stringify(items.slice(0, 2), null, 2));
+      break; // Ersten Treffer zeigen reicht
+    } else {
+      console.log(`Gruppe ${id}: keine Mitglieder`);
+    }
   }
 }
 
