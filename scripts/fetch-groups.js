@@ -88,8 +88,9 @@ async function getGroupLeaders(groupId, leaderRoleIds) {
       .filter(m => m.person && leaderRoleIds.has(m.groupTypeRoleId))
       .map(m => {
         const attrs = m.person.domainAttributes ?? {};
-        const name = `${attrs.firstName ?? ''} ${attrs.lastName ?? ''}`.trim();
-        return { name };
+        const name  = `${attrs.firstName ?? ''} ${attrs.lastName ?? ''}`.trim();
+        const imageUrl = m.person.imageUrl || null;
+        return { name, imageUrl };
       })
       .filter(l => l.name);
   } catch {

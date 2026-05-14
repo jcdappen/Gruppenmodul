@@ -963,9 +963,14 @@ function openModal(gruppe, vb, cfg) {
     leaderSection.innerHTML = gruppe.leaders.map(l => {
       const parts    = l.name.split(' ').filter(Boolean);
       const initials = parts.map(w => w[0]).join('').slice(0, 2).toUpperCase();
+      const avatar   = l.imageUrl
+        ? `<img class="leader-avatar" src="${l.imageUrl}" alt="${l.name}"
+               style="object-fit:cover;"
+               onerror="this.outerHTML='<div class=\\'leader-avatar\\' style=\\'background:${cfg.color}\\'>${initials}</div>'">`
+        : `<div class="leader-avatar" style="background:${cfg.color}">${initials}</div>`;
       return `
         <div class="modal-leader-row">
-          <div class="leader-avatar" style="background:${cfg.color}">${initials}</div>
+          ${avatar}
           <div>
             <div class="leader-label">Ansprechpartner</div>
             <div class="leader-name">${l.name}</div>
