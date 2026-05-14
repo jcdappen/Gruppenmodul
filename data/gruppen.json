@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-14T15:51:38.936Z",
+  "generatedAt": "2026-05-14T16:09:06.239Z",
   "groups": [
     {
       "id": 124,
@@ -12,13 +12,16 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         },
         {
-          "name": "Office Konkordia"
+          "name": "Office Konkordia",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/624/32f35011daea5ae5c3d8ad8b4c218f0fc89221d877be527536b898e394e2e8d7"
         },
         {
-          "name": "Hannah Winrow"
+          "name": "Hannah Winrow",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -40,10 +43,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Harald Trapp"
+          "name": "Harald Trapp",
+          "imageUrl": null
         },
         {
-          "name": "Gabi Trapp"
+          "name": "Gabi Trapp",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -65,10 +70,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Gabi Trapp"
+          "name": "Gabi Trapp",
+          "imageUrl": null
         },
         {
-          "name": "Harald Trapp"
+          "name": "Harald Trapp",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -90,10 +97,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Gabi Trapp"
+          "name": "Gabi Trapp",
+          "imageUrl": null
         },
         {
-          "name": "Harald Trapp"
+          "name": "Harald Trapp",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -115,7 +124,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Harald Trapp"
+          "name": "Harald Trapp",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -135,7 +145,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Elena Donath"
+          "name": "Elena Donath",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -155,7 +166,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -183,13 +195,16 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Nils Föhl"
+          "name": "Nils Föhl",
+          "imageUrl": null
         },
         {
-          "name": "Yannick Jund"
+          "name": "Yannick Jund",
+          "imageUrl": null
         },
         {
-          "name": "Stephan Lorenz"
+          "name": "Stephan Lorenz",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/675/5d7bd7f82eed764f30423a3c48b870e3c6d947fb91fd16cc6c1d665fa407ba54"
         }
       ],
       "settings": {
@@ -230,7 +245,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Brigitta Kinowski"
+          "name": "Brigitta Kinowski",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/497/7084dbcea2464292789a4204add7855afda8ae44a1dbfca53a7592ca2a95f02b"
         }
       ],
       "settings": {
@@ -252,10 +268,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         },
         {
-          "name": "Lutz Feinstein"
+          "name": "Lutz Feinstein",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -277,7 +295,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Alicya Weber"
+          "name": "Alicya Weber",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -297,13 +316,16 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         },
         {
-          "name": "Office Konkordia"
+          "name": "Office Konkordia",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/624/32f35011daea5ae5c3d8ad8b4c218f0fc89221d877be527536b898e394e2e8d7"
         },
         {
-          "name": "Hannah Winrow"
+          "name": "Hannah Winrow",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -327,7 +349,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -350,7 +373,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Josephine-Maria Geier"
+          "name": "Josephine-Maria Geier",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -372,7 +396,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -395,7 +420,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Katharina Leitner"
+          "name": "Katharina Leitner",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -418,10 +444,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Gabi Trapp"
+          "name": "Gabi Trapp",
+          "imageUrl": null
         },
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -444,7 +472,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Office Konkordia"
+          "name": "Office Konkordia",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/624/32f35011daea5ae5c3d8ad8b4c218f0fc89221d877be527536b898e394e2e8d7"
         }
       ],
       "settings": {
@@ -466,7 +495,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -509,19 +539,24 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Gudrun Burkard"
+          "name": "Gudrun Burkard",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/592/b1bd2aaaa4eb2c44981eb84d94199496473d70f5c06c67b17abf263cc338ac5e"
         },
         {
-          "name": "Christina Dappen"
+          "name": "Christina Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/371/5b2315d3c8992a557acff6eb63e040a187a4f8d1e8db38ea797d20deab4b9874"
         },
         {
-          "name": "Isabelle Joachim"
+          "name": "Isabelle Joachim",
+          "imageUrl": null
         },
         {
-          "name": "Melanie Seitz"
+          "name": "Melanie Seitz",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/906/cec17ec55c5f033901922cfa5b415de119db5311cbde800e5a98f65b7426b526"
         },
         {
-          "name": "Lea von Seydlitz"
+          "name": "Lea von Seydlitz",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -543,19 +578,24 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Gudrun Burkard"
+          "name": "Gudrun Burkard",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/592/b1bd2aaaa4eb2c44981eb84d94199496473d70f5c06c67b17abf263cc338ac5e"
         },
         {
-          "name": "Christina Dappen"
+          "name": "Christina Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/371/5b2315d3c8992a557acff6eb63e040a187a4f8d1e8db38ea797d20deab4b9874"
         },
         {
-          "name": "Isabelle Joachim"
+          "name": "Isabelle Joachim",
+          "imageUrl": null
         },
         {
-          "name": "Melanie Seitz"
+          "name": "Melanie Seitz",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/906/cec17ec55c5f033901922cfa5b415de119db5311cbde800e5a98f65b7426b526"
         },
         {
-          "name": "Lea von Seydlitz"
+          "name": "Lea von Seydlitz",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -577,16 +617,20 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Matthias Czepl"
+          "name": "Matthias Czepl",
+          "imageUrl": null
         },
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         },
         {
-          "name": "Oliver Simon"
+          "name": "Oliver Simon",
+          "imageUrl": null
         },
         {
-          "name": "Thomas Wild"
+          "name": "Thomas Wild",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -606,7 +650,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Brigitte Geiselhart"
+          "name": "Brigitte Geiselhart",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -629,10 +674,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Brigitta Kinowski"
+          "name": "Brigitta Kinowski",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/497/7084dbcea2464292789a4204add7855afda8ae44a1dbfca53a7592ca2a95f02b"
         },
         {
-          "name": "Falk Mai"
+          "name": "Falk Mai",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/25/3e3a8b33700ec67146deec7a75ca1a28fbac7fa5c0642ef5af37ab322ebcd019"
         }
       ],
       "settings": {
@@ -679,7 +726,8 @@
       ],
       "leaders": [
         {
-          "name": "Brigitte Geiselhart"
+          "name": "Brigitte Geiselhart",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -699,7 +747,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -719,7 +768,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -744,7 +794,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Lisa Scherer"
+          "name": "Lisa Scherer",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -767,13 +818,16 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Office Konkordia"
+          "name": "Office Konkordia",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/624/32f35011daea5ae5c3d8ad8b4c218f0fc89221d877be527536b898e394e2e8d7"
         },
         {
-          "name": "Gabi Trapp"
+          "name": "Gabi Trapp",
+          "imageUrl": null
         },
         {
-          "name": "Harald Trapp"
+          "name": "Harald Trapp",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -793,7 +847,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -848,10 +903,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Anne Demougin"
+          "name": "Anne Demougin",
+          "imageUrl": null
         },
         {
-          "name": "Dominique Demougin"
+          "name": "Dominique Demougin",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -873,7 +930,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Bettina Keinath"
+          "name": "Bettina Keinath",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -895,7 +953,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Reiner Schindler"
+          "name": "Reiner Schindler",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -917,10 +976,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Corinna Simon"
+          "name": "Corinna Simon",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/522/c817a22dd6fffe23029e6c2f7531a85c6d75fdb5ef14b6622d873e18d8b8037f"
         },
         {
-          "name": "Oliver Simon"
+          "name": "Oliver Simon",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -942,7 +1003,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Michael Von Seydlitz"
+          "name": "Michael Von Seydlitz",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -988,7 +1050,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1010,13 +1073,16 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Tobias Joachim"
+          "name": "Tobias Joachim",
+          "imageUrl": null
         },
         {
-          "name": "Raphael Seitz"
+          "name": "Raphael Seitz",
+          "imageUrl": null
         },
         {
-          "name": "Christopher Winrow"
+          "name": "Christopher Winrow",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -1038,7 +1104,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Gabi Trapp"
+          "name": "Gabi Trapp",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -1060,7 +1127,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Christina Dappen"
+          "name": "Christina Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/371/5b2315d3c8992a557acff6eb63e040a187a4f8d1e8db38ea797d20deab4b9874"
         }
       ],
       "settings": {
@@ -1082,7 +1150,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1104,7 +1173,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Samuel Gesang"
+          "name": "Samuel Gesang",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/590/a2d6eea440b9c07481e2688fcc8da6c995a21df14fdbaec325365083d7d63039"
         }
       ],
       "settings": {
@@ -1126,7 +1196,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Stephan Lorenz"
+          "name": "Stephan Lorenz",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/675/5d7bd7f82eed764f30423a3c48b870e3c6d947fb91fd16cc6c1d665fa407ba54"
         }
       ],
       "settings": {
@@ -1150,7 +1221,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1172,7 +1244,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1217,13 +1290,16 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Alicya Weber"
+          "name": "Alicya Weber",
+          "imageUrl": null
         },
         {
-          "name": "Lisa Scherer"
+          "name": "Lisa Scherer",
+          "imageUrl": null
         },
         {
-          "name": "Gabi Trapp"
+          "name": "Gabi Trapp",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -1251,13 +1327,16 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Alicya Weber"
+          "name": "Alicya Weber",
+          "imageUrl": null
         },
         {
-          "name": "Lisa Scherer"
+          "name": "Lisa Scherer",
+          "imageUrl": null
         },
         {
-          "name": "Gabi Trapp"
+          "name": "Gabi Trapp",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -1279,13 +1358,16 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Lisa Scherer"
+          "name": "Lisa Scherer",
+          "imageUrl": null
         },
         {
-          "name": "Gabi Trapp"
+          "name": "Gabi Trapp",
+          "imageUrl": null
         },
         {
-          "name": "Alicya Weber"
+          "name": "Alicya Weber",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -1323,7 +1405,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1345,10 +1428,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         },
         {
-          "name": "Hannah Winrow"
+          "name": "Hannah Winrow",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -1368,7 +1453,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1390,7 +1476,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Sonja Hannemann"
+          "name": "Sonja Hannemann",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -1412,7 +1499,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1456,7 +1544,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1478,7 +1567,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1503,7 +1593,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1529,7 +1620,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Samuel Gesang"
+          "name": "Samuel Gesang",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/590/a2d6eea440b9c07481e2688fcc8da6c995a21df14fdbaec325365083d7d63039"
         }
       ],
       "settings": {
@@ -1549,7 +1641,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Alicya Weber"
+          "name": "Alicya Weber",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -1571,7 +1664,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Office Konkordia"
+          "name": "Office Konkordia",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/624/32f35011daea5ae5c3d8ad8b4c218f0fc89221d877be527536b898e394e2e8d7"
         }
       ],
       "settings": {
@@ -1593,7 +1687,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Oliver Simon"
+          "name": "Oliver Simon",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -1615,10 +1710,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Michael Stürner"
+          "name": "Michael Stürner",
+          "imageUrl": null
         },
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1640,7 +1737,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1662,10 +1760,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         },
         {
-          "name": "Alicya Weber"
+          "name": "Alicya Weber",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -1685,10 +1785,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         },
         {
-          "name": "Alicya Weber"
+          "name": "Alicya Weber",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -1708,7 +1810,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Office Konkordia"
+          "name": "Office Konkordia",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/624/32f35011daea5ae5c3d8ad8b4c218f0fc89221d877be527536b898e394e2e8d7"
         }
       ],
       "settings": {
@@ -1728,10 +1831,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         },
         {
-          "name": "Office Konkordia"
+          "name": "Office Konkordia",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/624/32f35011daea5ae5c3d8ad8b4c218f0fc89221d877be527536b898e394e2e8d7"
         }
       ],
       "settings": {
@@ -1754,7 +1859,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1776,7 +1882,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1812,7 +1919,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1837,7 +1945,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Katharina Leitner"
+          "name": "Katharina Leitner",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -1859,7 +1968,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1881,7 +1991,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Brigitte Geiselhart"
+          "name": "Brigitte Geiselhart",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -1901,7 +2012,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -1924,10 +2036,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         },
         {
-          "name": "Gundula Steinert"
+          "name": "Gundula Steinert",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -1981,7 +2095,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         }
       ],
       "settings": {
@@ -2024,13 +2139,16 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Nils Föhl"
+          "name": "Nils Föhl",
+          "imageUrl": null
         },
         {
-          "name": "Yannick Jund"
+          "name": "Yannick Jund",
+          "imageUrl": null
         },
         {
-          "name": "Stephan Lorenz"
+          "name": "Stephan Lorenz",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/675/5d7bd7f82eed764f30423a3c48b870e3c6d947fb91fd16cc6c1d665fa407ba54"
         }
       ],
       "settings": {
@@ -2055,10 +2173,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         },
         {
-          "name": "Brigitte Geiselhart"
+          "name": "Brigitte Geiselhart",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -2081,7 +2201,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Katharina Leitner"
+          "name": "Katharina Leitner",
+          "imageUrl": null
         }
       ],
       "settings": {
@@ -2121,7 +2242,8 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Melanie Seitz"
+          "name": "Melanie Seitz",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/906/cec17ec55c5f033901922cfa5b415de119db5311cbde800e5a98f65b7426b526"
         }
       ],
       "settings": {
@@ -2143,10 +2265,12 @@
       "tags": [],
       "leaders": [
         {
-          "name": "Johannes Dappen"
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
         },
         {
-          "name": "Stephan Lorenz"
+          "name": "Stephan Lorenz",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/675/5d7bd7f82eed764f30423a3c48b870e3c6d947fb91fd16cc6c1d665fa407ba54"
         }
       ],
       "settings": {
