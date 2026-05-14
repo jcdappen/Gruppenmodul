@@ -879,7 +879,35 @@ function showDetail(vb, cfg) {
 
   bereiche.forEach(bereich => {
     const gruppen = allGroups.filter(g => (g.parentGroupIds || []).includes(bereich.id));
-    if (gruppen.length === 0) return;
+
+    // Bereich hat keine Kinder → selbst als Tile in eigenem Card anzeigen
+    if (gruppen.length === 0) {
+      if (!bereich.publicUrl) return;
+      const card = document.createElement('div');
+      card.className = 'section-card';
+
+      const list = document.createElement('div');
+      list.className = 'group-list';
+
+      const tile = document.createElement('div');
+      tile.className = 'group-tile';
+      tile.style.borderLeftColor = cfg.color;
+      const imgSrc = bereich.imageUrl || null;
+      tile.innerHTML = `
+        ${imgSrc
+          ? `<img class="group-tile-img" src="${imgSrc}" alt="${bereich.name}" onerror="this.style.display='none'">`
+          : `<div class="group-tile-img" style="background:#ddd;"></div>`}
+        <div class="group-tile-info">
+          <div class="group-tile-name">${bereich.name}</div>
+          ${bereich.description ? `<div class="group-tile-desc">${bereich.description}</div>` : ''}
+        </div>
+        <div class="group-tile-chevron">›</div>`;
+      tile.addEventListener('click', () => openModal(bereich, vb, cfg));
+      list.appendChild(tile);
+      card.appendChild(list);
+      grid.appendChild(card);
+      return;
+    }
 
     const card = document.createElement('div');
     card.className = 'section-card';
