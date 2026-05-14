@@ -897,7 +897,7 @@ function showDetail(vb, cfg) {
       tile.style.borderLeftColor = cfg.color;
 
       const imgSrc = gruppe.imageUrl
-        ? `${gruppe.imageUrl}?w=88&q=80&fm=webp`
+        ? gruppe.imageUrl
         : null;
 
       tile.innerHTML = `
@@ -1079,7 +1079,7 @@ function showTagResults(tag) {
     tile.style.borderLeft = `4px solid ${accentColor}`;
     tile.addEventListener('click', () => openModal(g, vb || g, cfg || { color: accentColor }));
 
-    const imgSrc = g.imageUrl ? `${g.imageUrl}?w=200&q=80` : null;
+    const imgSrc = g.imageUrl ? g.imageUrl : null;
     tile.innerHTML = `
       ${imgSrc
         ? `<img class="tagresult-tile-img" src="${imgSrc}" alt="${g.name}" onerror="this.style.display='none'">`
