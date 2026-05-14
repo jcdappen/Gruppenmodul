@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-14T16:09:06.239Z",
+  "generatedAt": "2026-05-14T17:01:21.673Z",
   "groups": [
     {
       "id": 124,
@@ -840,7 +840,9 @@
       "id": 10,
       "name": "Gottesdienst",
       "groupTypeId": 2,
-      "parentGroupIds": [],
+      "parentGroupIds": [
+        342
+      ],
       "description": null,
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/10",
       "imageUrl": null,
@@ -1553,6 +1555,7 @@
         "modules": []
       },
       "childGroupIds": [
+        10,
         355
       ]
     },
