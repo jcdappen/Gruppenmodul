@@ -17,13 +17,28 @@ async function get(path) {
 }
 
 async function main() {
-  console.log('=== Members Gruppe 19 (Audiotechnik) – alle Rollen-IDs ===');
-  const m = await get('/groups/19/members');
-  const members = m.body?.data ?? [];
-  members.forEach(x => {
-    const name = `${x.person?.domainAttributes?.firstName ?? ''} ${x.person?.domainAttributes?.lastName ?? ''}`.trim();
-    console.log(`  ${name} → groupTypeRoleId: ${x.groupTypeRoleId}`);
+  // Members von JG Johannes D. (ID 267)
+  console.log('=== Members Gruppe 267 (JG Johannes D.) ===');
+  const r = await get('/groups/267/members');
+  const members = r.body?.data ?? [];
+  members.forEach(m => {
+    const attrs = m.person?.domainAttributes ?? {};
+    const name = `${attrs.firstName ?? ''} ${attrs.lastName ?? ''}`.trim();
+    const imageUrl = m.person?.imageUrl ?? 'null';
+    console.log(`  ${name} → roleId: ${m.groupTypeRoleId}, imageUrl: ${imageUrl}`);
   });
+
+  // Direkt Person-Endpunkt für ersten Member testen
+  if (members.length > 0) {
+    const personId = members[0].person?.domainIdentifier;
+    if (personId) {
+      console.log(`\n=== GET /persons/${personId} ===`);
+      const p = await get(`/persons/${personId}`);
+      const data = p.body?.data ?? {};
+      console.log('imageUrl:', data.imageUrl ?? 'null');
+      console.log('Status:', p.status);
+    }
+  }
 }
 
 main().catch(console.error);
