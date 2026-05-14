@@ -569,6 +569,41 @@
       line-height: 1.4;
     }
 
+    /* ── TEAMLEITER ─────────────────────────────────── */
+    .modal-leader-section {
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid #e8e4e0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .modal-leader-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .leader-avatar {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 14px;
+      color: white;
+      flex-shrink: 0;
+    }
+    .leader-label {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #bbb;
+      margin-bottom: 2px;
+    }
+    .leader-name { font-size: 13px; color: #333; }
+
     /* ── LADEN ──────────────────────────────────────── */
     #loading {
       position: absolute;
@@ -640,7 +675,10 @@
       <div class="modal-group-name" id="modalGroupName"></div>
     </div>
     <div class="modal-body">
-      <div class="modal-desc" id="modalDesc"></div>
+      <div>
+        <div class="modal-desc" id="modalDesc"></div>
+        <div class="modal-leader-section" id="modalLeaderSection" style="display:none"></div>
+      </div>
       <div class="modal-qr-block">
         <div id="qrcode-container"></div>
         <div class="modal-qr-scan">Gruppe öffnen</div>
@@ -918,6 +956,26 @@ function openModal(gruppe, vb, cfg) {
   desc.innerHTML = gruppe.description
     ? renderMarkdown(gruppe.description)
     : '<span class="modal-no-desc">Keine Beschreibung vorhanden.</span>';
+
+  // Teamleiter
+  const leaderSection = document.getElementById('modalLeaderSection');
+  if (gruppe.leaders?.length) {
+    leaderSection.innerHTML = gruppe.leaders.map(l => {
+      const parts    = l.name.split(' ').filter(Boolean);
+      const initials = parts.map(w => w[0]).join('').slice(0, 2).toUpperCase();
+      return `
+        <div class="modal-leader-row">
+          <div class="leader-avatar" style="background:${cfg.color}">${initials}</div>
+          <div>
+            <div class="leader-label">Ansprechpartner</div>
+            <div class="leader-name">${l.name}</div>
+          </div>
+        </div>`;
+    }).join('');
+    leaderSection.style.display = 'flex';
+  } else {
+    leaderSection.style.display = 'none';
+  }
 
   // QR-Code
   const url = gruppe.publicUrl || `${CHURCHTOOLS}/publicgroup/${gruppe.id}`;
