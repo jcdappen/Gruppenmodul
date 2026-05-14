@@ -17,29 +17,25 @@ async function get(path) {
 }
 
 async function main() {
-  // Alle Rollen laden (paginiert)
-  console.log('=== Alle Gruppen-Rollen (/groups/roles) ===');
-  let page = 1, allRoles = [];
-  while (true) {
-    const r = await get(`/groups/roles?limit=100&page=${page}`);
+  // Rollen mit groupTypeId-Filter versuchen (groupTypeId=2 = Dienst)
+  for (const gtId of [1, 2, 3, 4, 5]) {
+    const r = await get(`/groups/roles?groupTypeId=${gtId}`);
     const items = r.body?.data ?? [];
-    if (!items.length) break;
-    allRoles.push(...items);
-    const lastPage = r.body?.meta?.pagination?.lastPage ?? 1;
-    if (page >= lastPage) break;
-    page++;
+    if (items.length) {
+      console.log(`\n=== Rollen für groupTypeId=${gtId} ===`);
+      items.forEach(x => console.log(`  ID ${x.id}: "${x.name}" type="${x.type}" isLeader=${x.isLeader}`));
+    }
   }
-  console.log(`${allRoles.length} Rollen gefunden:`);
-  allRoles.forEach(r => console.log(`  ID ${r.id}: "${r.name}" type="${r.type}" groupTypeId=${r.groupTypeId} isLeader=${r.isLeader}`));
 
-  // Mitglieder von Gruppe 19 mit roleId anzeigen
-  console.log('\n=== Members Gruppe 19 (Audiotechnik) – alle Rollen-IDs ===');
-  const m = await get('/groups/19/members');
-  const members = m.body?.data ?? [];
-  members.forEach(x => {
-    const name = x.person?.domainAttributes?.firstName + ' ' + x.person?.domainAttributes?.lastName;
-    console.log(`  ${name.trim()} → groupTypeRoleId: ${x.groupTypeRoleId}`);
-  });
+  // Masterdata-Endpunkt versuchen
+  console.log('\n=== /masterdata (Gruppen-Rollen) ===');
+  const md = await get('/masterdata');
+  const roles = md.body?.data?.groupTypeRoles ?? md.body?.groupTypeRoles ?? [];
+  if (roles.length) {
+    roles.forEach(r => console.log(`  ID ${r.id}: "${r.name}" groupTypeId=${r.groupTypeId} isLeader=${r.isLeader}`));
+  } else {
+    console.log('(nicht gefunden, Status:', md.status, ')');
+  }
 }
 
 main().catch(console.error);
