@@ -6,30 +6,40 @@ const API_BASE = `${BASE_URL}/api`;
 const TOKEN    = process.env.CHURCHTOOLS_TOKEN;
 if (!TOKEN) { console.error('CHURCHTOOLS_TOKEN fehlt'); process.exit(1); }
 
-async function get(url) {
-  const res = await fetch(url, {
+async function get(path) {
+  const res = await fetch(`${API_BASE}${path}`, {
     headers: { Authorization: `Login ${TOKEN}`, Accept: 'application/json' },
   });
   const text = await res.text();
   let body;
-  try { body = JSON.parse(text); } catch { body = text.slice(0, 300); }
+  try { body = JSON.parse(text); } catch { body = text.slice(0, 500); }
   return { status: res.status, body };
 }
 
 async function main() {
-  // Bild-Download für Alpha-Kurs (321) testen
-  const imageUrl = 'https://gemeindekonkordia.church.tools/images/931/0f9213a292188bed8dbde85e7c17076c8f746d7db419a0beb5ffece631f4d6bc';
+  // Erste paar Gruppen holen
+  console.log('=== Gruppen laden ===');
+  const groups = await get('/groups?limit=5&page=1');
+  const items = groups.body?.data ?? [];
+  console.log(`${items.length} Gruppen gefunden`);
 
-  console.log('=== Bild-Download Test (Alpha-Kurs) ===');
-  console.log('URL:', imageUrl);
+  if (items.length === 0) { console.log(JSON.stringify(groups.body, null, 2)); return; }
 
-  // Mit Auth-Header
-  const r1 = await fetch(imageUrl, { headers: { Authorization: `Login ${TOKEN}` } });
-  console.log('Mit Auth-Header → Status:', r1.status, r1.headers.get('content-type'));
+  // Für die erste Gruppe: Members-Endpunkt testen
+  const testGroup = items[0];
+  console.log(`\n=== Members für Gruppe ${testGroup.id} (${testGroup.name}) ===`);
+  const members = await get(`/groups/${testGroup.id}/members`);
+  console.log('Status:', members.status);
+  console.log(JSON.stringify(members.body, null, 2));
 
-  // Ohne Auth-Header
-  const r2 = await fetch(imageUrl);
-  console.log('Ohne Auth-Header → Status:', r2.status, r2.headers.get('content-type'));
+  // Zweite Gruppe falls verfügbar
+  if (items.length > 1) {
+    const g2 = items[1];
+    console.log(`\n=== Members für Gruppe ${g2.id} (${g2.name}) ===`);
+    const m2 = await get(`/groups/${g2.id}/members`);
+    console.log('Status:', m2.status);
+    console.log(JSON.stringify(m2.body?.data?.slice(0, 3) ?? m2.body, null, 2));
+  }
 }
 
 main().catch(console.error);
