@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-14T14:49:30.030Z",
+  "generatedAt": "2026-05-14T15:13:22.125Z",
   "groups": [
     {
       "id": 124,
@@ -72,6 +72,40 @@
       "childGroupIds": []
     },
     {
+      "id": 196,
+      "name": "Alpha-Kurs 2025",
+      "groupTypeId": 4,
+      "parentGroupIds": [
+        351
+      ],
+      "description": "Alpha ist eine Serie von rund zehn Treffen, die in entspannter Atmosphäre stattfinden.\n\nBei jedem der Treffen gibt es ein gemeinsames Essen, ein Thema und Gesprächsgruppen.\n\nDazu laden wir herzlich ein.\n\nStart ist ab der KW 4.\nBitte gebe bei der Anmeldung die Wochentage und die Uhrzeit an, die für dich machbar sind.\nVielen herzlichen Dank!\n\nDeine Gemeinde in der Konkordia Bühl",
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/196",
+      "imageUrl": "https://gemeindekonkordia.church.tools/images/719/8d4b0dd9603c630e19ecc0c2e9b3d8141ee6dd74a2d5fa4341623a1aa8a3dba2",
+      "tags": [],
+      "leaders": [],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": []
+    },
+    {
+      "id": 319,
+      "name": "An Weihnachten I(s)st keiner allein 25",
+      "groupTypeId": 4,
+      "parentGroupIds": [],
+      "description": null,
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/319",
+      "imageUrl": null,
+      "tags": [],
+      "leaders": [],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": []
+    },
+    {
       "id": 195,
       "name": "Anmeldung Events",
       "groupTypeId": 4,
@@ -88,7 +122,9 @@
       "childGroupIds": [
         337,
         314,
-        277
+        277,
+        257,
+        274
       ]
     },
     {
@@ -472,7 +508,9 @@
       "description": "In Matthäus 18 Vers 20 steht: „Denn wo zwei oder drei zusammenkommen, die zu mir gehören, bin ich mitten unter ihnen.« Deswegen glauben wir, dass gemeinsames Gebet ein wichtiger Schlüssel ist, um Gottes Stimme zu hören und den Plan für seine Kirche und die Stadt, in der wir leben, zu erfahren.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/62",
       "imageUrl": "https://gemeindekonkordia.church.tools/images/403/2d08d174ccd1298f1394f200caed764af1f02daf317ea3de568179e0f87a1a99",
-      "tags": [],
+      "tags": [
+        "Mit Menschen"
+      ],
       "leaders": [],
       "settings": {
         "isHidden": false,
@@ -922,8 +960,27 @@
         32,
         38,
         35,
+        329,
         259
       ]
+    },
+    {
+      "id": 329,
+      "name": "Kinderkirche Eltern",
+      "groupTypeId": 3,
+      "parentGroupIds": [
+        8
+      ],
+      "description": null,
+      "publicUrl": null,
+      "imageUrl": null,
+      "tags": [],
+      "leaders": [],
+      "settings": {
+        "isHidden": true,
+        "modules": []
+      },
+      "childGroupIds": []
     },
     {
       "id": 259,
@@ -1049,8 +1106,25 @@
         370,
         321,
         115,
-        299
+        299,
+        196
       ]
+    },
+    {
+      "id": 354,
+      "name": "Leben in der Welt",
+      "groupTypeId": 5,
+      "parentGroupIds": [],
+      "description": null,
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/354",
+      "imageUrl": "https://gemeindekonkordia.church.tools/images/935/9843a0013d2397177a217c514f0b87a32cce993c874f4b7ff0daee60f297fe8f",
+      "tags": [],
+      "leaders": [],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": []
     },
     {
       "id": 342,
@@ -1191,6 +1265,90 @@
       "description": "Wir glauben, dass wir als Gemeinde berufen sind, Gottes Liebe und Hoffnung in unserer Stadt und weltweit zu teilen.  Unser Ziel ist es, Menschen mit der guten Nachricht zu erreichen, praktische Hilfe anzubieten und nachhaltige Veränderung zu bewirken.\n\nDies geschieht durch lokale Einsätze in unserer Stadt, Unterstützung von Missionsprojekten im In- und Ausland sowie durch Schulungen und Gebetsabende. Im Missionsteam kannst du deine Gaben einbringen - sei es in der Organisation von Aktionen, im Kontakt zu Missionaren oder in der kreativen Vermittlung von Missionsthemen in der Gemeinde. Wir freuen uns, wenn du Teil dieser wichtigen Aufgabe wirst und mit uns gemeinsam daran arbeitest, Menschen mit Gottes Liebe zu erreichen.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/91",
       "imageUrl": "https://gemeindekonkordia.church.tools/images/415/7a8e3c92eb0a13d7173018e958c05ddeb034dca00cf03ae06e3b0f4b0f23fbab",
+      "tags": [],
+      "leaders": [],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": []
+    },
+    {
+      "id": 257,
+      "name": "Mitarbeiter Dankefest 2023",
+      "groupTypeId": 3,
+      "parentGroupIds": [
+        195
+      ],
+      "description": "Herzliche Einladung zum Mitarbeiter Dankefest 2023!\n\nFür Verpflegung ist gesorgt!\nBitte gebe bei der Anmeldung an, ob du vegetarisch Essen möchtest.\n\n\nVielen Dank!\n\nWir freuen uns auch dich!",
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/257",
+      "imageUrl": "https://gemeindekonkordia.church.tools/images/578/8e7d2e3a42a9bb1a613c143947beb72beddffbe3a08b05d438f5d195b7b40c86",
+      "tags": [],
+      "leaders": [],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": []
+    },
+    {
+      "id": 274,
+      "name": "Mitarbeiter Dankefest 2024/25",
+      "groupTypeId": 3,
+      "parentGroupIds": [
+        195
+      ],
+      "description": "Herzliche Einladung zum Mitarbeiter Dankefest \nder Gemeinde in der Konkordia.\n\n**18. Januar 2025**\nab 15 Uhr in der Konkordia\n\nEin Dankefest für die ganze Familie. \nFür Verpflegung ist gesorgt. \nBitte melde dich bis zum 10.01.25 an.\n\nPS: Gärtner/in Outfit ist erwünscht.",
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/274",
+      "imageUrl": null,
+      "tags": [],
+      "leaders": [],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": []
+    },
+    {
+      "id": 324,
+      "name": "Mitarbeiter Dankefest 2026",
+      "groupTypeId": 4,
+      "parentGroupIds": [],
+      "description": null,
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/324",
+      "imageUrl": null,
+      "tags": [],
+      "leaders": [],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": []
+    },
+    {
+      "id": 327,
+      "name": "Mitarbeiter Dankefest 2027",
+      "groupTypeId": 4,
+      "parentGroupIds": [],
+      "description": null,
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/327",
+      "imageUrl": null,
+      "tags": [],
+      "leaders": [],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": []
+    },
+    {
+      "id": 152,
+      "name": "Mitglieder Verteiler",
+      "groupTypeId": 3,
+      "parentGroupIds": [],
+      "description": null,
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/152",
+      "imageUrl": null,
       "tags": [],
       "leaders": [],
       "settings": {
