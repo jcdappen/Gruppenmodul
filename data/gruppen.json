@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-13T06:43:36.286Z",
+  "generatedAt": "2026-05-14T06:42:33.504Z",
   "groups": [
     {
       "id": 124,
@@ -20,7 +20,9 @@
       "id": 271,
       "name": "Alpha Jünger",
       "groupTypeId": 1,
-      "parentGroupIds": [],
+      "parentGroupIds": [
+        95
+      ],
       "description": "Nach \"Gott & die Welt\" und Alpha Kurs beginnt die Jüngerschaft - also lernen von und mit Jesus.\nDas ist Ziel und Inhalt unserer Gruppe.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/271",
       "imageUrl": null,
@@ -529,6 +531,114 @@
       ]
     },
     {
+      "id": 361,
+      "name": "Hauskreis Demougin",
+      "groupTypeId": 1,
+      "parentGroupIds": [
+        95
+      ],
+      "description": null,
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/361",
+      "imageUrl": null,
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "leaders": [],
+      "childGroupIds": []
+    },
+    {
+      "id": 364,
+      "name": "Hauskreis Keinath",
+      "groupTypeId": 1,
+      "parentGroupIds": [
+        95
+      ],
+      "description": null,
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/364",
+      "imageUrl": null,
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "leaders": [],
+      "childGroupIds": []
+    },
+    {
+      "id": 367,
+      "name": "Hauskreis Schindler",
+      "groupTypeId": 1,
+      "parentGroupIds": [
+        95
+      ],
+      "description": null,
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/367",
+      "imageUrl": null,
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "leaders": [],
+      "childGroupIds": []
+    },
+    {
+      "id": 358,
+      "name": "Hauskreis Simon",
+      "groupTypeId": 1,
+      "parentGroupIds": [
+        95
+      ],
+      "description": null,
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/358",
+      "imageUrl": null,
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "leaders": [],
+      "childGroupIds": []
+    },
+    {
+      "id": 167,
+      "name": "Hauskreis v. Seydlitz",
+      "groupTypeId": 1,
+      "parentGroupIds": [
+        95
+      ],
+      "description": null,
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/167",
+      "imageUrl": null,
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "leaders": [],
+      "childGroupIds": []
+    },
+    {
+      "id": 95,
+      "name": "Hauskreise in der Konkordia",
+      "groupTypeId": 1,
+      "parentGroupIds": [],
+      "description": "Gib einfach Stichwörter ein und dann bekommst du passende Kleingruppen vorgeschlagen.\n\nMit einem Klick auf \"Jetzt Anmelden\" kannst du den Leiter kontaktieren. Daraufhin bekommst eine E-Mail in der du die Anmeldung bestätigen musst. Bitte sieh auch in deinem Spam-Ordner nach. Der Leiter wird sich dann bei dir melden.",
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/95",
+      "imageUrl": "https://gemeindekonkordia.church.tools/images/377/3db5fc0c16352f575533dc45705044e75f38f65ebe822a848392b6c63fbb5251",
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "leaders": [],
+      "childGroupIds": [
+        271,
+        361,
+        364,
+        367,
+        358,
+        167,
+        158
+      ]
+    },
+    {
       "id": 299,
       "name": "Heilig Geist Kurs",
       "groupTypeId": 4,
@@ -650,23 +760,6 @@
       ]
     },
     {
-      "id": 167,
-      "name": "Junge  Erwachsene",
-      "groupTypeId": 1,
-      "parentGroupIds": [
-        95
-      ],
-      "description": null,
-      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/167",
-      "imageUrl": null,
-      "settings": {
-        "isHidden": false,
-        "modules": []
-      },
-      "leaders": [],
-      "childGroupIds": []
-    },
-    {
       "id": 311,
       "name": "Jüngerschaftsbegleiter",
       "groupTypeId": 2,
@@ -760,25 +853,6 @@
       },
       "leaders": [],
       "childGroupIds": []
-    },
-    {
-      "id": 95,
-      "name": "Kleingruppen in der Konkordia",
-      "groupTypeId": 1,
-      "parentGroupIds": [],
-      "description": "Gib einfach Stichwörter ein und dann bekommst du passende Kleingruppen vorgeschlagen.\n\nMit einem Klick auf \"Jetzt Anmelden\" kannst du den Leiter kontaktieren. Daraufhin bekommst eine E-Mail in der du die Anmeldung bestätigen musst. Bitte sieh auch in deinem Spam-Ordner nach. Der Leiter wird sich dann bei dir melden.",
-      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/95",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/377/3db5fc0c16352f575533dc45705044e75f38f65ebe822a848392b6c63fbb5251",
-      "settings": {
-        "isHidden": false,
-        "modules": []
-      },
-      "leaders": [],
-      "childGroupIds": [
-        167,
-        44,
-        158
-      ]
     },
     {
       "id": 135,
@@ -957,9 +1031,7 @@
       "id": 44,
       "name": "Mamatreff",
       "groupTypeId": 1,
-      "parentGroupIds": [
-        95
-      ],
+      "parentGroupIds": [],
       "description": "Bei einer Mama daheim genießen wir im Mutter-Kind-Kreis die Gemeinschaft mit anderen Müttern.\nWir trinken Kaffee, reden, spielen und hören jeweils einen kurzen christlichen Impuls, der uns als Mamas ermutigt und weiter hilft.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/44",
       "imageUrl": "https://gemeindekonkordia.church.tools/images/362/b753c9f3501ceb96a9bc55d02fca538a0d0d258a08cababce2a3e3c0abcd7d60",
