@@ -70,18 +70,27 @@ async function getGroupTags(groupId) {
   }
 }
 
-async function getGroupLeaders(groupId) {
+async function getLeaderRoleIds() {
+  try {
+    const data = await apiGet('/groups/roles');
+    const items = data.data ?? [];
+    return new Set(items.filter(r => r.type === 'leader').map(r => r.id));
+  } catch {
+    return new Set();
+  }
+}
+
+async function getGroupLeaders(groupId, leaderRoleIds) {
   try {
     const data = await apiGet(`/groups/${groupId}/members`);
     const items = data.data ?? [];
     return items
-      .filter(m => m.person && (
-        m.groupTypeRole?.isLeader === true ||
-        /leiter/i.test(m.groupTypeRole?.name ?? '')
-      ))
-      .map(m => ({
-        name: `${m.person.firstName ?? ''} ${m.person.lastName ?? ''}`.trim(),
-      }))
+      .filter(m => m.person && leaderRoleIds.has(m.groupTypeRoleId))
+      .map(m => {
+        const attrs = m.person.domainAttributes ?? {};
+        const name = `${attrs.firstName ?? ''} ${attrs.lastName ?? ''}`.trim();
+        return { name };
+      })
       .filter(l => l.name);
   } catch {
     return [];
@@ -89,6 +98,10 @@ async function getGroupLeaders(groupId) {
 }
 
 async function main() {
+  console.log('Lade Leiter-Rollen …');
+  const leaderRoleIds = await getLeaderRoleIds();
+  console.log(`Leiter-Rollen-IDs: ${[...leaderRoleIds].join(', ') || '(keine)'}\n`);
+
   console.log('Lade alle Gruppen …');
   const allGroups = await getAllPages('/groups');
   console.log(`${allGroups.length} Gruppen gefunden.\n`);
@@ -106,7 +119,7 @@ async function main() {
     const isHidden  = settings.isHidden ?? false;
     const publicUrl = isHidden ? null : `${BASE_URL}/publicgroup/${id}`;
     const tags      = await getGroupTags(id);
-    const leaders   = await getGroupLeaders(id);
+    const leaders   = await getGroupLeaders(id, leaderRoleIds);
 
     byId.set(id, {
       id,

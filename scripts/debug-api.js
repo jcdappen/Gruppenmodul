@@ -17,20 +17,20 @@ async function get(path) {
 }
 
 async function main() {
-  // Gruppen mit Mitgliedern suchen: bekannte Gruppen testen
-  const testIds = [19, 16, 59, 321, 9, 8, 22]; // Audiotechnik, Beamertechnik, Begrüßung, Alpha-Kurs, ...
-
-  for (const id of testIds) {
-    const r = await get(`/groups/${id}/members`);
-    const items = r.body?.data ?? r.body ?? [];
-    const count = Array.isArray(items) ? items.length : '?';
-    if (count > 0) {
-      console.log(`\n=== Gruppe ${id}: ${count} Mitglieder ===`);
-      console.log(JSON.stringify(items.slice(0, 2), null, 2));
-      break; // Ersten Treffer zeigen reicht
-    } else {
-      console.log(`Gruppe ${id}: keine Mitglieder`);
-    }
+  // Alle Gruppentypen + Rollen laden
+  console.log('=== GET /groups/grouptypes ===');
+  const gt = await get('/groups/grouptypes');
+  console.log('Status:', gt.status);
+  const types = gt.body?.data ?? gt.body ?? [];
+  if (Array.isArray(types)) {
+    types.forEach(t => {
+      console.log(`\nTyp ${t.id}: ${t.name}`);
+      (t.roles ?? []).forEach(r => {
+        console.log(`  Rolle ${r.id}: ${r.name}  isLeader=${r.isLeader}  isDefault=${r.isDefault}`);
+      });
+    });
+  } else {
+    console.log(JSON.stringify(types, null, 2));
   }
 }
 
