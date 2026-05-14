@@ -70,6 +70,24 @@ async function getGroupTags(groupId) {
   }
 }
 
+async function getGroupLeaders(groupId) {
+  try {
+    const data = await apiGet(`/groups/${groupId}/members`);
+    const items = data.data ?? [];
+    return items
+      .filter(m => m.person && (
+        m.groupTypeRole?.isLeader === true ||
+        /leiter/i.test(m.groupTypeRole?.name ?? '')
+      ))
+      .map(m => ({
+        name: `${m.person.firstName ?? ''} ${m.person.lastName ?? ''}`.trim(),
+      }))
+      .filter(l => l.name);
+  } catch {
+    return [];
+  }
+}
+
 async function main() {
   console.log('Lade alle Gruppen …');
   const allGroups = await getAllPages('/groups');
@@ -88,6 +106,7 @@ async function main() {
     const isHidden  = settings.isHidden ?? false;
     const publicUrl = isHidden ? null : `${BASE_URL}/publicgroup/${id}`;
     const tags      = await getGroupTags(id);
+    const leaders   = await getGroupLeaders(id);
 
     byId.set(id, {
       id,
@@ -98,16 +117,17 @@ async function main() {
       publicUrl,
       imageUrl,
       tags,
+      leaders,
       settings: {
         isHidden: settings.isHidden ?? null,
         modules:  settings.modules  ?? [],
       },
-      leaders:      [],
       childGroupIds: [],
     });
 
-    const tagStr = tags.length ? ` [${tags.join(', ')}]` : '';
-    console.log(imageUrl ? `OK (Bild)${tagStr}` : `OK${tagStr}`);
+    const tagStr     = tags.length    ? ` [${tags.join(', ')}]` : '';
+    const leaderStr  = leaders.length ? ` (${leaders.map(l => l.name).join(', ')})` : '';
+    console.log(imageUrl ? `OK (Bild)${tagStr}${leaderStr}` : `OK${tagStr}${leaderStr}`);
   }
 
   console.log('\nBaue Hierarchie über /children …');
