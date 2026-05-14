@@ -17,21 +17,29 @@ async function get(path) {
 }
 
 async function main() {
-  // Alle Gruppentypen + Rollen laden
-  console.log('=== GET /groups/grouptypes ===');
-  const gt = await get('/groups/grouptypes');
-  console.log('Status:', gt.status);
-  const types = gt.body?.data ?? gt.body ?? [];
-  if (Array.isArray(types)) {
-    types.forEach(t => {
-      console.log(`\nTyp ${t.id}: ${t.name}`);
-      (t.roles ?? []).forEach(r => {
-        console.log(`  Rolle ${r.id}: ${r.name}  isLeader=${r.isLeader}  isDefault=${r.isDefault}`);
-      });
-    });
-  } else {
-    console.log(JSON.stringify(types, null, 2));
+  // Alle Rollen laden (paginiert)
+  console.log('=== Alle Gruppen-Rollen (/groups/roles) ===');
+  let page = 1, allRoles = [];
+  while (true) {
+    const r = await get(`/groups/roles?limit=100&page=${page}`);
+    const items = r.body?.data ?? [];
+    if (!items.length) break;
+    allRoles.push(...items);
+    const lastPage = r.body?.meta?.pagination?.lastPage ?? 1;
+    if (page >= lastPage) break;
+    page++;
   }
+  console.log(`${allRoles.length} Rollen gefunden:`);
+  allRoles.forEach(r => console.log(`  ID ${r.id}: "${r.name}" type="${r.type}" groupTypeId=${r.groupTypeId} isLeader=${r.isLeader}`));
+
+  // Mitglieder von Gruppe 19 mit roleId anzeigen
+  console.log('\n=== Members Gruppe 19 (Audiotechnik) – alle Rollen-IDs ===');
+  const m = await get('/groups/19/members');
+  const members = m.body?.data ?? [];
+  members.forEach(x => {
+    const name = x.person?.domainAttributes?.firstName + ' ' + x.person?.domainAttributes?.lastName;
+    console.log(`  ${name.trim()} → groupTypeRoleId: ${x.groupTypeRoleId}`);
+  });
 }
 
 main().catch(console.error);
