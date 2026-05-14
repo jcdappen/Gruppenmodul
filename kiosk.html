@@ -301,6 +301,39 @@
       font-size: 16px;
       flex-shrink: 0;
     }
+    .group-tile-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 3px;
+      margin-top: 4px;
+    }
+    .tag-chip {
+      display: inline-block;
+      font-size: 9px;
+      letter-spacing: 0.8px;
+      padding: 2px 7px;
+      border-radius: 20px;
+      border: 1px solid #ccc;
+      color: #888;
+      background: transparent;
+      line-height: 1.5;
+    }
+    .modal-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 12px;
+    }
+    .modal-tag-chip {
+      display: inline-block;
+      font-size: 11px;
+      letter-spacing: 0.5px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      border: 1px solid #ddd;
+      color: #666;
+      background: #f7f4f1;
+    }
 
     /* ── MODAL ──────────────────────────────────────── */
     .modal-bg {
@@ -691,6 +724,9 @@ function showDetail(vb, cfg) {
           ${gruppe.description
             ? `<div class="group-tile-desc">${gruppe.description}</div>`
             : ''}
+          ${gruppe.tags?.length
+            ? `<div class="group-tile-tags">${gruppe.tags.map(t => `<span class="tag-chip">${t}</span>`).join('')}</div>`
+            : ''}
         </div>
         <div class="group-tile-chevron">›</div>`;
 
@@ -716,9 +752,13 @@ function openModal(gruppe, vb, cfg) {
   document.getElementById('modalGroupName').style.color = cfg.color;
 
   const desc = document.getElementById('modalDesc');
-  desc.innerHTML = gruppe.description
-    ? gruppe.description
+  let descHtml = gruppe.description
+    ? `<p>${gruppe.description}</p>`
     : '<span class="modal-no-desc">Keine Beschreibung vorhanden.</span>';
+  if (gruppe.tags?.length) {
+    descHtml += `<div class="modal-tags">${gruppe.tags.map(t => `<span class="modal-tag-chip">${t}</span>`).join('')}</div>`;
+  }
+  desc.innerHTML = descHtml;
 
   // QR-Code
   const url = gruppe.publicUrl || `${CHURCHTOOLS}/publicgroup/${gruppe.id}`;
