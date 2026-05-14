@@ -72,7 +72,7 @@ async function getGroupTags(groupId) {
 
 async function getLeaderRoleIds() {
   try {
-    const data = await apiGet('/groups/roles');
+    const data = await apiGet('/group/roles');
     const items = data.data ?? [];
     return new Set(items.filter(r => r.type === 'leader').map(r => r.id));
   } catch {
