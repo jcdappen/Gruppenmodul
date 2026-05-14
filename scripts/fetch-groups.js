@@ -59,6 +59,17 @@ async function getGroupDetails(groupId) {
   }
 }
 
+async function getGroupTags(groupId) {
+  try {
+    const data = await apiGet(`/groups/${groupId}/tags`);
+    const items = data.data ?? data ?? [];
+    if (!Array.isArray(items)) return [];
+    return items.map(t => t.name).filter(Boolean);
+  } catch {
+    return [];
+  }
+}
+
 async function main() {
   console.log('Lade alle Gruppen …');
   const allGroups = await getAllPages('/groups');
@@ -76,6 +87,7 @@ async function main() {
     const imageUrl  = info.imageUrl || null;
     const isHidden  = settings.isHidden ?? false;
     const publicUrl = isHidden ? null : `${BASE_URL}/publicgroup/${id}`;
+    const tags      = await getGroupTags(id);
 
     byId.set(id, {
       id,
@@ -85,6 +97,7 @@ async function main() {
       description:   info.note || null,
       publicUrl,
       imageUrl,
+      tags,
       settings: {
         isHidden: settings.isHidden ?? null,
         modules:  settings.modules  ?? [],
@@ -93,7 +106,8 @@ async function main() {
       childGroupIds: [],
     });
 
-    console.log(imageUrl ? 'OK (Bild)' : 'OK');
+    const tagStr = tags.length ? ` [${tags.join(', ')}]` : '';
+    console.log(imageUrl ? `OK (Bild)${tagStr}` : `OK${tagStr}`);
   }
 
   console.log('\nBaue Hierarchie über /children …');
