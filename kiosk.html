@@ -28,9 +28,9 @@
     html, body {
       width: 100%; height: 100%;
       overflow: hidden;
-      background: #111;
+      background: #f1eeeb;
       font-family: 'Gothic720', Arial, sans-serif;
-      color: white;
+      color: #1a1a1a;
       -webkit-user-select: none;
       user-select: none;
       cursor: default;
@@ -87,8 +87,8 @@
       display: none;
       align-items: center;
       gap: 10px;
-      background: #252525;
-      border: 1px solid #333;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
       color: rgba(255,255,255,0.65);
       padding: 11px 22px;
       border-radius: 3px;
@@ -98,13 +98,13 @@
       letter-spacing: 1px;
       transition: background 0.15s, color 0.15s;
     }
-    .back-btn:hover { background: #2e2e2e; color: white; }
+    .back-btn:hover { background: rgba(255,255,255,0.2); color: white; }
     .back-btn.visible { display: flex; }
 
     /* ── COUNTDOWN ──────────────────────────────────── */
     .countdown-bar {
       height: 3px;
-      background: #222;
+      background: rgba(0,0,0,0.08);
       flex-shrink: 0;
       position: relative;
     }
@@ -120,7 +120,7 @@
       flex: 1;
       overflow: hidden;
       padding: 28px 48px;
-      background: #1a1a1a;
+      background: #f1eeeb;
       position: relative;
     }
 
@@ -210,7 +210,7 @@
       height: 100%;
       overflow-y: auto;
       scrollbar-width: thin;
-      scrollbar-color: #333 transparent;
+      scrollbar-color: #ccc transparent;
     }
     #detailview.visible { display: block; }
 
@@ -227,7 +227,7 @@
       font-family: 'GrotesqueSC', Arial, sans-serif;
       font-size: 24px;
       letter-spacing: 2px;
-      color: white;
+      color: #1a1a1a;
     }
 
     .sections-grid {
@@ -237,9 +237,10 @@
     }
 
     .section-card {
-      background: #222;
+      background: #ffffff;
       border-radius: 3px;
       overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
     }
     .section-head {
       padding: 12px 16px;
@@ -249,7 +250,7 @@
       font-size: 13px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.9);
+      color: #2a2a2a;
     }
 
     .group-list {
@@ -259,8 +260,8 @@
       gap: 5px;
     }
     .group-tile {
-      background: #2a2a2a;
-      border-left: 3px solid #444;
+      background: #f7f4f1;
+      border-left: 3px solid #ddd;
       border-radius: 2px;
       padding: 10px 12px;
       cursor: pointer;
@@ -270,8 +271,8 @@
       gap: 10px;
       min-height: 52px;
     }
-    .group-tile:hover { background: #323232; transform: translateX(3px); }
-    .group-tile:active { background: #3a3a3a; }
+    .group-tile:hover { background: #ede9e5; transform: translateX(3px); }
+    .group-tile:active { background: #e4e0db; }
 
     .group-tile-img {
       width: 44px;
@@ -279,24 +280,24 @@
       border-radius: 2px;
       object-fit: cover;
       flex-shrink: 0;
-      background: #333;
+      background: #ddd;
     }
     .group-tile-info { flex: 1; min-width: 0; }
     .group-tile-name {
       font-family: 'GrotesqueSC', Arial, sans-serif;
       font-size: 13px;
-      color: white;
+      color: #1a1a1a;
       margin-bottom: 2px;
     }
     .group-tile-desc {
       font-size: 11px;
-      color: rgba(255,255,255,0.45);
+      color: #888;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
     }
     .group-tile-chevron {
-      color: rgba(255,255,255,0.25);
+      color: #bbb;
       font-size: 16px;
       flex-shrink: 0;
     }
@@ -314,12 +315,12 @@
     .modal-bg.open { display: flex; }
 
     .modal {
-      background: #1e1e1e;
+      background: #ffffff;
       border-radius: 5px;
       width: 640px;
       max-height: 85vh;
       overflow-y: auto;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.85);
+      box-shadow: 0 40px 100px rgba(0,0,0,0.3);
       animation: popIn 0.18s cubic-bezier(0.34,1.26,0.64,1);
     }
     @keyframes popIn {
@@ -330,28 +331,28 @@
     .modal-header {
       padding: 24px 28px 18px;
       position: relative;
-      border-bottom: 1px solid #2a2a2a;
+      border-bottom: 1px solid #e8e4e0;
     }
     .modal-close {
       position: absolute;
       top: 18px; right: 20px;
-      background: rgba(255,255,255,0.08);
+      background: rgba(0,0,0,0.06);
       border: none;
       border-radius: 50%;
       width: 36px; height: 36px;
       font-size: 18px;
-      color: rgba(255,255,255,0.7);
+      color: #666;
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       transition: background 0.15s;
     }
-    .modal-close:hover { background: rgba(255,255,255,0.18); color: white; }
+    .modal-close:hover { background: rgba(0,0,0,0.12); color: #1a1a1a; }
 
     .modal-bereich-label {
       font-size: 9px;
       letter-spacing: 3px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
+      color: #aaa;
       font-family: Arial, sans-serif;
       margin-bottom: 6px;
     }
@@ -359,7 +360,7 @@
       font-family: 'GrotesqueSC', Arial, sans-serif;
       font-size: 28px;
       letter-spacing: 1.5px;
-      color: white;
+      color: #1a1a1a;
       padding-right: 44px;
     }
 
@@ -372,12 +373,12 @@
     .modal-desc {
       flex: 1;
       font-size: 15px;
-      color: rgba(255,255,255,0.72);
+      color: #555;
       line-height: 1.7;
     }
     .modal-no-desc {
       font-style: italic;
-      color: rgba(255,255,255,0.3);
+      color: #bbb;
       font-size: 14px;
     }
     .modal-qr-block {
@@ -391,16 +392,17 @@
       background: white;
       padding: 10px;
       border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
     .modal-qr-scan {
       font-size: 10px;
       letter-spacing: 1.5px;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.4);
+      color: #aaa;
     }
     .modal-qr-url {
       font-size: 9px;
-      color: rgba(255,255,255,0.25);
+      color: #ccc;
       text-align: center;
       max-width: 160px;
       word-break: break-all;
@@ -420,7 +422,7 @@
     #loading p {
       font-family: 'GrotesqueSC', Arial, sans-serif;
       letter-spacing: 2px;
-      color: rgba(255,255,255,0.3);
+      color: rgba(0,0,0,0.3);
       font-size: 13px;
     }
   </style>
