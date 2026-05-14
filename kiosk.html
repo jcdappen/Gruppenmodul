@@ -886,6 +886,25 @@ function showDetail(vb, cfg) {
   dv.scrollTop = 0;
 }
 
+// ── Markdown → HTML ───────────────────────────────
+function renderMarkdown(text) {
+  const escaped = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+
+  const blocks = escaped.split(/\n{2,}/);
+  return blocks.map(block => {
+    const line = block.trim();
+    if (!line) return '';
+    const inlined = line
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/\n/g, '<br>');
+    return `<p>${inlined}</p>`;
+  }).join('');
+}
+
 // ── Modal ─────────────────────────────────────────
 function openModal(gruppe, vb, cfg) {
   resetTimer();
@@ -897,7 +916,7 @@ function openModal(gruppe, vb, cfg) {
 
   const desc = document.getElementById('modalDesc');
   desc.innerHTML = gruppe.description
-    ? `<p>${gruppe.description}</p>`
+    ? renderMarkdown(gruppe.description)
     : '<span class="modal-no-desc">Keine Beschreibung vorhanden.</span>';
 
   // QR-Code
