@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Vorschau Schlicht – Gruppenmodul</title>
+  <style>
+    @font-face {
+      font-family: 'GrotesqueSC';
+      src: url('assets/fonts/GrotesqueRegSC.ttf') format('truetype');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gothic720';
+      src: url('assets/fonts/gothic720l.ttf') format('truetype');
+      font-weight: 300;
+      font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Gothic720', Arial, sans-serif;
+      background: #ffffff;
+      color: #2a2a2a;
+      font-size: 16px;
+      line-height: 1.6;
+    }
+
+    .debug-bar {
+      background: #222;
+      color: #aaa;
+      font-family: monospace;
+      font-size: 0.75rem;
+      text-align: center;
+      padding: 0.4rem 1rem;
+    }
+    .debug-bar span { color: #f87171; }
+
+    /* ── Pill-Navigation ──────────────────────────── */
+    #bereiche {
+      display: flex;
+      gap: 0.75rem;
+      padding: 1.75rem 1.25rem 1.5rem;
+      flex-wrap: wrap;
+    }
+
+    .bereich-btn {
+      padding: 0.55rem 1.6rem;
+      background: transparent;
+      border: 2px solid #d0d0d0;
+      border-radius: 50px;
+      cursor: pointer;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      color: #888;
+      transition: all 0.2s;
+    }
+
+    .bereich-btn:hover {
+      border-color: #bb2232;
+      color: #bb2232;
+    }
+
+    .bereich-btn.active {
+      background: #bb2232;
+      border-color: #bb2232;
+      color: #fff;
+    }
+
+    /* ── Gruppen-Grid ─────────────────────────────── */
+    #gruppen {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+      gap: 1.5rem;
+      padding: 0 1.25rem 2rem;
+    }
+
+    .gruppe-card {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .gruppe-img {
+      width: 100%;
+      aspect-ratio: 8 / 3;
+      object-fit: cover;
+      display: block;
+      background: #f0f0f0;
+    }
+
+    /* Fallback */
+    .gruppe-img-placeholder {
+      width: 100%;
+      aspect-ratio: 8 / 3;
+      background: #f5f5f5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .gruppe-img-placeholder svg {
+      width: 36px;
+      height: 36px;
+      opacity: 0.2;
+    }
+
+    .gruppe-body {
+      padding: 1.25rem 1.25rem 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .gruppe-name {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.04em;
+      color: #2a2a2a;
+      line-height: 1.2;
+    }
+
+    .gruppe-desc {
+      font-size: 0.9rem;
+      color: #666;
+      flex: 1;
+      display: -webkit-box;
+      -webkit-line-clamp: 4;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .gruppe-actions {
+      margin-top: 1rem;
+    }
+
+    .btn-outline {
+      display: inline-block;
+      padding: 0.5rem 1.25rem;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 0.8rem;
+      letter-spacing: 0.06em;
+      text-decoration: none;
+      color: #bb2232;
+      border: 2px solid #bb2232;
+      border-radius: 0;
+      transition: background 0.2s, color 0.2s;
+      cursor: pointer;
+    }
+
+    .btn-outline:hover {
+      background: #bb2232;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+
+<div class="debug-bar">VORSCHAU SCHLICHT · <span>Noch nicht live</span></div>
+
+<nav id="bereiche">
+  <button class="bereich-btn active">Gebet</button>
+  <button class="bereich-btn">Kurse</button>
+</nav>
+
+<div id="gruppen">
+
+  <!-- Karte 1: mit Bild -->
+  <div class="gruppe-card">
+    <div style="width:100%;aspect-ratio:8/3;overflow:hidden;">
+      <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?w=800&q=80" style="width:100%;height:100%;object-fit:cover;" alt="Gebetsteam" />
+    </div>
+    <div class="gruppe-body">
+      <div class="gruppe-name">Gebetsteam</div>
+      <p class="gruppe-desc">In Matthäus 18 Vers 20 steht: »Denn wo zwei oder drei zusammenkommen, die zu mir gehören, bin ich mitten unter ihnen.« Deswegen glauben wir, dass gemeinsames Gebet ein wichtiger Schlüssel ist.</p>
+      <div class="gruppe-actions">
+        <a class="btn-outline" href="#">Mehr erfahren</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Karte 2: ohne Bild -->
+  <div class="gruppe-card">
+    <div class="gruppe-img-placeholder">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#888" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 2a2 2 0 0 0-2 2v5H4a2 2 0 0 0-2 2v2a2 2 0 0 0 2 2h5v5a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-5h5a2 2 0 0 0 2-2v-2a2 2 0 0 0-2-2h-5V4a2 2 0 0 0-2-2h-2z"/></svg>
+    </div>
+    <div class="gruppe-body">
+      <div class="gruppe-name">Kontemplation</div>
+      <p class="gruppe-desc">Gott ist ein Gott der Gegenwart. Wie er dich findet, so nimmt und empfängt er dich, nicht als das, was du gewesen, sondern als das, was du jetzt bist.</p>
+      <div class="gruppe-actions">
+        <a class="btn-outline" href="#">Mehr erfahren</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- Karte 3 -->
+  <div class="gruppe-card">
+    <div style="width:100%;aspect-ratio:8/3;overflow:hidden;">
+      <img src="https://images.unsplash.com/photo-1504052434569-70ad5836ab65?w=800&q=80" style="width:100%;height:100%;object-fit:cover;" alt="Morgengebet" />
+    </div>
+    <div class="gruppe-body">
+      <div class="gruppe-name">Morgengebet</div>
+      <p class="gruppe-desc">Jeden Dienstag starten wir gemeinsam in den Tag – mit Stille, Gebet und Fürsprache füreinander.</p>
+      <div class="gruppe-actions">
+        <a class="btn-outline" href="#">Mehr erfahren</a>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>
