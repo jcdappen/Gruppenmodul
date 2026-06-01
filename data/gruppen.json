@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-31T07:40:26.133Z",
+  "generatedAt": "2026-06-01T09:16:30.435Z",
   "groups": [
     {
       "id": 124,
@@ -1280,7 +1280,7 @@
     },
     {
       "id": 8,
-      "name": "Kinderkirche",
+      "name": "Kinder-/Jugendabeit",
       "groupTypeId": 2,
       "parentGroupIds": [
         10,
@@ -1313,7 +1313,8 @@
         38,
         35,
         329,
-        259
+        259,
+        44
       ]
     },
     {
@@ -1637,7 +1638,9 @@
       "id": 44,
       "name": "Mamatreff",
       "groupTypeId": 1,
-      "parentGroupIds": [],
+      "parentGroupIds": [
+        8
+      ],
       "description": "Bei einer Mama daheim genießen wir im Mutter-Kind-Kreis die Gemeinschaft mit anderen Müttern.\nWir trinken Kaffee, reden, spielen und hören jeweils einen kurzen christlichen Impuls, der uns als Mamas ermutigt und weiter hilft.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/44",
       "imageUrl": "https://gemeindekonkordia.church.tools/images/362/b753c9f3501ceb96a9bc55d02fca538a0d0d258a08cababce2a3e3c0abcd7d60",
@@ -1645,6 +1648,10 @@
       "leaders": [
         {
           "name": "Alicya Weber",
+          "imageUrl": null
+        },
+        {
+          "name": "Isabelle Joachim",
           "imageUrl": null
         }
       ],
