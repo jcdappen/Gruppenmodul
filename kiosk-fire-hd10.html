@@ -478,89 +478,87 @@
     .sections-grid {
       display: flex;
       flex-direction: column;
-      gap: 20px;
+      gap: 24px;
       padding-bottom: 16px;
     }
 
+    /* Sektion: kein eigener weißer Kasten, transparent */
     .section-card {
-      background: #ffffff;
-      border-radius: 5px;
-      overflow: hidden;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+      background: transparent;
+      border-radius: 0;
+      overflow: visible;
     }
 
-    /* Sektions-Header: groß und gut lesbar */
+    /* Sektions-Titel als Trenner */
     .section-head {
-      padding: 16px 20px;
+      padding: 0 4px 12px;
+      border-bottom: 2px solid;
+      margin-bottom: 14px;
     }
     .section-head-title {
       font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 17px;
-      letter-spacing: 2px;
+      font-size: 15px;
+      letter-spacing: 3px;
       text-transform: uppercase;
-      color: #2a2a2a;
     }
 
-    /* 2-spaltiges Grid für Gruppen */
+    /* 4-spaltiges Karten-Grid */
     .group-list {
-      padding: 10px 12px 14px;
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 12px;
     }
 
-    /* Große, dominante Kacheln */
+    /* Karte: Bild oben, Name unten */
     .group-tile {
-      background: #f7f4f1;
-      border-left: 4px solid #ddd;
-      border-radius: 4px;
-      padding: 16px 18px;
+      background: #ffffff;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.12s, box-shadow 0.15s, transform 0.12s;
+      overflow: hidden;
       display: flex;
-      align-items: center;
-      gap: 16px;
-      min-height: 90px;
+      flex-direction: column;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      transition: transform 0.15s, box-shadow 0.15s;
+      border-left: none;
+      padding: 0;
+      min-height: unset;
     }
-    .group-tile:active { background: #e4e0db; transform: scale(0.98); }
+    .group-tile:active { transform: scale(0.97); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
     .group-tile:not(:active):hover {
-      background: #ede9e5;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
-      transform: translateY(-2px);
+      transform: translateY(-4px);
+      box-shadow: 0 10px 28px rgba(0,0,0,0.14);
     }
 
-    /* Großes quadratisches Bild */
+    /* Bild: volle Breite, feste Höhe */
     .group-tile-img {
-      width: 72px;
-      height: 72px;
-      border-radius: 4px;
+      width: 100%;
+      height: 150px;
       object-fit: cover;
       flex-shrink: 0;
       background: #ddd;
+      border-radius: 0;
+      display: block;
     }
 
-    .group-tile-info { flex: 1; min-width: 0; }
-
-    /* Großer, gut lesbarer Gruppenname */
+    /* Name + Pfeil-Zeile */
+    .group-tile-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 12px 14px 13px;
+      gap: 8px;
+    }
     .group-tile-name {
       font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 18px;
+      font-size: 16px;
       letter-spacing: 0.8px;
       color: #1a1a1a;
-      margin-bottom: 5px;
-      line-height: 1.2;
-    }
-    .group-tile-desc {
-      font-size: 13px;
-      color: #888;
-      white-space: nowrap;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      line-height: 1.4;
+      line-height: 1.25;
+      flex: 1;
     }
     .group-tile-chevron {
       color: #ccc;
-      font-size: 26px;
+      font-size: 22px;
       flex-shrink: 0;
       line-height: 1;
     }
@@ -1282,20 +1280,18 @@ function showDetail(vb, cfg) {
       const imgSrc = bereich.imageUrl || null;
       tile.innerHTML = `
         ${imgSrc
-          ? `<img class="group-tile-img" src="${imgSrc}" alt="${bereich.name}" onerror="this.style.display='none'">`
+          ? `<img class="group-tile-img" src="${imgSrc}" alt="${bereich.name}" onerror="this.style.background='${cfg.color}22'">`
           : `<div class="group-tile-img" style="background:${cfg.color}22;"></div>`}
-        <div class="group-tile-info">
+        <div class="group-tile-footer">
           <div class="group-tile-name" style="color:${cfg.color};">${bereich.name}</div>
-          ${bereich.description ? `<div class="group-tile-desc">${bereich.description}</div>` : ''}
-        </div>
-        <div class="group-tile-chevron">›</div>`;
+          <div class="group-tile-chevron">›</div>
+        </div>`;
       tile.addEventListener('click', () => openModal(bereich, vb, cfg));
       // Einzelkacheln direkt ins Grid (als eigene Sektion ohne Kopf)
       const wrapper = document.createElement('div');
       wrapper.className = 'section-card';
       const list = document.createElement('div');
       list.className = 'group-list';
-      list.style.gridTemplateColumns = '1fr';
       list.appendChild(tile);
       wrapper.appendChild(list);
       grid.appendChild(wrapper);
@@ -1305,7 +1301,7 @@ function showDetail(vb, cfg) {
     const card = document.createElement('div');
     card.className = 'section-card';
     card.innerHTML = `
-      <div class="section-head" style="background:${cfg.color}22; border-bottom:1px solid ${cfg.color}33;">
+      <div class="section-head" style="border-color:${cfg.color};">
         <div class="section-head-title" style="color:${cfg.color};">${bereich.name}</div>
       </div>`;
 
@@ -1315,17 +1311,15 @@ function showDetail(vb, cfg) {
     gruppen.forEach(gruppe => {
       const tile = document.createElement('div');
       tile.className = 'group-tile';
-      tile.style.borderLeftColor = cfg.color;
       const imgSrc = gruppe.imageUrl ? gruppe.imageUrl : null;
       tile.innerHTML = `
         ${imgSrc
-          ? `<img class="group-tile-img" src="${imgSrc}" alt="${gruppe.name}" onerror="this.style.display='none'">`
-          : `<div class="group-tile-img" style="background:#2e2e2e;"></div>`}
-        <div class="group-tile-info">
+          ? `<img class="group-tile-img" src="${imgSrc}" alt="${gruppe.name}" onerror="this.style.background='${cfg.color}22'">`
+          : `<div class="group-tile-img" style="background:${cfg.color}22;"></div>`}
+        <div class="group-tile-footer">
           <div class="group-tile-name">${gruppe.name}</div>
-          ${gruppe.description ? `<div class="group-tile-desc">${gruppe.description}</div>` : ''}
-        </div>
-        <div class="group-tile-chevron">›</div>`;
+          <div class="group-tile-chevron">›</div>
+        </div>`;
       tile.addEventListener('click', () => openModal(gruppe, vb, cfg));
       list.appendChild(tile);
     });
