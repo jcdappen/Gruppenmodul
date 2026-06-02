@@ -37,7 +37,6 @@
       -webkit-user-select: none;
       user-select: none;
       cursor: default;
-      /* Verhindert versehentliches Zoomen auf Touch */
       touch-action: manipulation;
     }
 
@@ -50,7 +49,6 @@
     }
 
     /* ── HEADER ─────────────────────────────────────── */
-    /* Kompakter Header für Fire HD 10: 72px statt 90px */
     .header {
       background: #1a1a1a;
       border-bottom: 1px solid #2a2a2a;
@@ -90,7 +88,6 @@
       letter-spacing: 0.4px;
     }
 
-    /* Touch-freundliche Buttons: mind. 44px Höhe */
     .back-btn {
       display: none;
       align-items: center;
@@ -125,7 +122,6 @@
     }
 
     /* ── MAIN CONTENT ───────────────────────────────── */
-    /* Verfügbare Höhe: 100vh - 72px Header - 4px Countdown ≈ 724px bei 800px Viewport */
     .main {
       flex: 1;
       overflow: hidden;
@@ -134,7 +130,109 @@
       position: relative;
     }
 
-    /* ── STARTSCREEN ────────────────────────────────── */
+    /* ── HOMESCREEN ─────────────────────────────────── */
+    #homescreen {
+      height: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .home-card {
+      border-radius: 6px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 32px 28px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .home-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0);
+      transition: background 0.2s;
+    }
+    .home-card:active { transform: scale(0.98); }
+    .home-card:active::after { background: rgba(255,255,255,0.06); }
+    .home-card:not(:active):hover { transform: translateY(-5px); box-shadow: 0 20px 60px rgba(0,0,0,0.45); }
+
+    /* Mitmachen-Karte: dunkel mit 4-Icon-Grid */
+    .home-card-mitmachen { background: #1a1a1a; }
+
+    .home-icons-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 28px;
+    }
+    .home-icon-cell {
+      width: 72px;
+      height: 72px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .home-icon-cell svg { width: 44px; height: 44px; }
+
+    /* Kleingruppe-Karte: rot */
+    .home-card-kleingruppe { background: #bb2232; }
+
+    .home-group-icon {
+      margin-bottom: 28px;
+      width: 100px;
+      height: 100px;
+      background: rgba(255,255,255,0.15);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .home-group-icon svg { width: 58px; height: 58px; }
+
+    .home-eyebrow {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      font-family: Arial, sans-serif;
+      margin-bottom: 8px;
+    }
+    .home-title {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 30px;
+      color: white;
+      text-align: center;
+      line-height: 1.15;
+      letter-spacing: 1.5px;
+      margin-bottom: 14px;
+    }
+    .home-desc {
+      font-size: 14px;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 28px;
+      max-width: 320px;
+    }
+    .home-cta {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: white;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      padding: 12px 32px;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    /* ── STARTSCREEN (Visionsbereiche) ──────────────── */
     #startscreen {
       height: 100%;
       display: grid;
@@ -148,7 +246,6 @@
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      /* Weniger vertikales Padding für kompakteres Layout */
       padding: 24px 20px 22px;
       cursor: pointer;
       transition: transform 0.2s, box-shadow 0.2s;
@@ -164,11 +261,8 @@
     }
     .bc-card:active { transform: scale(0.97); }
     .bc-card:active::after { background: rgba(255,255,255,0.08); }
-
-    /* Kein Hover-Effekt nötig (Touch-Gerät), aber für Silk-Browser kompatibel lassen */
     .bc-card:not(:active):hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.45); }
 
-    /* Etwas kleinere Icons für kompaktes Layout */
     .bc-arrow { width: 64px; height: 64px; margin-bottom: 18px; }
     .bc-arrow svg { width: 64px; height: 64px; }
     .bc-eyebrow {
@@ -219,20 +313,147 @@
       font-family: Arial, sans-serif;
     }
 
-    /* ── DETAILANSICHT ──────────────────────────────── */
+    /* ── KLEINGRUPPEN-SCREEN ────────────────────────── */
+    #kleingruppenscreen {
+      height: 100%;
+      display: none;
+      flex-direction: column;
+    }
+
+    .kg-header {
+      margin-bottom: 18px;
+    }
+    .kg-header-title {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 3px;
+      color: #888;
+      text-transform: uppercase;
+    }
+    .kg-header-sub {
+      font-size: 13px;
+      color: #bbb;
+      margin-top: 4px;
+    }
+
+    .kg-grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .kg-card {
+      border-radius: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      padding: 28px 24px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .kg-card:active { transform: scale(0.97); }
+    .kg-card:not(:active):hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+
+    .kg-icon {
+      width: 80px;
+      height: 80px;
+      background: rgba(255,255,255,0.18);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 22px;
+    }
+    .kg-icon svg { width: 46px; height: 46px; }
+    .kg-label {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      font-family: Arial, sans-serif;
+      margin-bottom: 8px;
+    }
+    .kg-name {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 22px;
+      color: white;
+      text-align: center;
+      letter-spacing: 1.5px;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+    .kg-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      line-height: 1.6;
+      margin-bottom: 24px;
+      max-width: 240px;
+    }
+    .kg-cta {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.35);
+      color: white;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      padding: 10px 24px;
+      border-radius: 2px;
+      pointer-events: none;
+    }
+
+    /* ── KLEINGRUPPEN DETAIL (Platzhalter) ──────────── */
+    .kg-detail-view {
+      display: none;
+      height: 100%;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+    }
+    .kg-detail-view.visible { display: block; }
+
+    .kg-detail-placeholder {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: #bbb;
+    }
+    .kg-detail-placeholder-icon {
+      width: 64px;
+      height: 64px;
+      background: #e8e4e0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .kg-detail-placeholder p {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      letter-spacing: 2px;
+      font-size: 14px;
+    }
+    .kg-detail-placeholder small {
+      font-size: 12px;
+      color: #ccc;
+    }
+
+    /* ── DETAILANSICHT (Visionsbereiche) ────────────── */
     #detailview {
       display: none;
       height: 100%;
       overflow-y: auto;
       overflow-x: hidden;
-      /* Größere Scrollbar für Touch-Bedienung */
       scrollbar-width: auto;
       scrollbar-color: #bbb transparent;
       -webkit-overflow-scrolling: touch;
     }
     #detailview.visible { display: block; }
-
-    /* Breite Scrollbar für Touch */
     #detailview::-webkit-scrollbar { width: 8px; }
     #detailview::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
 
@@ -252,7 +473,6 @@
       color: #1a1a1a;
     }
 
-    /* 3 Spalten nutzen die 1280px Breite besser aus */
     .sections-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -265,9 +485,7 @@
       overflow: hidden;
       box-shadow: 0 1px 4px rgba(0,0,0,0.08);
     }
-    .section-head {
-      padding: 10px 14px;
-    }
+    .section-head { padding: 10px 14px; }
     .section-head-title {
       font-family: 'GrotesqueSC', Arial, sans-serif;
       font-size: 13px;
@@ -282,7 +500,6 @@
       flex-direction: column;
       gap: 4px;
     }
-    /* Größere Touch-Targets: mind. 52px Höhe */
     .group-tile {
       background: #f7f4f1;
       border-left: 3px solid #ddd;
@@ -387,7 +604,6 @@
       flex-wrap: wrap;
       gap: 10px;
     }
-    /* Touch-freundliche Tag-Buttons */
     .tag-filter-btn {
       padding: 10px 20px;
       border-radius: 50px;
@@ -435,6 +651,7 @@
       -webkit-overflow-scrolling: touch;
     }
     #tagresultview.visible { display: block; }
+
     .tagresult-header {
       display: flex;
       align-items: center;
@@ -458,7 +675,6 @@
       color: #bbb;
       margin-left: auto;
     }
-    /* Mehr Spalten auf breitem Screen */
     .tagresult-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -499,7 +715,6 @@
     }
 
     /* ── MODAL ──────────────────────────────────────── */
-    /* Modal optimiert für ~1280×800 Viewport */
     .modal-bg {
       display: none;
       position: fixed;
@@ -537,7 +752,6 @@
       background: rgba(0,0,0,0.06);
       border: none;
       border-radius: 50%;
-      /* Größerer Touch-Target */
       width: 44px; height: 44px;
       font-size: 20px;
       color: #666;
@@ -673,7 +887,7 @@
            onerror="this.style.display='none'">
       <div class="header-divider"></div>
       <div>
-        <div class="header-title">Du kannst mitmachen</div>
+        <div class="header-title">Gemeinde Konkordia</div>
         <div class="header-sub">Gemeinsam Gemeinde leben.</div>
       </div>
     </div>
@@ -682,7 +896,7 @@
         <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
         Nach Gaben suchen
       </button>
-      <button class="back-btn" id="backBtn" onclick="showStart()">← Alle Bereiche</button>
+      <button class="back-btn" id="backBtn" onclick="goBack()">← Zurück</button>
     </div>
   </div>
 
@@ -690,9 +904,142 @@
 
   <div class="main">
     <div id="loading"><p>Wird geladen …</p></div>
-    <div id="startscreen"></div>
+
+    <!-- HOMESCREEN -->
+    <div id="homescreen" style="display:none;">
+      <div class="home-card home-card-mitmachen" onclick="showMitmachen()">
+        <div class="home-icons-grid">
+          <div class="home-icon-cell" style="background:#edc544;">
+            <svg viewBox="0 0 2000 2000" fill="white"><path d="M1069.61,441.27c-38.04-37.91-100.86-38.22-139.23,0l-295.23,293.69c-38.45,38.25-38.45,100.21,0,138.45,38.45,38.25,100.73,38.25,139.18,0l127.26-126.58v742.73c0,54.06,44.08,97.9,98.42,97.9s98.42-43.85,98.42-97.9v-742.73l127.26,126.58c19.22,19.13,44.39,28.68,69.57,28.68s50.36-9.55,69.59-28.68c38.45-38.23,38.45-100.19,0-138.45l-295.23-293.69Z"/><path d="M1000,1779.99c-430.08,0-780-349.9-780-779.98S569.92,220.01,1000,220.01s780,349.92,780,780-349.92,779.98-780,779.98ZM1000,25.01C462.37,25.01,25,462.38,25,1000.01s437.37,974.98,975,974.98,975-437.37,975-974.98S1537.58,25.01,1000,25.01Z"/></svg>
+          </div>
+          <div class="home-icon-cell" style="background:#22bbac;">
+            <svg viewBox="0 0 2000 2000" fill="white"><path d="M1000,25.01C462.42,25.01,25,462.38,25,999.99s437.42,975,975,975,975-437.37,975-975S1537.63,25.01,1000,25.01ZM1000,1779.99c-430.08,0-780-349.92-780-780S569.92,220.01,1000,220.01s780,349.9,780,779.98-349.92,780-780,780Z"/><path d="M1433.28,926.81c-45.29,0-82.13,37.05-82.13,82.6,0,23.81-2.36,47.55-7.04,70.8l-4.42,17.36c-13.03,51.14-37.82,99.65-71.71,140.27-33.58,40.26-76.25,73-123.38,94.69l-.22.1c-.7.33-1.4.65-2.11.97l-.33.15c-57.88,26.18-124.76,35.87-188.32,27.29-60.78-8.2-118.46-32.46-166.85-70.21-1.89-1.47-3.77-2.96-5.63-4.47h26.3c30.17,0,54.67-11.76,68.99-33.12,17.21-25.67,15.88-59.17,6.94-80.94-12.7-31.05-42.51-51.11-75.93-51.11h-240.71c-45.3,0-82.15,37.05-82.15,82.6v242.96c0,33.49,19.87,63.43,50.61,76.26,10.02,4.21,20.63,6.34,31.54,6.34,32.53,0,58.99-15.75,72.59-43.21,9.09-18.35,9.55-36.03,9.55-39.39v-57.45c2.08,1.96,4.18,3.91,6.29,5.84l-.42,1.09,18.9,15.64c69.96,57.91,154.11,96.19,243.38,110.7,1.1.18,2.22.35,3.32.51l.19.03c6.05.95,11.41,1.71,16.29,2.32,1.71.22,3.43.39,5.16.57.64.06,1.28.13,1.91.2,35.67,3.82,71.02,4.08,105.06.78,55.13-5.35,108.65-19.48,159.04-41.99l.13-.06c.66-.3,1.33-.6,1.99-.91.53-.24,1.05-.48,1.58-.72l.13-.06c89.18-40.71,164.87-105.92,218.88-188.58,55.43-84.83,84.73-183.47,84.73-285.26,0-45.54-36.85-82.6-82.13-82.6Z"/></svg>
+          </div>
+          <div class="home-icon-cell" style="background:#abd075;">
+            <svg viewBox="0 0 2000 2000" fill="white"><path d="M1069.61,1558.73c-38.04,37.91-100.86,38.22-139.23,0l-295.23-293.69c-38.45-38.25-38.45-100.21,0-138.45,38.45-38.25,100.73-38.25,139.18,0l127.26,126.58V510.45c0-54.06,44.08-97.9,98.42-97.9s98.42,43.85,98.42,97.9v742.73l127.26-126.58c19.22-19.13,44.39-28.68,69.57-28.68s50.36,9.55,69.59,28.68c38.45,38.23,38.45,100.19,0,138.45l-295.23,293.69Z"/><path d="M1000,220.01c-430.08,0-780,349.9-780,779.98s349.92,780,780,780,780-349.92,780-780S1430.08,220.01,1000,220.01ZM1000,1974.99c-537.63,0-975-437.37-975-975S462.37,25.01,1000,25.01s975,437.37,975,974.98-437.42,975-975,975Z"/></svg>
+          </div>
+          <div class="home-icon-cell" style="background:#bb2232;">
+            <svg viewBox="0 0 2000 2000" fill="white"><path d="M1605.28,752.49l-180.89-180.91c-16.69-16.69-38.87-25.88-62.46-25.88s-45.77,9.19-62.46,25.88-25.88,38.87-25.88,62.46,9.19,45.77,25.88,62.46l31.28,31.27c-68.21,4.76-134.65,25.09-193.82,59.51-53.49,31.12-100.21,73.15-136.97,122.92-36.75-49.78-83.48-91.81-136.96-122.92-59.16-34.42-125.6-54.75-193.81-59.51l31.28-31.28c34.44-34.44,34.44-90.47,0-124.91-16.69-16.69-38.86-25.88-62.45-25.88s-45.76,9.19-62.45,25.88l-180.83,180.85c-16.71,16.62-25.92,38.87-25.91,62.65,0,23.71,9.21,45.91,25.85,62.45l180.9,180.92c34.43,34.4,90.45,34.4,124.88,0,34.44-34.44,34.44-90.47,0-124.91l-28.04-28.04c134.69,16.97,239.21,132.24,239.21,271.46v310.76c0,48.7,39.62,88.32,88.32,88.32s88.32-39.62,88.32-88.32v-310.76c0-139.22,104.52-254.49,239.22-271.46l-28.04,28.04c-16.69,16.69-25.88,38.87-25.88,62.46s9.19,45.77,25.88,62.46c34.43,34.4,90.46,34.4,124.9,0l180.85-180.87c16.71-16.64,25.91-38.86,25.91-62.55s-9.2-45.93-25.87-62.53Z"/><path d="M1000,25.01C462.37,25.01,25,462.38,25,1000.01s437.37,974.98,975,974.98,975-437.37,975-974.98S1537.58,25.01,1000,25.01ZM1000,1779.99c-430.08,0-780-349.9-780-779.98S569.92,220.01,1000,220.01s780,349.92,780,780-349.92,779.98-780,779.98Z"/></svg>
+          </div>
+        </div>
+        <div class="home-eyebrow">Dienste &amp; Gruppen</div>
+        <div class="home-title">Du kannst mitmachen</div>
+        <div class="home-desc">Entdecke wo du deine Gaben einsetzen und Gemeinde aktiv mitgestalten kannst.</div>
+        <div class="home-cta">Bereiche entdecken</div>
+      </div>
+
+      <div class="home-card home-card-kleingruppe" onclick="showKleingruppen()">
+        <div class="home-group-icon">
+          <!-- Personen-Gruppe Icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="home-eyebrow">Gemeinschaft</div>
+        <div class="home-title">Kleingruppe finden</div>
+        <div class="home-desc">Hauskreise, Jüngerschaftsgruppen und weitere Gruppen – finde den richtigen Ort für dich.</div>
+        <div class="home-cta">Gruppen entdecken</div>
+      </div>
+    </div>
+
+    <!-- MITMACHEN: Visionsbereiche -->
+    <div id="startscreen" style="display:none;"></div>
+
+    <!-- KLEINGRUPPEN-SCREEN -->
+    <div id="kleingruppenscreen" style="display:none;">
+      <div class="kg-header">
+        <div class="kg-header-title">Kleingruppen</div>
+        <div class="kg-header-sub">Wähle eine Kategorie, die zu dir passt.</div>
+      </div>
+      <div class="kg-grid">
+
+        <!-- Hauskreise -->
+        <div class="kg-card" style="background:#2a5c2e;" onclick="showKgDetail('hauskreise')">
+          <div class="kg-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <div class="kg-label">Gemeinschaft</div>
+          <div class="kg-name">Hauskreise</div>
+          <div class="kg-desc">In unseren Hauskreisen beten, essen und wachsen wir gemeinsam und geben Gottes Liebe weiter.</div>
+          <div class="kg-cta">Hauskreis finden</div>
+        </div>
+
+        <!-- Jüngerschaftsgruppen -->
+        <div class="kg-card" style="background:#1a4a6b;" onclick="showKgDetail('juengerschaft')">
+          <div class="kg-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div class="kg-label">Wachstum</div>
+          <div class="kg-name">Jüngerschafts&shy;gruppen</div>
+          <div class="kg-desc">In kleinen Gruppen von 4–5 Personen wachsen wir ehrlich und tief im Glauben.</div>
+          <div class="kg-cta">Gruppe finden</div>
+        </div>
+
+        <!-- Sonstige Gruppen -->
+        <div class="kg-card" style="background:#4a3728;" onclick="showKgDetail('sonstige')">
+          <div class="kg-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+          <div class="kg-label">Weitere Angebote</div>
+          <div class="kg-name">Sonstige Gruppen</div>
+          <div class="kg-desc">Weitere Gruppen und Angebote bei Gemeinde Konkordia – für jeden ist etwas dabei.</div>
+          <div class="kg-cta">Mehr entdecken</div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- KLEINGRUPPEN DETAIL: Platzhalter -->
+    <div id="kgdetail-hauskreise" class="kg-detail-view">
+      <div class="kg-detail-placeholder">
+        <div class="kg-detail-placeholder-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+        </div>
+        <p>Hauskreise</p>
+        <small>Inhalt folgt – ChurchTools-Anbindung wird konfiguriert.</small>
+      </div>
+    </div>
+
+    <div id="kgdetail-juengerschaft" class="kg-detail-view">
+      <div class="kg-detail-placeholder">
+        <div class="kg-detail-placeholder-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+        </div>
+        <p>Jüngerschaftsgruppen</p>
+        <small>Inhalt folgt – ChurchTools-Anbindung wird konfiguriert.</small>
+      </div>
+    </div>
+
+    <div id="kgdetail-sonstige" class="kg-detail-view">
+      <div class="kg-detail-placeholder">
+        <div class="kg-detail-placeholder-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <p>Sonstige Gruppen</p>
+        <small>Inhalt folgt – ChurchTools-Anbindung wird konfiguriert.</small>
+      </div>
+    </div>
+
+    <!-- DETAILANSICHT (Visionsbereiche) -->
     <div id="detailview"></div>
+
+    <!-- TAG-ERGEBNISSE -->
     <div id="tagresultview"></div>
+
   </div>
 </div>
 
@@ -772,11 +1119,11 @@ const ARROWS = {
 
 // ── State ──────────────────────────────────────────
 let allGroups = [];
-let inactivityTimer = null;
 let countdownTimer = null;
 let countdownRemaining = INACTIVITY_SEC;
-let currentView = 'start';
-let qrInstance = null;
+// 'home' | 'start' | 'detail' | 'kleingruppen' | 'kg-detail' | 'tag'
+let currentView = 'home';
+let activeKgDetail = null; // 'hauskreise' | 'juengerschaft' | 'sonstige'
 
 function norm(s) {
   return (s || '').toLowerCase()
@@ -791,7 +1138,6 @@ function getConfig(vbName) {
 
 // ── Inaktivitäts-Timer ────────────────────────────
 function resetTimer() {
-  clearTimeout(inactivityTimer);
   clearInterval(countdownTimer);
   countdownRemaining = INACTIVITY_SEC;
   updateCountdown();
@@ -801,7 +1147,7 @@ function resetTimer() {
     updateCountdown();
     if (countdownRemaining <= 0) {
       clearInterval(countdownTimer);
-      showStart();
+      showHome();
     }
   }, 1000);
 }
@@ -817,82 +1163,75 @@ function updateCountdown() {
 document.addEventListener('click', resetTimer);
 document.addEventListener('touchstart', resetTimer, { passive: true });
 
-// ── Daten laden ───────────────────────────────────
-async function loadData() {
-  const url = location.hostname === 'localhost' || location.protocol === 'file:'
-    ? 'data/gruppen.json'
-    : `${BASE}/data/gruppen.json`;
-  const res = await fetch(url);
-  const { groups } = await res.json();
-  allGroups = groups;
-}
-
-// ── Startscreen ───────────────────────────────────
-function showStart() {
-  closeModal();
-  activeTag = null;
-  currentView = 'start';
+// ── Alle Views ausblenden ─────────────────────────
+function hideAll() {
+  document.getElementById('homescreen').style.display = 'none';
+  document.getElementById('startscreen').style.display = 'none';
+  document.getElementById('kleingruppenscreen').style.display = 'none';
   document.getElementById('detailview').classList.remove('visible');
   document.getElementById('detailview').style.display = 'none';
   document.getElementById('tagresultview').classList.remove('visible');
   document.getElementById('tagresultview').style.display = 'none';
-  document.getElementById('startscreen').style.display = 'grid';
-  document.getElementById('backBtn').classList.remove('visible');
-  resetTimer();
-}
-
-function buildStartscreen() {
-  const visionsbereiche = allGroups.filter(g => g.groupTypeId === 5);
-  const el = document.getElementById('startscreen');
-  el.innerHTML = '';
-
-  VB_CONFIG.forEach(cfg => {
-    const found = visionsbereiche.find(vb => norm(vb.name).includes(cfg.match));
-    if (!found) {
-      const ph = document.createElement('div');
-      ph.className = 'bc-card';
-      ph.style.background = cfg.color;
-      ph.style.opacity = '0.4';
-      ph.style.cursor = 'default';
-      ph.innerHTML = `
-        <div class="bc-arrow">${ARROWS[cfg.arrow]}</div>
-        <div class="bc-eyebrow">Leben</div>
-        <div class="bc-name">${cfg.match.toUpperCase()}</div>
-        <div class="bc-desc" style="font-size:11px;opacity:0.6;">Noch nicht in ChurchTools konfiguriert</div>`;
-      el.appendChild(ph);
-      return;
-    }
-
-    const cfg2 = getConfig(found.name);
-    const kinder = allGroups.filter(g => (g.parentGroupIds || []).includes(found.id));
-    const gruppenCount = allGroups.filter(g =>
-      kinder.some(k => (g.parentGroupIds || []).includes(k.id))
-    ).length;
-
-    const card = document.createElement('div');
-    card.className = 'bc-card';
-    card.style.background = cfg2.color;
-    card.innerHTML = `
-      <div class="bc-group-count">${gruppenCount} Gruppen</div>
-      <div class="bc-arrow">${ARROWS[cfg2.arrow]}</div>
-      <div class="bc-eyebrow">Leben</div>
-      <div class="bc-name">${found.name.replace('Leben ', '')}</div>
-      <div class="bc-desc">${cfg2.desc}</div>
-      <div class="bc-cta">Entdecken</div>`;
-    card.addEventListener('click', () => showDetail(found, cfg2));
-    el.appendChild(card);
+  // KG Details
+  document.querySelectorAll('.kg-detail-view').forEach(el => {
+    el.classList.remove('visible');
+    el.style.display = 'none';
   });
 }
 
-// ── Detailansicht ─────────────────────────────────
+// ── Navigation ────────────────────────────────────
+function showHome() {
+  closeModal();
+  activeTag = null;
+  activeKgDetail = null;
+  currentView = 'home';
+  hideAll();
+  document.getElementById('homescreen').style.display = 'grid';
+  document.getElementById('backBtn').classList.remove('visible');
+  document.getElementById('tagSearchBtn').style.display = 'none';
+  resetTimer();
+}
+
+function showMitmachen() {
+  currentView = 'start';
+  hideAll();
+  document.getElementById('startscreen').style.display = 'grid';
+  document.getElementById('backBtn').classList.add('visible');
+  document.getElementById('tagSearchBtn').style.display = 'flex';
+  resetTimer();
+}
+
+function showKleingruppen() {
+  currentView = 'kleingruppen';
+  activeKgDetail = null;
+  hideAll();
+  document.getElementById('kleingruppenscreen').style.display = 'flex';
+  document.getElementById('backBtn').classList.add('visible');
+  document.getElementById('tagSearchBtn').style.display = 'none';
+  resetTimer();
+}
+
+function showKgDetail(type) {
+  currentView = 'kg-detail';
+  activeKgDetail = type;
+  hideAll();
+  const el = document.getElementById('kgdetail-' + type);
+  el.style.display = 'block';
+  el.classList.add('visible');
+  document.getElementById('backBtn').classList.add('visible');
+  document.getElementById('tagSearchBtn').style.display = 'none';
+  resetTimer();
+}
+
 function showDetail(vb, cfg) {
   currentView = 'detail';
-  document.getElementById('startscreen').style.display = 'none';
+  hideAll();
   const dv = document.getElementById('detailview');
   dv.innerHTML = '';
   dv.style.display = 'block';
   dv.classList.add('visible');
   document.getElementById('backBtn').classList.add('visible');
+  document.getElementById('tagSearchBtn').style.display = 'flex';
   resetTimer();
 
   const hdr = document.createElement('div');
@@ -924,7 +1263,6 @@ function showDetail(vb, cfg) {
       tile.style.transition = 'box-shadow 0.15s, transform 0.12s';
       tile.addEventListener('mouseenter', () => { tile.style.boxShadow = '0 4px 16px rgba(0,0,0,0.12)'; tile.style.transform = 'translateY(-2px)'; });
       tile.addEventListener('mouseleave', () => { tile.style.boxShadow = ''; tile.style.transform = ''; });
-
       const imgSrc = bereich.imageUrl || null;
       tile.innerHTML = `
         ${imgSrc
@@ -954,21 +1292,16 @@ function showDetail(vb, cfg) {
       const tile = document.createElement('div');
       tile.className = 'group-tile';
       tile.style.borderLeftColor = cfg.color;
-
       const imgSrc = gruppe.imageUrl ? gruppe.imageUrl : null;
-
       tile.innerHTML = `
         ${imgSrc
           ? `<img class="group-tile-img" src="${imgSrc}" alt="${gruppe.name}" onerror="this.style.display='none'">`
           : `<div class="group-tile-img" style="background:#2e2e2e;"></div>`}
         <div class="group-tile-info">
           <div class="group-tile-name">${gruppe.name}</div>
-          ${gruppe.description
-            ? `<div class="group-tile-desc">${gruppe.description}</div>`
-            : ''}
+          ${gruppe.description ? `<div class="group-tile-desc">${gruppe.description}</div>` : ''}
         </div>
         <div class="group-tile-chevron">›</div>`;
-
       tile.addEventListener('click', () => openModal(gruppe, vb, cfg));
       list.appendChild(tile);
     });
@@ -981,29 +1314,73 @@ function showDetail(vb, cfg) {
   dv.scrollTop = 0;
 }
 
+// ── Zurück-Navigation ─────────────────────────────
+function goBack() {
+  if (currentView === 'start')       showHome();
+  else if (currentView === 'detail') showMitmachen();
+  else if (currentView === 'kleingruppen') showHome();
+  else if (currentView === 'kg-detail')    showKleingruppen();
+  else if (currentView === 'tag')    showHome();
+  else showHome();
+}
+
+// ── Startscreen (Visionsbereiche) aufbauen ────────
+function buildStartscreen() {
+  const visionsbereiche = allGroups.filter(g => g.groupTypeId === 5);
+  const el = document.getElementById('startscreen');
+  el.innerHTML = '';
+
+  VB_CONFIG.forEach(cfg => {
+    const found = visionsbereiche.find(vb => norm(vb.name).includes(cfg.match));
+    if (!found) {
+      const ph = document.createElement('div');
+      ph.className = 'bc-card';
+      ph.style.background = cfg.color;
+      ph.style.opacity = '0.4';
+      ph.style.cursor = 'default';
+      ph.innerHTML = `
+        <div class="bc-arrow">${ARROWS[cfg.arrow]}</div>
+        <div class="bc-eyebrow">Leben</div>
+        <div class="bc-name">${cfg.match.toUpperCase()}</div>
+        <div class="bc-desc" style="font-size:11px;opacity:0.6;">Noch nicht konfiguriert</div>`;
+      el.appendChild(ph);
+      return;
+    }
+
+    const cfg2 = getConfig(found.name);
+    const kinder = allGroups.filter(g => (g.parentGroupIds || []).includes(found.id));
+    const gruppenCount = allGroups.filter(g =>
+      kinder.some(k => (g.parentGroupIds || []).includes(k.id))
+    ).length;
+
+    const card = document.createElement('div');
+    card.className = 'bc-card';
+    card.style.background = cfg2.color;
+    card.innerHTML = `
+      <div class="bc-group-count">${gruppenCount} Gruppen</div>
+      <div class="bc-arrow">${ARROWS[cfg2.arrow]}</div>
+      <div class="bc-eyebrow">Leben</div>
+      <div class="bc-name">${found.name.replace('Leben ', '')}</div>
+      <div class="bc-desc">${cfg2.desc}</div>
+      <div class="bc-cta">Entdecken</div>`;
+    card.addEventListener('click', () => showDetail(found, cfg2));
+    el.appendChild(card);
+  });
+}
+
 // ── Markdown → HTML ───────────────────────────────
 function renderMarkdown(text) {
-  const escaped = text
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-
-  const blocks = escaped.split(/\n{2,}/);
-  return blocks.map(block => {
+  const escaped = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
+  return escaped.split(/\n{2,}/).map(block => {
     const line = block.trim();
     if (!line) return '';
-    const inlined = line
-      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.+?)\*/g, '<em>$1</em>')
-      .replace(/\n/g, '<br>');
-    return `<p>${inlined}</p>`;
+    return `<p>${line.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/\n/g,'<br>')}</p>`;
   }).join('');
 }
 
 // ── Modal ─────────────────────────────────────────
 function openModal(gruppe, vb, cfg) {
   resetTimer();
-
   document.getElementById('modalHeader').style.borderBottomColor = cfg.color;
   document.getElementById('modalBereichLabel').textContent = vb.name;
   document.getElementById('modalGroupName').textContent = gruppe.name;
@@ -1020,18 +1397,10 @@ function openModal(gruppe, vb, cfg) {
       const parts    = l.name.split(' ').filter(Boolean);
       const initials = parts.map(w => w[0]).join('').slice(0, 2).toUpperCase();
       const avatar   = l.imageUrl
-        ? `<img class="leader-avatar" src="${l.imageUrl}" alt="${l.name}"
-               style="object-fit:cover;"
+        ? `<img class="leader-avatar" src="${l.imageUrl}" alt="${l.name}" style="object-fit:cover;"
                onerror="this.outerHTML='<div class=\\'leader-avatar\\' style=\\'background:${cfg.color}\\'>${initials}</div>'">`
         : `<div class="leader-avatar" style="background:${cfg.color}">${initials}</div>`;
-      return `
-        <div class="modal-leader-row">
-          ${avatar}
-          <div>
-            <div class="leader-label">Ansprechpartner</div>
-            <div class="leader-name">${l.name}</div>
-          </div>
-        </div>`;
+      return `<div class="modal-leader-row">${avatar}<div><div class="leader-label">Ansprechpartner</div><div class="leader-name">${l.name}</div></div></div>`;
     }).join('');
     leaderSection.style.display = 'flex';
   } else {
@@ -1044,14 +1413,7 @@ function openModal(gruppe, vb, cfg) {
   const container = document.getElementById('qrcode-container');
   container.innerHTML = '';
   if (window.QRCode) {
-    new QRCode(container, {
-      text: url,
-      width: 160,
-      height: 160,
-      colorDark: '#111111',
-      colorLight: '#ffffff',
-      correctLevel: QRCode.CorrectLevel.M,
-    });
+    new QRCode(container, { text: url, width: 160, height: 160, colorDark: '#111111', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
   } else {
     container.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(url)}" width="160" height="160" alt="QR-Code">`;
   }
@@ -1071,10 +1433,7 @@ function closeModalBg(e) {
 let activeTag = null;
 
 function buildTagPopup() {
-  const allTags = [...new Set(
-    allGroups.flatMap(g => g.tags || [])
-  )].sort((a, b) => a.localeCompare(b, 'de'));
-
+  const allTags = [...new Set(allGroups.flatMap(g => g.tags || []))].sort((a, b) => a.localeCompare(b, 'de'));
   const container = document.getElementById('tagPopupTags');
   container.innerHTML = '';
   allTags.forEach(tag => {
@@ -1085,7 +1444,7 @@ function buildTagPopup() {
       activeTag = (activeTag === tag) ? null : tag;
       closeTagPopup();
       if (activeTag) showTagResults(activeTag);
-      else showStart();
+      else showMitmachen();
     });
     container.appendChild(btn);
   });
@@ -1108,13 +1467,11 @@ function closeTagPopupBg(e) {
 function showTagResults(tag) {
   closeModal();
   currentView = 'tag';
-  document.getElementById('startscreen').style.display = 'none';
-  document.getElementById('detailview').classList.remove('visible');
-  document.getElementById('detailview').style.display = 'none';
-  document.getElementById('backBtn').classList.remove('visible');
+  hideAll();
+  document.getElementById('backBtn').classList.add('visible');
+  document.getElementById('tagSearchBtn').style.display = 'flex';
 
   const results = allGroups.filter(g => (g.tags || []).includes(tag) && g.publicUrl);
-
   const rv = document.getElementById('tagresultview');
   rv.innerHTML = `
     <div class="tagresult-header">
@@ -1124,36 +1481,29 @@ function showTagResults(tag) {
       </div>
       <div class="tagresult-count">${results.length} ${results.length === 1 ? 'Gruppe' : 'Gruppen'}</div>
     </div>
-    <div class="tagresult-grid" id="tagresultGrid"></div>
-  `;
+    <div class="tagresult-grid" id="tagresultGrid"></div>`;
 
   const grid = rv.querySelector('#tagresultGrid');
   results.forEach(g => {
     const vb = findVbOfGroup(g);
     const cfg = vb ? VB_CONFIG.find(c => norm(vb.name).includes(c.match)) : null;
     const accentColor = cfg?.color || '#bb2232';
-
     const tile = document.createElement('div');
     tile.className = 'tagresult-tile';
     tile.style.borderLeft = `4px solid ${accentColor}`;
     tile.addEventListener('click', () => openModal(g, vb || g, cfg || { color: accentColor }));
-
     const imgSrc = g.imageUrl ? g.imageUrl : null;
     tile.innerHTML = `
-      ${imgSrc
-        ? `<img class="tagresult-tile-img" src="${imgSrc}" alt="${g.name}" onerror="this.style.display='none'">`
-        : `<div class="tagresult-tile-img"></div>`}
+      ${imgSrc ? `<img class="tagresult-tile-img" src="${imgSrc}" alt="${g.name}" onerror="this.style.display='none'">` : `<div class="tagresult-tile-img"></div>`}
       <div class="tagresult-tile-info">
         <div class="tagresult-tile-name">${g.name}</div>
         <div class="tagresult-tile-bereich">${vb ? vb.name : ''}</div>
-      </div>
-    `;
+      </div>`;
     grid.appendChild(tile);
   });
 
   rv.style.display = '';
   rv.classList.add('visible');
-  document.getElementById('backBtn').classList.add('visible');
   rv.scrollTop = 0;
   resetTimer();
 }
@@ -1165,10 +1515,7 @@ function findVbOfGroup(gruppe) {
     if (vbs.includes(g)) return g;
     for (const pid of (g.parentGroupIds || [])) {
       const parent = allGroups.find(x => x.id === pid);
-      if (parent) {
-        const found = findVb(parent, depth + 1);
-        if (found) return found;
-      }
+      if (parent) { const found = findVb(parent, depth + 1); if (found) return found; }
     }
     return null;
   }
@@ -1180,11 +1527,20 @@ document.addEventListener('keydown', e => {
 });
 
 // ── Init ──────────────────────────────────────────
+async function loadData() {
+  const url = location.hostname === 'localhost' || location.protocol === 'file:'
+    ? 'data/gruppen.json'
+    : `${BASE}/data/gruppen.json`;
+  const res = await fetch(url);
+  const { groups } = await res.json();
+  allGroups = groups;
+}
+
 async function main() {
   await loadData();
   document.getElementById('loading').style.display = 'none';
   buildStartscreen();
-  showStart();
+  showHome();
 }
 
 main().catch(err => {
