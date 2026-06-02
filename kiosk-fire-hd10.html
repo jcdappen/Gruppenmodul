@@ -457,90 +457,112 @@
     #detailview::-webkit-scrollbar { width: 8px; }
     #detailview::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
 
+    /* Visionsbereich-Titel oben */
     .detail-bereich-header {
       display: flex;
       align-items: center;
-      gap: 12px;
-      padding: 14px 18px;
-      border-radius: 4px;
-      margin-bottom: 16px;
+      gap: 16px;
+      padding: 18px 22px;
+      border-radius: 5px;
+      margin-bottom: 20px;
     }
-    .detail-bereich-icon svg { width: 36px; height: 36px; }
+    .detail-bereich-icon svg { width: 40px; height: 40px; }
     .detail-bereich-name {
       font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 22px;
-      letter-spacing: 2px;
+      font-size: 26px;
+      letter-spacing: 2.5px;
       color: #1a1a1a;
     }
 
+    /* Sektionen stapeln sich vertikal */
     .sections-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-bottom: 16px;
     }
 
     .section-card {
       background: #ffffff;
-      border-radius: 3px;
+      border-radius: 5px;
       overflow: hidden;
-      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      box-shadow: 0 2px 8px rgba(0,0,0,0.07);
     }
-    .section-head { padding: 10px 14px; }
+
+    /* Sektions-Header: groß und gut lesbar */
+    .section-head {
+      padding: 16px 20px;
+    }
     .section-head-title {
       font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 13px;
-      letter-spacing: 1.5px;
+      font-size: 17px;
+      letter-spacing: 2px;
       text-transform: uppercase;
       color: #2a2a2a;
     }
 
+    /* 2-spaltiges Grid für Gruppen */
     .group-list {
-      padding: 6px 8px 8px;
-      display: flex;
-      flex-direction: column;
-      gap: 4px;
+      padding: 10px 12px 14px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
     }
+
+    /* Große, dominante Kacheln */
     .group-tile {
       background: #f7f4f1;
-      border-left: 3px solid #ddd;
-      border-radius: 2px;
-      padding: 10px 12px;
+      border-left: 4px solid #ddd;
+      border-radius: 4px;
+      padding: 16px 18px;
       cursor: pointer;
-      transition: background 0.12s, transform 0.12s;
+      transition: background 0.12s, box-shadow 0.15s, transform 0.12s;
       display: flex;
       align-items: center;
-      gap: 10px;
-      min-height: 56px;
+      gap: 16px;
+      min-height: 90px;
     }
-    .group-tile:active { background: #e4e0db; }
-    .group-tile:not(:active):hover { background: #ede9e5; transform: translateX(3px); }
+    .group-tile:active { background: #e4e0db; transform: scale(0.98); }
+    .group-tile:not(:active):hover {
+      background: #ede9e5;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      transform: translateY(-2px);
+    }
 
+    /* Großes quadratisches Bild */
     .group-tile-img {
-      width: 44px;
-      height: 44px;
-      border-radius: 2px;
+      width: 72px;
+      height: 72px;
+      border-radius: 4px;
       object-fit: cover;
       flex-shrink: 0;
       background: #ddd;
     }
+
     .group-tile-info { flex: 1; min-width: 0; }
+
+    /* Großer, gut lesbarer Gruppenname */
     .group-tile-name {
       font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 13px;
+      font-size: 18px;
+      letter-spacing: 0.8px;
       color: #1a1a1a;
-      margin-bottom: 2px;
+      margin-bottom: 5px;
+      line-height: 1.2;
     }
     .group-tile-desc {
-      font-size: 11px;
+      font-size: 13px;
       color: #888;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      line-height: 1.4;
     }
     .group-tile-chevron {
-      color: #bbb;
-      font-size: 18px;
+      color: #ccc;
+      font-size: 26px;
       flex-shrink: 0;
+      line-height: 1;
     }
 
     /* ── TAG-SUCHE POPUP ────────────────────────────── */
@@ -1253,28 +1275,30 @@ function showDetail(vb, cfg) {
     if (gruppen.length === 0) {
       if (!bereich.publicUrl) return;
       const tile = document.createElement('div');
-      tile.className = 'section-card';
-      tile.style.cursor = 'pointer';
-      tile.style.display = 'flex';
-      tile.style.alignItems = 'center';
-      tile.style.gap = '14px';
-      tile.style.padding = '16px';
-      tile.style.borderLeft = `4px solid ${cfg.color}`;
-      tile.style.transition = 'box-shadow 0.15s, transform 0.12s';
-      tile.addEventListener('mouseenter', () => { tile.style.boxShadow = '0 4px 16px rgba(0,0,0,0.12)'; tile.style.transform = 'translateY(-2px)'; });
-      tile.addEventListener('mouseleave', () => { tile.style.boxShadow = ''; tile.style.transform = ''; });
+      tile.className = 'group-tile';
+      tile.style.borderLeftColor = cfg.color;
+      tile.style.background = '#fff';
+      tile.style.boxShadow = '0 2px 8px rgba(0,0,0,0.07)';
       const imgSrc = bereich.imageUrl || null;
       tile.innerHTML = `
         ${imgSrc
-          ? `<img style="width:52px;height:52px;border-radius:3px;object-fit:cover;flex-shrink:0;" src="${imgSrc}" alt="${bereich.name}" onerror="this.style.display='none'">`
-          : `<div style="width:52px;height:52px;border-radius:3px;background:${cfg.color}22;flex-shrink:0;"></div>`}
-        <div style="flex:1;min-width:0;">
-          <div class="section-head-title" style="color:${cfg.color};">${bereich.name}</div>
-          ${bereich.description ? `<div style="font-size:11px;color:#999;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${bereich.description}</div>` : ''}
+          ? `<img class="group-tile-img" src="${imgSrc}" alt="${bereich.name}" onerror="this.style.display='none'">`
+          : `<div class="group-tile-img" style="background:${cfg.color}22;"></div>`}
+        <div class="group-tile-info">
+          <div class="group-tile-name" style="color:${cfg.color};">${bereich.name}</div>
+          ${bereich.description ? `<div class="group-tile-desc">${bereich.description}</div>` : ''}
         </div>
-        <div style="color:#bbb;font-size:20px;">›</div>`;
+        <div class="group-tile-chevron">›</div>`;
       tile.addEventListener('click', () => openModal(bereich, vb, cfg));
-      grid.appendChild(tile);
+      // Einzelkacheln direkt ins Grid (als eigene Sektion ohne Kopf)
+      const wrapper = document.createElement('div');
+      wrapper.className = 'section-card';
+      const list = document.createElement('div');
+      list.className = 'group-list';
+      list.style.gridTemplateColumns = '1fr';
+      list.appendChild(tile);
+      wrapper.appendChild(list);
+      grid.appendChild(wrapper);
       return;
     }
 
