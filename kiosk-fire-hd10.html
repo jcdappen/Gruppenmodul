@@ -1137,6 +1137,25 @@ const ARROWS = {
   branch: `<svg viewBox="0 0 2000 2000" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M1605.28,752.49l-180.89-180.91c-16.69-16.69-38.87-25.88-62.46-25.88s-45.77,9.19-62.46,25.88-25.88,38.87-25.88,62.46,9.19,45.77,25.88,62.46l31.28,31.27c-68.21,4.76-134.65,25.09-193.82,59.51-53.49,31.12-100.21,73.15-136.97,122.92-36.75-49.78-83.48-91.81-136.96-122.92-59.16-34.42-125.6-54.75-193.81-59.51l31.28-31.28c34.44-34.44,34.44-90.47,0-124.91-16.69-16.69-38.86-25.88-62.45-25.88s-45.76,9.19-62.45,25.88l-180.83,180.85c-16.71,16.62-25.92,38.87-25.91,62.65,0,23.71,9.21,45.91,25.85,62.45l180.9,180.92c34.43,34.4,90.45,34.4,124.88,0,34.44-34.44,34.44-90.47,0-124.91l-28.04-28.04c134.69,16.97,239.21,132.24,239.21,271.46v310.76c0,48.7,39.62,88.32,88.32,88.32s88.32-39.62,88.32-88.32v-310.76c0-139.22,104.52-254.49,239.22-271.46l-28.04,28.04c-16.69,16.69-25.88,38.87-25.88,62.46s9.19,45.77,25.88,62.46c34.43,34.4,90.46,34.4,124.9,0l180.85-180.87c16.71-16.64,25.91-38.86,25.91-62.55s-9.2-45.93-25.87-62.53Z"/><path d="M1000,25.01C462.37,25.01,25,462.38,25,1000.01s437.37,974.98,975,974.98,975-437.37,975-974.98S1537.58,25.01,1000,25.01ZM1000,1779.99c-430.08,0-780-349.9-780-779.98S569.92,220.01,1000,220.01s780,349.92,780,780-349.92,779.98-780,779.98Z"/></svg>`,
 };
 
+// ── Kleingruppen-Konfiguration ────────────────────
+const KG_CONFIG = {
+  hauskreise: {
+    groupName: 'Hauskreise in der Konkordia',
+    color: '#2a5c2e',
+    label: 'Hauskreise',
+  },
+  juengerschaft: {
+    groupName: 'Jüngerschaftsgruppen in der Konkordia',
+    color: '#1a4a6b',
+    label: 'Jüngerschaftsgruppen',
+  },
+  sonstige: {
+    groupName: 'Gruppen',
+    color: '#4a3728',
+    label: 'Sonstige Gruppen',
+  },
+};
+
 // ── State ──────────────────────────────────────────
 let allGroups = [];
 let countdownTimer = null;
@@ -1235,12 +1254,110 @@ function showKgDetail(type) {
   currentView = 'kg-detail';
   activeKgDetail = type;
   hideAll();
+  buildKgDetail(type);
   const el = document.getElementById('kgdetail-' + type);
   el.style.display = 'block';
   el.classList.add('visible');
   document.getElementById('backBtn').classList.add('visible');
   document.getElementById('tagSearchBtn').style.display = 'none';
   resetTimer();
+}
+
+// ── Kleingruppen-Detail aufbauen ──────────────────
+function buildKgDetail(type) {
+  const cfg = KG_CONFIG[type];
+  const el = document.getElementById('kgdetail-' + type);
+  el.innerHTML = '';
+
+  // Elterngruppe per Name suchen
+  const parent = allGroups.find(g => g.name === cfg.groupName);
+  if (!parent) {
+    el.innerHTML = `
+      <div class="kg-detail-placeholder">
+        <div class="kg-detail-placeholder-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <p>${cfg.label}</p>
+        <small>Gruppe „${cfg.groupName}" nicht in ChurchTools gefunden.</small>
+      </div>`;
+    return;
+  }
+
+  // Header (wie VB-Detailansicht)
+  const hdr = document.createElement('div');
+  hdr.className = 'detail-bereich-header';
+  hdr.style.background = cfg.color + '18';
+  hdr.style.borderLeft = `4px solid ${cfg.color}`;
+  hdr.innerHTML = `<div class="detail-bereich-name" style="color:${cfg.color};">${cfg.label}</div>`;
+  el.appendChild(hdr);
+
+  // Direkte Kinder holen
+  const children = allGroups.filter(g => (g.parentGroupIds || []).includes(parent.id));
+
+  if (children.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'kg-detail-placeholder';
+    empty.innerHTML = `<p style="margin-top:60px;">Keine Gruppen vorhanden.</p>`;
+    el.appendChild(empty);
+    return;
+  }
+
+  const grid = document.createElement('div');
+  grid.className = 'sections-grid';
+
+  // Leaf-Kinder (keine eigenen Kinder) → direkt ins Grid ohne Sektions-Kopf
+  const leaves = children.filter(c =>
+    allGroups.filter(g => (g.parentGroupIds || []).includes(c.id)).length === 0
+  );
+  // Kinder mit Untergruppen → als Sektionen mit eigenem Kopf
+  const sections = children.filter(c =>
+    allGroups.filter(g => (g.parentGroupIds || []).includes(c.id)).length > 0
+  );
+
+  if (leaves.length > 0) {
+    const card = document.createElement('div');
+    card.className = 'section-card';
+    const list = document.createElement('div');
+    list.className = 'group-list';
+    leaves.forEach(gruppe => list.appendChild(buildGroupTile(gruppe, parent, cfg)));
+    card.appendChild(list);
+    grid.appendChild(card);
+  }
+
+  sections.forEach(section => {
+    const gruppen = allGroups.filter(g => (g.parentGroupIds || []).includes(section.id));
+    const card = document.createElement('div');
+    card.className = 'section-card';
+    card.innerHTML = `
+      <div class="section-head" style="border-color:${cfg.color};">
+        <div class="section-head-title" style="color:${cfg.color};">${section.name}</div>
+      </div>`;
+    const list = document.createElement('div');
+    list.className = 'group-list';
+    gruppen.forEach(gruppe => list.appendChild(buildGroupTile(gruppe, parent, cfg)));
+    card.appendChild(list);
+    grid.appendChild(card);
+  });
+
+  el.appendChild(grid);
+  el.scrollTop = 0;
+}
+
+// ── Wiederverwendbare Gruppen-Kachel ──────────────
+function buildGroupTile(gruppe, parent, cfg) {
+  const tile = document.createElement('div');
+  tile.className = 'group-tile';
+  const imgSrc = gruppe.imageUrl || null;
+  tile.innerHTML = `
+    ${imgSrc
+      ? `<img class="group-tile-img" src="${imgSrc}" alt="${gruppe.name}" onerror="this.style.background='${cfg.color}22'">`
+      : `<div class="group-tile-img" style="background:${cfg.color}22;"></div>`}
+    <div class="group-tile-footer">
+      <div class="group-tile-name">${gruppe.name}</div>
+      <div class="group-tile-chevron">›</div>
+    </div>`;
+  tile.addEventListener('click', () => openModal(gruppe, parent, cfg));
+  return tile;
 }
 
 function showDetail(vb, cfg) {
