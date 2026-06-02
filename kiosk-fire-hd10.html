@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Fire HD 10 Landscape: 1920x1200 physisch → ~1280x800 CSS bei DPR 1.5 -->
+  <meta name="viewport" content="width=1280, initial-scale=1.0, user-scalable=no" />
+  <meta name="screen-orientation" content="landscape" />
+  <title>Dienste-Board – Gemeinde Konkordia</title>
+  <style>
+    @font-face {
+      font-family: 'GrotesqueSC';
+      src: url('assets/fonts/GrotesqueRegSC.ttf') format('truetype');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gothic725';
+      src: url('assets/fonts/gothic725b.ttf') format('truetype');
+      font-weight: 700;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gothic720';
+      src: url('assets/fonts/gothic720l.ttf') format('truetype');
+      font-weight: 300;
+      font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 1280px;
+      height: 100%;
+      overflow: hidden;
+      background: #f1eeeb;
+      font-family: 'Gothic720', Arial, sans-serif;
+      color: #1a1a1a;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: default;
+      /* Verhindert versehentliches Zoomen auf Touch */
+      touch-action: manipulation;
+    }
+
+    /* ── APP SHELL ─────────────────────────────────── */
+    #app {
+      display: flex;
+      flex-direction: column;
+      height: 100vh;
+      width: 1280px;
+    }
+
+    /* ── HEADER ─────────────────────────────────────── */
+    /* Kompakter Header für Fire HD 10: 72px statt 90px */
+    .header {
+      background: #1a1a1a;
+      border-bottom: 1px solid #2a2a2a;
+      padding: 0 36px;
+      height: 72px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-shrink: 0;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 0;
+    }
+    .header-logo {
+      height: 38px;
+      width: auto;
+    }
+    .header-divider {
+      width: 1px;
+      height: 32px;
+      background: #333;
+      margin: 0 22px;
+    }
+    .header-title {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 22px;
+      letter-spacing: 3px;
+      color: white;
+      line-height: 1.1;
+    }
+    .header-sub {
+      font-size: 11px;
+      color: #bb2232;
+      margin-top: 3px;
+      letter-spacing: 0.4px;
+    }
+
+    /* Touch-freundliche Buttons: mind. 44px Höhe */
+    .back-btn {
+      display: none;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.65);
+      padding: 12px 24px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 1px;
+      min-height: 44px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .back-btn:active { background: rgba(255,255,255,0.25); color: white; }
+    .back-btn.visible { display: flex; }
+
+    /* ── COUNTDOWN ──────────────────────────────────── */
+    .countdown-bar {
+      height: 4px;
+      background: rgba(0,0,0,0.08);
+      flex-shrink: 0;
+      position: relative;
+    }
+    #countdownFill {
+      height: 100%;
+      background: #bb2232;
+      width: 100%;
+      transition: width 1s linear, opacity 0.3s;
+    }
+
+    /* ── MAIN CONTENT ───────────────────────────────── */
+    /* Verfügbare Höhe: 100vh - 72px Header - 4px Countdown ≈ 724px bei 800px Viewport */
+    .main {
+      flex: 1;
+      overflow: hidden;
+      padding: 20px 36px;
+      background: #f1eeeb;
+      position: relative;
+    }
+
+    /* ── STARTSCREEN ────────────────────────────────── */
+    #startscreen {
+      height: 100%;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+    }
+
+    .bc-card {
+      border-radius: 4px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      /* Weniger vertikales Padding für kompakteres Layout */
+      padding: 24px 20px 22px;
+      cursor: pointer;
+      transition: transform 0.2s, box-shadow 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .bc-card::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(255,255,255,0);
+      transition: background 0.2s;
+    }
+    .bc-card:active { transform: scale(0.97); }
+    .bc-card:active::after { background: rgba(255,255,255,0.08); }
+
+    /* Kein Hover-Effekt nötig (Touch-Gerät), aber für Silk-Browser kompatibel lassen */
+    .bc-card:not(:active):hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.45); }
+
+    /* Etwas kleinere Icons für kompaktes Layout */
+    .bc-arrow { width: 64px; height: 64px; margin-bottom: 18px; }
+    .bc-arrow svg { width: 64px; height: 64px; }
+    .bc-eyebrow {
+      font-size: 9px;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.5);
+      font-family: Arial, sans-serif;
+      margin-bottom: 6px;
+    }
+    .bc-name {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 20px;
+      color: white;
+      text-align: center;
+      line-height: 1.2;
+      letter-spacing: 1.5px;
+      margin-bottom: 10px;
+    }
+    .bc-desc {
+      font-size: 12px;
+      color: rgba(255,255,255,0.7);
+      text-align: center;
+      line-height: 1.55;
+      margin-bottom: 18px;
+      max-width: 200px;
+    }
+    .bc-cta {
+      background: rgba(255,255,255,0.15);
+      border: 1px solid rgba(255,255,255,0.3);
+      color: white;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 10px;
+      letter-spacing: 2px;
+      padding: 10px 22px;
+      border-radius: 2px;
+      pointer-events: none;
+      min-height: 36px;
+    }
+    .bc-group-count {
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      font-size: 9px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.35);
+      font-family: Arial, sans-serif;
+    }
+
+    /* ── DETAILANSICHT ──────────────────────────────── */
+    #detailview {
+      display: none;
+      height: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      /* Größere Scrollbar für Touch-Bedienung */
+      scrollbar-width: auto;
+      scrollbar-color: #bbb transparent;
+      -webkit-overflow-scrolling: touch;
+    }
+    #detailview.visible { display: block; }
+
+    /* Breite Scrollbar für Touch */
+    #detailview::-webkit-scrollbar { width: 8px; }
+    #detailview::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
+
+    .detail-bereich-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 18px;
+      border-radius: 4px;
+      margin-bottom: 16px;
+    }
+    .detail-bereich-icon svg { width: 36px; height: 36px; }
+    .detail-bereich-name {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 22px;
+      letter-spacing: 2px;
+      color: #1a1a1a;
+    }
+
+    /* 3 Spalten nutzen die 1280px Breite besser aus */
+    .sections-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .section-card {
+      background: #ffffff;
+      border-radius: 3px;
+      overflow: hidden;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+    }
+    .section-head {
+      padding: 10px 14px;
+    }
+    .section-head-title {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #2a2a2a;
+    }
+
+    .group-list {
+      padding: 6px 8px 8px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    /* Größere Touch-Targets: mind. 52px Höhe */
+    .group-tile {
+      background: #f7f4f1;
+      border-left: 3px solid #ddd;
+      border-radius: 2px;
+      padding: 10px 12px;
+      cursor: pointer;
+      transition: background 0.12s, transform 0.12s;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-height: 56px;
+    }
+    .group-tile:active { background: #e4e0db; }
+    .group-tile:not(:active):hover { background: #ede9e5; transform: translateX(3px); }
+
+    .group-tile-img {
+      width: 44px;
+      height: 44px;
+      border-radius: 2px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #ddd;
+    }
+    .group-tile-info { flex: 1; min-width: 0; }
+    .group-tile-name {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 13px;
+      color: #1a1a1a;
+      margin-bottom: 2px;
+    }
+    .group-tile-desc {
+      font-size: 11px;
+      color: #888;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+    .group-tile-chevron {
+      color: #bbb;
+      font-size: 18px;
+      flex-shrink: 0;
+    }
+
+    /* ── TAG-SUCHE POPUP ────────────────────────────── */
+    .tag-search-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(255,255,255,0.12);
+      border: 1px solid rgba(255,255,255,0.2);
+      color: rgba(255,255,255,0.8);
+      padding: 12px 22px;
+      border-radius: 3px;
+      cursor: pointer;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 1px;
+      min-height: 44px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .tag-search-btn:active { background: rgba(255,255,255,0.25); color: white; }
+    .tag-search-btn:hover { background: rgba(255,255,255,0.2); color: white; }
+
+    .tag-popup-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 80px 36px 0;
+    }
+    .tag-popup-bg.open { display: flex; }
+
+    .tag-popup {
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      padding: 24px 24px 20px;
+      width: 440px;
+      max-height: calc(100vh - 110px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      animation: popIn 0.18s cubic-bezier(0.34,1.26,0.64,1);
+    }
+    .tag-popup-title {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 15px;
+      letter-spacing: 2px;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+    .tag-popup-sub {
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 18px;
+      line-height: 1.5;
+    }
+    .tag-popup-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    /* Touch-freundliche Tag-Buttons */
+    .tag-filter-btn {
+      padding: 10px 20px;
+      border-radius: 50px;
+      border: 2px solid #ddd;
+      background: transparent;
+      color: #555;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      min-height: 44px;
+      transition: all 0.15s;
+    }
+    .tag-filter-btn:active { border-color: #bb2232; color: #bb2232; }
+    .tag-filter-btn:hover { border-color: #bb2232; color: #bb2232; }
+    .tag-filter-btn.active {
+      background: #bb2232;
+      border-color: #bb2232;
+      color: white;
+    }
+    .tag-popup-close {
+      margin-top: 18px;
+      width: 100%;
+      padding: 12px;
+      background: #f1eeeb;
+      border: none;
+      border-radius: 3px;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      color: #888;
+      cursor: pointer;
+      min-height: 44px;
+    }
+    .tag-popup-close:active { background: #e8e4e0; color: #555; }
+    .tag-popup-close:hover { background: #e8e4e0; color: #555; }
+
+    /* ── TAG-ERGEBNISANSICHT ────────────────────────── */
+    #tagresultview {
+      display: none;
+      height: 100%;
+      overflow-y: auto;
+      scrollbar-width: auto;
+      scrollbar-color: #bbb transparent;
+      -webkit-overflow-scrolling: touch;
+    }
+    #tagresultview.visible { display: block; }
+    .tagresult-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 16px;
+    }
+    .tagresult-label {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 13px;
+      letter-spacing: 2px;
+      color: #999;
+    }
+    .tagresult-tag {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 22px;
+      letter-spacing: 1.5px;
+      color: #bb2232;
+    }
+    .tagresult-count {
+      font-size: 13px;
+      color: #bbb;
+      margin-left: auto;
+    }
+    /* Mehr Spalten auf breitem Screen */
+    .tagresult-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 10px;
+    }
+    .tagresult-tile {
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: box-shadow 0.15s, transform 0.12s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 56px;
+    }
+    .tagresult-tile:active { box-shadow: 0 4px 16px rgba(0,0,0,0.12); transform: translateY(-1px); }
+    .tagresult-tile:not(:active):hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); transform: translateY(-2px); }
+    .tagresult-tile-img {
+      width: 48px; height: 48px;
+      border-radius: 3px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #eee;
+    }
+    .tagresult-tile-info { flex: 1; min-width: 0; }
+    .tagresult-tile-name {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 13px;
+      color: #1a1a1a;
+      margin-bottom: 3px;
+    }
+    .tagresult-tile-bereich {
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: #bbb;
+    }
+
+    /* ── MODAL ──────────────────────────────────────── */
+    /* Modal optimiert für ~1280×800 Viewport */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.75);
+      z-index: 999;
+      align-items: center;
+      justify-content: center;
+    }
+    .modal-bg.open { display: flex; }
+
+    .modal {
+      background: #ffffff;
+      border-radius: 5px;
+      width: 680px;
+      max-height: 80vh;
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      box-shadow: 0 40px 100px rgba(0,0,0,0.3);
+      animation: popIn 0.18s cubic-bezier(0.34,1.26,0.64,1);
+    }
+    @keyframes popIn {
+      from { transform: scale(0.88) translateY(16px); opacity: 0; }
+      to   { transform: scale(1) translateY(0); opacity: 1; }
+    }
+
+    .modal-header {
+      padding: 22px 26px 16px;
+      position: relative;
+      border-bottom: 1px solid #e8e4e0;
+    }
+    .modal-close {
+      position: absolute;
+      top: 16px; right: 18px;
+      background: rgba(0,0,0,0.06);
+      border: none;
+      border-radius: 50%;
+      /* Größerer Touch-Target */
+      width: 44px; height: 44px;
+      font-size: 20px;
+      color: #666;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.15s;
+    }
+    .modal-close:active { background: rgba(0,0,0,0.16); color: #1a1a1a; }
+    .modal-close:hover { background: rgba(0,0,0,0.12); color: #1a1a1a; }
+
+    .modal-bereich-label {
+      font-size: 9px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #aaa;
+      font-family: Arial, sans-serif;
+      margin-bottom: 6px;
+    }
+    .modal-group-name {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 26px;
+      letter-spacing: 1.5px;
+      color: #1a1a1a;
+      padding-right: 52px;
+    }
+
+    .modal-body {
+      padding: 20px 26px 26px;
+      display: flex;
+      gap: 24px;
+      align-items: flex-start;
+    }
+    .modal-desc {
+      flex: 1;
+      font-size: 15px;
+      color: #555;
+      line-height: 1.7;
+    }
+    .modal-no-desc {
+      font-style: italic;
+      color: #bbb;
+      font-size: 14px;
+    }
+    .modal-qr-block {
+      flex-shrink: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+    #qrcode-container {
+      background: white;
+      padding: 10px;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    .modal-qr-scan {
+      font-size: 10px;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: #aaa;
+    }
+    .modal-qr-url {
+      font-size: 9px;
+      color: #ccc;
+      text-align: center;
+      max-width: 160px;
+      word-break: break-all;
+      line-height: 1.4;
+    }
+
+    /* ── TEAMLEITER ─────────────────────────────────── */
+    .modal-leader-section {
+      margin-top: 16px;
+      padding-top: 14px;
+      border-top: 1px solid #e8e4e0;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+    .modal-leader-row {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .leader-avatar {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 14px;
+      color: white;
+      flex-shrink: 0;
+    }
+    .leader-label {
+      font-size: 10px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: #bbb;
+      margin-bottom: 2px;
+    }
+    .leader-name { font-size: 14px; color: #333; }
+
+    /* ── LADEN ──────────────────────────────────────── */
+    #loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+    }
+    #loading p {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      letter-spacing: 2px;
+      color: rgba(0,0,0,0.3);
+      font-size: 14px;
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <div class="header">
+    <div class="header-left">
+      <img class="header-logo"
+           src="https://storage1.snappages.site/S74RKH/assets/images/23901100_2362x526_2500.png"
+           alt="Gemeinde Konkordia"
+           onerror="this.style.display='none'">
+      <div class="header-divider"></div>
+      <div>
+        <div class="header-title">Du kannst mitmachen</div>
+        <div class="header-sub">Gemeinsam Gemeinde leben.</div>
+      </div>
+    </div>
+    <div style="display:flex;align-items:center;gap:12px;">
+      <button class="tag-search-btn" id="tagSearchBtn" onclick="openTagPopup()">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+        Nach Gaben suchen
+      </button>
+      <button class="back-btn" id="backBtn" onclick="showStart()">← Alle Bereiche</button>
+    </div>
+  </div>
+
+  <div class="countdown-bar"><div id="countdownFill"></div></div>
+
+  <div class="main">
+    <div id="loading"><p>Wird geladen …</p></div>
+    <div id="startscreen"></div>
+    <div id="detailview"></div>
+    <div id="tagresultview"></div>
+  </div>
+</div>
+
+<!-- TAG-SUCHE POPUP -->
+<div class="tag-popup-bg" id="tagPopupBg" onclick="closeTagPopupBg(event)">
+  <div class="tag-popup">
+    <div class="tag-popup-title">Nach Gaben suchen</div>
+    <div class="tag-popup-sub">Wähle einen Bereich, der dich interessiert – wir zeigen dir passende Gruppen.</div>
+    <div class="tag-popup-tags" id="tagPopupTags"></div>
+    <button class="tag-popup-close" onclick="closeTagPopup()">Schließen</button>
+  </div>
+</div>
+
+<!-- MODAL -->
+<div class="modal-bg" id="modalBg" onclick="closeModalBg(event)">
+  <div class="modal">
+    <div class="modal-header" id="modalHeader">
+      <button class="modal-close" onclick="closeModal()">✕</button>
+      <div class="modal-bereich-label" id="modalBereichLabel"></div>
+      <div class="modal-group-name" id="modalGroupName"></div>
+    </div>
+    <div class="modal-body">
+      <div>
+        <div class="modal-desc" id="modalDesc"></div>
+        <div class="modal-leader-section" id="modalLeaderSection" style="display:none"></div>
+      </div>
+      <div class="modal-qr-block">
+        <div id="qrcode-container"></div>
+        <div class="modal-qr-scan">Gruppe öffnen</div>
+        <div class="modal-qr-url" id="modalUrl"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+'use strict';
+
+const BASE = 'https://jcdappen.github.io/Gruppenmodul';
+const CHURCHTOOLS = 'https://gemeindekonkordia.church.tools';
+const INACTIVITY_SEC = 60;
+
+const VB_CONFIG = [
+  {
+    match: 'mit gott',
+    color: '#edc544',
+    arrow: 'up',
+    desc: 'Wir lieben Gott mit unserem ganzen Sein und nehmen uns Zeit, seine Stimme zu hören.',
+  },
+  {
+    match: 'transformation',
+    color: '#22bbac',
+    arrow: 'cycle',
+    desc: 'Wir stehen in einem Prozess, Jesus in unserem ganzen Wesen ähnlicher zu werden.',
+  },
+  {
+    match: 'gemeinschaft',
+    color: '#abd075',
+    arrow: 'down',
+    desc: 'Als Gottes Familie teilen wir Leben, wachsen geistlich und geben Raum für alle Menschen.',
+  },
+  {
+    match: 'welt',
+    color: '#bb2232',
+    arrow: 'branch',
+    desc: 'Wir gehen auf Menschen zu und tragen die Gute Nachricht in Wort und Tat in die Welt.',
+  },
+];
+
+const ARROWS = {
+  up: `<svg viewBox="0 0 2000 2000" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M1069.61,441.27c-38.04-37.91-100.86-38.22-139.23,0l-295.23,293.69c-38.45,38.25-38.45,100.21,0,138.45,38.45,38.25,100.73,38.25,139.18,0l127.26-126.58v742.73c0,54.06,44.08,97.9,98.42,97.9s98.42-43.85,98.42-97.9v-742.73l127.26,126.58c19.22,19.13,44.39,28.68,69.57,28.68s50.36-9.55,69.59-28.68c38.45-38.23,38.45-100.19,0-138.45l-295.23-293.69Z"/><path d="M1000,1779.99c-430.08,0-780-349.9-780-779.98S569.92,220.01,1000,220.01s780,349.92,780,780-349.92,779.98-780,779.98ZM1000,25.01C462.37,25.01,25,462.38,25,1000.01s437.37,974.98,975,974.98,975-437.37,975-974.98S1537.58,25.01,1000,25.01Z"/></svg>`,
+  cycle: `<svg viewBox="0 0 2000 2000" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M1000,25.01C462.42,25.01,25,462.38,25,999.99s437.42,975,975,975,975-437.37,975-975S1537.63,25.01,1000,25.01ZM1000,1779.99c-430.08,0-780-349.92-780-780S569.92,220.01,1000,220.01s780,349.9,780,779.98-349.92,780-780,780Z"/><path d="M1433.28,926.81c-45.29,0-82.13,37.05-82.13,82.6,0,23.81-2.36,47.55-7.04,70.8l-4.42,17.36c-13.03,51.14-37.82,99.65-71.71,140.27-33.58,40.26-76.25,73-123.38,94.69l-.22.1c-.7.33-1.4.65-2.11.97l-.33.15c-57.88,26.18-124.76,35.87-188.32,27.29-60.78-8.2-118.46-32.46-166.85-70.21-1.89-1.47-3.77-2.96-5.63-4.47h26.3c30.17,0,54.67-11.76,68.99-33.12,17.21-25.67,15.88-59.17,6.94-80.94-12.7-31.05-42.51-51.11-75.93-51.11h-240.71c-45.3,0-82.15,37.05-82.15,82.6v242.96c0,33.49,19.87,63.43,50.61,76.26,10.02,4.21,20.63,6.34,31.54,6.34,32.53,0,58.99-15.75,72.59-43.21,9.09-18.35,9.55-36.03,9.55-39.39v-57.45c2.08,1.96,4.18,3.91,6.29,5.84l-.42,1.09,18.9,15.64c69.96,57.91,154.11,96.19,243.38,110.7,1.1.18,2.22.35,3.32.51l.19.03c6.05.95,11.41,1.71,16.29,2.32,1.71.22,3.43.39,5.16.57.64.06,1.28.13,1.91.2,35.67,3.82,71.02,4.08,105.06.78,55.13-5.35,108.65-19.48,159.04-41.99l.13-.06c.66-.3,1.33-.6,1.99-.91.53-.24,1.05-.48,1.58-.72l.13-.06c89.18-40.71,164.87-105.92,218.88-188.58,55.43-84.83,84.73-183.47,84.73-285.26,0-45.54-36.85-82.6-82.13-82.6Z"/></svg>`,
+  down: `<svg viewBox="0 0 2000 2000" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M1069.61,1558.73c-38.04,37.91-100.86,38.22-139.23,0l-295.23-293.69c-38.45-38.25-38.45-100.21,0-138.45,38.45-38.25,100.73-38.25,139.18,0l127.26,126.58V510.45c0-54.06,44.08-97.9,98.42-97.9s98.42,43.85,98.42,97.9v742.73l127.26-126.58c19.22-19.13,44.39-28.68,69.57-28.68s50.36,9.55,69.59,28.68c38.45,38.23,38.45,100.19,0,138.45l-295.23,293.69Z"/><path d="M1000,220.01c-430.08,0-780,349.9-780,779.98s349.92,780,780,780,780-349.92,780-780S1430.08,220.01,1000,220.01ZM1000,1974.99c-537.63,0-975-437.37-975-975S462.37,25.01,1000,25.01s975,437.37,975,974.98-437.42,975-975,975Z"/></svg>`,
+  branch: `<svg viewBox="0 0 2000 2000" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M1605.28,752.49l-180.89-180.91c-16.69-16.69-38.87-25.88-62.46-25.88s-45.77,9.19-62.46,25.88-25.88,38.87-25.88,62.46,9.19,45.77,25.88,62.46l31.28,31.27c-68.21,4.76-134.65,25.09-193.82,59.51-53.49,31.12-100.21,73.15-136.97,122.92-36.75-49.78-83.48-91.81-136.96-122.92-59.16-34.42-125.6-54.75-193.81-59.51l31.28-31.28c34.44-34.44,34.44-90.47,0-124.91-16.69-16.69-38.86-25.88-62.45-25.88s-45.76,9.19-62.45,25.88l-180.83,180.85c-16.71,16.62-25.92,38.87-25.91,62.65,0,23.71,9.21,45.91,25.85,62.45l180.9,180.92c34.43,34.4,90.45,34.4,124.88,0,34.44-34.44,34.44-90.47,0-124.91l-28.04-28.04c134.69,16.97,239.21,132.24,239.21,271.46v310.76c0,48.7,39.62,88.32,88.32,88.32s88.32-39.62,88.32-88.32v-310.76c0-139.22,104.52-254.49,239.22-271.46l-28.04,28.04c-16.69,16.69-25.88,38.87-25.88,62.46s9.19,45.77,25.88,62.46c34.43,34.4,90.46,34.4,124.9,0l180.85-180.87c16.71-16.64,25.91-38.86,25.91-62.55s-9.2-45.93-25.87-62.53Z"/><path d="M1000,25.01C462.37,25.01,25,462.38,25,1000.01s437.37,974.98,975,974.98,975-437.37,975-974.98S1537.58,25.01,1000,25.01ZM1000,1779.99c-430.08,0-780-349.9-780-779.98S569.92,220.01,1000,220.01s780,349.92,780,780-349.92,779.98-780,779.98Z"/></svg>`,
+};
+
+// ── State ──────────────────────────────────────────
+let allGroups = [];
+let inactivityTimer = null;
+let countdownTimer = null;
+let countdownRemaining = INACTIVITY_SEC;
+let currentView = 'start';
+let qrInstance = null;
+
+function norm(s) {
+  return (s || '').toLowerCase()
+    .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+    .replace(/[^a-z0-9 ]/g, '').trim();
+}
+
+function getConfig(vbName) {
+  const n = norm(vbName);
+  return VB_CONFIG.find(c => n.includes(c.match)) || { color: '#555', arrow: 'up', desc: '' };
+}
+
+// ── Inaktivitäts-Timer ────────────────────────────
+function resetTimer() {
+  clearTimeout(inactivityTimer);
+  clearInterval(countdownTimer);
+  countdownRemaining = INACTIVITY_SEC;
+  updateCountdown();
+
+  countdownTimer = setInterval(() => {
+    countdownRemaining--;
+    updateCountdown();
+    if (countdownRemaining <= 0) {
+      clearInterval(countdownTimer);
+      showStart();
+    }
+  }, 1000);
+}
+
+function updateCountdown() {
+  const fill = document.getElementById('countdownFill');
+  if (!fill) return;
+  const pct = (countdownRemaining / INACTIVITY_SEC) * 100;
+  fill.style.width = pct + '%';
+  fill.style.opacity = countdownRemaining <= 10 ? '1' : '0.4';
+}
+
+document.addEventListener('click', resetTimer);
+document.addEventListener('touchstart', resetTimer, { passive: true });
+
+// ── Daten laden ───────────────────────────────────
+async function loadData() {
+  const url = location.hostname === 'localhost' || location.protocol === 'file:'
+    ? 'data/gruppen.json'
+    : `${BASE}/data/gruppen.json`;
+  const res = await fetch(url);
+  const { groups } = await res.json();
+  allGroups = groups;
+}
+
+// ── Startscreen ───────────────────────────────────
+function showStart() {
+  closeModal();
+  activeTag = null;
+  currentView = 'start';
+  document.getElementById('detailview').classList.remove('visible');
+  document.getElementById('detailview').style.display = 'none';
+  document.getElementById('tagresultview').classList.remove('visible');
+  document.getElementById('tagresultview').style.display = 'none';
+  document.getElementById('startscreen').style.display = 'grid';
+  document.getElementById('backBtn').classList.remove('visible');
+  resetTimer();
+}
+
+function buildStartscreen() {
+  const visionsbereiche = allGroups.filter(g => g.groupTypeId === 5);
+  const el = document.getElementById('startscreen');
+  el.innerHTML = '';
+
+  VB_CONFIG.forEach(cfg => {
+    const found = visionsbereiche.find(vb => norm(vb.name).includes(cfg.match));
+    if (!found) {
+      const ph = document.createElement('div');
+      ph.className = 'bc-card';
+      ph.style.background = cfg.color;
+      ph.style.opacity = '0.4';
+      ph.style.cursor = 'default';
+      ph.innerHTML = `
+        <div class="bc-arrow">${ARROWS[cfg.arrow]}</div>
+        <div class="bc-eyebrow">Leben</div>
+        <div class="bc-name">${cfg.match.toUpperCase()}</div>
+        <div class="bc-desc" style="font-size:11px;opacity:0.6;">Noch nicht in ChurchTools konfiguriert</div>`;
+      el.appendChild(ph);
+      return;
+    }
+
+    const cfg2 = getConfig(found.name);
+    const kinder = allGroups.filter(g => (g.parentGroupIds || []).includes(found.id));
+    const gruppenCount = allGroups.filter(g =>
+      kinder.some(k => (g.parentGroupIds || []).includes(k.id))
+    ).length;
+
+    const card = document.createElement('div');
+    card.className = 'bc-card';
+    card.style.background = cfg2.color;
+    card.innerHTML = `
+      <div class="bc-group-count">${gruppenCount} Gruppen</div>
+      <div class="bc-arrow">${ARROWS[cfg2.arrow]}</div>
+      <div class="bc-eyebrow">Leben</div>
+      <div class="bc-name">${found.name.replace('Leben ', '')}</div>
+      <div class="bc-desc">${cfg2.desc}</div>
+      <div class="bc-cta">Entdecken</div>`;
+    card.addEventListener('click', () => showDetail(found, cfg2));
+    el.appendChild(card);
+  });
+}
+
+// ── Detailansicht ─────────────────────────────────
+function showDetail(vb, cfg) {
+  currentView = 'detail';
+  document.getElementById('startscreen').style.display = 'none';
+  const dv = document.getElementById('detailview');
+  dv.innerHTML = '';
+  dv.style.display = 'block';
+  dv.classList.add('visible');
+  document.getElementById('backBtn').classList.add('visible');
+  resetTimer();
+
+  const hdr = document.createElement('div');
+  hdr.className = 'detail-bereich-header';
+  hdr.style.background = cfg.color + '22';
+  hdr.style.borderLeft = `4px solid ${cfg.color}`;
+  hdr.innerHTML = `
+    <div class="detail-bereich-icon">${ARROWS[cfg.arrow]}</div>
+    <div class="detail-bereich-name" style="color:${cfg.color};">${vb.name}</div>`;
+  dv.appendChild(hdr);
+
+  const bereiche = allGroups.filter(g => (g.parentGroupIds || []).includes(vb.id));
+  const grid = document.createElement('div');
+  grid.className = 'sections-grid';
+
+  bereiche.forEach(bereich => {
+    const gruppen = allGroups.filter(g => (g.parentGroupIds || []).includes(bereich.id));
+
+    if (gruppen.length === 0) {
+      if (!bereich.publicUrl) return;
+      const tile = document.createElement('div');
+      tile.className = 'section-card';
+      tile.style.cursor = 'pointer';
+      tile.style.display = 'flex';
+      tile.style.alignItems = 'center';
+      tile.style.gap = '14px';
+      tile.style.padding = '16px';
+      tile.style.borderLeft = `4px solid ${cfg.color}`;
+      tile.style.transition = 'box-shadow 0.15s, transform 0.12s';
+      tile.addEventListener('mouseenter', () => { tile.style.boxShadow = '0 4px 16px rgba(0,0,0,0.12)'; tile.style.transform = 'translateY(-2px)'; });
+      tile.addEventListener('mouseleave', () => { tile.style.boxShadow = ''; tile.style.transform = ''; });
+
+      const imgSrc = bereich.imageUrl || null;
+      tile.innerHTML = `
+        ${imgSrc
+          ? `<img style="width:52px;height:52px;border-radius:3px;object-fit:cover;flex-shrink:0;" src="${imgSrc}" alt="${bereich.name}" onerror="this.style.display='none'">`
+          : `<div style="width:52px;height:52px;border-radius:3px;background:${cfg.color}22;flex-shrink:0;"></div>`}
+        <div style="flex:1;min-width:0;">
+          <div class="section-head-title" style="color:${cfg.color};">${bereich.name}</div>
+          ${bereich.description ? `<div style="font-size:11px;color:#999;margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${bereich.description}</div>` : ''}
+        </div>
+        <div style="color:#bbb;font-size:20px;">›</div>`;
+      tile.addEventListener('click', () => openModal(bereich, vb, cfg));
+      grid.appendChild(tile);
+      return;
+    }
+
+    const card = document.createElement('div');
+    card.className = 'section-card';
+    card.innerHTML = `
+      <div class="section-head" style="background:${cfg.color}22; border-bottom:1px solid ${cfg.color}33;">
+        <div class="section-head-title" style="color:${cfg.color};">${bereich.name}</div>
+      </div>`;
+
+    const list = document.createElement('div');
+    list.className = 'group-list';
+
+    gruppen.forEach(gruppe => {
+      const tile = document.createElement('div');
+      tile.className = 'group-tile';
+      tile.style.borderLeftColor = cfg.color;
+
+      const imgSrc = gruppe.imageUrl ? gruppe.imageUrl : null;
+
+      tile.innerHTML = `
+        ${imgSrc
+          ? `<img class="group-tile-img" src="${imgSrc}" alt="${gruppe.name}" onerror="this.style.display='none'">`
+          : `<div class="group-tile-img" style="background:#2e2e2e;"></div>`}
+        <div class="group-tile-info">
+          <div class="group-tile-name">${gruppe.name}</div>
+          ${gruppe.description
+            ? `<div class="group-tile-desc">${gruppe.description}</div>`
+            : ''}
+        </div>
+        <div class="group-tile-chevron">›</div>`;
+
+      tile.addEventListener('click', () => openModal(gruppe, vb, cfg));
+      list.appendChild(tile);
+    });
+
+    card.appendChild(list);
+    grid.appendChild(card);
+  });
+
+  dv.appendChild(grid);
+  dv.scrollTop = 0;
+}
+
+// ── Markdown → HTML ───────────────────────────────
+function renderMarkdown(text) {
+  const escaped = text
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;');
+
+  const blocks = escaped.split(/\n{2,}/);
+  return blocks.map(block => {
+    const line = block.trim();
+    if (!line) return '';
+    const inlined = line
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/\n/g, '<br>');
+    return `<p>${inlined}</p>`;
+  }).join('');
+}
+
+// ── Modal ─────────────────────────────────────────
+function openModal(gruppe, vb, cfg) {
+  resetTimer();
+
+  document.getElementById('modalHeader').style.borderBottomColor = cfg.color;
+  document.getElementById('modalBereichLabel').textContent = vb.name;
+  document.getElementById('modalGroupName').textContent = gruppe.name;
+  document.getElementById('modalGroupName').style.color = cfg.color;
+
+  const desc = document.getElementById('modalDesc');
+  desc.innerHTML = gruppe.description
+    ? renderMarkdown(gruppe.description)
+    : '<span class="modal-no-desc">Keine Beschreibung vorhanden.</span>';
+
+  const leaderSection = document.getElementById('modalLeaderSection');
+  if (gruppe.leaders?.length) {
+    leaderSection.innerHTML = gruppe.leaders.map(l => {
+      const parts    = l.name.split(' ').filter(Boolean);
+      const initials = parts.map(w => w[0]).join('').slice(0, 2).toUpperCase();
+      const avatar   = l.imageUrl
+        ? `<img class="leader-avatar" src="${l.imageUrl}" alt="${l.name}"
+               style="object-fit:cover;"
+               onerror="this.outerHTML='<div class=\\'leader-avatar\\' style=\\'background:${cfg.color}\\'>${initials}</div>'">`
+        : `<div class="leader-avatar" style="background:${cfg.color}">${initials}</div>`;
+      return `
+        <div class="modal-leader-row">
+          ${avatar}
+          <div>
+            <div class="leader-label">Ansprechpartner</div>
+            <div class="leader-name">${l.name}</div>
+          </div>
+        </div>`;
+    }).join('');
+    leaderSection.style.display = 'flex';
+  } else {
+    leaderSection.style.display = 'none';
+  }
+
+  const url = gruppe.publicUrl || `${CHURCHTOOLS}/publicgroup/${gruppe.id}`;
+  document.getElementById('modalUrl').textContent = url.replace('https://', '');
+
+  const container = document.getElementById('qrcode-container');
+  container.innerHTML = '';
+  if (window.QRCode) {
+    new QRCode(container, {
+      text: url,
+      width: 160,
+      height: 160,
+      colorDark: '#111111',
+      colorLight: '#ffffff',
+      correctLevel: QRCode.CorrectLevel.M,
+    });
+  } else {
+    container.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(url)}" width="160" height="160" alt="QR-Code">`;
+  }
+
+  document.getElementById('modalBg').classList.add('open');
+}
+
+function closeModal() {
+  document.getElementById('modalBg').classList.remove('open');
+}
+
+function closeModalBg(e) {
+  if (e.target === document.getElementById('modalBg')) closeModal();
+}
+
+// ── Tag-Suche ─────────────────────────────────────
+let activeTag = null;
+
+function buildTagPopup() {
+  const allTags = [...new Set(
+    allGroups.flatMap(g => g.tags || [])
+  )].sort((a, b) => a.localeCompare(b, 'de'));
+
+  const container = document.getElementById('tagPopupTags');
+  container.innerHTML = '';
+  allTags.forEach(tag => {
+    const btn = document.createElement('button');
+    btn.className = 'tag-filter-btn' + (tag === activeTag ? ' active' : '');
+    btn.textContent = tag;
+    btn.addEventListener('click', () => {
+      activeTag = (activeTag === tag) ? null : tag;
+      closeTagPopup();
+      if (activeTag) showTagResults(activeTag);
+      else showStart();
+    });
+    container.appendChild(btn);
+  });
+}
+
+function openTagPopup() {
+  resetTimer();
+  buildTagPopup();
+  document.getElementById('tagPopupBg').classList.add('open');
+}
+
+function closeTagPopup() {
+  document.getElementById('tagPopupBg').classList.remove('open');
+}
+
+function closeTagPopupBg(e) {
+  if (e.target === document.getElementById('tagPopupBg')) closeTagPopup();
+}
+
+function showTagResults(tag) {
+  closeModal();
+  currentView = 'tag';
+  document.getElementById('startscreen').style.display = 'none';
+  document.getElementById('detailview').classList.remove('visible');
+  document.getElementById('detailview').style.display = 'none';
+  document.getElementById('backBtn').classList.remove('visible');
+
+  const results = allGroups.filter(g => (g.tags || []).includes(tag) && g.publicUrl);
+
+  const rv = document.getElementById('tagresultview');
+  rv.innerHTML = `
+    <div class="tagresult-header">
+      <div>
+        <div class="tagresult-label">Gruppen mit der Gabe</div>
+        <div class="tagresult-tag">${tag}</div>
+      </div>
+      <div class="tagresult-count">${results.length} ${results.length === 1 ? 'Gruppe' : 'Gruppen'}</div>
+    </div>
+    <div class="tagresult-grid" id="tagresultGrid"></div>
+  `;
+
+  const grid = rv.querySelector('#tagresultGrid');
+  results.forEach(g => {
+    const vb = findVbOfGroup(g);
+    const cfg = vb ? VB_CONFIG.find(c => norm(vb.name).includes(c.match)) : null;
+    const accentColor = cfg?.color || '#bb2232';
+
+    const tile = document.createElement('div');
+    tile.className = 'tagresult-tile';
+    tile.style.borderLeft = `4px solid ${accentColor}`;
+    tile.addEventListener('click', () => openModal(g, vb || g, cfg || { color: accentColor }));
+
+    const imgSrc = g.imageUrl ? g.imageUrl : null;
+    tile.innerHTML = `
+      ${imgSrc
+        ? `<img class="tagresult-tile-img" src="${imgSrc}" alt="${g.name}" onerror="this.style.display='none'">`
+        : `<div class="tagresult-tile-img"></div>`}
+      <div class="tagresult-tile-info">
+        <div class="tagresult-tile-name">${g.name}</div>
+        <div class="tagresult-tile-bereich">${vb ? vb.name : ''}</div>
+      </div>
+    `;
+    grid.appendChild(tile);
+  });
+
+  rv.style.display = '';
+  rv.classList.add('visible');
+  document.getElementById('backBtn').classList.add('visible');
+  rv.scrollTop = 0;
+  resetTimer();
+}
+
+function findVbOfGroup(gruppe) {
+  const vbs = allGroups.filter(g => g.groupTypeId === 5);
+  function findVb(g, depth = 0) {
+    if (depth > 5) return null;
+    if (vbs.includes(g)) return g;
+    for (const pid of (g.parentGroupIds || [])) {
+      const parent = allGroups.find(x => x.id === pid);
+      if (parent) {
+        const found = findVb(parent, depth + 1);
+        if (found) return found;
+      }
+    }
+    return null;
+  }
+  return findVb(gruppe);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeModal(); closeTagPopup(); }
+});
+
+// ── Init ──────────────────────────────────────────
+async function main() {
+  await loadData();
+  document.getElementById('loading').style.display = 'none';
+  buildStartscreen();
+  showStart();
+}
+
+main().catch(err => {
+  document.getElementById('loading').innerHTML = `<p>Fehler beim Laden der Daten.</p>`;
+  console.error(err);
+});
+</script>
+</body>
+</html>
