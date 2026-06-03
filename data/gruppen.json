@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-03T08:50:08.610Z",
+  "generatedAt": "2026-06-03T19:44:41.344Z",
   "groups": [
     {
       "id": 124,
@@ -62,7 +62,8 @@
       "name": "Alpha Kurs Mitarbeiter",
       "groupTypeId": 2,
       "parentGroupIds": [
-        351
+        351,
+        170
       ],
       "description": "**Warum**\n\nMenschen einen Raum bieten, den Glauben kennenzulernen – ohne Druck, mit offenen Fragen und ehrlichen Gesprächen. Eine Einladung für Suchende, Jesus und Gemeinschaft in entspannter Atmosphäre zu entdecken.\n\n**Was**\n\nOrganisation und Durchführung von Glaubenskursen (Gott & die Welt Kurs und Alphakurs) mit Essen, Input und Diskussion für Interessierte und Suchende.\n\n**Wie**\n\n- Einmal jährlich: „Gott & die Welt Kurs\" (4 Abende) als Einstieg, danach Alphakurs (12 Abende + Wochenende)\n- Gemeinsame Mahlzeiten vorbereiten und kochen\n- Kleingruppenleitung und Moderation der Diskussionen\n- Offene, einladende Atmosphäre ohne Druck gestalten\n\n**Du kannst mitmachen**\n\nDu hast Freude an Begegnungen mit suchenden Menschen und führst gern Gespräche? Dann bist du willkommen. Was uns wichtig ist: Offenheit für Fragen, Geduld, Authentizität und Gastfreundschaft.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/370",
@@ -1019,7 +1020,9 @@
       "id": 95,
       "name": "Hauskreise in der Konkordia",
       "groupTypeId": 1,
-      "parentGroupIds": [],
+      "parentGroupIds": [
+        371
+      ],
       "description": "Gib einfach Stichwörter ein und dann bekommst du passende Kleingruppen vorgeschlagen.\n\nMit einem Klick auf \"Jetzt Anmelden\" kannst du den Leiter kontaktieren. Daraufhin bekommst eine E-Mail in der du die Anmeldung bestätigen musst. Bitte sieh auch in deinem Spam-Ordner nach. Der Leiter wird sich dann bei dir melden.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/95",
       "imageUrl": "https://gemeindekonkordia.church.tools/images/377/3db5fc0c16352f575533dc45705044e75f38f65ebe822a848392b6c63fbb5251",
@@ -1238,7 +1241,8 @@
       "name": "Jüngerschaftsgruppen in der Konkordia",
       "groupTypeId": 7,
       "parentGroupIds": [
-        302
+        302,
+        371
       ],
       "description": "# Jüngerschaftsgruppen\n\n## Warum\n\n- Gemeinsam Jesus ähnlicher werden in kleinen Gemeinschaften von bis zu 4 Personen.\n- Raum für tiefe Beziehungen und ehrliche Gespräche über das Leben mit Jesus – geprägt von Vertrauen, Unterstützung und gemeinsamer Freude am Leben.\n\n\n## Wie\n\n- Regelmäßige verbindliche Treffen über zwei Jahre in geschlechtsspezifischen Gruppen oder als Ehepaargruppen\n- Leben in Gemeinschaft: Echte Freundschaften entwickeln, Alltag teilen, Vertrauen aufbauen\n- Leben in Transformation: Persönlich über Veränderung sprechen, einander begleiten, Jesus ähnlicher werden\n- Jüngerschaftsfragen reflektieren: Beziehung zu Gott, zu Mitmenschen, zu mir selbst\n- Gemeinsames Essen\n- Austausch über persönlichen Jüngerschaftsplan und nächste Wachstumsschritte\n- Konkretes und persönliches Gebet füreinander\n- Geschützter Raum mit Diskretion und geteilter Verantwortung\n\n## Was\n\n- Kleine, vertraute Gruppen (bis zu 4 Personen plus Leitung) in geschütztem Rahmen, die sich regelmäßig treffen, um gemeinsam im Glauben zu wachsen und einander zu begleiten.\n\n## Du hast Lust mitzumachen?\n\nSchön wäre, wenn Du Freude an kleinen Gruppen hast und bereit bist, dein Leben mit anderen zu teilen. Was uns besonders am Herzen liegt: Offenheit. Authentizität. Menschen dürfen hier den Glauben kennenlernen. Gemeinsam wachsen wir im Glauben. Und lernen, wie wir für unsere Welt relevant sein können.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/270",
@@ -1689,7 +1693,8 @@
       "name": "Men on fire",
       "groupTypeId": 1,
       "parentGroupIds": [
-        355
+        355,
+        170
       ],
       "description": null,
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/331",
@@ -2098,7 +2103,9 @@
       "id": 170,
       "name": "Teams Verzeichnis",
       "groupTypeId": 2,
-      "parentGroupIds": [],
+      "parentGroupIds": [
+        371
+      ],
       "description": "Teams sind deine Möglichkeit, diese Kirche aktiv mitzugestalten. Egal ob du ein Spezialist bist, oder noch gar nicht so recht weißt, wo deine Talente liegen: wir helfen dir den richtigen Platz in unserer Gemeinde zu finden. In einem Team erlebst du geniale Gemeinschaft und kannst dein Potential entfalten.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/170",
       "imageUrl": null,
@@ -2114,6 +2121,7 @@
         "modules": []
       },
       "childGroupIds": [
+        370,
         59,
         98,
         64,
@@ -2125,12 +2133,14 @@
         26,
         8,
         9,
+        331,
         91,
         129,
         50,
         291,
         7,
         132,
+        374,
         85,
         159
       ]
@@ -2198,6 +2208,26 @@
       "childGroupIds": []
     },
     {
+      "id": 371,
+      "name": "Test_web",
+      "groupTypeId": 5,
+      "parentGroupIds": [],
+      "description": null,
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/371",
+      "imageUrl": null,
+      "tags": [],
+      "leaders": [],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": [
+        95,
+        270,
+        170
+      ]
+    },
+    {
       "id": 132,
       "name": "Übersetzung",
       "groupTypeId": 2,
@@ -2233,6 +2263,50 @@
       "imageUrl": null,
       "tags": [],
       "leaders": [],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": []
+    },
+    {
+      "id": 374,
+      "name": "Weihnachten is(s)t keiner allein (Mitarbeiter",
+      "groupTypeId": 2,
+      "parentGroupIds": [
+        170
+      ],
+      "description": null,
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/374",
+      "imageUrl": null,
+      "tags": [],
+      "leaders": [
+        {
+          "name": "Elena Donath",
+          "imageUrl": null
+        }
+      ],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": []
+    },
+    {
+      "id": 377,
+      "name": "Wiederherstellung (Mitarbeiter)",
+      "groupTypeId": 2,
+      "parentGroupIds": [],
+      "description": null,
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/377",
+      "imageUrl": null,
+      "tags": [],
+      "leaders": [
+        {
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
+        }
+      ],
       "settings": {
         "isHidden": false,
         "modules": []
