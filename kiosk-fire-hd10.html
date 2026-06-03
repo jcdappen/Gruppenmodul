@@ -478,6 +478,19 @@
     }
 
     /* Sektionen stapeln sich vertikal */
+    /* ── TEAMS-SCREEN ────────────────────────────────── */
+    #teamsscreen {
+      height: 100%;
+      display: none;
+      flex-direction: column;
+    }
+    #teamsGrid {
+      flex: 1;
+      overflow-y: auto;
+      overflow-x: hidden;
+      -webkit-overflow-scrolling: touch;
+    }
+
     .sections-grid {
       display: flex;
       flex-direction: column;
@@ -1079,7 +1092,7 @@
     <div id="detailview"></div>
 
     <!-- TEAMS-SCREEN -->
-    <div id="teamsscreen" style="display:none;flex-direction:column;height:100%;">
+    <div id="teamsscreen">
       <div class="kg-header">
         <div class="kg-header-title">Du kannst mitmachen</div>
         <div class="kg-header-sub">Bringe deine Gaben ein und gestalte Gemeinde aktiv mit.</div>
