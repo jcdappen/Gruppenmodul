@@ -1212,6 +1212,7 @@ let countdownTimer = null;
 let countdownRemaining = INACTIVITY_SEC;
 // 'home' | 'start' | 'detail' | 'kleingruppen' | 'kg-detail' | 'tag'
 let currentView = 'home';
+let prevView = 'home';
 let activeKgDetail = null; // 'hauskreise' | 'juengerschaft' | 'sonstige'
 
 function norm(s) {
@@ -1283,16 +1284,18 @@ function showHome() {
 }
 
 function showChurchTools() {
+  prevView = 'teams';
   currentView = 'teams';
   hideAll();
   buildTeamsScreen();
   document.getElementById('teamsscreen').style.display = 'flex';
   document.getElementById('backBtn').classList.add('visible');
-  document.getElementById('tagSearchBtn').style.display = 'none';
+  document.getElementById('tagSearchBtn').style.display = 'flex';
   resetTimer();
 }
 
 function showMitmachen() {
+  prevView = 'start';
   currentView = 'start';
   hideAll();
   document.getElementById('startscreen').style.display = 'grid';
@@ -1567,7 +1570,7 @@ function goBack() {
   else if (currentView === 'kleingruppen') showHome();
   else if (currentView === 'kg-detail')    showKleingruppen();
   else if (currentView === 'teams')  showHome();
-  else if (currentView === 'tag')    showHome();
+  else if (currentView === 'tag')    { if (prevView === 'teams') showChurchTools(); else if (prevView === 'start') showMitmachen(); else showHome(); }
   else showHome();
 }
 
@@ -1691,6 +1694,7 @@ function buildTagPopup() {
       activeTag = (activeTag === tag) ? null : tag;
       closeTagPopup();
       if (activeTag) showTagResults(activeTag);
+      else if (prevView === 'teams') showChurchTools();
       else showMitmachen();
     });
     container.appendChild(btn);
