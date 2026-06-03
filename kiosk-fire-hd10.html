@@ -134,7 +134,7 @@
     #homescreen {
       height: 100%;
       display: grid;
-      grid-template-columns: 1fr 1fr;
+      grid-template-columns: 1fr 1fr 1fr;
       gap: 16px;
     }
 
@@ -163,6 +163,9 @@
 
     /* Mitmachen-Karte: dunkel mit 4-Icon-Grid */
     .home-card-mitmachen { background: #1a1a1a; }
+
+    /* ChurchTools-Karte: dunkelblau */
+    .home-card-churchtools { background: #263d5a; }
 
     .home-icons-grid {
       display: grid;
@@ -927,6 +930,39 @@
 
     <!-- HOMESCREEN -->
     <div id="homescreen" style="display:none;">
+
+      <!-- Spalte 1: Du kannst mitmachen (ChurchTools – Platzhalter) -->
+      <div class="home-card home-card-churchtools" onclick="showChurchTools()">
+        <div class="home-group-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
+            <circle cx="12" cy="7" r="4"/>
+          </svg>
+        </div>
+        <div class="home-eyebrow">Mitmachen</div>
+        <div class="home-title">Du kannst mitmachen</div>
+        <div class="home-desc"><!-- Platzhalter: ChurchTools-Logik folgt --></div>
+        <div class="home-cta">Mehr erfahren</div>
+      </div>
+
+      <!-- Spalte 2: Kleingruppe finden -->
+      <div class="home-card home-card-kleingruppe" onclick="showKleingruppen()">
+        <div class="home-group-icon">
+          <!-- Personen-Gruppe Icon -->
+          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div class="home-eyebrow">Gemeinschaft</div>
+        <div class="home-title">Kleingruppe finden</div>
+        <div class="home-desc">Hauskreise, Jüngerschaftsgruppen und weitere Gruppen – finde den richtigen Ort für dich.</div>
+        <div class="home-cta">Gruppen entdecken</div>
+      </div>
+
+      <!-- Spalte 3: Alle unsere Angebote -->
       <div class="home-card home-card-mitmachen" onclick="showMitmachen()">
         <div class="home-icons-grid">
           <div class="home-icon-cell" style="background:#edc544;">
@@ -943,26 +979,11 @@
           </div>
         </div>
         <div class="home-eyebrow">Dienste &amp; Gruppen</div>
-        <div class="home-title">Du kannst mitmachen</div>
+        <div class="home-title">Alle unsere Angebote</div>
         <div class="home-desc">Entdecke wo du deine Gaben einsetzen und Gemeinde aktiv mitgestalten kannst.</div>
         <div class="home-cta">Bereiche entdecken</div>
       </div>
 
-      <div class="home-card home-card-kleingruppe" onclick="showKleingruppen()">
-        <div class="home-group-icon">
-          <!-- Personen-Gruppe Icon -->
-          <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
-            <circle cx="9" cy="7" r="4"/>
-            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
-            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
-          </svg>
-        </div>
-        <div class="home-eyebrow">Gemeinschaft</div>
-        <div class="home-title">Kleingruppe finden</div>
-        <div class="home-desc">Hauskreise, Jüngerschaftsgruppen und weitere Gruppen – finde den richtigen Ort für dich.</div>
-        <div class="home-cta">Gruppen entdecken</div>
-      </div>
     </div>
 
     <!-- MITMACHEN: Visionsbereiche -->
@@ -1229,6 +1250,10 @@ function showHome() {
   document.getElementById('backBtn').classList.remove('visible');
   document.getElementById('tagSearchBtn').style.display = 'none';
   resetTimer();
+}
+
+function showChurchTools() {
+  // TODO: ChurchTools-Logik einfügen
 }
 
 function showMitmachen() {
