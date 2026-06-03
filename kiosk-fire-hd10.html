@@ -1418,11 +1418,14 @@ function buildTeamsScreen() {
 
   const children = allGroups.filter(g => (g.parentGroupIds || []).includes(parent.id));
 
+  const FORCE_LEAF = ['evangelisation', 'jugend', 'kinder', 'jugendarbeit', 'technik'];
+  const isForceLeaf = c => FORCE_LEAF.some(kw => c.name.toLowerCase().includes(kw));
+
   const leaves = children.filter(c =>
-    allGroups.filter(g => (g.parentGroupIds || []).includes(c.id)).length === 0
+    allGroups.filter(g => (g.parentGroupIds || []).includes(c.id)).length === 0 || isForceLeaf(c)
   );
   const sections = children.filter(c =>
-    allGroups.filter(g => (g.parentGroupIds || []).includes(c.id)).length > 0
+    allGroups.filter(g => (g.parentGroupIds || []).includes(c.id)).length > 0 && !isForceLeaf(c)
   );
 
   if (leaves.length > 0) {
