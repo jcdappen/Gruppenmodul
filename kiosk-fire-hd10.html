@@ -248,82 +248,89 @@
     /* ── STARTSCREEN (Visionsbereiche) ──────────────── */
     #startscreen {
       height: 100%;
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      display: flex;
+      flex-direction: column;
       gap: 16px;
     }
 
     .bc-card {
-      border-radius: 4px;
+      background: #fff;
+      border-radius: 22px;
+      flex: 1;
       display: flex;
-      flex-direction: column;
+      align-items: stretch;
+      box-shadow: 0 2px 12px rgba(0,0,0,.05);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .bc-card:active { transform: scale(.99); box-shadow: 0 4px 20px rgba(0,0,0,.1); }
+    .bc-card:not(:active):hover { box-shadow: 0 6px 24px rgba(0,0,0,.1); }
+
+    .bc-icon-panel {
+      width: 140px;
+      flex-shrink: 0;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 24px 20px 22px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      position: relative;
-      overflow: hidden;
     }
-    .bc-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: rgba(255,255,255,0);
-      transition: background 0.2s;
-    }
-    .bc-card:active { transform: scale(0.97); }
-    .bc-card:active::after { background: rgba(255,255,255,0.08); }
-    .bc-card:not(:active):hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.45); }
+    .bc-icon-panel > div { width: 60px; height: 60px; }
+    .bc-icon-panel svg { width: 60px; height: 60px; }
 
-    .bc-arrow { width: 64px; height: 64px; margin-bottom: 18px; }
-    .bc-arrow svg { width: 64px; height: 64px; }
+    .bc-text {
+      flex: 1;
+      padding: 0 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
     .bc-eyebrow {
-      font-size: 9px;
-      letter-spacing: 4px;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: .2em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      font-family: Arial, sans-serif;
       margin-bottom: 6px;
     }
     .bc-name {
-      font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 20px;
-      color: white;
-      text-align: center;
-      line-height: 1.2;
-      letter-spacing: 1.5px;
-      margin-bottom: 10px;
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: #1c1a18;
+      margin-bottom: 6px;
+      letter-spacing: normal;
+      text-align: left;
     }
     .bc-desc {
-      font-size: 12px;
-      color: rgba(255,255,255,0.7);
-      text-align: center;
-      line-height: 1.55;
-      margin-bottom: 18px;
-      max-width: 200px;
+      font-family: 'Gothic720', Arial, sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #4d4d4d;
+      max-width: 520px;
+      text-align: left;
     }
-    .bc-cta {
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.3);
-      color: white;
-      font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 10px;
-      letter-spacing: 2px;
-      padding: 10px 22px;
-      border-radius: 2px;
-      pointer-events: none;
-      min-height: 36px;
+
+    .bc-cta-area {
+      padding-right: 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
     }
-    .bc-group-count {
-      position: absolute;
-      top: 12px;
-      right: 14px;
-      font-size: 9px;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.35);
-      font-family: Arial, sans-serif;
+    .bc-cta-label {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .04em;
+    }
+    .bc-cta-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
     }
 
     /* ── KLEINGRUPPEN-SCREEN ────────────────────────── */
@@ -334,89 +341,109 @@
     }
 
     .kg-header {
-      margin-bottom: 18px;
+      margin-top: 26px;
+      margin-bottom: 20px;
     }
     .kg-header-title {
-      font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 14px;
-      letter-spacing: 3px;
-      color: #888;
-      text-transform: uppercase;
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: #1c1a18;
+      letter-spacing: normal;
+      text-transform: none;
     }
     .kg-header-sub {
-      font-size: 13px;
-      color: #bbb;
-      margin-top: 4px;
+      font-family: 'Gothic720', Arial, sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      color: #4d4d4d;
+      margin-top: 6px;
     }
 
     .kg-grid {
       flex: 1;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      display: flex;
+      flex-direction: column;
       gap: 16px;
     }
 
     .kg-card {
-      border-radius: 5px;
+      background: #fff;
+      border-radius: 22px;
+      flex: 1;
       display: flex;
-      flex-direction: column;
+      align-items: stretch;
+      box-shadow: 0 2px 12px rgba(0,0,0,.05);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .kg-card:active { transform: scale(.99); box-shadow: 0 4px 20px rgba(0,0,0,.1); }
+    .kg-card:not(:active):hover { box-shadow: 0 6px 24px rgba(0,0,0,.1); }
+
+    .kg-icon-panel {
+      width: 140px;
+      flex-shrink: 0;
+      display: flex;
       align-items: center;
       justify-content: center;
-      padding: 28px 24px;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      position: relative;
-      overflow: hidden;
     }
-    .kg-card:active { transform: scale(0.97); }
-    .kg-card:not(:active):hover { transform: translateY(-4px); box-shadow: 0 16px 48px rgba(0,0,0,0.4); }
+    .kg-icon-panel svg { width: 52px; height: 52px; }
 
-    .kg-icon {
-      width: 80px;
-      height: 80px;
-      background: rgba(255,255,255,0.18);
+    .kg-text {
+      flex: 1;
+      padding: 0 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .kg-label {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+    .kg-name {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: #1c1a18;
+      margin-bottom: 6px;
+      letter-spacing: normal;
+      text-align: left;
+      line-height: 1.2;
+    }
+    .kg-desc {
+      font-family: 'Gothic720', Arial, sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #4d4d4d;
+      max-width: 520px;
+      text-align: left;
+    }
+    .kg-cta-area {
+      padding-right: 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .kg-cta-label {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .04em;
+    }
+    .kg-cta-btn {
+      width: 52px;
+      height: 52px;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      margin-bottom: 22px;
-    }
-    .kg-icon svg { width: 46px; height: 46px; }
-    .kg-label {
-      font-size: 9px;
-      letter-spacing: 4px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,0.5);
-      font-family: Arial, sans-serif;
-      margin-bottom: 8px;
-    }
-    .kg-name {
-      font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 22px;
-      color: white;
-      text-align: center;
-      letter-spacing: 1.5px;
-      line-height: 1.2;
-      margin-bottom: 12px;
-    }
-    .kg-desc {
-      font-size: 12px;
-      color: rgba(255,255,255,0.7);
-      text-align: center;
-      line-height: 1.6;
-      margin-bottom: 24px;
-      max-width: 240px;
-    }
-    .kg-cta {
-      background: rgba(255,255,255,0.15);
-      border: 1px solid rgba(255,255,255,0.35);
-      color: white;
-      font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 10px;
-      letter-spacing: 2px;
-      padding: 10px 24px;
-      border-radius: 2px;
-      pointer-events: none;
+      flex-shrink: 0;
     }
 
     /* ── KLEINGRUPPEN DETAIL (Platzhalter) ──────────── */
@@ -472,19 +499,24 @@
 
     /* Visionsbereich-Titel oben */
     .detail-bereich-header {
+      background: #fff;
+      border-left: 4px solid;
+      border-radius: 0 12px 12px 0;
       display: flex;
       align-items: center;
       gap: 16px;
-      padding: 18px 22px;
-      border-radius: 5px;
+      padding: 16px 22px;
       margin-bottom: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
     }
-    .detail-bereich-icon svg { width: 40px; height: 40px; }
+    .detail-bereich-icon { width: 44px; height: 44px; flex-shrink: 0; }
+    .detail-bereich-icon svg { width: 44px; height: 44px; }
     .detail-bereich-name {
-      font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 26px;
-      letter-spacing: 2.5px;
-      color: #1a1a1a;
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: #1c1a18;
+      letter-spacing: normal;
     }
 
     /* Sektionen stapeln sich vertikal */
@@ -1045,48 +1077,69 @@
       </div>
       <div class="kg-grid">
 
-        <!-- Hauskreise -->
-        <div class="kg-card" style="background:#677d46;" onclick="showKgDetail('hauskreise')">
-          <div class="kg-icon">
+        <!-- Hauskreise — Akzent #677d46 (Grün) -->
+        <div class="kg-card" onclick="showKgDetail('hauskreise')">
+          <div class="kg-icon-panel" style="background:#677d46;">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
               <polyline points="9 22 9 12 15 12 15 22"/>
             </svg>
           </div>
-          <div class="kg-label">Gemeinschaft</div>
-          <div class="kg-name">Hauskreise</div>
-          <div class="kg-desc">In unseren Hauskreisen beten, essen und wachsen wir gemeinsam und geben Gottes Liebe weiter.</div>
-          <div class="kg-cta">Hauskreis finden</div>
+          <div class="kg-text">
+            <div class="kg-label" style="color:#677d46;">Gemeinschaft</div>
+            <div class="kg-name">Hauskreise</div>
+            <div class="kg-desc">In unseren Hauskreisen beten, essen und wachsen wir gemeinsam und geben Gottes Liebe weiter.</div>
+          </div>
+          <div class="kg-cta-area">
+            <span class="kg-cta-label" style="color:#677d46;">Hauskreis finden</span>
+            <div class="kg-cta-btn" style="background:#677d46;">
+              <svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h20M19 8l8 8-8 8"/></svg>
+            </div>
+          </div>
         </div>
 
-        <!-- Jüngerschaftsgruppen -->
-        <div class="kg-card" style="background:#147067;" onclick="showKgDetail('juengerschaft')">
-          <div class="kg-icon">
+        <!-- Jüngerschaftsgruppen — Akzent #147067 (Teal) -->
+        <div class="kg-card" onclick="showKgDetail('juengerschaft')">
+          <div class="kg-icon-panel" style="background:#147067;">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M12 2L2 7l10 5 10-5-10-5z"/>
               <path d="M2 17l10 5 10-5"/>
               <path d="M2 12l10 5 10-5"/>
             </svg>
           </div>
-          <div class="kg-label">Wachstum</div>
-          <div class="kg-name">Jüngerschafts&shy;gruppen</div>
-          <div class="kg-desc">In kleinen Gruppen von 4–5 Personen wachsen wir ehrlich und tief im Glauben.</div>
-          <div class="kg-cta">Gruppe finden</div>
+          <div class="kg-text">
+            <div class="kg-label" style="color:#147067;">Wachstum</div>
+            <div class="kg-name">Jüngerschaftsgruppen</div>
+            <div class="kg-desc">In kleinen Gruppen von 4–5 Personen wachsen wir ehrlich und tief im Glauben.</div>
+          </div>
+          <div class="kg-cta-area">
+            <span class="kg-cta-label" style="color:#147067;">Gruppe finden</span>
+            <div class="kg-cta-btn" style="background:#147067;">
+              <svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h20M19 8l8 8-8 8"/></svg>
+            </div>
+          </div>
         </div>
 
-        <!-- Sonstige Gruppen -->
-        <div class="kg-card" style="background:#8e7629;" onclick="showKgDetail('sonstige')">
-          <div class="kg-icon">
+        <!-- Sonstige Gruppen — Akzent #8e7629 (Gold) -->
+        <div class="kg-card" onclick="showKgDetail('sonstige')">
+          <div class="kg-icon-panel" style="background:#8e7629;">
             <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <circle cx="12" cy="12" r="10"/>
               <line x1="12" y1="8" x2="12" y2="12"/>
               <line x1="12" y1="16" x2="12.01" y2="16"/>
             </svg>
           </div>
-          <div class="kg-label">Weitere Angebote</div>
-          <div class="kg-name">Sonstige Gruppen</div>
-          <div class="kg-desc">Weitere Gruppen und Angebote bei Gemeinde Konkordia – für jeden ist etwas dabei.</div>
-          <div class="kg-cta">Mehr entdecken</div>
+          <div class="kg-text">
+            <div class="kg-label" style="color:#8e7629;">Weitere Angebote</div>
+            <div class="kg-name">Sonstige Gruppen</div>
+            <div class="kg-desc">Weitere Gruppen und Angebote bei Gemeinde Konkordia – für jeden ist etwas dabei.</div>
+          </div>
+          <div class="kg-cta-area">
+            <span class="kg-cta-label" style="color:#8e7629;">Mehr entdecken</span>
+            <div class="kg-cta-btn" style="background:#8e7629;">
+              <svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h20M19 8l8 8-8 8"/></svg>
+            </div>
+          </div>
         </div>
 
       </div>
@@ -1184,27 +1237,35 @@ const INACTIVITY_SEC = 60;
 const VB_CONFIG = [
   {
     match: 'mit gott',
+    eyebrow: 'Mit Gott',
     color: '#edc544',
     arrow: 'up',
     desc: 'Wir lieben Gott mit unserem ganzen Sein und nehmen uns Zeit, seine Stimme zu hören.',
+    cta: 'Entdecken',
   },
   {
     match: 'transformation',
+    eyebrow: 'Transformation',
     color: '#22bbac',
     arrow: 'cycle',
     desc: 'Wir stehen in einem Prozess, Jesus in unserem ganzen Wesen ähnlicher zu werden.',
+    cta: 'Entdecken',
   },
   {
     match: 'gemeinschaft',
+    eyebrow: 'Gemeinschaft',
     color: '#abd075',
     arrow: 'down',
     desc: 'Als Gottes Familie teilen wir Leben, wachsen geistlich und geben Raum für alle Menschen.',
+    cta: 'Entdecken',
   },
   {
     match: 'welt',
+    eyebrow: 'Welt',
     color: '#bb2232',
     arrow: 'branch',
     desc: 'Wir gehen auf Menschen zu und tragen die Gute Nachricht in Wort und Tat in die Welt.',
+    cta: 'Entdecken',
   },
 ];
 
@@ -1617,37 +1678,38 @@ function buildStartscreen() {
 
   VB_CONFIG.forEach(cfg => {
     const found = visionsbereiche.find(vb => norm(vb.name).includes(cfg.match));
+    const arrowSvg = `<svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h20M19 8l8 8-8 8"/></svg>`;
+
     if (!found) {
       const ph = document.createElement('div');
       ph.className = 'bc-card';
-      ph.style.background = cfg.color;
-      ph.style.opacity = '0.4';
+      ph.style.opacity = '0.5';
       ph.style.cursor = 'default';
       ph.innerHTML = `
-        <div class="bc-arrow">${ARROWS[cfg.arrow]}</div>
-        <div class="bc-eyebrow">Leben</div>
-        <div class="bc-name">${cfg.match.toUpperCase()}</div>
-        <div class="bc-desc" style="font-size:11px;opacity:0.6;">Noch nicht konfiguriert</div>`;
+        <div class="bc-icon-panel" style="background:${cfg.color};"><div style="width:60px;height:60px;">${ARROWS[cfg.arrow]}</div></div>
+        <div class="bc-text">
+          <div class="bc-eyebrow" style="color:${cfg.color};">${cfg.eyebrow}</div>
+          <div class="bc-name">${cfg.match.charAt(0).toUpperCase() + cfg.match.slice(1)}</div>
+          <div class="bc-desc">Noch nicht konfiguriert</div>
+        </div>`;
       el.appendChild(ph);
       return;
     }
 
     const cfg2 = getConfig(found.name);
-    const kinder = allGroups.filter(g => (g.parentGroupIds || []).includes(found.id));
-    const gruppenCount = allGroups.filter(g =>
-      kinder.some(k => (g.parentGroupIds || []).includes(k.id))
-    ).length;
-
     const card = document.createElement('div');
     card.className = 'bc-card';
-    card.style.background = cfg2.color;
     card.innerHTML = `
-      <div class="bc-group-count">${gruppenCount} Gruppen</div>
-      <div class="bc-arrow">${ARROWS[cfg2.arrow]}</div>
-      <div class="bc-eyebrow">Leben</div>
-      <div class="bc-name">${found.name.replace('Leben ', '')}</div>
-      <div class="bc-desc">${cfg2.desc}</div>
-      <div class="bc-cta">Entdecken</div>`;
+      <div class="bc-icon-panel" style="background:${cfg2.color};"><div style="width:60px;height:60px;">${ARROWS[cfg2.arrow]}</div></div>
+      <div class="bc-text">
+        <div class="bc-eyebrow" style="color:${cfg2.color};">${cfg2.eyebrow}</div>
+        <div class="bc-name">${found.name.replace(/^Leben\s*/i, '')}</div>
+        <div class="bc-desc">${cfg2.desc}</div>
+      </div>
+      <div class="bc-cta-area">
+        <span class="bc-cta-label" style="color:${cfg2.color};">${cfg2.cta}</span>
+        <div class="bc-cta-btn" style="background:${cfg2.color};">${arrowSvg}</div>
+      </div>`;
     card.addEventListener('click', () => showDetail(found, cfg2));
     el.appendChild(card);
   });
