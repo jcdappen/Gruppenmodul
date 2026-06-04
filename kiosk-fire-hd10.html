@@ -560,63 +560,71 @@
       text-transform: uppercase;
     }
 
-    /* 4-spaltiges Karten-Grid */
+    /* Vertikale Liste */
     .group-list {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
     }
 
-    /* Karte: Bild oben, Name unten */
+    /* Karte: horizontale Zeile (wie hs-row) */
     .group-tile {
       background: #ffffff;
-      border-radius: 6px;
+      border-radius: 16px;
       cursor: pointer;
       overflow: hidden;
       display: flex;
-      flex-direction: column;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+      flex-direction: row;
+      align-items: stretch;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
       transition: transform 0.15s, box-shadow 0.15s;
       border-left: none;
       padding: 0;
-      min-height: unset;
+      min-height: 96px;
     }
-    .group-tile:active { transform: scale(0.97); box-shadow: 0 1px 4px rgba(0,0,0,0.08); }
-    .group-tile:not(:active):hover {
-      transform: translateY(-4px);
-      box-shadow: 0 10px 28px rgba(0,0,0,0.14);
-    }
+    .group-tile:active { transform: scale(.98); box-shadow: 0 4px 16px rgba(0,0,0,.1); }
+    .group-tile:not(:active):hover { box-shadow: 0 6px 20px rgba(0,0,0,.12); }
 
-    /* Bild: volle Breite, feste Höhe */
+    /* Foto- / Farb-Panel links */
     .group-tile-img {
-      width: 100%;
-      height: 150px;
-      object-fit: cover;
+      width: 160px;
+      height: auto;
       flex-shrink: 0;
+      object-fit: cover;
+      display: block;
       background: #ddd;
       border-radius: 0;
-      display: block;
     }
 
-    /* Name + Pfeil-Zeile */
+    /* Textbereich */
     .group-tile-footer {
+      flex: 1;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      padding: 12px 14px 13px;
-      gap: 8px;
+      padding: 0 28px;
+      gap: 16px;
     }
     .group-tile-name {
-      font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 16px;
-      letter-spacing: 0.8px;
-      color: #1a1a1a;
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-size: 20px;
+      font-weight: 700;
+      color: #1c1a18;
       line-height: 1.25;
       flex: 1;
+      letter-spacing: normal;
     }
+    /* Runder Pfeil-Button */
     .group-tile-chevron {
-      color: #ccc;
-      font-size: 22px;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--accent, #555);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 20px;
       flex-shrink: 0;
       line-height: 1;
     }
@@ -1557,6 +1565,7 @@ function buildTeamsScreen() {
 function buildGroupTile(gruppe, parent, cfg) {
   const tile = document.createElement('div');
   tile.className = 'group-tile';
+  tile.style.setProperty('--accent', cfg.color);
   const imgSrc = gruppe.imageUrl || null;
   tile.innerHTML = `
     ${imgSrc
@@ -1601,9 +1610,7 @@ function showDetail(vb, cfg) {
       if (!bereich.publicUrl) return;
       const tile = document.createElement('div');
       tile.className = 'group-tile';
-      tile.style.borderLeftColor = cfg.color;
-      tile.style.background = '#fff';
-      tile.style.boxShadow = '0 2px 8px rgba(0,0,0,0.07)';
+      tile.style.setProperty('--accent', cfg.color);
       const imgSrc = bereich.imageUrl || null;
       tile.innerHTML = `
         ${imgSrc
@@ -1638,6 +1645,7 @@ function showDetail(vb, cfg) {
     gruppen.forEach(gruppe => {
       const tile = document.createElement('div');
       tile.className = 'group-tile';
+      tile.style.setProperty('--accent', cfg.color);
       const imgSrc = gruppe.imageUrl ? gruppe.imageUrl : null;
       tile.innerHTML = `
         ${imgSrc
