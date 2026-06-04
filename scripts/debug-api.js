@@ -17,27 +17,20 @@ async function get(path) {
 }
 
 async function main() {
-  // Members von JG Johannes D. (ID 267)
-  console.log('=== Members Gruppe 267 (JG Johannes D.) ===');
-  const r = await get('/groups/267/members');
-  const members = r.body?.data ?? [];
-  members.forEach(m => {
-    const attrs = m.person?.domainAttributes ?? {};
-    const name = `${attrs.firstName ?? ''} ${attrs.lastName ?? ''}`.trim();
-    const imageUrl = m.person?.imageUrl ?? 'null';
-    console.log(`  ${name} → roleId: ${m.groupTypeRoleId}, imageUrl: ${imageUrl}`);
-  });
+  // Alle Gruppen laden und erste Gruppe mit vollem information-Objekt ausgeben
+  console.log('=== GET /groups?page=1&limit=5 ===');
+  const list = await get('/groups?page=1&limit=5');
+  const groups = list.body?.data ?? [];
+  console.log(`${groups.length} Gruppen (erste Seite, max 5)\n`);
 
-  // Direkt Person-Endpunkt für ersten Member testen
-  if (members.length > 0) {
-    const personId = members[0].person?.domainIdentifier;
-    if (personId) {
-      console.log(`\n=== GET /persons/${personId} ===`);
-      const p = await get(`/persons/${personId}`);
-      const data = p.body?.data ?? {};
-      console.log('imageUrl:', data.imageUrl ?? 'null');
-      console.log('Status:', p.status);
-    }
+  if (groups.length === 0) { console.log('Keine Gruppen gefunden.'); return; }
+
+  // Für die ersten 3 Gruppen: Detaildaten + information ausgeben
+  for (const g of groups.slice(0, 3)) {
+    console.log(`\n=== GET /groups/${g.id} (${g.name}) ===`);
+    const detail = await get(`/groups/${g.id}`);
+    const info = detail.body?.data?.information ?? detail.body?.information ?? {};
+    console.log('information:', JSON.stringify(info, null, 2));
   }
 }
 
