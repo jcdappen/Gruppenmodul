@@ -116,6 +116,12 @@ async function main() {
     const info     = details?.information ?? {};
     const settings = details?.settings ?? {};
 
+    // DEBUG (einmalig): Alle information-Felder ausgeben
+    if (!main._debugLogged) {
+      main._debugLogged = true;
+      console.log('\n=== DEBUG information fields ===\n' + JSON.stringify(info, null, 2) + '\n================================\n');
+    }
+
     const imageUrl  = info.imageUrl || null;
     const isHidden  = settings.isHidden ?? false;
     const publicUrl = isHidden ? null : `${BASE_URL}/publicgroup/${id}`;
