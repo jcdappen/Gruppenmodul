@@ -805,7 +805,7 @@
       display: none;
       position: fixed;
       inset: 0;
-      background: rgba(0,0,0,0.75);
+      background: rgba(0,0,0,.5);
       z-index: 999;
       align-items: center;
       justify-content: center;
@@ -814,12 +814,12 @@
 
     .modal {
       background: #ffffff;
-      border-radius: 5px;
-      width: 680px;
-      max-height: 80vh;
+      border-radius: 22px;
+      width: 960px;
+      max-height: 88vh;
       overflow-y: auto;
       -webkit-overflow-scrolling: touch;
-      box-shadow: 0 40px 100px rgba(0,0,0,0.3);
+      box-shadow: 0 40px 100px rgba(0,0,0,.25);
       animation: popIn 0.18s cubic-bezier(0.34,1.26,0.64,1);
     }
     @keyframes popIn {
@@ -828,53 +828,62 @@
     }
 
     .modal-header {
-      padding: 22px 26px 16px;
+      padding: 28px 32px 20px;
       position: relative;
-      border-bottom: 1px solid #e8e4e0;
+      border-bottom: 1px solid rgba(0,0,0,.08);
     }
     .modal-close {
       position: absolute;
-      top: 16px; right: 18px;
-      background: rgba(0,0,0,0.06);
-      border: none;
+      top: 20px; right: 24px;
+      background: rgba(0,0,0,.06);
+      border: 1px solid rgba(0,0,0,.1);
       border-radius: 50%;
       width: 44px; height: 44px;
       font-size: 20px;
-      color: #666;
+      color: rgba(0,0,0,.5);
       cursor: pointer;
       display: flex; align-items: center; justify-content: center;
       transition: background 0.15s;
     }
-    .modal-close:active { background: rgba(0,0,0,0.16); color: #1a1a1a; }
-    .modal-close:hover { background: rgba(0,0,0,0.12); color: #1a1a1a; }
+    .modal-close:active { background: rgba(0,0,0,.16); color: #1c1a18; }
+    .modal-close:hover  { background: rgba(0,0,0,.1);  color: #1c1a18; }
 
     .modal-bereich-label {
-      font-size: 9px;
-      letter-spacing: 3px;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: .2em;
       text-transform: uppercase;
-      color: #aaa;
-      font-family: Arial, sans-serif;
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      /* Farbe wird per JS gesetzt: cfg.color */
     }
     .modal-group-name {
-      font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 26px;
-      letter-spacing: 1.5px;
-      color: #1a1a1a;
-      padding-right: 52px;
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-size: 30px;
+      font-weight: 700;
+      color: #1c1a18;
+      letter-spacing: normal;
+      padding-right: 56px;
     }
 
     .modal-body {
-      padding: 20px 26px 26px;
+      padding: 24px 32px 32px;
       display: flex;
-      gap: 24px;
+      gap: 32px;
       align-items: flex-start;
     }
     .modal-desc {
       flex: 1;
-      font-size: 15px;
-      color: #555;
+      font-family: 'Gothic720', Arial, sans-serif;
+      font-weight: 300;
+      font-size: 16px;
+      color: #4d4d4d;
       line-height: 1.7;
+      letter-spacing: .04em;
+    }
+    .modal-desc strong {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      color: #1c1a18;
     }
     .modal-no-desc {
       font-style: italic;
@@ -886,23 +895,27 @@
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
+      background: #f1ece6;
+      border-radius: 16px;
+      padding: 20px;
     }
     #qrcode-container {
       background: white;
       padding: 10px;
-      border-radius: 4px;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      border-radius: 8px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.08);
     }
     .modal-qr-scan {
-      font-size: 10px;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: #aaa;
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      color: #1c1a18;
     }
     .modal-qr-url {
-      font-size: 9px;
-      color: #ccc;
+      font-size: 10px;
+      color: #999;
       text-align: center;
       max-width: 160px;
       word-break: break-all;
@@ -911,12 +924,12 @@
 
     /* ── TEAMLEITER ─────────────────────────────────── */
     .modal-leader-section {
-      margin-top: 16px;
-      padding-top: 14px;
-      border-top: 1px solid #e8e4e0;
+      margin-top: 20px;
+      padding-top: 16px;
+      border-top: 1px solid rgba(0,0,0,.08);
       display: flex;
       flex-direction: column;
-      gap: 10px;
+      gap: 12px;
     }
     .modal-leader-row {
       display: flex;
@@ -936,13 +949,19 @@
       flex-shrink: 0;
     }
     .leader-label {
-      font-size: 10px;
-      letter-spacing: 1px;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: .15em;
       text-transform: uppercase;
-      color: #bbb;
+      color: #999;
       margin-bottom: 2px;
     }
-    .leader-name { font-size: 14px; color: #333; }
+    .leader-name {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-size: 15px;
+      font-weight: 700;
+      color: #1c1a18;
+    }
 
     /* ── LADEN ──────────────────────────────────────── */
     #loading {
@@ -1738,8 +1757,8 @@ function openModal(gruppe, vb, cfg) {
   resetTimer();
   document.getElementById('modalHeader').style.borderBottomColor = cfg.color;
   document.getElementById('modalBereichLabel').textContent = vb.name;
+  document.getElementById('modalBereichLabel').style.color = cfg.color;
   document.getElementById('modalGroupName').textContent = gruppe.name;
-  document.getElementById('modalGroupName').style.color = cfg.color;
 
   const desc = document.getElementById('modalDesc');
   desc.innerHTML = gruppe.description
