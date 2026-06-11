@@ -772,178 +772,6 @@
       color: #bbb;
     }
 
-    /* ── MODAL ──────────────────────────────────────── */
-    .modal-bg {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0,0,0,.5);
-      z-index: 999;
-      align-items: center;
-      justify-content: center;
-      padding: 16px;
-    }
-    .modal-bg.open { display: flex; }
-
-    .modal {
-      background: #ffffff;
-      border-radius: 22px;
-      width: min(860px, 100%);
-      max-height: 88vh;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
-      box-shadow: 0 40px 100px rgba(0,0,0,.25);
-      animation: popIn 0.18s cubic-bezier(0.34,1.26,0.64,1);
-    }
-    @keyframes popIn {
-      from { transform: scale(0.88) translateY(16px); opacity: 0; }
-      to   { transform: scale(1) translateY(0); opacity: 1; }
-    }
-
-    .modal-header {
-      padding: 24px 28px 18px;
-      position: relative;
-      border-bottom: 1px solid rgba(0,0,0,.08);
-    }
-    .modal-close {
-      position: absolute;
-      top: 18px; right: 20px;
-      background: rgba(0,0,0,.06);
-      border: 1px solid rgba(0,0,0,.1);
-      border-radius: 50%;
-      width: 44px; height: 44px;
-      font-size: 20px;
-      color: rgba(0,0,0,.5);
-      cursor: pointer;
-      display: flex; align-items: center; justify-content: center;
-      transition: background 0.15s;
-    }
-    .modal-close:active { background: rgba(0,0,0,.16); color: #1c1a18; }
-    .modal-close:hover  { background: rgba(0,0,0,.1);  color: #1c1a18; }
-
-    .modal-bereich-label {
-      font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 11px;
-      letter-spacing: .2em;
-      text-transform: uppercase;
-      margin-bottom: 7px;
-    }
-    .modal-group-name {
-      font-family: 'Gothic725', Arial, sans-serif;
-      font-size: 26px;
-      font-weight: 700;
-      color: #1c1a18;
-      letter-spacing: normal;
-      padding-right: 52px;
-    }
-
-    .modal-body {
-      padding: 22px 28px 28px;
-      display: flex;
-      gap: 28px;
-      align-items: flex-start;
-    }
-    .modal-desc {
-      flex: 1;
-      font-family: 'Gothic720', Arial, sans-serif;
-      font-weight: 300;
-      font-size: 15px;
-      color: #4d4d4d;
-      line-height: 1.7;
-      letter-spacing: .04em;
-    }
-    .modal-desc strong {
-      font-family: 'Gothic725', Arial, sans-serif;
-      font-weight: 700;
-      color: #1c1a18;
-    }
-    .modal-no-desc {
-      font-style: italic;
-      color: #bbb;
-      font-size: 14px;
-    }
-    .modal-qr-block {
-      flex-shrink: 0;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      gap: 10px;
-      background: #f1ece6;
-      border-radius: 14px;
-      padding: 18px;
-    }
-    #qrcode-container {
-      background: white;
-      padding: 8px;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0,0,0,.08);
-    }
-    .modal-qr-scan {
-      font-family: 'Gothic725', Arial, sans-serif;
-      font-size: 12px;
-      font-weight: 700;
-      letter-spacing: .04em;
-      color: #1c1a18;
-    }
-    .modal-qr-hint {
-      font-family: 'Gothic720', Arial, sans-serif;
-      font-weight: 300;
-      font-size: 12px;
-      color: #999;
-      text-align: center;
-      max-width: 150px;
-      line-height: 1.4;
-    }
-    .modal-qr-url {
-      font-size: 10px;
-      color: #bbb;
-      text-align: center;
-      max-width: 150px;
-      word-break: break-all;
-      line-height: 1.4;
-    }
-
-    /* ── TEAMLEITER ─────────────────────────────────── */
-    .modal-leader-section {
-      margin-top: 18px;
-      padding-top: 14px;
-      border-top: 1px solid rgba(0,0,0,.08);
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-    }
-    .modal-leader-row {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-    .leader-avatar {
-      width: 64px;
-      height: 64px;
-      border-radius: 50%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 13px;
-      color: white;
-      flex-shrink: 0;
-    }
-    .leader-label {
-      font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 10px;
-      letter-spacing: .15em;
-      text-transform: uppercase;
-      color: #999;
-      margin-bottom: 2px;
-    }
-    .leader-name {
-      font-family: 'Gothic725', Arial, sans-serif;
-      font-size: 14px;
-      font-weight: 700;
-      color: #1c1a18;
-    }
-
     /* ── LADEN ──────────────────────────────────────── */
     #loading {
       position: absolute;
@@ -1011,10 +839,6 @@
       .group-tile-footer { padding: 0 16px; }
       .group-tile-name { font-size: 15px; }
       .group-tile-chevron { width: 34px; height: 34px; font-size: 17px; }
-
-      .modal-body { flex-direction: column; gap: 20px; }
-      .modal-qr-block { width: 100%; }
-      .modal-group-name { font-size: 20px; }
 
       .tag-popup { width: calc(100vw - 32px); }
 
@@ -1253,28 +1077,6 @@
   </div>
 </div>
 
-<!-- MODAL -->
-<div class="modal-bg" id="modalBg" onclick="closeModalBg(event)">
-  <div class="modal">
-    <div class="modal-header" id="modalHeader">
-      <button class="modal-close" onclick="closeModal()">✕</button>
-      <div class="modal-bereich-label" id="modalBereichLabel"></div>
-      <div class="modal-group-name" id="modalGroupName"></div>
-    </div>
-    <div class="modal-body">
-      <div>
-        <div class="modal-desc" id="modalDesc"></div>
-        <div class="modal-leader-section" id="modalLeaderSection" style="display:none"></div>
-      </div>
-      <div class="modal-qr-block">
-        <div id="qrcode-container"></div>
-        <div class="modal-qr-scan">Kontakt aufnehmen</div>
-        <div class="modal-qr-hint">Handy-Kamera auf den QR-Code richten</div>
-        <div class="modal-qr-url" id="modalUrl"></div>
-      </div>
-    </div>
-  </div>
-</div>
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 <script>
@@ -1343,7 +1145,6 @@ function hideAll() {
 }
 
 function showHome() {
-  closeModal();
   activeTag = null;
   activeKgDetail = null;
   currentView = 'home';
@@ -1521,6 +1322,7 @@ function buildGroupTile(gruppe, parent, cfg) {
   tile.className = 'group-tile';
   tile.style.setProperty('--accent', cfg.color);
   const imgSrc = gruppe.imageUrl || null;
+  const url = gruppe.publicUrl || `${CHURCHTOOLS}/publicgroup/${gruppe.id}`;
   tile.innerHTML = `
     ${imgSrc
       ? `<img class="group-tile-img" src="${imgSrc}" alt="${gruppe.name}" onerror="this.style.background='${cfg.color}22'">`
@@ -1529,7 +1331,7 @@ function buildGroupTile(gruppe, parent, cfg) {
       <div class="group-tile-name">${gruppe.name}</div>
       <div class="group-tile-chevron">›</div>
     </div>`;
-  tile.addEventListener('click', () => openModal(gruppe, parent, cfg));
+  tile.addEventListener('click', () => window.open(url, '_blank'));
   return tile;
 }
 
@@ -1573,7 +1375,7 @@ function showDetail(vb, cfg) {
           <div class="group-tile-name" style="color:${cfg.color};">${bereich.name}</div>
           <div class="group-tile-chevron">›</div>
         </div>`;
-      tile.addEventListener('click', () => openModal(bereich, vb, cfg));
+      tile.addEventListener('click', () => window.open(bereich.publicUrl || `${CHURCHTOOLS}/publicgroup/${bereich.id}`, '_blank'));
       const wrapper = document.createElement('div');
       wrapper.className = 'section-card';
       const list = document.createElement('div');
@@ -1605,7 +1407,7 @@ function showDetail(vb, cfg) {
           <div class="group-tile-name">${gruppe.name}</div>
           <div class="group-tile-chevron">›</div>
         </div>`;
-      tile.addEventListener('click', () => openModal(gruppe, vb, cfg));
+      tile.addEventListener('click', () => window.open(gruppe.publicUrl || `${CHURCHTOOLS}/publicgroup/${gruppe.id}`, '_blank'));
       list.appendChild(tile);
     });
     card.appendChild(list);
@@ -1674,56 +1476,7 @@ function buildStartscreen() {
   });
 }
 
-function renderMarkdown(text) {
-  const escaped = text.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;');
-  return escaped.split(/\n{2,}/).map(block => {
-    const line = block.trim();
-    if (!line) return '';
-    return `<p>${line.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/\n/g,'<br>')}</p>`;
-  }).join('');
-}
 
-function openModal(gruppe, vb, cfg) {
-  document.getElementById('modalHeader').style.borderBottomColor = cfg.color;
-  document.getElementById('modalBereichLabel').textContent = vb.name;
-  document.getElementById('modalBereichLabel').style.color = cfg.color;
-  document.getElementById('modalGroupName').textContent = gruppe.name;
-
-  const desc = document.getElementById('modalDesc');
-  desc.innerHTML = gruppe.description
-    ? renderMarkdown(gruppe.description)
-    : '<span class="modal-no-desc">Keine Beschreibung vorhanden.</span>';
-
-  const leaderSection = document.getElementById('modalLeaderSection');
-  if (gruppe.leaders?.length) {
-    leaderSection.innerHTML = gruppe.leaders.map(l => {
-      const parts    = l.name.split(' ').filter(Boolean);
-      const initials = parts.map(w => w[0]).join('').slice(0, 2).toUpperCase();
-      const avatar   = l.imageUrl
-        ? `<img class="leader-avatar" src="${l.imageUrl}" alt="${l.name}" style="object-fit:cover;"
-               onerror="this.outerHTML='<div class=\\'leader-avatar\\' style=\\'background:${cfg.color}\\'>${initials}</div>'">`
-        : `<div class="leader-avatar" style="background:${cfg.color}">${initials}</div>`;
-      return `<div class="modal-leader-row">${avatar}<div><div class="leader-label">Ansprechpartner</div><div class="leader-name">${l.name}</div></div></div>`;
-    }).join('');
-    leaderSection.style.display = 'flex';
-  } else {
-    leaderSection.style.display = 'none';
-  }
-
-  const url = gruppe.publicUrl || `${CHURCHTOOLS}/publicgroup/${gruppe.id}`;
-  document.getElementById('modalUrl').textContent = url.replace('https://', '');
-
-  const container = document.getElementById('qrcode-container');
-  container.innerHTML = '';
-  if (window.QRCode) {
-    new QRCode(container, { text: url, width: 150, height: 150, colorDark: '#111111', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
-  } else {
-    container.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=${encodeURIComponent(url)}" width="150" height="150" alt="QR-Code">`;
-  }
-
-  document.getElementById('modalBg').classList.add('open');
-  window.parent.postMessage({ type: 'gruppen-embed-scroll-to-top' }, '*');
-}
 
 function openContactPopup() {
   const container = document.getElementById('contact-qrcode-container');
@@ -1739,8 +1492,6 @@ function openContactPopup() {
 function closeContactPopup() { document.getElementById('contactPopupBg').classList.remove('open'); }
 function closeContactPopupBg(e) { if (e.target === document.getElementById('contactPopupBg')) closeContactPopup(); }
 
-function closeModal() { document.getElementById('modalBg').classList.remove('open'); }
-function closeModalBg(e) { if (e.target === document.getElementById('modalBg')) closeModal(); }
 
 function buildTagPopup() {
   const allTags = [...new Set(allGroups.flatMap(g => g.tags || []))].sort((a, b) => a.localeCompare(b, 'de'));
@@ -1769,7 +1520,6 @@ function closeTagPopup() { document.getElementById('tagPopupBg').classList.remov
 function closeTagPopupBg(e) { if (e.target === document.getElementById('tagPopupBg')) closeTagPopup(); }
 
 function showTagResults(tag) {
-  closeModal();
   currentView = 'tag';
   hideAll();
   document.getElementById('backBtn').classList.add('visible');
@@ -1795,7 +1545,7 @@ function showTagResults(tag) {
     const tile = document.createElement('div');
     tile.className = 'tagresult-tile';
     tile.style.borderLeft = `4px solid ${accentColor}`;
-    tile.addEventListener('click', () => openModal(g, vb || g, cfg || { color: accentColor }));
+    tile.addEventListener('click', () => window.open(g.publicUrl || `${CHURCHTOOLS}/publicgroup/${g.id}`, '_blank'));
     const imgSrc = g.imageUrl ? g.imageUrl : null;
     tile.innerHTML = `
       ${imgSrc ? `<img class="tagresult-tile-img" src="${imgSrc}" alt="${g.name}" onerror="this.style.display='none'">` : `<div class="tagresult-tile-img"></div>`}
@@ -1826,7 +1576,7 @@ function findVbOfGroup(gruppe) {
 }
 
 document.addEventListener('keydown', e => {
-  if (e.key === 'Escape') { closeModal(); closeTagPopup(); }
+  if (e.key === 'Escape') { closeTagPopup(); }
 });
 
 async function loadData() {
