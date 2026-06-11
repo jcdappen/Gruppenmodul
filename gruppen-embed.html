@@ -1722,6 +1722,7 @@ function openModal(gruppe, vb, cfg) {
   }
 
   document.getElementById('modalBg').classList.add('open');
+  window.parent.postMessage({ type: 'gruppen-embed-scroll-to-top' }, '*');
 }
 
 function openContactPopup() {
