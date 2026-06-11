@@ -34,7 +34,7 @@
       -webkit-user-select: none;
       user-select: none;
       cursor: default;
-      touch-action: manipulation;
+      touch-action: pan-y;
     }
 
     #app {
@@ -1600,7 +1600,7 @@ main().catch(err => {
   console.error(err);
 });
 
-// Auto-Höhe: teilt der Elternseite die aktuelle Inhaltshöhe mit
+// Auto-Höhe
 function sendHeight() {
   const h = Math.ceil(document.getElementById('app').getBoundingClientRect().height);
   window.parent.postMessage({ type: 'gruppen-embed-resize', height: h }, '*');
@@ -1611,6 +1611,17 @@ if (window.ResizeObserver) {
 } else {
   setInterval(sendHeight, 300);
 }
+
+// iOS-Fix: Touch-Scroll an Elternseite weiterleiten
+let touchStartY = 0;
+document.addEventListener('touchstart', e => {
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+document.addEventListener('touchmove', e => {
+  const delta = touchStartY - e.touches[0].clientY;
+  touchStartY = e.touches[0].clientY;
+  window.parent.postMessage({ type: 'gruppen-embed-touchscroll', delta }, '*');
+}, { passive: true });
 </script>
 </body>
 </html>
