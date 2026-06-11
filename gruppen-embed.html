@@ -1851,11 +1851,12 @@ main().catch(err => {
 
 // Auto-Höhe: teilt der Elternseite die aktuelle Inhaltshöhe mit
 function sendHeight() {
-  const h = document.documentElement.scrollHeight;
+  const h = Math.ceil(document.getElementById('app').getBoundingClientRect().height);
   window.parent.postMessage({ type: 'gruppen-embed-resize', height: h }, '*');
 }
+window.addEventListener('load', sendHeight);
 if (window.ResizeObserver) {
-  new ResizeObserver(sendHeight).observe(document.documentElement);
+  new ResizeObserver(sendHeight).observe(document.getElementById('app'));
 } else {
   setInterval(sendHeight, 300);
 }
