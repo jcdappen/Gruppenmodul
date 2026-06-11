@@ -43,66 +43,32 @@
       width: 100%;
     }
 
-    /* ── HEADER ─────────────────────────────────────── */
-    .header {
-      background: #f1ece6;
-      border-bottom: 1px solid rgba(0,0,0,.08);
-      padding: 20px 32px 14px;
-      height: auto;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+    /* ── NAV BAR ────────────────────────────────────── */
+    .nav-bar {
+      display: none;
+      padding: 12px 24px 8px;
       flex-shrink: 0;
     }
-    .header-left {
-      display: flex;
-      align-items: center;
-      gap: 0;
-    }
-    .header-logo {
-      height: 40px;
-      width: auto;
-    }
-    .header-divider {
-      width: 1px;
-      height: 36px;
-      background: rgba(0,0,0,.1);
-      margin: 0 16px;
-    }
-    .header-title {
-      font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 18px;
-      letter-spacing: .12em;
-      color: #1c1a18;
-      line-height: 1.1;
-    }
-    .header-sub {
-      font-size: 13px;
-      color: #bb2232;
-      margin-top: 3px;
-      letter-spacing: .06em;
-      font-family: 'Gothic720', Arial, sans-serif;
-      font-weight: 300;
-    }
+    .nav-bar.visible { display: flex; }
 
     .back-btn {
-      display: none;
+      display: flex;
       align-items: center;
       gap: 10px;
-      background: rgba(0,0,0,.06);
-      border: 1px solid rgba(0,0,0,.14);
-      color: rgba(0,0,0,.55);
-      padding: 10px 18px;
-      border-radius: 3px;
+      background: rgba(0,0,0,.08);
+      border: 1px solid rgba(0,0,0,.16);
+      color: rgba(0,0,0,.65);
+      padding: 13px 24px;
+      border-radius: 8px;
       cursor: pointer;
       font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 13px;
+      font-size: 15px;
       letter-spacing: 1px;
-      min-height: 44px;
+      min-height: 52px;
       transition: background 0.15s, color 0.15s;
     }
-    .back-btn:active { background: rgba(0,0,0,.14); color: #1c1a18; }
-    .back-btn.visible { display: flex; }
+    .back-btn:active { background: rgba(0,0,0,.18); color: #1c1a18; }
+    .back-btn:hover  { background: rgba(0,0,0,.13); color: #1c1a18; }
 
     /* ── MAIN CONTENT ───────────────────────────────── */
     .main {
@@ -582,48 +548,7 @@
       line-height: 1;
     }
 
-    /* ── KONTAKT-BUTTON ────────────────────────────── */
-    .contact-btn {
-      display: none;
-      align-items: center;
-      gap: 8px;
-      background: #bb2232;
-      border: none;
-      color: #fff;
-      padding: 10px 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-family: 'Gothic725', Arial, sans-serif;
-      font-size: 13px;
-      font-weight: 700;
-      letter-spacing: .04em;
-      min-height: 44px;
-      transition: background 0.15s;
-    }
-    .contact-btn:active { background: #70141e; }
-    .contact-btn:hover  { background: #9e1d2a; }
-    .contact-btn.visible { display: flex; }
-
     /* ── TAG-SUCHE POPUP ────────────────────────────── */
-    .tag-search-btn {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      background: rgba(0,0,0,.06);
-      border: 1px solid rgba(0,0,0,.14);
-      color: rgba(0,0,0,.6);
-      padding: 10px 18px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-family: 'GrotesqueSC', Arial, sans-serif;
-      font-size: 13px;
-      letter-spacing: 1px;
-      min-height: 44px;
-      transition: background 0.15s, color 0.15s;
-    }
-    .tag-search-btn:active { background: rgba(0,0,0,.14); color: #1c1a18; }
-    .tag-search-btn:hover  { background: rgba(0,0,0,.1);  color: #1c1a18; }
-
     .tag-popup-bg {
       display: none;
       position: fixed;
@@ -791,12 +716,8 @@
 
     /* ── RESPONSIVE ─────────────────────────────────── */
     @media (max-width: 680px) {
-      .header { padding: 12px 16px 10px; gap: 8px; flex-wrap: wrap; }
-      .header-logo { height: 32px; }
-      .header-divider { margin: 0 10px; height: 28px; }
-      .header-title { font-size: 14px; }
-      .header-sub { font-size: 11px; }
-      .header-right { gap: 8px; }
+      .nav-bar { padding: 10px 16px 6px; }
+      .back-btn { font-size: 13px; padding: 11px 18px; min-height: 46px; }
 
       .main { padding: 0 16px 16px; }
 
@@ -841,37 +762,14 @@
       .group-tile-chevron { width: 34px; height: 34px; font-size: 17px; }
 
       .tag-popup { width: calc(100vw - 32px); }
-
-      .contact-btn span, .tag-search-btn span { display: none; }
     }
   </style>
 </head>
 <body>
 <div id="app">
 
-  <div class="header">
-    <div class="header-left">
-      <img class="header-logo"
-           src="assets/logos/logo-icon.png"
-           alt="Gemeinde Konkordia"
-           onerror="this.style.display='none'">
-      <div class="header-divider"></div>
-      <div>
-        <div class="header-title">Gemeinde Konkordia</div>
-        <div class="header-sub">Willkommen daheim.</div>
-      </div>
-    </div>
-    <div style="display:flex;align-items:center;gap:12px;" class="header-right">
-      <button class="contact-btn" id="contactBtn" onclick="openContactPopup()">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/></svg>
-        <span>Kontakt</span>
-      </button>
-      <button class="tag-search-btn" id="tagSearchBtn" onclick="openTagPopup()" style="display:none;">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-        <span>Nach Gaben suchen</span>
-      </button>
-      <button class="back-btn" id="backBtn" onclick="goBack()">← Zurück</button>
-    </div>
+  <div class="nav-bar" id="navBar">
+    <button class="back-btn" id="backBtn" onclick="goBack()">← Zurück</button>
   </div>
 
   <div class="main">
@@ -1129,7 +1027,6 @@ function getConfig(vbName) {
 }
 
 function hideAll() {
-  document.getElementById('contactBtn').classList.remove('visible');
   document.getElementById('homescreen').style.display = 'none';
   document.getElementById('startscreen').style.display = 'none';
   document.getElementById('kleingruppenscreen').style.display = 'none';
@@ -1150,9 +1047,7 @@ function showHome() {
   currentView = 'home';
   hideAll();
   document.getElementById('homescreen').style.display = 'flex';
-  document.getElementById('backBtn').classList.remove('visible');
-  document.getElementById('tagSearchBtn').style.display = 'none';
-  document.getElementById('contactBtn').classList.add('visible');
+  document.getElementById('navBar').classList.remove('visible');
 }
 
 function showChurchTools() {
@@ -1161,8 +1056,7 @@ function showChurchTools() {
   hideAll();
   buildTeamsScreen();
   document.getElementById('teamsscreen').style.display = 'flex';
-  document.getElementById('backBtn').classList.add('visible');
-  document.getElementById('tagSearchBtn').style.display = 'flex';
+  document.getElementById('navBar').classList.add('visible');
 }
 
 function showMitmachen() {
@@ -1170,8 +1064,7 @@ function showMitmachen() {
   currentView = 'start';
   hideAll();
   document.getElementById('startscreen').style.display = 'grid';
-  document.getElementById('backBtn').classList.add('visible');
-  document.getElementById('tagSearchBtn').style.display = 'flex';
+  document.getElementById('navBar').classList.add('visible');
 }
 
 function showKleingruppen() {
@@ -1179,8 +1072,7 @@ function showKleingruppen() {
   activeKgDetail = null;
   hideAll();
   document.getElementById('kleingruppenscreen').style.display = 'flex';
-  document.getElementById('backBtn').classList.add('visible');
-  document.getElementById('tagSearchBtn').style.display = 'none';
+  document.getElementById('navBar').classList.add('visible');
 }
 
 function showKgDetail(type) {
@@ -1191,8 +1083,7 @@ function showKgDetail(type) {
   const el = document.getElementById('kgdetail-' + type);
   el.style.display = 'block';
   el.classList.add('visible');
-  document.getElementById('backBtn').classList.add('visible');
-  document.getElementById('tagSearchBtn').style.display = 'none';
+  document.getElementById('navBar').classList.add('visible');
 }
 
 function buildKgDetail(type) {
@@ -1342,8 +1233,7 @@ function showDetail(vb, cfg) {
   dv.innerHTML = '';
   dv.style.display = 'block';
   dv.classList.add('visible');
-  document.getElementById('backBtn').classList.add('visible');
-  document.getElementById('tagSearchBtn').style.display = 'flex';
+  document.getElementById('navBar').classList.add('visible');
 
   const hdr = document.createElement('div');
   hdr.className = 'detail-bereich-header';
@@ -1522,8 +1412,7 @@ function closeTagPopupBg(e) { if (e.target === document.getElementById('tagPopup
 function showTagResults(tag) {
   currentView = 'tag';
   hideAll();
-  document.getElementById('backBtn').classList.add('visible');
-  document.getElementById('tagSearchBtn').style.display = 'flex';
+  document.getElementById('navBar').classList.add('visible');
 
   const results = allGroups.filter(g => (g.tags || []).includes(tag) && g.publicUrl);
   const rv = document.getElementById('tagresultview');
