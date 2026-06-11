@@ -27,8 +27,7 @@
 
     html, body {
       width: 100%;
-      height: 100%;
-      overflow: hidden;
+      height: auto;
       background: #f1ece6;
       font-family: 'Gothic720', Arial, sans-serif;
       color: #1c1a18;
@@ -41,7 +40,6 @@
     #app {
       display: flex;
       flex-direction: column;
-      height: 100vh;
       width: 100%;
     }
 
@@ -109,7 +107,6 @@
     /* ── MAIN CONTENT ───────────────────────────────── */
     .main {
       flex: 1;
-      overflow: hidden;
       padding: 0 32px 24px;
       background: #f1ece6;
       position: relative;
@@ -117,9 +114,9 @@
 
     /* ── HOMESCREEN ─────────────────────────────────── */
     #homescreen {
-      height: 100%;
       display: flex;
       flex-direction: column;
+      padding-bottom: 16px;
     }
 
     .hs-greeting { margin-top: 20px; margin-bottom: 16px; }
@@ -138,7 +135,6 @@
     }
 
     .hs-list {
-      flex: 1;
       display: flex;
       flex-direction: column;
       gap: 14px;
@@ -147,7 +143,7 @@
     .hs-row {
       background: #fff;
       border-radius: 18px;
-      flex: 1;
+      min-height: 130px;
       display: flex;
       align-items: stretch;
       box-shadow: 0 2px 12px rgba(0,0,0,.05);
@@ -230,16 +226,16 @@
 
     /* ── STARTSCREEN (Visionsbereiche) ──────────────── */
     #startscreen {
-      height: 100%;
       display: flex;
       flex-direction: column;
       gap: 14px;
+      padding-bottom: 16px;
     }
 
     .bc-card {
       background: #fff;
       border-radius: 18px;
-      flex: 1;
+      min-height: 110px;
       display: flex;
       align-items: stretch;
       box-shadow: 0 2px 12px rgba(0,0,0,.05);
@@ -318,9 +314,9 @@
 
     /* ── KLEINGRUPPEN-SCREEN ────────────────────────── */
     #kleingruppenscreen {
-      height: 100%;
       display: none;
       flex-direction: column;
+      padding-bottom: 16px;
     }
 
     .kg-header {
@@ -344,7 +340,6 @@
     }
 
     .kg-grid {
-      flex: 1;
       display: flex;
       flex-direction: column;
       gap: 14px;
@@ -353,7 +348,7 @@
     .kg-card {
       background: #fff;
       border-radius: 18px;
-      flex: 1;
+      min-height: 110px;
       display: flex;
       align-items: stretch;
       box-shadow: 0 2px 12px rgba(0,0,0,.05);
@@ -432,9 +427,7 @@
     /* ── KLEINGRUPPEN DETAIL ────────────────────────── */
     .kg-detail-view {
       display: none;
-      height: 100%;
-      overflow-y: auto;
-      -webkit-overflow-scrolling: touch;
+      padding-bottom: 16px;
     }
     .kg-detail-view.visible { display: block; }
 
@@ -469,16 +462,9 @@
     /* ── DETAILANSICHT (Visionsbereiche) ────────────── */
     #detailview {
       display: none;
-      height: 100%;
-      overflow-y: auto;
-      overflow-x: hidden;
-      scrollbar-width: auto;
-      scrollbar-color: #bbb transparent;
-      -webkit-overflow-scrolling: touch;
+      padding-bottom: 16px;
     }
     #detailview.visible { display: block; }
-    #detailview::-webkit-scrollbar { width: 8px; }
-    #detailview::-webkit-scrollbar-thumb { background: #ccc; border-radius: 4px; }
 
     .detail-bereich-header {
       background: #fff;
@@ -503,16 +489,11 @@
 
     /* ── TEAMS-SCREEN ────────────────────────────────── */
     #teamsscreen {
-      height: 100%;
       display: none;
       flex-direction: column;
+      padding-bottom: 16px;
     }
-    #teamsGrid {
-      flex: 1;
-      overflow-y: auto;
-      overflow-x: hidden;
-      -webkit-overflow-scrolling: touch;
-    }
+    #teamsGrid {}
 
     .sections-grid {
       display: flex;
@@ -725,11 +706,7 @@
     /* ── TAG-ERGEBNISANSICHT ────────────────────────── */
     #tagresultview {
       display: none;
-      height: 100%;
-      overflow-y: auto;
-      scrollbar-width: auto;
-      scrollbar-color: #bbb transparent;
-      -webkit-overflow-scrolling: touch;
+      padding-bottom: 16px;
     }
     #tagresultview.visible { display: block; }
 
@@ -1871,6 +1848,17 @@ main().catch(err => {
   document.getElementById('loading').innerHTML = `<p>Fehler beim Laden der Daten.</p>`;
   console.error(err);
 });
+
+// Auto-Höhe: teilt der Elternseite die aktuelle Inhaltshöhe mit
+function sendHeight() {
+  const h = document.documentElement.scrollHeight;
+  window.parent.postMessage({ type: 'gruppen-embed-resize', height: h }, '*');
+}
+if (window.ResizeObserver) {
+  new ResizeObserver(sendHeight).observe(document.documentElement);
+} else {
+  setInterval(sendHeight, 300);
+}
 </script>
 </body>
 </html>
