@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-11T08:31:05.938Z",
+  "generatedAt": "2026-06-12T08:19:02.782Z",
   "groups": [
     {
       "id": 124,
@@ -62,7 +62,6 @@
       "name": "Alpha Kurs Mitarbeiter",
       "groupTypeId": 2,
       "parentGroupIds": [
-        351,
         170
       ],
       "description": "**Warum**\n\nMenschen einen Raum bieten, den Glauben kennenzulernen – ohne Druck, mit offenen Fragen und ehrlichen Gesprächen. Eine Einladung für Suchende, Jesus und Gemeinschaft in entspannter Atmosphäre zu entdecken.\n\n**Was**\n\nOrganisation und Durchführung von Glaubenskursen (Gott & die Welt Kurs und Alphakurs) mit Essen, Input und Diskussion für Interessierte und Suchende.\n\n**Wie**\n\n- Einmal jährlich: „Gott & die Welt Kurs\" (4 Abende) als Einstieg, danach Alphakurs (12 Abende + Wochenende)\n- Gemeinsame Mahlzeiten vorbereiten und kochen\n- Kleingruppenleitung und Moderation der Diskussionen\n- Offene, einladende Atmosphäre ohne Druck gestalten\n\n**Du kannst mitmachen**\n\nDu hast Freude an Begegnungen mit suchenden Menschen und führst gern Gespräche? Dann bist du willkommen. Was uns wichtig ist: Offenheit für Fragen, Geduld, Authentizität und Gastfreundschaft.",
@@ -108,29 +107,6 @@
       ],
       "settings": {
         "isHidden": false,
-        "modules": []
-      },
-      "childGroupIds": []
-    },
-    {
-      "id": 196,
-      "name": "Alpha-Kurs 2025",
-      "groupTypeId": 4,
-      "parentGroupIds": [
-        351
-      ],
-      "description": "Alpha ist eine Serie von rund zehn Treffen, die in entspannter Atmosphäre stattfinden.\n\nBei jedem der Treffen gibt es ein gemeinsames Essen, ein Thema und Gesprächsgruppen.\n\nDazu laden wir herzlich ein.\n\nStart ist ab der KW 4.\nBitte gebe bei der Anmeldung die Wochentage und die Uhrzeit an, die für dich machbar sind.\nVielen herzlichen Dank!\n\nDeine Gemeinde in der Konkordia Bühl",
-      "publicUrl": null,
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/719/8d4b0dd9603c630e19ecc0c2e9b3d8141ee6dd74a2d5fa4341623a1aa8a3dba2",
-      "tags": [],
-      "leaders": [
-        {
-          "name": "Harald Trapp",
-          "imageUrl": null
-        }
-      ],
-      "settings": {
-        "isHidden": true,
         "modules": []
       },
       "childGroupIds": []
@@ -1515,11 +1491,9 @@
         "modules": []
       },
       "childGroupIds": [
-        370,
         321,
         115,
-        299,
-        196
+        299
       ]
     },
     {
