@@ -888,6 +888,42 @@
       user-select: none;
     }
     .link-popup-back:active { color: #1c1a18; }
+    /* Bild-Viewer */
+    .link-image-viewer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      background: rgba(0,0,0,.92);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .link-image-viewer.open { display: flex; }
+    .link-image-viewer img {
+      max-width: 95vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 8px;
+      box-shadow: 0 20px 60px rgba(0,0,0,.5);
+    }
+    .link-image-back {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      padding: 12px 26px;
+      background: #ffffff;
+      color: #1c1a18;
+      border: none;
+      border-radius: 40px;
+      font-family: Gothic720BT, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      touch-action: manipulation;
+      user-select: none;
+    }
+    .link-image-back:active { background: #e0ddd8; }
     /* Clickable links inside descriptions */
     .modal-desc a {
       color: #0a6ed1;
@@ -1517,6 +1553,8 @@ function hideAll() {
 function showHome() {
   closeModal();
   document.getElementById('linkOverlay').classList.remove('open');
+  document.getElementById('linkImageViewer').classList.remove('open');
+  document.getElementById('linkImageViewerImg').src = '';
   activeTag = null;
   activeKgDetail = null;
   currentView = 'home';
@@ -1884,9 +1922,18 @@ function renderMarkdown(text) {
   }).join('');
 }
 
-// ── Link-Popup ────────────────────────────────────
+// ── Link-Popup / Bild-Viewer ──────────────────────
+function isImageUrl(url) {
+  return /\.(jpe?g|png|gif|webp|svg)(\?.*)?$/i.test(url);
+}
+
 function openLinkOverlay(url) {
   resetTimer();
+  if (isImageUrl(url)) {
+    document.getElementById('linkImageViewerImg').src = url;
+    document.getElementById('linkImageViewer').classList.add('open');
+    return;
+  }
   document.getElementById('linkOverlayUrl').textContent = url.replace('https://','');
   const container = document.getElementById('link-qrcode-container');
   container.innerHTML = '';
@@ -1904,6 +1951,11 @@ function closeLinkOverlay() {
 }
 function closeLinkOverlayBg(e) {
   if (e.target === document.getElementById('linkOverlay')) closeLinkOverlay();
+}
+function closeLinkImageViewer() {
+  document.getElementById('linkImageViewer').classList.remove('open');
+  document.getElementById('linkImageViewerImg').src = '';
+  resetTimer();
 }
 
 // ── Modal ─────────────────────────────────────────
@@ -2104,6 +2156,11 @@ main().catch(err => {
     <p class="link-popup-url" id="linkOverlayUrl"></p>
     <button class="link-popup-back" onclick="closeLinkOverlay()">&#8592; Zurück</button>
   </div>
+</div>
+
+<div class="link-image-viewer" id="linkImageViewer">
+  <button class="link-image-back" onclick="closeLinkImageViewer()">&#8592; Zurück</button>
+  <img id="linkImageViewerImg" src="" alt="">
 </div>
 </body>
 </html>
