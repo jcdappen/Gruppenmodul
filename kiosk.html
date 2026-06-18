@@ -536,6 +536,87 @@
       color: #555;
       line-height: 1.7;
     }
+    .modal-desc a {
+      color: #0a6ed1;
+      text-decoration: underline;
+      word-break: break-all;
+    }
+    /* Link-Popup */
+    .link-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      background: rgba(0,0,0,.6);
+      align-items: center;
+      justify-content: center;
+    }
+    .link-overlay.open { display: flex; }
+    .link-popup {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 36px 40px 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      box-shadow: 0 40px 100px rgba(0,0,0,.3);
+      max-width: 420px;
+      width: 90%;
+    }
+    .link-popup-qr { width: 180px; height: 180px; }
+    .link-popup-hint {
+      font-size: 16px;
+      color: #555;
+      margin: 0;
+      text-align: center;
+    }
+    .link-popup-url {
+      font-size: 13px;
+      color: #999;
+      word-break: break-all;
+      text-align: center;
+      margin: 0;
+    }
+    .link-popup-back {
+      padding: 10px 24px;
+      background: transparent;
+      color: #888;
+      border: none;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    /* Bild-Viewer */
+    .link-image-viewer {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      background: rgba(0,0,0,.92);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+    }
+    .link-image-viewer.open { display: flex; }
+    .link-image-viewer img {
+      max-width: 95vw;
+      max-height: 88vh;
+      object-fit: contain;
+      border-radius: 8px;
+    }
+    .link-image-back {
+      position: absolute;
+      top: 20px;
+      left: 24px;
+      padding: 12px 26px;
+      background: #ffffff;
+      color: #1c1a18;
+      border: none;
+      border-radius: 40px;
+      font-size: 16px;
+      font-weight: 700;
+      cursor: pointer;
+    }
     .modal-no-desc {
       font-style: italic;
       color: #bbb;
@@ -967,9 +1048,43 @@ function renderMarkdown(text) {
     const inlined = line
       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
       .replace(/\*(.+?)\*/g, '<em>$1</em>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, (_,label,url) =>
+        `<a href="#" onclick="openLinkOverlay('${url.replace(/'/g,"\\'")}');return false;">${label}</a>`)
+      .replace(/(^|[\s(])((https?:\/\/)[^\s<>"]+)/g, (m,pre,url) =>
+        `${pre}<a href="#" onclick="openLinkOverlay('${url.replace(/'/g,"\\'")}');return false;">${url}</a>`)
       .replace(/\n/g, '<br>');
     return `<p>${inlined}</p>`;
   }).join('');
+}
+
+function isImageUrl(url) {
+  return /\.(jpe?g|png|gif|webp|svg)(\?.*)?$/i.test(url);
+}
+function openLinkOverlay(url) {
+  if (isImageUrl(url)) {
+    document.getElementById('linkImageViewerImg').src = url;
+    document.getElementById('linkImageViewer').classList.add('open');
+    return;
+  }
+  document.getElementById('linkOverlayUrl').textContent = url.replace('https://','');
+  const container = document.getElementById('link-qrcode-container');
+  container.innerHTML = '';
+  if (window.QRCode) {
+    new QRCode(container, { text: url, width: 180, height: 180, colorDark: '#111111', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+  } else {
+    container.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(url)}" width="180" height="180" alt="QR-Code">`;
+  }
+  document.getElementById('linkOverlay').classList.add('open');
+}
+function closeLinkOverlay() {
+  document.getElementById('linkOverlay').classList.remove('open');
+}
+function closeLinkOverlayBg(e) {
+  if (e.target === document.getElementById('linkOverlay')) closeLinkOverlay();
+}
+function closeLinkImageViewer() {
+  document.getElementById('linkImageViewer').classList.remove('open');
+  document.getElementById('linkImageViewerImg').src = '';
 }
 
 // ── Modal ─────────────────────────────────────────
@@ -1168,5 +1283,19 @@ main().catch(err => {
   console.error(err);
 });
 </script>
+
+<div class="link-overlay" id="linkOverlay" onclick="closeLinkOverlayBg(event)">
+  <div class="link-popup">
+    <div class="link-popup-qr" id="link-qrcode-container"></div>
+    <p class="link-popup-hint">Mit dem Smartphone scannen</p>
+    <p class="link-popup-url" id="linkOverlayUrl"></p>
+    <button class="link-popup-back" onclick="closeLinkOverlay()">&#8592; Zurück</button>
+  </div>
+</div>
+
+<div class="link-image-viewer" id="linkImageViewer">
+  <button class="link-image-back" onclick="closeLinkImageViewer()">&#8592; Zurück</button>
+  <img id="linkImageViewerImg" src="" alt="">
+</div>
 </body>
 </html>
