@@ -834,31 +834,53 @@
     }
     .modal-bg.open { display: flex; }
 
-    /* Link-Overlay (Webview) */
+    /* Link-Popup */
     .link-overlay {
       display: none;
       position: fixed;
       inset: 0;
       z-index: 1100;
-      flex-direction: column;
-      background: #fff;
+      background: rgba(0,0,0,.6);
+      align-items: center;
+      justify-content: center;
     }
     .link-overlay.open { display: flex; }
-    .link-overlay-bar {
+    .link-popup {
+      background: #ffffff;
+      border-radius: 22px;
+      padding: 36px 40px 32px;
       display: flex;
+      flex-direction: column;
       align-items: center;
       gap: 16px;
-      padding: 12px 20px;
-      background: #1c1a18;
-      flex-shrink: 0;
+      box-shadow: 0 40px 100px rgba(0,0,0,.3);
+      animation: popIn 0.18s cubic-bezier(0.34,1.26,0.64,1);
+      max-width: 420px;
+      width: 90%;
     }
-    .link-overlay-back {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 22px;
-      background: #ffffff;
-      color: #1c1a18;
+    .link-popup-qr {
+      width: 180px;
+      height: 180px;
+    }
+    .link-popup-hint {
+      font-family: Gothic720BT, sans-serif;
+      font-size: 18px;
+      color: #555;
+      margin: 0;
+      text-align: center;
+    }
+    .link-popup-url {
+      font-size: 13px;
+      color: #999;
+      word-break: break-all;
+      text-align: center;
+      margin: 0;
+    }
+    .link-popup-open {
+      width: 100%;
+      padding: 14px 24px;
+      background: #1c1a18;
+      color: #fff;
       border: none;
       border-radius: 40px;
       font-family: Gothic720BT, sans-serif;
@@ -867,21 +889,20 @@
       cursor: pointer;
       touch-action: manipulation;
       user-select: none;
-      white-space: nowrap;
     }
-    .link-overlay-back:active { background: #e0ddd8; }
-    .link-overlay-url {
-      color: rgba(255,255,255,.55);
-      font-size: 14px;
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
-    }
-    .link-overlay iframe {
-      flex: 1;
+    .link-popup-open:active { background: #3a3835; }
+    .link-popup-back {
+      padding: 10px 24px;
+      background: transparent;
+      color: #888;
       border: none;
-      width: 100%;
+      font-family: Gothic720BT, sans-serif;
+      font-size: 16px;
+      cursor: pointer;
+      touch-action: manipulation;
+      user-select: none;
     }
+    .link-popup-back:active { color: #1c1a18; }
     /* Clickable links inside descriptions */
     .modal-desc a {
       color: #0a6ed1;
@@ -1511,7 +1532,6 @@ function hideAll() {
 function showHome() {
   closeModal();
   document.getElementById('linkOverlay').classList.remove('open');
-  document.getElementById('linkOverlayFrame').src = 'about:blank';
   activeTag = null;
   activeKgDetail = null;
   currentView = 'home';
@@ -1879,18 +1899,27 @@ function renderMarkdown(text) {
   }).join('');
 }
 
-// ── Link-Overlay ──────────────────────────────────
+// ── Link-Popup ────────────────────────────────────
 function openLinkOverlay(url) {
   resetTimer();
   document.getElementById('linkOverlayUrl').textContent = url.replace('https://','');
-  document.getElementById('linkOverlayFrame').src = url;
+  document.getElementById('linkOverlayOpenBtn').onclick = () => { window.open(url, '_blank'); resetTimer(); };
+  const container = document.getElementById('link-qrcode-container');
+  container.innerHTML = '';
+  if (window.QRCode) {
+    new QRCode(container, { text: url, width: 180, height: 180, colorDark: '#111111', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+  } else {
+    container.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=${encodeURIComponent(url)}" width="180" height="180" alt="QR-Code">`;
+  }
   document.getElementById('linkOverlay').classList.add('open');
 }
 
 function closeLinkOverlay() {
   document.getElementById('linkOverlay').classList.remove('open');
-  document.getElementById('linkOverlayFrame').src = 'about:blank';
   resetTimer();
+}
+function closeLinkOverlayBg(e) {
+  if (e.target === document.getElementById('linkOverlay')) closeLinkOverlay();
 }
 
 // ── Modal ─────────────────────────────────────────
@@ -2084,12 +2113,14 @@ main().catch(err => {
 });
 </script>
 
-<div class="link-overlay" id="linkOverlay">
-  <div class="link-overlay-bar">
-    <button class="link-overlay-back" onclick="closeLinkOverlay()">&#8592; Zurück zum Kiosk</button>
-    <span class="link-overlay-url" id="linkOverlayUrl"></span>
+<div class="link-overlay" id="linkOverlay" onclick="closeLinkOverlayBg(event)">
+  <div class="link-popup">
+    <div class="link-popup-qr" id="link-qrcode-container"></div>
+    <p class="link-popup-hint">Mit dem Smartphone scannen</p>
+    <p class="link-popup-url" id="linkOverlayUrl"></p>
+    <button class="link-popup-open" id="linkOverlayOpenBtn">Im Browser öffnen</button>
+    <button class="link-popup-back" onclick="closeLinkOverlay()">&#8592; Zurück</button>
   </div>
-  <iframe id="linkOverlayFrame" src="about:blank" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
 </div>
 </body>
 </html>
