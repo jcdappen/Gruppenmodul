@@ -1172,7 +1172,7 @@ function buildTeamsScreen() {
   }
 
   const children = allGroups.filter(g => (g.parentGroupIds || []).includes(parent.id));
-  const FORCE_LEAF = ['evangelisation', 'jugend', 'kinder', 'jugendarbeit', 'technik'];
+  const FORCE_LEAF = ['evangelisation', 'jugend', 'kinder', 'kids', 'jugendarbeit', 'technik'];
   const isForceLeaf = c => FORCE_LEAF.some(kw => c.name.toLowerCase().includes(kw));
 
   const leaves = children.filter(c =>
