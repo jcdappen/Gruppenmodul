@@ -834,6 +834,61 @@
     }
     .modal-bg.open { display: flex; }
 
+    /* Link-Overlay (Webview) */
+    .link-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 1100;
+      flex-direction: column;
+      background: #fff;
+    }
+    .link-overlay.open { display: flex; }
+    .link-overlay-bar {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 12px 20px;
+      background: #1c1a18;
+      flex-shrink: 0;
+    }
+    .link-overlay-back {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 22px;
+      background: #ffffff;
+      color: #1c1a18;
+      border: none;
+      border-radius: 40px;
+      font-family: Gothic720BT, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      cursor: pointer;
+      touch-action: manipulation;
+      user-select: none;
+      white-space: nowrap;
+    }
+    .link-overlay-back:active { background: #e0ddd8; }
+    .link-overlay-url {
+      color: rgba(255,255,255,.55);
+      font-size: 14px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+    .link-overlay iframe {
+      flex: 1;
+      border: none;
+      width: 100%;
+    }
+    /* Clickable links inside descriptions */
+    .modal-desc a {
+      color: #0a6ed1;
+      text-decoration: underline;
+      word-break: break-all;
+    }
+
     .modal {
       background: #ffffff;
       border-radius: 22px;
@@ -1455,6 +1510,8 @@ function hideAll() {
 // ── Navigation ────────────────────────────────────
 function showHome() {
   closeModal();
+  document.getElementById('linkOverlay').classList.remove('open');
+  document.getElementById('linkOverlayFrame').src = 'about:blank';
   activeTag = null;
   activeKgDetail = null;
   currentView = 'home';
@@ -1808,8 +1865,32 @@ function renderMarkdown(text) {
   return escaped.split(/\n{2,}/).map(block => {
     const line = block.trim();
     if (!line) return '';
-    return `<p>${line.replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>').replace(/\*(.+?)\*/g,'<em>$1</em>').replace(/\n/g,'<br>')}</p>`;
+    return `<p>${line
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g,'<em>$1</em>')
+      // markdown links [text](url)
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g, (_,label,url) =>
+        `<a href="#" onclick="openLinkOverlay('${url.replace(/'/g,"\\'")}');return false;">${label}</a>`)
+      // bare URLs
+      .replace(/(^|[\s(])((https?:\/\/)[^\s<>"]+)/g, (m,pre,url) =>
+        `${pre}<a href="#" onclick="openLinkOverlay('${url.replace(/'/g,"\\'")}');return false;">${url}</a>`)
+      .replace(/\n/g,'<br>')
+    }</p>`;
   }).join('');
+}
+
+// ── Link-Overlay ──────────────────────────────────
+function openLinkOverlay(url) {
+  resetTimer();
+  document.getElementById('linkOverlayUrl').textContent = url.replace('https://','');
+  document.getElementById('linkOverlayFrame').src = url;
+  document.getElementById('linkOverlay').classList.add('open');
+}
+
+function closeLinkOverlay() {
+  document.getElementById('linkOverlay').classList.remove('open');
+  document.getElementById('linkOverlayFrame').src = 'about:blank';
+  resetTimer();
 }
 
 // ── Modal ─────────────────────────────────────────
@@ -2002,5 +2083,13 @@ main().catch(err => {
   console.error(err);
 });
 </script>
+
+<div class="link-overlay" id="linkOverlay">
+  <div class="link-overlay-bar">
+    <button class="link-overlay-back" onclick="closeLinkOverlay()">&#8592; Zurück zum Kiosk</button>
+    <span class="link-overlay-url" id="linkOverlayUrl"></span>
+  </div>
+  <iframe id="linkOverlayFrame" src="about:blank" sandbox="allow-scripts allow-same-origin allow-forms allow-popups"></iframe>
+</div>
 </body>
 </html>
