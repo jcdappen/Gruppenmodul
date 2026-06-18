@@ -876,21 +876,6 @@
       text-align: center;
       margin: 0;
     }
-    .link-popup-open {
-      width: 100%;
-      padding: 14px 24px;
-      background: #1c1a18;
-      color: #fff;
-      border: none;
-      border-radius: 40px;
-      font-family: Gothic720BT, sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      cursor: pointer;
-      touch-action: manipulation;
-      user-select: none;
-    }
-    .link-popup-open:active { background: #3a3835; }
     .link-popup-back {
       padding: 10px 24px;
       background: transparent;
@@ -1903,7 +1888,6 @@ function renderMarkdown(text) {
 function openLinkOverlay(url) {
   resetTimer();
   document.getElementById('linkOverlayUrl').textContent = url.replace('https://','');
-  document.getElementById('linkOverlayOpenBtn').onclick = () => { window.open(url, '_blank'); resetTimer(); };
   const container = document.getElementById('link-qrcode-container');
   container.innerHTML = '';
   if (window.QRCode) {
@@ -2118,7 +2102,6 @@ main().catch(err => {
     <div class="link-popup-qr" id="link-qrcode-container"></div>
     <p class="link-popup-hint">Mit dem Smartphone scannen</p>
     <p class="link-popup-url" id="linkOverlayUrl"></p>
-    <button class="link-popup-open" id="linkOverlayOpenBtn">Im Browser öffnen</button>
     <button class="link-popup-back" onclick="closeLinkOverlay()">&#8592; Zurück</button>
   </div>
 </div>
