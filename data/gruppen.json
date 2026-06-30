@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-06-29T08:52:31.790Z",
+  "generatedAt": "2026-06-30T07:44:34.737Z",
   "groups": [
     {
       "id": 124,
@@ -1937,6 +1937,27 @@
       "imageUrl": null,
       "tags": [],
       "leaders": [],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": []
+    },
+    {
+      "id": 382,
+      "name": "NLT 2026",
+      "groupTypeId": 4,
+      "parentGroupIds": [],
+      "description": "Ablauf:\n01.07.\t19:30 Uhr\tDappen\n08.07.\t19:30 Uhr\tOnline\n15.07.\t19:30 Uhr\tDappen\n22.07.\t19:30 Uhr\tOnline\n29.07.\t19:30 Uhr\tDappen",
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/382",
+      "imageUrl": null,
+      "tags": [],
+      "leaders": [
+        {
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
+        }
+      ],
       "settings": {
         "isHidden": false,
         "modules": []
