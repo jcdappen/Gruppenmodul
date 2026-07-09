@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mitmachen – Gemeinde Konkordia</title>
+  <style>
+    @font-face {
+      font-family: 'GrotesqueSC';
+      src: url('assets/fonts/GrotesqueRegSC.ttf') format('truetype');
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gothic725';
+      src: url('assets/fonts/gothic725b.ttf') format('truetype');
+      font-weight: 700;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gothic720';
+      src: url('assets/fonts/gothic720l.ttf') format('truetype');
+      font-weight: 300;
+      font-display: swap;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      width: 100%;
+      height: auto;
+      background: #f1ece6;
+      font-family: 'Gothic720', Arial, sans-serif;
+      color: #1c1a18;
+      -webkit-user-select: none;
+      user-select: none;
+      cursor: default;
+      touch-action: pan-y;
+    }
+
+    #app {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+
+    /* ── NAV BAR ────────────────────────────────────── */
+    .nav-bar {
+      display: none;
+      padding: 12px 24px 8px;
+      flex-shrink: 0;
+    }
+    .nav-bar.visible { display: flex; }
+
+    .back-btn {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      background: rgba(0,0,0,.08);
+      border: 1px solid rgba(0,0,0,.16);
+      color: rgba(0,0,0,.65);
+      padding: 13px 24px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 15px;
+      letter-spacing: 1px;
+      min-height: 52px;
+      transition: background 0.15s, color 0.15s;
+    }
+    .back-btn:active { background: rgba(0,0,0,.18); color: #1c1a18; }
+    .back-btn:hover  { background: rgba(0,0,0,.13); color: #1c1a18; }
+
+    /* ── MAIN CONTENT ───────────────────────────────── */
+    .main {
+      flex: 1;
+      padding: 0 32px 24px;
+      background: #f1ece6;
+      position: relative;
+    }
+
+    /* ── HOMESCREEN ─────────────────────────────────── */
+    #homescreen {
+      display: flex;
+      flex-direction: column;
+      padding-bottom: 16px;
+    }
+
+    .hs-greeting { margin-top: 20px; margin-bottom: 16px; }
+    .hs-greeting-title {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 26px;
+      color: #1c1a18;
+    }
+    .hs-greeting-sub {
+      font-family: 'Gothic720', Arial, sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: #4d4d4d;
+      margin-top: 6px;
+    }
+
+    .hs-list {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .hs-row {
+      background: #fff;
+      border-radius: 18px;
+      /* Feste Höhe: nötig, damit .hs-photo über aspect-ratio exakt quadratisch wird */
+      height: 176px;
+      display: flex;
+      align-items: stretch;
+      box-shadow: 0 2px 12px rgba(0,0,0,.05);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .hs-row:active { transform: scale(.99); box-shadow: 0 4px 20px rgba(0,0,0,.1); }
+    .hs-row:not(:active):hover { box-shadow: 0 6px 24px rgba(0,0,0,.1); }
+
+    .hs-photo {
+      aspect-ratio: 1 / 1;
+      flex-shrink: 0;
+      position: relative;
+    }
+    .hs-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: 50% 30%;
+      display: block;
+    }
+
+    .hs-text {
+      flex: 1;
+      padding: 0 28px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .hs-eyebrow {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 7px;
+      color: #4d4d4d;
+    }
+    .hs-title {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 24px;
+      color: #1c1a18;
+      margin-bottom: 7px;
+    }
+    .hs-desc {
+      font-family: 'Gothic720', Arial, sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      line-height: 1.5;
+      color: #4d4d4d;
+      max-width: 480px;
+    }
+
+    .hs-cta {
+      padding-right: 28px;
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex-shrink: 0;
+    }
+    .hs-cta-label {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: .04em;
+      color: #bb2232;
+    }
+    .hs-cta-btn {
+      width: 52px;
+      height: 52px;
+      border-radius: 50%;
+      background: #bb2232;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── STARTSCREEN (Visionsbereiche) ──────────────── */
+    #startscreen {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding-bottom: 16px;
+    }
+
+    .bc-card {
+      background: #fff;
+      border-radius: 18px;
+      min-height: 110px;
+      display: flex;
+      align-items: stretch;
+      box-shadow: 0 2px 12px rgba(0,0,0,.05);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .bc-card:active { transform: scale(.99); box-shadow: 0 4px 20px rgba(0,0,0,.1); }
+    .bc-card:not(:active):hover { box-shadow: 0 6px 24px rgba(0,0,0,.1); }
+
+    .bc-icon-panel {
+      width: 120px;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bc-icon-panel > div { width: 56px; height: 56px; }
+    .bc-icon-panel svg { width: 56px; height: 56px; }
+
+    .bc-text {
+      flex: 1;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .bc-eyebrow {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+    }
+    .bc-name {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: #1c1a18;
+      margin-bottom: 5px;
+      letter-spacing: normal;
+      text-align: left;
+    }
+    .bc-desc {
+      font-family: 'Gothic720', Arial, sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #4d4d4d;
+      max-width: 460px;
+      text-align: left;
+    }
+
+    .bc-cta-area {
+      padding-right: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .bc-cta-label {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .04em;
+    }
+    .bc-cta-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── KLEINGRUPPEN-SCREEN ────────────────────────── */
+    #kleingruppenscreen {
+      display: none;
+      flex-direction: column;
+      padding-bottom: 16px;
+    }
+
+    .kg-header {
+      margin-top: 20px;
+      margin-bottom: 16px;
+    }
+    .kg-header-title {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: #1c1a18;
+      letter-spacing: normal;
+      text-transform: none;
+    }
+    .kg-header-sub {
+      font-family: 'Gothic720', Arial, sans-serif;
+      font-weight: 300;
+      font-size: 15px;
+      color: #4d4d4d;
+      margin-top: 5px;
+    }
+
+    .kg-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .kg-card {
+      background: #fff;
+      border-radius: 18px;
+      min-height: 110px;
+      display: flex;
+      align-items: stretch;
+      box-shadow: 0 2px 12px rgba(0,0,0,.05);
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .kg-card:active { transform: scale(.99); box-shadow: 0 4px 20px rgba(0,0,0,.1); }
+    .kg-card:not(:active):hover { box-shadow: 0 6px 24px rgba(0,0,0,.1); }
+
+    .kg-icon-panel {
+      width: 120px;
+      flex-shrink: 0;
+      background: #bb2232;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .kg-icon-panel svg { width: 48px; height: 48px; }
+
+    .kg-text {
+      flex: 1;
+      padding: 0 24px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .kg-label {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 11px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      margin-bottom: 5px;
+      color: #4d4d4d;
+    }
+    .kg-name {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 20px;
+      color: #1c1a18;
+      margin-bottom: 5px;
+      letter-spacing: normal;
+      text-align: left;
+      line-height: 1.2;
+    }
+    .kg-desc {
+      font-family: 'Gothic720', Arial, sans-serif;
+      font-weight: 300;
+      font-size: 14px;
+      line-height: 1.5;
+      color: #4d4d4d;
+      max-width: 460px;
+      text-align: left;
+    }
+    .kg-cta-area {
+      padding-right: 24px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-shrink: 0;
+    }
+    .kg-cta-label {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 12px;
+      letter-spacing: .04em;
+      color: #bb2232;
+    }
+    .kg-cta-btn {
+      width: 48px;
+      height: 48px;
+      border-radius: 50%;
+      background: #bb2232;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    /* ── KLEINGRUPPEN DETAIL ────────────────────────── */
+    .kg-detail-view {
+      display: none;
+      padding-bottom: 16px;
+    }
+    .kg-detail-view.visible { display: block; }
+
+    .kg-detail-placeholder {
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      color: #bbb;
+    }
+    .kg-detail-placeholder-icon {
+      width: 64px;
+      height: 64px;
+      background: #e8e4e0;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .kg-detail-placeholder p {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      letter-spacing: 2px;
+      font-size: 14px;
+    }
+    .kg-detail-placeholder small {
+      font-size: 12px;
+      color: #ccc;
+    }
+
+    /* ── DETAILANSICHT (Visionsbereiche) ────────────── */
+    #detailview {
+      display: none;
+      padding-bottom: 16px;
+    }
+    #detailview.visible { display: block; }
+
+    .detail-bereich-header {
+      background: #fff;
+      border-left: 4px solid;
+      border-radius: 0 12px 12px 0;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 14px 20px;
+      margin-bottom: 16px;
+      box-shadow: 0 2px 8px rgba(0,0,0,.05);
+    }
+    .detail-bereich-icon { width: 40px; height: 40px; flex-shrink: 0; }
+    .detail-bereich-icon svg { width: 40px; height: 40px; }
+    .detail-bereich-name {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-weight: 700;
+      font-size: 22px;
+      color: #1c1a18;
+      letter-spacing: normal;
+    }
+
+    /* ── TEAMS-SCREEN ────────────────────────────────── */
+    #teamsscreen {
+      display: none;
+      flex-direction: column;
+      padding-bottom: 16px;
+    }
+    #teamsGrid {}
+
+    .sections-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      padding-bottom: 16px;
+    }
+
+    .section-card {
+      background: transparent;
+      border-radius: 0;
+      overflow: visible;
+    }
+
+    .section-head {
+      padding: 0 4px 10px;
+      border-bottom: 2px solid;
+      margin-bottom: 12px;
+    }
+    .section-head-title {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+    }
+
+    .group-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .group-tile {
+      background: #ffffff;
+      border-radius: 14px;
+      cursor: pointer;
+      overflow: hidden;
+      display: flex;
+      flex-direction: row;
+      align-items: stretch;
+      box-shadow: 0 2px 8px rgba(0,0,0,.06);
+      transition: transform 0.15s, box-shadow 0.15s;
+      padding: 0;
+      min-height: 88px;
+    }
+    .group-tile:active { transform: scale(.98); box-shadow: 0 4px 16px rgba(0,0,0,.1); }
+    .group-tile:not(:active):hover { box-shadow: 0 6px 20px rgba(0,0,0,.12); }
+
+    .group-tile-img {
+      width: 140px;
+      height: auto;
+      flex-shrink: 0;
+      object-fit: cover;
+      display: block;
+      background: #ddd;
+    }
+
+    .group-tile-footer {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 22px;
+      gap: 14px;
+    }
+    .group-tile-name {
+      font-family: 'Gothic725', Arial, sans-serif;
+      font-size: 18px;
+      font-weight: 700;
+      color: #1c1a18;
+      line-height: 1.25;
+      flex: 1;
+      letter-spacing: normal;
+    }
+    .group-tile-chevron {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background: #bb2232;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 20px;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    /* ── TAG-SUCHE POPUP ────────────────────────────── */
+    .tag-popup-bg {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 1000;
+      align-items: flex-start;
+      justify-content: flex-end;
+      padding: 70px 24px 0;
+    }
+    .tag-popup-bg.open { display: flex; }
+
+    .tag-popup {
+      background: #fff;
+      border-radius: 6px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+      padding: 22px 22px 18px;
+      width: 380px;
+      max-width: calc(100vw - 48px);
+      max-height: calc(100vh - 90px);
+      overflow-y: auto;
+      -webkit-overflow-scrolling: touch;
+      animation: popIn 0.18s cubic-bezier(0.34,1.26,0.64,1);
+    }
+    .tag-popup-title {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 14px;
+      letter-spacing: 2px;
+      color: #1a1a1a;
+      margin-bottom: 6px;
+    }
+    .tag-popup-sub {
+      font-size: 13px;
+      color: #999;
+      margin-bottom: 16px;
+      line-height: 1.5;
+    }
+    .tag-popup-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .tag-filter-btn {
+      padding: 9px 18px;
+      border-radius: 50px;
+      border: 2px solid #ddd;
+      background: transparent;
+      color: #555;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 1px;
+      cursor: pointer;
+      min-height: 44px;
+      transition: all 0.15s;
+    }
+    .tag-filter-btn:active { border-color: #bb2232; color: #bb2232; }
+    .tag-filter-btn:hover { border-color: #bb2232; color: #bb2232; }
+    .tag-filter-btn.active {
+      background: #bb2232;
+      border-color: #bb2232;
+      color: white;
+    }
+    .tag-popup-close {
+      margin-top: 16px;
+      width: 100%;
+      padding: 12px;
+      background: #f1eeeb;
+      border: none;
+      border-radius: 3px;
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 1.5px;
+      color: #888;
+      cursor: pointer;
+      min-height: 44px;
+    }
+    .tag-popup-close:active { background: #e8e4e0; color: #555; }
+    .tag-popup-close:hover { background: #e8e4e0; color: #555; }
+
+    /* ── TAG-ERGEBNISANSICHT ────────────────────────── */
+    #tagresultview {
+      display: none;
+      padding-bottom: 16px;
+    }
+    #tagresultview.visible { display: block; }
+
+    .tagresult-header {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      margin-bottom: 14px;
+    }
+    .tagresult-label {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 12px;
+      letter-spacing: 2px;
+      color: #999;
+    }
+    .tagresult-tag {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 20px;
+      letter-spacing: 1.5px;
+      color: #bb2232;
+    }
+    .tagresult-count {
+      font-size: 13px;
+      color: #bbb;
+      margin-left: auto;
+    }
+    .tagresult-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+      gap: 10px;
+    }
+    .tagresult-tile {
+      background: #fff;
+      border-radius: 3px;
+      box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+      padding: 14px 16px;
+      cursor: pointer;
+      transition: box-shadow 0.15s, transform 0.12s;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      min-height: 56px;
+    }
+    .tagresult-tile:active { box-shadow: 0 4px 16px rgba(0,0,0,0.12); transform: translateY(-1px); }
+    .tagresult-tile:not(:active):hover { box-shadow: 0 4px 16px rgba(0,0,0,0.12); transform: translateY(-2px); }
+    .tagresult-tile-img {
+      width: 48px; height: 48px;
+      border-radius: 3px;
+      object-fit: cover;
+      flex-shrink: 0;
+      background: #eee;
+    }
+    .tagresult-tile-info { flex: 1; min-width: 0; }
+    .tagresult-tile-name {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 13px;
+      color: #1a1a1a;
+      margin-bottom: 3px;
+    }
+    .tagresult-tile-bereich {
+      font-size: 10px;
+      letter-spacing: 1px;
+      color: #bbb;
+    }
+
+    /* Kontakt-Popup-Markup (ungenutzt) ausblenden */
+    .modal-bg { display: none; }
+
+    /* ── LADEN ──────────────────────────────────────── */
+    #loading {
+      position: absolute;
+      inset: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+    }
+    #loading p {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      letter-spacing: 2px;
+      color: rgba(0,0,0,0.3);
+      font-size: 14px;
+    }
+
+    /* ── RESPONSIVE ─────────────────────────────────── */
+    @media (max-width: 680px) {
+      .nav-bar { padding: 10px 16px 6px; }
+      .back-btn { font-size: 13px; padding: 11px 18px; min-height: 46px; }
+
+      .main { padding: 0 16px 16px; }
+
+      .hs-greeting { margin-top: 14px; margin-bottom: 12px; }
+      .hs-greeting-title { font-size: 20px; }
+      .hs-greeting-sub { font-size: 13px; }
+      .hs-list { gap: 10px; }
+
+      .hs-row { flex-direction: column; height: auto; min-height: 120px; flex: none; }
+      .hs-photo { width: 100%; height: 110px; aspect-ratio: auto; }
+      .hs-text { padding: 12px 16px; }
+      .hs-eyebrow { font-size: 10px; margin-bottom: 4px; }
+      .hs-title { font-size: 18px; margin-bottom: 4px; }
+      .hs-desc { font-size: 13px; max-width: 100%; }
+      .hs-cta { display: none; }
+
+      #startscreen { gap: 10px; }
+      .bc-card { flex-direction: column; flex: none; min-height: 100px; }
+      .bc-icon-panel { width: 100%; height: 64px; }
+      .bc-icon-panel > div, .bc-icon-panel svg { width: 40px; height: 40px; }
+      .bc-text { padding: 10px 16px; }
+      .bc-eyebrow { font-size: 10px; }
+      .bc-name { font-size: 17px; }
+      .bc-desc { font-size: 13px; max-width: 100%; }
+      .bc-cta-area { display: none; }
+
+      .kg-header { margin-top: 14px; margin-bottom: 12px; }
+      .kg-header-title { font-size: 17px; }
+      .kg-grid { gap: 10px; }
+      .kg-card { flex-direction: column; flex: none; min-height: 100px; }
+      .kg-icon-panel { width: 100%; height: 60px; }
+      .kg-icon-panel svg { width: 36px; height: 36px; }
+      .kg-text { padding: 10px 16px; }
+      .kg-name { font-size: 17px; }
+      .kg-desc { font-size: 13px; max-width: 100%; }
+      .kg-cta-area { display: none; }
+
+      .group-tile { min-height: 72px; }
+      .group-tile-img { width: 100px; }
+      .group-tile-footer { padding: 0 16px; }
+      .group-tile-name { font-size: 15px; }
+      .group-tile-chevron { width: 34px; height: 34px; font-size: 17px; }
+
+      .tag-popup { width: calc(100vw - 32px); }
+    }
+  </style>
+</head>
+<body>
+<div id="app">
+
+  <div class="nav-bar" id="navBar">
+    <button class="back-btn" id="backBtn" onclick="goBack()">← Zurück</button>
+  </div>
+
+  <div class="main">
+    <div id="loading"><p>Wird geladen …</p></div>
+
+    <!-- HOMESCREEN -->
+    <div id="homescreen" style="display:none;">
+      <div class="hs-greeting">
+        <div class="hs-greeting-title">Wie möchtest du dich einbringen?</div>
+        <div class="hs-greeting-sub">Tippe auf einen Bereich.</div>
+      </div>
+      <div class="hs-list">
+        <!-- Zeile 1: Mitmachen -->
+        <div class="hs-row" onclick="showChurchTools()">
+          <div class="hs-photo">
+            <img src="assets/images/mitmachen.jpg" alt="">
+          </div>
+          <div class="hs-text">
+            <div class="hs-eyebrow">Mitmachen</div>
+            <div class="hs-title">Du kannst mitmachen</div>
+            <div class="hs-desc">Finde heraus, wie du dich in unserer Gemeinde einbringen kannst.</div>
+          </div>
+          <div class="hs-cta">
+            <span class="hs-cta-label">Mehr erfahren</span>
+            <div class="hs-cta-btn">
+              <svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h20M19 8l8 8-8 8"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Zeile 2: Gemeinschaft -->
+        <div class="hs-row" onclick="showKleingruppen()">
+          <div class="hs-photo">
+            <img src="assets/images/gemeinschaft.jpg" alt="">
+          </div>
+          <div class="hs-text">
+            <div class="hs-eyebrow">Gemeinschaft</div>
+            <div class="hs-title">Kleine Gruppe finden</div>
+            <div class="hs-desc">Gemeinsam Glauben leben - unsere kleinen Gruppen bieten genau dafür Raum: Orte von Gemeinschaft und Transformation.</div>
+          </div>
+          <div class="hs-cta">
+            <span class="hs-cta-label">Gruppen entdecken</span>
+            <div class="hs-cta-btn">
+              <svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h20M19 8l8 8-8 8"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Zeile 3: Dienste & Gruppen -->
+        <div class="hs-row" onclick="showMitmachen()">
+          <div class="hs-photo">
+            <img src="assets/images/angebote.jpg" alt="">
+          </div>
+          <div class="hs-text">
+            <div class="hs-eyebrow">Dienste &amp; Gruppen</div>
+            <div class="hs-title">Alle unsere Angebote</div>
+            <div class="hs-desc">Entdecke, wo du deine Gaben einsetzen und Gemeinde gestalten kannst.</div>
+          </div>
+          <div class="hs-cta">
+            <span class="hs-cta-label">Bereiche entdecken</span>
+            <div class="hs-cta-btn">
+              <svg width="22" height="22" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h20M19 8l8 8-8 8"/></svg>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MITMACHEN: Visionsbereiche -->
+    <div id="startscreen" style="display:none;"></div>
+
+    <!-- KLEINGRUPPEN-SCREEN -->
+    <div id="kleingruppenscreen" style="display:none;">
+      <div class="kg-header">
+        <div class="kg-header-title">Kleingruppen</div>
+        <div class="kg-header-sub">Wähle eine Kategorie, die zu dir passt.</div>
+      </div>
+      <div class="kg-grid">
+
+        <!-- Kleingruppen -->
+        <div class="kg-card" onclick="showKgDetail('hauskreise')">
+          <div class="kg-icon-panel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/>
+              <polyline points="9 22 9 12 15 12 15 22"/>
+            </svg>
+          </div>
+          <div class="kg-text">
+            <div class="kg-label">Gemeinschaft</div>
+            <div class="kg-name">Kleingruppen</div>
+            <div class="kg-desc">Ein Raum für Gemeinschaft, ehrlichen Austausch und Gebet, in dem wir gemeinsam im Glauben wachsen und Gottes Liebe weitergeben. Interesse?</div>
+          </div>
+          <div class="kg-cta-area">
+            <span class="kg-cta-label">Hauskreis finden</span>
+            <div class="kg-cta-btn">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h20M19 8l8 8-8 8"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Jüngerschaftsgruppen -->
+        <div class="kg-card" onclick="showKgDetail('juengerschaft')">
+          <div class="kg-icon-panel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+              <path d="M2 17l10 5 10-5"/>
+              <path d="M2 12l10 5 10-5"/>
+            </svg>
+          </div>
+          <div class="kg-text">
+            <div class="kg-label">Wachstum</div>
+            <div class="kg-name">Jüngerschaftsgruppen</div>
+            <div class="kg-desc">In einer kleinen Gruppe von 4–5 Menschen begleiten wir uns gegenseitig in unserer Nachfolge Jesu. Interesse?</div>
+          </div>
+          <div class="kg-cta-area">
+            <span class="kg-cta-label">Gruppe finden</span>
+            <div class="kg-cta-btn">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h20M19 8l8 8-8 8"/></svg>
+            </div>
+          </div>
+        </div>
+
+        <!-- Sonstige Gruppen -->
+        <div class="kg-card" onclick="showKgDetail('sonstige')">
+          <div class="kg-icon-panel">
+            <svg viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="12" r="10"/>
+              <line x1="12" y1="8" x2="12" y2="12"/>
+              <line x1="12" y1="16" x2="12.01" y2="16"/>
+            </svg>
+          </div>
+          <div class="kg-text">
+            <div class="kg-label">Weitere Angebote</div>
+            <div class="kg-name">Sonstige Gruppen</div>
+            <div class="kg-desc">Weitere Gruppen und Angebote bei Gemeinde Konkordia – für jeden ist etwas dabei.</div>
+          </div>
+          <div class="kg-cta-area">
+            <span class="kg-cta-label">Mehr entdecken</span>
+            <div class="kg-cta-btn">
+              <svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h20M19 8l8 8-8 8"/></svg>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- KLEINGRUPPEN DETAIL -->
+    <div id="kgdetail-hauskreise" class="kg-detail-view"></div>
+    <div id="kgdetail-juengerschaft" class="kg-detail-view"></div>
+    <div id="kgdetail-sonstige" class="kg-detail-view"></div>
+
+    <!-- DETAILANSICHT (Visionsbereiche) -->
+    <div id="detailview"></div>
+
+    <!-- TEAMS-SCREEN -->
+    <div id="teamsscreen">
+      <div class="kg-header">
+        <div class="kg-header-title">Du kannst mitmachen</div>
+        <div class="kg-header-sub">Bringe deine Gaben ein und gestalte Gemeinde aktiv mit.</div>
+      </div>
+      <div id="teamsGrid" class="sections-grid"></div>
+    </div>
+
+    <!-- TAG-ERGEBNISSE -->
+    <div id="tagresultview"></div>
+
+  </div>
+</div>
+
+<!-- KONTAKT POPUP -->
+<div class="modal-bg" id="contactPopupBg" onclick="closeContactPopupBg(event)">
+  <div class="modal" style="width:min(480px,100%);">
+    <div class="modal-header" style="border-bottom-color:#bb2232;">
+      <button class="modal-close" onclick="closeContactPopup()">✕</button>
+      <div class="modal-bereich-label" style="color:#bb2232;">Gemeinde Konkordia</div>
+      <div class="modal-group-name">Schreib uns!</div>
+    </div>
+    <div class="modal-body" style="flex-direction:column; align-items:center; text-align:center; gap:20px;">
+      <div style="font-family:'Gothic720',Arial,sans-serif; font-weight:300; font-size:16px; color:#4d4d4d; line-height:1.7; max-width:320px;">
+        Wir freuen uns, wenn du mit uns in Kontakt trittst — egal ob du Fragen hast, mehr erfahren möchtest oder einfach Hallo sagen willst.
+      </div>
+      <div class="modal-qr-block">
+        <div id="contact-qrcode-container"></div>
+        <div class="modal-qr-scan">Kontaktformular öffnen</div>
+        <div class="modal-qr-hint">Handy-Kamera auf den QR-Code richten</div>
+      </div>
+      <button class="tag-popup-close" onclick="closeContactPopup()" style="width:100%;max-width:320px;">Schließen</button>
+    </div>
+  </div>
+</div>
+
+<!-- TAG-SUCHE POPUP -->
+<div class="tag-popup-bg" id="tagPopupBg" onclick="closeTagPopupBg(event)">
+  <div class="tag-popup">
+    <div class="tag-popup-title">Nach Gaben suchen</div>
+    <div class="tag-popup-sub">Wähle einen Bereich, der dich interessiert – wir zeigen dir passende Gruppen.</div>
+    <div class="tag-popup-tags" id="tagPopupTags"></div>
+    <button class="tag-popup-close" onclick="closeTagPopup()">Schließen</button>
+  </div>
+</div>
+
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+<script>
+'use strict';
+
+const BASE = 'https://jcdappen.github.io/Gruppenmodul';
+const CHURCHTOOLS = 'https://gemeindekonkordia.church.tools';
+
+const VB_CONFIG = [
+  { match: 'mit gott',       eyebrow: 'Mit Gott',       color: '#edc544', arrow: 'up',     desc: 'Wir lieben Gott mit unserem ganzen Sein und nehmen uns Zeit, seine Stimme zu hören.', cta: 'Entdecken' },
+  { match: 'transformation', eyebrow: 'Transformation', color: '#22bbac', arrow: 'cycle',  desc: 'Wir stehen in einem Prozess, Jesus in unserem ganzen Wesen ähnlicher zu werden.',    cta: 'Entdecken' },
+  { match: 'gemeinschaft',   eyebrow: 'Gemeinschaft',   color: '#abd075', arrow: 'down',   desc: 'Als Gottes Familie teilen wir Leben, wachsen geistlich und geben Raum für alle Menschen.', cta: 'Entdecken' },
+  { match: 'welt',           eyebrow: 'Welt',           color: '#bb2232', arrow: 'branch', desc: 'Wir gehen auf Menschen zu und tragen die Gute Nachricht in Wort und Tat in die Welt.', cta: 'Entdecken' },
+];
+
+const ARROWS = {
+  up:     `<svg viewBox="0 0 2000 2000" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M1069.61,441.27c-38.04-37.91-100.86-38.22-139.23,0l-295.23,293.69c-38.45,38.25-38.45,100.21,0,138.45,38.45,38.25,100.73,38.25,139.18,0l127.26-126.58v742.73c0,54.06,44.08,97.9,98.42,97.9s98.42-43.85,98.42-97.9v-742.73l127.26,126.58c19.22,19.13,44.39,28.68,69.57,28.68s50.36-9.55,69.59-28.68c38.45-38.23,38.45-100.19,0-138.45l-295.23-293.69Z"/><path d="M1000,1779.99c-430.08,0-780-349.9-780-779.98S569.92,220.01,1000,220.01s780,349.92,780,780-349.92,779.98-780,779.98ZM1000,25.01C462.37,25.01,25,462.38,25,1000.01s437.37,974.98,975,974.98,975-437.37,975-974.98S1537.58,25.01,1000,25.01Z"/></svg>`,
+  cycle:  `<svg viewBox="0 0 2000 2000" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M1000,25.01C462.42,25.01,25,462.38,25,999.99s437.42,975,975,975,975-437.37,975-975S1537.63,25.01,1000,25.01ZM1000,1779.99c-430.08,0-780-349.92-780-780S569.92,220.01,1000,220.01s780,349.9,780,779.98-349.92,780-780,780Z"/><path d="M1433.28,926.81c-45.29,0-82.13,37.05-82.13,82.6,0,23.81-2.36,47.55-7.04,70.8l-4.42,17.36c-13.03,51.14-37.82,99.65-71.71,140.27-33.58,40.26-76.25,73-123.38,94.69l-.22.1c-.7.33-1.4.65-2.11.97l-.33.15c-57.88,26.18-124.76,35.87-188.32,27.29-60.78-8.2-118.46-32.46-166.85-70.21-1.89-1.47-3.77-2.96-5.63-4.47h26.3c30.17,0,54.67-11.76,68.99-33.12,17.21-25.67,15.88-59.17,6.94-80.94-12.7-31.05-42.51-51.11-75.93-51.11h-240.71c-45.3,0-82.15,37.05-82.15,82.6v242.96c0,33.49,19.87,63.43,50.61,76.26,10.02,4.21,20.63,6.34,31.54,6.34,32.53,0,58.99-15.75,72.59-43.21,9.09-18.35,9.55-36.03,9.55-39.39v-57.45c2.08,1.96,4.18,3.91,6.29,5.84l-.42,1.09,18.9,15.64c69.96,57.91,154.11,96.19,243.38,110.7,1.1.18,2.22.35,3.32.51l.19.03c6.05.95,11.41,1.71,16.29,2.32,1.71.22,3.43.39,5.16.57.64.06,1.28.13,1.91.2,35.67,3.82,71.02,4.08,105.06.78,55.13-5.35,108.65-19.48,159.04-41.99l.13-.06c.66-.3,1.33-.6,1.99-.91.53-.24,1.05-.48,1.58-.72l.13-.06c89.18-40.71,164.87-105.92,218.88-188.58,55.43-84.83,84.73-183.47,84.73-285.26,0-45.54-36.85-82.6-82.13-82.6Z"/><path d="M1464.82,478.98c-10.02-4.21-20.63-6.34-31.54-6.34-32.53,0-58.99,15.75-72.59,43.21-9.09,18.35-9.55,36.03-9.55,39.39v57.45c-2.02-1.9-4.05-3.79-6.1-5.66l.44-1.09-19.11-15.82c-69.96-57.92-154.13-96.2-243.4-110.71-1.09-.18-2.2-.35-3.3-.51l-.35-.05c-42.7-6.33-85.8-7.54-128.11-3.61h0c-55.08,5.12-108.64,19.17-159.2,41.76l-.13.06c-.66.3-1.33.6-1.99.91-.53.24-1.05.48-1.58.72l-.13.06c-89.18,40.71-164.87,105.92-218.88,188.58-55.43,84.83-84.73,183.47-84.73,285.26,0,45.54,36.85,82.6,82.13,82.6s82.13-37.05,82.13-82.6c0-23.81,2.36-47.55,7.04-70.8l4.42-17.37c13.03-51.14,37.82-99.65,71.71-140.27,33.58-40.26,76.25-73,123.38-94.69l.24-.11c.69-.33,1.4-.65,2.11-.96,100.08-44.03,216.37-39.02,311.06,13.39,7.01,3.88,13.94,8.05,20.6,12.39,4.2,2.74,8.3,5.53,12.13,8.27l.16.12c1,.72,2,1.43,3,2.17l.1.07c2.84,2.07,5.66,4.2,8.45,6.37,1.89,1.47,3.77,2.96,5.63,4.47h-26.3c-30.17,0-54.67,11.76-68.99,33.12-17.21,25.67-15.88,59.17-6.94,80.94,12.7,31.05,42.51,51.12,75.93,51.12h240.71c45.3,0,82.15-37.05,82.15-82.6v-242.96c0-33.49-19.87-63.43-50.61-76.26Z"/></svg>`,
+  down:   `<svg viewBox="0 0 2000 2000" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M1069.61,1558.73c-38.04,37.91-100.86,38.22-139.23,0l-295.23-293.69c-38.45-38.25-38.45-100.21,0-138.45,38.45-38.25,100.73-38.25,139.18,0l127.26,126.58V510.45c0-54.06,44.08-97.9,98.42-97.9s98.42,43.85,98.42,97.9v742.73l127.26-126.58c19.22-19.13,44.39-28.68,69.57-28.68s50.36,9.55,69.59,28.68c38.45,38.23,38.45,100.19,0,138.45l-295.23,293.69Z"/><path d="M1000,220.01c-430.08,0-780,349.9-780,779.98s349.92,780,780,780,780-349.92,780-780S1430.08,220.01,1000,220.01ZM1000,1974.99c-537.63,0-975-437.37-975-975S462.37,25.01,1000,25.01s975,437.37,975,974.98-437.42,975-975,975Z"/></svg>`,
+  branch: `<svg viewBox="0 0 2000 2000" fill="white" xmlns="http://www.w3.org/2000/svg"><path d="M1605.28,752.49l-180.89-180.91c-16.69-16.69-38.87-25.88-62.46-25.88s-45.77,9.19-62.46,25.88-25.88,38.87-25.88,62.46,9.19,45.77,25.88,62.46l31.28,31.27c-68.21,4.76-134.65,25.09-193.82,59.51-53.49,31.12-100.21,73.15-136.97,122.92-36.75-49.78-83.48-91.81-136.96-122.92-59.16-34.42-125.6-54.75-193.81-59.51l31.28-31.28c34.44-34.44,34.44-90.47,0-124.91-16.69-16.69-38.86-25.88-62.45-25.88s-45.76,9.19-62.45,25.88l-180.83,180.85c-16.71,16.62-25.92,38.87-25.91,62.65,0,23.71,9.21,45.91,25.85,62.45l180.9,180.92c34.43,34.4,90.45,34.4,124.88,0,34.44-34.44,34.44-90.47,0-124.91l-28.04-28.04c134.69,16.97,239.21,132.24,239.21,271.46v310.76c0,48.7,39.62,88.32,88.32,88.32s88.32-39.62,88.32-88.32v-310.76c0-139.22,104.52-254.49,239.22-271.46l-28.04,28.04c-16.69,16.69-25.88,38.87-25.88,62.46s9.19,45.77,25.88,62.46c34.43,34.4,90.46,34.4,124.9,0l180.85-180.87c16.71-16.64,25.91-38.86,25.91-62.55s-9.2-45.93-25.87-62.53Z"/><path d="M1000,25.01C462.37,25.01,25,462.38,25,1000.01s437.37,974.98,975,974.98,975-437.37,975-974.98S1537.58,25.01,1000,25.01ZM1000,1779.99c-430.08,0-780-349.9-780-779.98S569.92,220.01,1000,220.01s780,349.92,780,780-349.92,779.98-780,779.98Z"/></svg>`,
+};
+
+const TEAMS_CONFIG = {
+  groupName: 'Teams Verzeichnis',
+  color: '#bb2232',
+  label: 'Teams',
+};
+
+const KG_CONFIG = {
+  hauskreise:   { groupName: 'Hauskreise in der Konkordia',          color: '#bb2232', label: 'Hauskreise' },
+  juengerschaft:{ groupName: 'Jüngerschaftsgruppen in der Konkordia', color: '#bb2232', label: 'Jüngerschaftsgruppen' },
+  sonstige:     { groupName: 'Gruppen',                               color: '#bb2232', label: 'Sonstige Gruppen' },
+};
+
+let allGroups = [];
+let currentView = 'home';
+let prevView = 'home';
+let activeKgDetail = null;
+let activeTag = null;
+
+function norm(s) {
+  return (s || '').toLowerCase()
+    .replace(/ä/g,'ae').replace(/ö/g,'oe').replace(/ü/g,'ue').replace(/ß/g,'ss')
+    .replace(/[^a-z0-9 ]/g, '').trim();
+}
+
+function getConfig(vbName) {
+  const n = norm(vbName);
+  return VB_CONFIG.find(c => n.includes(c.match)) || { color: '#555', arrow: 'up', desc: '' };
+}
+
+function hideAll() {
+  document.getElementById('homescreen').style.display = 'none';
+  document.getElementById('startscreen').style.display = 'none';
+  document.getElementById('kleingruppenscreen').style.display = 'none';
+  document.getElementById('teamsscreen').style.display = 'none';
+  document.getElementById('detailview').classList.remove('visible');
+  document.getElementById('detailview').style.display = 'none';
+  document.getElementById('tagresultview').classList.remove('visible');
+  document.getElementById('tagresultview').style.display = 'none';
+  document.querySelectorAll('.kg-detail-view').forEach(el => {
+    el.classList.remove('visible');
+    el.style.display = 'none';
+  });
+}
+
+function showHome() {
+  activeTag = null;
+  activeKgDetail = null;
+  currentView = 'home';
+  hideAll();
+  document.getElementById('homescreen').style.display = 'flex';
+  document.getElementById('navBar').classList.remove('visible');
+}
+
+function showChurchTools() {
+  prevView = 'teams';
+  currentView = 'teams';
+  hideAll();
+  buildTeamsScreen();
+  document.getElementById('teamsscreen').style.display = 'flex';
+  document.getElementById('navBar').classList.add('visible');
+}
+
+function showMitmachen() {
+  prevView = 'start';
+  currentView = 'start';
+  hideAll();
+  document.getElementById('startscreen').style.display = 'grid';
+  document.getElementById('navBar').classList.add('visible');
+}
+
+function showKleingruppen() {
+  currentView = 'kleingruppen';
+  activeKgDetail = null;
+  hideAll();
+  document.getElementById('kleingruppenscreen').style.display = 'flex';
+  document.getElementById('navBar').classList.add('visible');
+}
+
+function showKgDetail(type) {
+  currentView = 'kg-detail';
+  activeKgDetail = type;
+  hideAll();
+  buildKgDetail(type);
+  const el = document.getElementById('kgdetail-' + type);
+  el.style.display = 'block';
+  el.classList.add('visible');
+  document.getElementById('navBar').classList.add('visible');
+}
+
+function buildKgDetail(type) {
+  const cfg = KG_CONFIG[type];
+  const el = document.getElementById('kgdetail-' + type);
+  el.innerHTML = '';
+
+  const parent = allGroups.find(g => g.name === cfg.groupName);
+  if (!parent) {
+    el.innerHTML = `
+      <div class="kg-detail-placeholder">
+        <div class="kg-detail-placeholder-icon">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+        </div>
+        <p>${cfg.label}</p>
+        <small>Gruppe „${cfg.groupName}" nicht in ChurchTools gefunden.</small>
+      </div>`;
+    return;
+  }
+
+  const hdr = document.createElement('div');
+  hdr.className = 'detail-bereich-header';
+  hdr.style.background = cfg.color + '18';
+  hdr.style.borderLeft = `4px solid ${cfg.color}`;
+  hdr.innerHTML = `<div class="detail-bereich-name" style="color:${cfg.color};">${cfg.label}</div>`;
+  el.appendChild(hdr);
+
+  const children = allGroups.filter(g => (g.parentGroupIds || []).includes(parent.id));
+
+  if (children.length === 0) {
+    const empty = document.createElement('div');
+    empty.className = 'kg-detail-placeholder';
+    empty.innerHTML = `<p style="margin-top:60px;">Keine Gruppen vorhanden.</p>`;
+    el.appendChild(empty);
+    return;
+  }
+
+  const grid = document.createElement('div');
+  grid.className = 'sections-grid';
+
+  const leaves = children.filter(c =>
+    allGroups.filter(g => (g.parentGroupIds || []).includes(c.id)).length === 0
+  );
+  const sections = children.filter(c =>
+    allGroups.filter(g => (g.parentGroupIds || []).includes(c.id)).length > 0
+  );
+
+  if (leaves.length > 0) {
+    const card = document.createElement('div');
+    card.className = 'section-card';
+    const list = document.createElement('div');
+    list.className = 'group-list';
+    leaves.forEach(gruppe => list.appendChild(buildGroupTile(gruppe, parent, cfg)));
+    card.appendChild(list);
+    grid.appendChild(card);
+  }
+
+  sections.forEach(section => {
+    const gruppen = allGroups.filter(g => (g.parentGroupIds || []).includes(section.id));
+    const card = document.createElement('div');
+    card.className = 'section-card';
+    card.innerHTML = `
+      <div class="section-head" style="border-color:${cfg.color};">
+        <div class="section-head-title" style="color:${cfg.color};">${section.name}</div>
+      </div>`;
+    const list = document.createElement('div');
+    list.className = 'group-list';
+    gruppen.forEach(gruppe => list.appendChild(buildGroupTile(gruppe, parent, cfg)));
+    card.appendChild(list);
+    grid.appendChild(card);
+  });
+
+  el.appendChild(grid);
+  el.scrollTop = 0;
+}
+
+function buildTeamsScreen() {
+  const cfg = TEAMS_CONFIG;
+  const el = document.getElementById('teamsGrid');
+  el.innerHTML = '';
+
+  const parent = allGroups.find(g => g.name === cfg.groupName);
+  if (!parent) {
+    el.innerHTML = `<div class="kg-detail-placeholder"><div class="kg-detail-placeholder-icon"><svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="#bbb" stroke-width="1.5"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></div><p>Teams</p><small>Gruppe „${cfg.groupName}" nicht in ChurchTools gefunden.</small></div>`;
+    return;
+  }
+
+  const children = allGroups.filter(g => (g.parentGroupIds || []).includes(parent.id));
+  const FORCE_LEAF = ['evangelisation', 'jugend', 'kinder', 'kids', 'jugendarbeit', 'technik'];
+  const isForceLeaf = c => FORCE_LEAF.some(kw => c.name.toLowerCase().includes(kw));
+
+  const leaves = children.filter(c =>
+    allGroups.filter(g => (g.parentGroupIds || []).includes(c.id)).length === 0 || isForceLeaf(c)
+  );
+  const sections = children.filter(c =>
+    allGroups.filter(g => (g.parentGroupIds || []).includes(c.id)).length > 0 && !isForceLeaf(c)
+  );
+
+  if (leaves.length > 0) {
+    const card = document.createElement('div');
+    card.className = 'section-card';
+    const list = document.createElement('div');
+    list.className = 'group-list';
+    leaves.forEach(gruppe => list.appendChild(buildGroupTile(gruppe, parent, cfg)));
+    card.appendChild(list);
+    el.appendChild(card);
+  }
+
+  sections.forEach(section => {
+    const subGroups = allGroups.filter(g => (g.parentGroupIds || []).includes(section.id));
+    const card = document.createElement('div');
+    card.className = 'section-card';
+    card.innerHTML = `
+      <div class="section-head" style="border-color:${cfg.color};">
+        <div class="section-head-title" style="color:${cfg.color};">${section.name}</div>
+      </div>`;
+    const list = document.createElement('div');
+    list.className = 'group-list';
+    subGroups.forEach(gruppe => list.appendChild(buildGroupTile(gruppe, parent, cfg)));
+    card.appendChild(list);
+    el.appendChild(card);
+  });
+}
+
+function buildGroupTile(gruppe, parent, cfg) {
+  const tile = document.createElement('div');
+  tile.className = 'group-tile';
+  tile.style.setProperty('--accent', cfg.color);
+  const imgSrc = gruppe.imageUrl || null;
+  const url = gruppe.publicUrl || `${CHURCHTOOLS}/publicgroup/${gruppe.id}`;
+  tile.innerHTML = `
+    ${imgSrc
+      ? `<img class="group-tile-img" src="${imgSrc}" alt="${gruppe.name}" onerror="this.style.background='${cfg.color}22'">`
+      : `<div class="group-tile-img" style="background:${cfg.color}22;"></div>`}
+    <div class="group-tile-footer">
+      <div class="group-tile-name">${gruppe.name}</div>
+      <div class="group-tile-chevron">›</div>
+    </div>`;
+  tile.addEventListener('click', () => window.open(url, '_blank'));
+  return tile;
+}
+
+function showDetail(vb, cfg) {
+  currentView = 'detail';
+  hideAll();
+  const dv = document.getElementById('detailview');
+  dv.innerHTML = '';
+  dv.style.display = 'block';
+  dv.classList.add('visible');
+  document.getElementById('navBar').classList.add('visible');
+
+  const hdr = document.createElement('div');
+  hdr.className = 'detail-bereich-header';
+  hdr.style.background = cfg.color + '22';
+  hdr.style.borderLeft = `4px solid ${cfg.color}`;
+  hdr.innerHTML = `
+    <div class="detail-bereich-icon">${ARROWS[cfg.arrow]}</div>
+    <div class="detail-bereich-name" style="color:${cfg.color};">${vb.name}</div>`;
+  dv.appendChild(hdr);
+
+  const bereiche = allGroups.filter(g => (g.parentGroupIds || []).includes(vb.id));
+  const grid = document.createElement('div');
+  grid.className = 'sections-grid';
+
+  bereiche.forEach(bereich => {
+    const gruppen = allGroups.filter(g => (g.parentGroupIds || []).includes(bereich.id));
+
+    if (gruppen.length === 0) {
+      if (!bereich.publicUrl) return;
+      const tile = document.createElement('div');
+      tile.className = 'group-tile';
+      tile.style.setProperty('--accent', cfg.color);
+      const imgSrc = bereich.imageUrl || null;
+      tile.innerHTML = `
+        ${imgSrc
+          ? `<img class="group-tile-img" src="${imgSrc}" alt="${bereich.name}" onerror="this.style.background='${cfg.color}22'">`
+          : `<div class="group-tile-img" style="background:${cfg.color}22;"></div>`}
+        <div class="group-tile-footer">
+          <div class="group-tile-name" style="color:${cfg.color};">${bereich.name}</div>
+          <div class="group-tile-chevron">›</div>
+        </div>`;
+      tile.addEventListener('click', () => window.open(bereich.publicUrl || `${CHURCHTOOLS}/publicgroup/${bereich.id}`, '_blank'));
+      const wrapper = document.createElement('div');
+      wrapper.className = 'section-card';
+      const list = document.createElement('div');
+      list.className = 'group-list';
+      list.appendChild(tile);
+      wrapper.appendChild(list);
+      grid.appendChild(wrapper);
+      return;
+    }
+
+    const card = document.createElement('div');
+    card.className = 'section-card';
+    card.innerHTML = `
+      <div class="section-head" style="border-color:${cfg.color};">
+        <div class="section-head-title" style="color:${cfg.color};">${bereich.name}</div>
+      </div>`;
+    const list = document.createElement('div');
+    list.className = 'group-list';
+    gruppen.forEach(gruppe => {
+      const tile = document.createElement('div');
+      tile.className = 'group-tile';
+      tile.style.setProperty('--accent', cfg.color);
+      const imgSrc = gruppe.imageUrl ? gruppe.imageUrl : null;
+      tile.innerHTML = `
+        ${imgSrc
+          ? `<img class="group-tile-img" src="${imgSrc}" alt="${gruppe.name}" onerror="this.style.background='${cfg.color}22'">`
+          : `<div class="group-tile-img" style="background:${cfg.color}22;"></div>`}
+        <div class="group-tile-footer">
+          <div class="group-tile-name">${gruppe.name}</div>
+          <div class="group-tile-chevron">›</div>
+        </div>`;
+      tile.addEventListener('click', () => window.open(gruppe.publicUrl || `${CHURCHTOOLS}/publicgroup/${gruppe.id}`, '_blank'));
+      list.appendChild(tile);
+    });
+    card.appendChild(list);
+    grid.appendChild(card);
+  });
+
+  dv.appendChild(grid);
+  dv.scrollTop = 0;
+}
+
+function goBack() {
+  if (currentView === 'start')            showHome();
+  else if (currentView === 'detail')      showMitmachen();
+  else if (currentView === 'kleingruppen') showHome();
+  else if (currentView === 'kg-detail')   showKleingruppen();
+  else if (currentView === 'teams')       showHome();
+  else if (currentView === 'tag') {
+    if (prevView === 'teams') showChurchTools();
+    else if (prevView === 'start') showMitmachen();
+    else showHome();
+  }
+  else showHome();
+}
+
+function buildStartscreen() {
+  const visionsbereiche = allGroups.filter(g => g.groupTypeId === 5);
+  const el = document.getElementById('startscreen');
+  el.innerHTML = '';
+
+  VB_CONFIG.forEach(cfg => {
+    const found = visionsbereiche.find(vb => norm(vb.name).includes(cfg.match));
+    const arrowSvg = `<svg width="20" height="20" viewBox="0 0 32 32" fill="none" stroke="#fff" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"><path d="M6 16h20M19 8l8 8-8 8"/></svg>`;
+
+    if (!found) {
+      const ph = document.createElement('div');
+      ph.className = 'bc-card';
+      ph.style.opacity = '0.5';
+      ph.style.cursor = 'default';
+      ph.innerHTML = `
+        <div class="bc-icon-panel" style="background:${cfg.color};"><div style="width:56px;height:56px;">${ARROWS[cfg.arrow]}</div></div>
+        <div class="bc-text">
+          <div class="bc-eyebrow" style="color:${cfg.color};">${cfg.eyebrow}</div>
+          <div class="bc-name">${cfg.match.charAt(0).toUpperCase() + cfg.match.slice(1)}</div>
+          <div class="bc-desc">Noch nicht konfiguriert</div>
+        </div>`;
+      el.appendChild(ph);
+      return;
+    }
+
+    const cfg2 = getConfig(found.name);
+    const card = document.createElement('div');
+    card.className = 'bc-card';
+    card.innerHTML = `
+      <div class="bc-icon-panel" style="background:${cfg2.color};"><div style="width:56px;height:56px;">${ARROWS[cfg2.arrow]}</div></div>
+      <div class="bc-text">
+        <div class="bc-eyebrow" style="color:${cfg2.color};">${cfg2.eyebrow}</div>
+        <div class="bc-name">${found.name.replace(/^Leben\s*/i, '')}</div>
+        <div class="bc-desc">${cfg2.desc}</div>
+      </div>
+      <div class="bc-cta-area">
+        <span class="bc-cta-label" style="color:${cfg2.color};">${cfg2.cta}</span>
+        <div class="bc-cta-btn" style="background:${cfg2.color};">${arrowSvg}</div>
+      </div>`;
+    card.addEventListener('click', () => showDetail(found, cfg2));
+    el.appendChild(card);
+  });
+}
+
+
+
+function openContactPopup() {
+  const container = document.getElementById('contact-qrcode-container');
+  container.innerHTML = '';
+  const url = 'https://www.gemeinde-konkordia.de/kontakt';
+  if (window.QRCode) {
+    new QRCode(container, { text: url, width: 170, height: 170, colorDark: '#1c1a18', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+  } else {
+    container.innerHTML = `<img src="https://api.qrserver.com/v1/create-qr-code/?size=170x170&data=${encodeURIComponent(url)}" width="170" height="170" alt="QR-Code">`;
+  }
+  document.getElementById('contactPopupBg').classList.add('open');
+}
+function closeContactPopup() { document.getElementById('contactPopupBg').classList.remove('open'); }
+function closeContactPopupBg(e) { if (e.target === document.getElementById('contactPopupBg')) closeContactPopup(); }
+
+
+function buildTagPopup() {
+  const allTags = [...new Set(allGroups.flatMap(g => g.tags || []))].sort((a, b) => a.localeCompare(b, 'de'));
+  const container = document.getElementById('tagPopupTags');
+  container.innerHTML = '';
+  allTags.forEach(tag => {
+    const btn = document.createElement('button');
+    btn.className = 'tag-filter-btn' + (tag === activeTag ? ' active' : '');
+    btn.textContent = tag;
+    btn.addEventListener('click', () => {
+      activeTag = (activeTag === tag) ? null : tag;
+      closeTagPopup();
+      if (activeTag) showTagResults(activeTag);
+      else if (prevView === 'teams') showChurchTools();
+      else showMitmachen();
+    });
+    container.appendChild(btn);
+  });
+}
+
+function openTagPopup() {
+  buildTagPopup();
+  document.getElementById('tagPopupBg').classList.add('open');
+}
+function closeTagPopup() { document.getElementById('tagPopupBg').classList.remove('open'); }
+function closeTagPopupBg(e) { if (e.target === document.getElementById('tagPopupBg')) closeTagPopup(); }
+
+function showTagResults(tag) {
+  currentView = 'tag';
+  hideAll();
+  document.getElementById('navBar').classList.add('visible');
+
+  const results = allGroups.filter(g => (g.tags || []).includes(tag) && g.publicUrl);
+  const rv = document.getElementById('tagresultview');
+  rv.innerHTML = `
+    <div class="tagresult-header">
+      <div>
+        <div class="tagresult-label">Gruppen mit der Gabe</div>
+        <div class="tagresult-tag">${tag}</div>
+      </div>
+      <div class="tagresult-count">${results.length} ${results.length === 1 ? 'Gruppe' : 'Gruppen'}</div>
+    </div>
+    <div class="tagresult-grid" id="tagresultGrid"></div>`;
+
+  const grid = rv.querySelector('#tagresultGrid');
+  results.forEach(g => {
+    const vb = findVbOfGroup(g);
+    const cfg = vb ? VB_CONFIG.find(c => norm(vb.name).includes(c.match)) : null;
+    const accentColor = cfg?.color || '#bb2232';
+    const tile = document.createElement('div');
+    tile.className = 'tagresult-tile';
+    tile.style.borderLeft = `4px solid ${accentColor}`;
+    tile.addEventListener('click', () => window.open(g.publicUrl || `${CHURCHTOOLS}/publicgroup/${g.id}`, '_blank'));
+    const imgSrc = g.imageUrl ? g.imageUrl : null;
+    tile.innerHTML = `
+      ${imgSrc ? `<img class="tagresult-tile-img" src="${imgSrc}" alt="${g.name}" onerror="this.style.display='none'">` : `<div class="tagresult-tile-img"></div>`}
+      <div class="tagresult-tile-info">
+        <div class="tagresult-tile-name">${g.name}</div>
+        <div class="tagresult-tile-bereich">${vb ? vb.name : ''}</div>
+      </div>`;
+    grid.appendChild(tile);
+  });
+
+  rv.style.display = '';
+  rv.classList.add('visible');
+  rv.scrollTop = 0;
+}
+
+function findVbOfGroup(gruppe) {
+  const vbs = allGroups.filter(g => g.groupTypeId === 5);
+  function findVb(g, depth = 0) {
+    if (depth > 5) return null;
+    if (vbs.includes(g)) return g;
+    for (const pid of (g.parentGroupIds || [])) {
+      const parent = allGroups.find(x => x.id === pid);
+      if (parent) { const found = findVb(parent, depth + 1); if (found) return found; }
+    }
+    return null;
+  }
+  return findVb(gruppe);
+}
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') { closeTagPopup(); }
+});
+
+async function loadData() {
+  const url = location.hostname === 'localhost' || location.protocol === 'file:'
+    ? 'data/gruppen.json'
+    : `${BASE}/data/gruppen.json`;
+  const res = await fetch(url);
+  const { groups } = await res.json();
+  allGroups = groups;
+}
+
+async function main() {
+  await loadData();
+  document.getElementById('loading').style.display = 'none';
+  buildStartscreen();
+  showHome();
+}
+
+main().catch(err => {
+  document.getElementById('loading').innerHTML = `<p>Fehler beim Laden der Daten.</p>`;
+  console.error(err);
+});
+
+// Auto-Höhe
+function sendHeight() {
+  const h = Math.ceil(document.getElementById('app').getBoundingClientRect().height);
+  window.parent.postMessage({ type: 'gruppen-embed-resize', height: h }, '*');
+}
+window.addEventListener('load', sendHeight);
+if (window.ResizeObserver) {
+  new ResizeObserver(sendHeight).observe(document.getElementById('app'));
+} else {
+  setInterval(sendHeight, 300);
+}
+
+// iOS-Fix: Touch-Scroll an Elternseite weiterleiten
+let touchStartY = 0;
+document.addEventListener('touchstart', e => {
+  touchStartY = e.touches[0].clientY;
+}, { passive: true });
+document.addEventListener('touchmove', e => {
+  const delta = touchStartY - e.touches[0].clientY;
+  touchStartY = e.touches[0].clientY;
+  window.parent.postMessage({ type: 'gruppen-embed-touchscroll', delta }, '*');
+}, { passive: true });
+</script>
+</body>
+</html>
