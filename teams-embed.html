@@ -67,11 +67,14 @@
     }
 
     .team-card {
+      display: block;
       background: var(--weiss);
       border-radius: var(--radius-card);
       box-shadow: var(--shadow);
       padding: 1.25rem 1.1rem;
       text-align: center;
+      text-decoration: none;
+      color: inherit;
       transition: box-shadow 0.25s, transform 0.25s;
     }
 
@@ -177,8 +180,13 @@
         const namen = (t.leaders || []).map(l => l.name).filter(Boolean);
         const offen = namen.length === 0;
 
-        const card = document.createElement('div');
+        const card = document.createElement(t.publicUrl ? 'a' : 'div');
         card.className = 'team-card' + (offen ? ' offen' : '');
+        if (t.publicUrl) {
+          card.href = t.publicUrl;
+          card.target = '_blank';
+          card.rel = 'noopener noreferrer';
+        }
 
         const name = document.createElement('div');
         name.className = 'team-name';
