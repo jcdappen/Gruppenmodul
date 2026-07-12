@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Teams – Gemeinde Konkordia</title>
+  <style>
+    @font-face {
+      font-family: 'GrotesqueSC';
+      src: url('https://jcdappen.github.io/Gruppenmodul/assets/fonts/GrotesqueRegSC.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gothic720';
+      src: url('https://jcdappen.github.io/Gruppenmodul/assets/fonts/gothic720l.ttf') format('truetype');
+      font-weight: 300;
+      font-style: normal;
+      font-display: swap;
+    }
+    @font-face {
+      font-family: 'Gothic725';
+      src: url('https://jcdappen.github.io/Gruppenmodul/assets/fonts/gothic725b.ttf') format('truetype');
+      font-weight: 700;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+  <style>
+    :root {
+      --rot:         #bb2232;
+      --rot-hell:    #f9eced;
+      --grau-dunkel: #3a3a3a;
+      --grau-mittel: #717171;
+      --grau-hell:   #f0f0f0;
+      --grau-border: #e2e2e2;
+      --weiss:       #ffffff;
+      --radius-card: 16px;
+      --shadow:      0 2px 12px rgba(0,0,0,0.09);
+      --shadow-hover:0 6px 24px rgba(0,0,0,0.14);
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html, body {
+      overflow-x: hidden;
+      width: 100%;
+    }
+
+    body {
+      font-family: 'Gothic720', Arial, sans-serif;
+      background: #fafafa;
+      color: var(--grau-dunkel);
+      font-size: 15px;
+      line-height: 1.5;
+    }
+
+    /* ── Team-Grid ─────────────────────────────── */
+    #teams {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 1.5rem 1rem;
+    }
+
+    .team-card {
+      background: var(--weiss);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow);
+      padding: 1.25rem 1.1rem;
+      text-align: center;
+      transition: box-shadow 0.25s, transform 0.25s;
+    }
+
+    .team-card:hover {
+      box-shadow: var(--shadow-hover);
+      transform: translateY(-4px);
+    }
+
+    .team-name {
+      font-family: 'GrotesqueSC', Arial, sans-serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
+      color: var(--rot);
+      line-height: 1.25;
+      margin-bottom: 0.6rem;
+      overflow-wrap: break-word;
+      word-break: break-word;
+    }
+
+    .team-leiter {
+      font-size: 0.9rem;
+      color: var(--grau-mittel);
+    }
+
+    .team-leiter .label {
+      display: block;
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      color: var(--grau-mittel);
+      opacity: 0.75;
+      margin-bottom: 0.15rem;
+    }
+
+    .team-leiter .namen {
+      color: var(--grau-dunkel);
+      font-weight: 600;
+    }
+
+    .team-card.offen .team-leiter .namen {
+      color: var(--grau-mittel);
+      font-weight: 400;
+      font-style: italic;
+    }
+
+    /* ── Leer-/Lade-Zustand ───────────────────────── */
+    #leer, #laden {
+      padding: 2rem 1rem;
+      text-align: center;
+      color: var(--grau-mittel);
+      font-size: 0.9rem;
+    }
+    #leer { display: none; }
+
+    @media (max-width: 480px) {
+      #teams {
+        grid-template-columns: 1fr;
+        padding: 1rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <div id="teams"></div>
+  <p id="leer">Keine Teams vorhanden.</p>
+  <p id="laden">Wird geladen …</p>
+
+  <script>
+    const BASE = 'https://jcdappen.github.io/Gruppenmodul';
+
+    async function main() {
+      const dataUrl = location.hostname === 'localhost' || location.protocol === 'file:'
+        ? 'data/gruppen.json'
+        : `${BASE}/data/gruppen.json`;
+
+      const res = await fetch(dataUrl);
+      if (!res.ok) throw new Error('Daten konnten nicht geladen werden.');
+      const { groups } = await res.json();
+
+      document.getElementById('laden').style.display = 'none';
+
+      // Teams = direkte Kinder der Gruppe "Teams Verzeichnis"
+      const elternGruppe = groups.find(g => g.name.trim() === 'Teams Verzeichnis');
+      if (!elternGruppe) {
+        zeigeLeer('Gruppe "Teams Verzeichnis" nicht gefunden.');
+        return;
+      }
+
+      const teams = groups
+        .filter(g => (g.parentGroupIds || []).includes(elternGruppe.id))
+        .sort((a, b) => a.name.localeCompare(b.name, 'de'));
+
+      if (teams.length === 0) {
+        zeigeLeer('Keine Teams vorhanden.');
+        return;
+      }
+
+      const grid = document.getElementById('teams');
+      teams.forEach(t => {
+        const namen = (t.leaders || []).map(l => l.name).filter(Boolean);
+        const offen = namen.length === 0;
+
+        const card = document.createElement('div');
+        card.className = 'team-card' + (offen ? ' offen' : '');
+
+        const name = document.createElement('div');
+        name.className = 'team-name';
+        name.textContent = t.name;
+        card.appendChild(name);
+
+        const leiter = document.createElement('div');
+        leiter.className = 'team-leiter';
+        leiter.innerHTML = `<span class="label">Leitung</span><span class="namen"></span>`;
+        leiter.querySelector('.namen').textContent = offen ? 'noch offen' : namen.join(', ');
+        card.appendChild(leiter);
+
+        grid.appendChild(card);
+      });
+    }
+
+    function zeigeLeer(msg) {
+      const el = document.getElementById('leer');
+      el.textContent = msg;
+      el.style.display = 'block';
+    }
+
+    main().catch(err => {
+      document.getElementById('laden').style.display = 'none';
+      zeigeLeer('Fehler beim Laden der Teams.');
+      console.error(err);
+    });
+
+    // ── Auto-Resize: Höhe an Eltern-Seite melden ──
+    function meldeHoehe() {
+      const h = document.documentElement.scrollHeight;
+      window.parent.postMessage({ type: 'gidk-resize', height: h }, '*');
+    }
+
+    const resizeObserver = new ResizeObserver(meldeHoehe);
+    resizeObserver.observe(document.body);
+    window.addEventListener('resize', meldeHoehe);
+  </script>
+
+</body>
+</html>
