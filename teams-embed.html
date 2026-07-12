@@ -156,9 +156,15 @@
 
       document.getElementById('laden').style.display = 'none';
 
-      // Teams = groupTypeId 2 ("Teams / Dienste")
+      // Teams = direkte Kinder der Gruppe "Teams Verzeichnis"
+      const elternGruppe = groups.find(g => g.name.trim() === 'Teams Verzeichnis');
+      if (!elternGruppe) {
+        zeigeLeer('Gruppe "Teams Verzeichnis" nicht gefunden.');
+        return;
+      }
+
       const teams = groups
-        .filter(g => g.groupTypeId === 2)
+        .filter(g => (g.parentGroupIds || []).includes(elternGruppe.id))
         .sort((a, b) => a.name.localeCompare(b.name, 'de'));
 
       if (teams.length === 0) {
