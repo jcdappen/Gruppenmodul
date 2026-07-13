@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-12T06:28:16.629Z",
+  "generatedAt": "2026-07-13T06:47:37.569Z",
   "groups": [
     {
       "id": 124,
@@ -282,9 +282,7 @@
         "isHidden": false,
         "modules": []
       },
-      "childGroupIds": [
-        176
-      ]
+      "childGroupIds": []
     },
     {
       "id": 308,
@@ -410,27 +408,6 @@
         64,
         115
       ]
-    },
-    {
-      "id": 173,
-      "name": "Event Team",
-      "groupTypeId": 2,
-      "parentGroupIds": [],
-      "description": "Events sind immer wieder ein Highlight. Sei es die Möglichmacher-Party, BlockParties, ‘Back-to-school’, oder Weihnachten - es gibt immer einen Grund zu feiern. Unser Motto #ohneSpaßkeinFun. Das Ziel ist, bei jedem Event Beziehungen zu bauen und den Menschen Jesus ein Stück näher zubringen. Und diese Events organisieren wir.",
-      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/173",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/391/79bb82cbcb8ca39f6e8e374f3a64d920c5d87ffc8bbdfa2ff02c7a9339bc0a42",
-      "tags": [],
-      "leaders": [
-        {
-          "name": "Office Konkordia",
-          "imageUrl": "https://gemeindekonkordia.church.tools/images/624/32f35011daea5ae5c3d8ad8b4c218f0fc89221d877be527536b898e394e2e8d7"
-        }
-      ],
-      "settings": {
-        "isHidden": false,
-        "modules": []
-      },
-      "childGroupIds": []
     },
     {
       "id": 47,
@@ -1657,29 +1634,6 @@
         {
           "name": "Isabelle Joachim",
           "imageUrl": null
-        }
-      ],
-      "settings": {
-        "isHidden": false,
-        "modules": []
-      },
-      "childGroupIds": []
-    },
-    {
-      "id": 176,
-      "name": "Management Team",
-      "groupTypeId": 2,
-      "parentGroupIds": [
-        22
-      ],
-      "description": "In 16 von 38 Gleichnissen spricht Jesus über Geld. Wir verwalten die Finanzen der Kirche, Ein- und Ausgaben, Buchhaltung und kümmern uns um rechtliche Fragen. Unser Ziel ist es, weise mit dem umzugehen, was Gott uns anvertraut, um auch dadurch Menschen zu zeigen, wer Jesus ist und sie in Nachfolge zu begleiten.\n\"Clever agieren wie ein Unternehmen. Großzügig sein nach Gottes Willen.\"\n",
-      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/176",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/412/174a081f4c0f6f4959df5c068a56168d255b3adf8986e36456d679c80ba60f69",
-      "tags": [],
-      "leaders": [
-        {
-          "name": "Office Konkordia",
-          "imageUrl": "https://gemeindekonkordia.church.tools/images/624/32f35011daea5ae5c3d8ad8b4c218f0fc89221d877be527536b898e394e2e8d7"
         }
       ],
       "settings": {
