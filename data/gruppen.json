@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-19T06:25:15.218Z",
+  "generatedAt": "2026-07-20T06:40:28.150Z",
   "groups": [
     {
       "id": 124,
@@ -126,7 +126,6 @@
       },
       "childGroupIds": [
         337,
-        314,
         277,
         257,
         274
@@ -455,53 +454,14 @@
     },
     {
       "id": 337,
-      "name": "Frauenfrühstück am 18.04.26",
+      "name": "Frauenfrühstück",
       "groupTypeId": 4,
       "parentGroupIds": [
         195
       ],
       "description": "Du hast Lust auf ein Frühstück & nette Gespräche unter Frauen? \nDann komm vorbei - bringe deine Freundin, Mama, Oma oder Nachbarin mit und genießt zusammen mit uns den Vormittag. \n\nUm Anmeldung bis zum 09.03.2025 wird gebeten.\n\nDamit wir ein vielfältiges Frühstück haben, freuen wir uns, wenn du eine Kleinigkeit mitbringen würdest :)\nFür Brötchen, Wurst & Käse ist gesorgt.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/337",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/910/5c883969e133d8bb0ed9f4f3dcac1debeb3887436fe72b0593124a145b4ff8e1",
-      "tags": [],
-      "leaders": [
-        {
-          "name": "Gudrun Burkard",
-          "imageUrl": "https://gemeindekonkordia.church.tools/images/592/b1bd2aaaa4eb2c44981eb84d94199496473d70f5c06c67b17abf263cc338ac5e"
-        },
-        {
-          "name": "Christina Dappen",
-          "imageUrl": "https://gemeindekonkordia.church.tools/images/371/5b2315d3c8992a557acff6eb63e040a187a4f8d1e8db38ea797d20deab4b9874"
-        },
-        {
-          "name": "Isabelle Joachim",
-          "imageUrl": null
-        },
-        {
-          "name": "Melanie Seitz",
-          "imageUrl": "https://gemeindekonkordia.church.tools/images/906/cec17ec55c5f033901922cfa5b415de119db5311cbde800e5a98f65b7426b526"
-        },
-        {
-          "name": "Lea von Seydlitz",
-          "imageUrl": null
-        }
-      ],
-      "settings": {
-        "isHidden": false,
-        "modules": []
-      },
-      "childGroupIds": []
-    },
-    {
-      "id": 314,
-      "name": "Frauenfrühstück am 18.10.25",
-      "groupTypeId": 4,
-      "parentGroupIds": [
-        195
-      ],
-      "description": "Du hast Lust auf ein Frühstück & nette Gespräche unter Frauen? \nDann komm vorbei - bringe deine Freundin, Mama, Oma oder Nachbarin mit und genießt zusammen mit uns den Vormittag. \n\nUm Anmeldung bis zum 09.03.2025 wird gebeten.\n\nDamit wir ein vielfältiges Frühstück haben, freuen wir uns, wenn du eine Kleinigkeit mitbringen würdest :)\nFür Brötchen, Wurst & Käse ist gesorgt.",
-      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/314",
-      "imageUrl": null,
+      "imageUrl": "https://gemeindekonkordia.church.tools/images/910/06df71cb67fe2a1b23a1167c2c94338057cf5b06da7d7d898a799f6637be0c73",
       "tags": [],
       "leaders": [
         {
