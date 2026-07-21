@@ -140,3 +140,7 @@ Konkordia CI (siehe seo-audit-konkordia.skill für vollständigen Styleguide):
 - Keine persönlichen Daten (kein Foto, keine E-Mail der Leiter) im iframe
 - Weiterleitung auf ChurchTools-Gruppenseite (`publicUrl`) für Kontakt
 - ChurchTools übernimmt dort den Datenschutz
+- `leitung-embed.html` (Leitungsstruktur mit Namen/Anstellungsdetails) folgt demselben Muster:
+  Namen werden nur verlinkt (Gruppe → `publicgroup/{id}`, Einzelperson → `person/{id}`,
+  Mapping in `data/leitung-links.json`), nie mit E-Mail/Telefon angereichert.
+  Diese Seite darf ausschließlich passwortgeschützt/intern eingebettet werden, nie öffentlich.

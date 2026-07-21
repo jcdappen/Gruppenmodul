@@ -1,0 +1,7 @@
+{
+  "_hinweis": "Manuell gepflegte Zuordnung: Anzeigename im Leitungsstruktur-Widget -> ChurchTools-Gruppe oder -Person. IDs mit scripts/lookup-churchtools-ids.js ermitteln. Namen ohne Eintrag bleiben im Widget unverlinkter Text.",
+  "links": {
+    "Gemeinderat": { "type": "group", "id": null },
+    "Finanzrat": { "type": "group", "id": null }
+  }
+}

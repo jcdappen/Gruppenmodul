@@ -1,0 +1,277 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Leitungsstruktur – Gemeinde Konkordia</title>
+</head>
+<body>
+
+<!-- START: ALLES AB HIER KOPIEREN -->
+<!--
+  Leitungsstruktur Gemeinde in der Konkordia — INTERNE VERSION MIT NAMEN
+  Enthält Gemeinderat, Finanzrat, Staff (inkl. Anstellungsdetails).
+  DSGVO-Hinweis: NUR auf eine passwortgeschützte Seite einbetten, niemals öffentlich.
+  Namen sind, wo eine Zuordnung in data/leitung-links.json existiert, mit der
+  ChurchTools-Gruppen- bzw. Personenseite verlinkt. Es werden zu keinem
+  Zeitpunkt E-Mail-Adressen oder Telefonnummern in dieses Widget eingebettet —
+  Kontaktaufnahme läuft immer über ChurchTools selbst (dort greift der
+  ChurchTools-eigene Zugriffs- und Datenschutz).
+-->
+<div id="konkordia-leitung-widget">
+  <style>
+    #konkordia-leitung-widget, #konkordia-leitung-widget *, #konkordia-leitung-widget *::before, #konkordia-leitung-widget *::after {
+      box-sizing: border-box;
+    }
+    #konkordia-leitung-widget {
+      --kk-rot: #bb2232;
+      --kk-gold: #edc544;
+      --kk-gruen: #abd075;
+      --kk-teal: #22bbac;
+      --kk-grau-dunkel: #4d4d4d;
+      --kk-grau-hell: #e6e6e6;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', system-ui, 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      max-width: 720px;
+      margin: 0 auto;
+      color: #2d2d2d;
+    }
+    #konkordia-leitung-widget .kk-section {
+      background: rgba(255,255,255,0.9);
+      border: 1px solid rgba(0,0,0,0.06);
+      border-radius: 16px 16px 16px 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.04), 0 8px 20px rgba(0,0,0,0.06);
+      margin-bottom: 14px;
+      overflow: hidden;
+    }
+    #konkordia-leitung-widget summary.kk-section-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      padding: 16px 20px;
+      cursor: pointer;
+      font-weight: 700;
+      font-size: 17px;
+      color: #fff;
+      background: var(--kk-rot);
+      list-style: none;
+    }
+    #konkordia-leitung-widget .kk-section:nth-of-type(1) > summary { background: var(--kk-rot); }
+    #konkordia-leitung-widget .kk-section:nth-of-type(2) > summary { background: var(--kk-teal); }
+    #konkordia-leitung-widget .kk-section:nth-of-type(3) > summary { background: var(--kk-gold); color: #4d3b00; }
+    #konkordia-leitung-widget .kk-section:nth-of-type(4) > summary { background: var(--kk-gruen); color: #2d3b16; }
+    #konkordia-leitung-widget .kk-section:nth-of-type(5) > summary { background: var(--kk-teal); }
+    #konkordia-leitung-widget summary.kk-section-summary::-webkit-details-marker { display: none; }
+    #konkordia-leitung-widget .kk-chevron {
+      width: 18px; height: 18px;
+      flex-shrink: 0;
+      transition: transform 0.3s ease;
+      opacity: 0.8;
+    }
+    #konkordia-leitung-widget details[open] > summary .kk-chevron { transform: rotate(180deg); }
+    #konkordia-leitung-widget .kk-section-body { padding: 16px 20px; }
+
+    #konkordia-leitung-widget ul.kk-list {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    #konkordia-leitung-widget ul.kk-list li.kk-item {
+      font-size: 14.5px;
+      color: var(--kk-grau-dunkel);
+      padding: 6px 10px;
+      border-left: 3px solid var(--kk-grau-hell);
+      background: rgba(0,0,0,0.015);
+      border-radius: 4px;
+    }
+    #konkordia-leitung-widget ul.kk-list ul {
+      list-style: none;
+      margin: 6px 0 0 14px;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    #konkordia-leitung-widget li.kk-parent {
+      padding: 0;
+      background: transparent;
+      border-left: none;
+      list-style: none;
+    }
+    #konkordia-leitung-widget summary.kk-sub-summary {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      cursor: pointer;
+      list-style: none;
+      font-size: 14.5px;
+      color: var(--kk-grau-dunkel);
+      padding: 6px 10px;
+      border-left: 3px solid var(--kk-grau-hell);
+      background: rgba(0,0,0,0.015);
+      border-radius: 4px;
+    }
+    #konkordia-leitung-widget summary.kk-sub-summary::-webkit-details-marker { display: none; }
+    #konkordia-leitung-widget .kk-chevron-sm {
+      width: 13px; height: 13px;
+      flex-shrink: 0;
+      opacity: 0.4;
+      transition: transform 0.25s ease;
+    }
+    #konkordia-leitung-widget details.kk-sub-details:not([open]) .kk-chevron-sm { transform: rotate(-90deg); }
+    #konkordia-leitung-widget .kk-sub-body { margin-top: 4px; }
+
+    #konkordia-leitung-widget .kk-hinweis {
+      margin-top: 20px;
+      font-size: 12.5px;
+      color: #8c8c8c;
+      text-align: center;
+      line-height: 1.5;
+    }
+
+    #konkordia-leitung-widget a.kk-link {
+      color: inherit;
+      text-decoration: underline;
+      text-decoration-style: dotted;
+      text-underline-offset: 2px;
+    }
+    #konkordia-leitung-widget a.kk-link:hover {
+      text-decoration-style: solid;
+    }
+  </style>
+
+  <div style="background:#fff4f4; border:1px solid var(--kk-rot); color:var(--kk-rot); font-size:13px; font-weight:700; text-align:center; padding:10px 14px; border-radius:10px; margin-bottom:18px;">🔒 Interner Bereich — bitte nicht weiterleiten oder öffentlich teilen</div>
+  <div id="kk-sections"></div>
+  <div class="kk-hinweis">Enthält auch Anstellungsdetails (Staff). Änderungswünsche bitte im Gemeindebüro melden.<br>Verlinkte Namen führen zur ChurchTools-Gruppen- bzw. Personenseite — Kontaktdaten stehen nur dort, nicht in dieser Seite.</div>
+</div>
+
+<script>
+(function () {
+  const SHOW_NAMES = true;
+  const BASE_URL = 'https://gemeindekonkordia.church.tools';
+  const MODUL_BASE = 'https://jcdappen.github.io/Gruppenmodul';
+
+  const DATA = {"text": "FSQ-D", "leiter": null, "paragraphs": ["Regionalleitung"], "table": null, "children": [{"text": "Gemeindeleitung", "leiter": null, "paragraphs": ["Johannes D.", "Leitender Pastor 100%"], "table": null, "children": [{"text": "Gemeinderat", "leiter": null, "paragraphs": [], "table": {"headers": ["Älteste", "Berater"], "rows": [["Alicya W.", "Christina D."], ["Bernhard M.", "Elena D."], ["", "Raphael S."]]}, "children": [{"text": "Leben mit Gott", "leiter": "Bernhard M.", "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Leben in Transformation", "leiter": "Johannes D.", "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Leben in Gemeinschaft", "leiter": "Alicya W.", "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Leben in der Welt", "leiter": "Johannes D.", "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}], "person_in_heading": false, "is_bullet_person": false}, {"text": "Finanzrat", "leiter": null, "paragraphs": [], "table": {"headers": ["Gewählt", "Berater"], "rows": [["Michael v. S.", ""], ["Daniel J.", ""], ["Brigitte K.", ""]]}, "children": [{"text": "Buchhaltung", "leiter": "Monika B.", "paragraphs": [], "table": null, "children": [{"text": "Konkordia hilft", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Konkordia", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}], "person_in_heading": false, "is_bullet_person": false}], "person_in_heading": false, "is_bullet_person": false}, {"text": "Strategische Leitung", "leiter": null, "paragraphs": [], "table": null, "children": [{"text": "Vision", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Strategische Ausrichtung", "leiter": null, "paragraphs": [], "table": null, "children": [{"text": "Klausur", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}], "person_in_heading": false, "is_bullet_person": false}, {"text": "Leiterschaftsentwicklung", "leiter": null, "paragraphs": [], "table": null, "children": [{"text": "Nachwuchsleiter Training", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Kleingruppenleiter", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Jüngerschaftsbegleiter", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}], "person_in_heading": false, "is_bullet_person": false}], "person_in_heading": false, "is_bullet_person": false}, {"text": "Staff", "leiter": null, "paragraphs": [], "table": null, "children": [{"text": "Bettina K. Assistenz, Minijob", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": true, "is_bullet_person": false}, {"text": "Monika B., Buchhaltung, Minijob", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": true, "is_bullet_person": false}, {"text": "Alicya W. Kinder & Jugend, 20%", "leiter": null, "paragraphs": [], "table": null, "children": [{"text": "Lisa S., Kinderdienst Übungsleiter.", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": true, "is_bullet_person": false}, {"text": "Gabi T., Kinderdienst Übungsleiter.", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": true, "is_bullet_person": false}], "person_in_heading": true, "is_bullet_person": false}], "person_in_heading": false, "is_bullet_person": false}, {"text": "Verwaltung", "leiter": null, "paragraphs": [], "table": null, "children": [{"text": "Organisation", "leiter": "Bettina K.", "paragraphs": [], "table": null, "children": [{"text": "WG", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Büro Orga", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Gemeindefreizeit", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Seminarbetreuung", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Gebäudevermietung", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Stadtnachrichten", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Kasse", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "ChurchTools", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Asistenz Pastor", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}], "person_in_heading": false, "is_bullet_person": false}, {"text": "Media", "leiter": "Johannes D.", "paragraphs": [], "table": null, "children": [{"text": "Konkordia News", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Website", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Flyer", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Social Media", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "App", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}], "person_in_heading": false, "is_bullet_person": false}, {"text": "EDV", "leiter": "Harald T.", "paragraphs": [], "table": null, "children": [{"text": "Netzwerk", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Datensicherung", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}, {"text": "Hardware", "leiter": null, "paragraphs": [], "table": null, "children": [], "person_in_heading": false, "is_bullet_person": false}], "person_in_heading": false, "is_bullet_person": false}], "person_in_heading": false, "is_bullet_person": false}], "person_in_heading": false, "is_bullet_person": false}], "person_in_heading": false, "is_bullet_person": false};
+
+  const sectionsEl = document.getElementById('kk-sections');
+  let LINKS = {};
+
+  function escapeHtml(str) {
+    return String(str).replace(/[&<>"']/g, function (c) {
+      return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c];
+    });
+  }
+
+  // Löst einen Anzeigenamen/-titel über data/leitung-links.json in eine ChurchTools-URL auf.
+  // Kein Treffer -> null, Name bleibt reiner Text (keine Kontaktdaten im Widget selbst).
+  function resolveUrl(label) {
+    const entry = LINKS[label];
+    if (!entry || !entry.id) return null;
+    if (entry.type === 'group') return `${BASE_URL}/publicgroup/${entry.id}`;
+    if (entry.type === 'person') return `${BASE_URL}/person/${entry.id}`;
+    return null;
+  }
+
+  // Gibt escaptes Label zurück, ggf. als <a> verlinkt.
+  function linkifyLabel(label) {
+    const text = escapeHtml(label);
+    const url = resolveUrl(label);
+    if (!url) return text;
+    return `<a class="kk-link" href="${escapeHtml(url)}" target="_blank" rel="noopener noreferrer">${text}</a>`;
+  }
+
+  function renderTable(table) {
+    if (!SHOW_NAMES || !table) return '';
+    let html = '<div class="kk-table-cols" style="display:flex; gap:16px; margin-bottom:10px;">';
+    table.headers.forEach(function (h, colIdx) {
+      html += '<div style="flex:1;"><div style="font-size:11.5px; font-weight:700; color:var(--kk-grau-dunkel); opacity:0.7; margin-bottom:4px;">' + escapeHtml(h) + '</div>';
+      table.rows.forEach(function (row) {
+        const val = row[colIdx];
+        if (val) html += '<div style="font-size:13px; color:var(--kk-rot); font-weight:600; padding:2px 0;">' + linkifyLabel(val) + '</div>';
+      });
+      html += '</div>';
+    });
+    html += '</div>';
+    return html;
+  }
+
+  function renderParagraphs(paragraphs) {
+    if (!SHOW_NAMES || !paragraphs || paragraphs.length === 0) return '';
+    return '<div style="font-size:13px; color:var(--kk-rot); font-weight:700; margin-bottom:10px;">' +
+      paragraphs.map(escapeHtml).join('<br>') + '</div>';
+  }
+
+  function renderList(children) {
+    if (!children || children.length === 0) return '';
+    let html = '<ul class="kk-list">';
+    children.forEach(function (node) {
+      const hasKids = node.children && node.children.length > 0;
+      const leiterLine = (SHOW_NAMES && node.leiter) ? '<div style="font-size:12px; font-weight:700; color:var(--kk-rot); margin-top:2px;">' + linkifyLabel(node.leiter) + '</div>' : '';
+      const tableHtml = renderTable(node.table);
+      const parasHtml = renderParagraphs(node.paragraphs);
+      const labelHtml = SHOW_NAMES ? linkifyLabel(node.text) : escapeHtml(node.text);
+      if (hasKids || tableHtml || parasHtml) {
+        html += '<li class="kk-parent"><details class="kk-sub-details">' +
+          '<summary class="kk-sub-summary"><span>' + labelHtml + '</span>' + leiterLine +
+          '<svg class="kk-chevron-sm" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="margin-left:auto"><path d="M6 9l6 6 6-6"/></svg>' +
+          '</summary><div class="kk-sub-body">' + tableHtml + parasHtml + renderList(node.children) + '</div></details></li>';
+      } else {
+        html += '<li class="kk-item">' + labelHtml + leiterLine + '</li>';
+      }
+    });
+    html += '</ul>';
+    return html;
+  }
+
+  function render() {
+    const gemeindeleitung = (DATA.children || [])[0];
+    const topSections = gemeindeleitung ? (gemeindeleitung.children || []) : [];
+
+    if (SHOW_NAMES && gemeindeleitung && gemeindeleitung.paragraphs && gemeindeleitung.paragraphs.length) {
+      const intro = document.createElement('div');
+      intro.style.cssText = 'background:var(--kk-rot); color:#fff; border-radius:16px 16px 16px 4px; padding:16px 20px; margin-bottom:18px; font-weight:700;';
+      intro.innerHTML = '<div style="font-size:12px; opacity:0.85; font-weight:600; margin-bottom:4px;">' + escapeHtml(gemeindeleitung.text) + '</div>' +
+        gemeindeleitung.paragraphs.map(escapeHtml).join('<br>');
+      sectionsEl.appendChild(intro);
+    }
+
+    topSections.forEach(function (section, idx) {
+      const details = document.createElement('details');
+      details.className = 'kk-section';
+      if (idx === 0) details.setAttribute('open', '');
+      const tableHtml = renderTable(section.table);
+      const parasHtml = renderParagraphs(section.paragraphs);
+      details.innerHTML =
+        '<summary class="kk-section-summary"><span>' + linkifyLabel(section.text) + '</span>' +
+        '<svg class="kk-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9l6 6 6-6"/></svg></summary>' +
+        '<div class="kk-section-body">' + tableHtml + parasHtml + renderList(section.children) + '</div>';
+      sectionsEl.appendChild(details);
+    });
+  }
+
+  async function loadLinks() {
+    const url = (location.hostname === 'localhost' || location.protocol === 'file:')
+      ? 'data/leitung-links.json'
+      : `${MODUL_BASE}/data/leitung-links.json`;
+    try {
+      const res = await fetch(url);
+      if (res.ok) {
+        const data = await res.json();
+        LINKS = data.links || {};
+      }
+    } catch (err) {
+      console.warn('Konnte leitung-links.json nicht laden, Namen bleiben unverlinkt.', err);
+    }
+  }
+
+  loadLinks().finally(render);
+})();
+</script>
+<!-- ENDE: ALLES BIS HIER KOPIEREN -->
+
+</body>
+</html>

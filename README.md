@@ -26,6 +26,10 @@ index.html / embed.html
 | `data/gruppen.json` | Alle Gruppen-Daten (Name, Beschreibung, Bild, Hierarchie) |
 | `index.html` | Einfache Listenansicht mit Suchfunktion |
 | `embed.html` | Einbettbare, gebrandete Version mit Tabs und Hierarchie – Produktiv-Version |
+| `teams-embed.html` | Karten-Grid der Teams unter "Teams Verzeichnis", Karten verlinken auf `publicUrl` |
+| `leitung-embed.html` | Leitungsstruktur-Widget (Gemeinderat, Finanzrat, Staff) – NUR auf passwortgeschützter interner Seite einbetten |
+| `data/leitung-links.json` | Manuell gepflegte Zuordnung Anzeigename → ChurchTools-Gruppe/-Person für `leitung-embed.html`; enthält nur IDs, keine Kontaktdaten |
+| `scripts/lookup-churchtools-ids.js` | Hilfsskript: sucht Personen-/Gruppen-IDs in ChurchTools zum Befüllen von `leitung-links.json` |
 | `preview-design.html` | Design-Entwurf, noch nicht live |
 | `.github/workflows/fetch-groups.yml` | Startet täglich den Sync automatisch |
 | `.github/workflows/debug-api.yml` | Manuelle Diagnose bei API-Problemen |
