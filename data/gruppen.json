@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-07-27T06:57:11.927Z",
+  "generatedAt": "2026-07-28T06:21:02.926Z",
   "groups": [
     {
       "id": 124,
@@ -1831,6 +1831,10 @@
         {
           "name": "Johannes Dappen",
           "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
+        },
+        {
+          "name": "Office Konkordia",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/624/32f35011daea5ae5c3d8ad8b4c218f0fc89221d877be527536b898e394e2e8d7"
         }
       ],
       "settings": {
