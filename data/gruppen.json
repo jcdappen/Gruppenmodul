@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-14T05:26:52.551Z",
+  "generatedAt": "2026-08-15T04:22:46.088Z",
   "groups": [
     {
       "id": 124,
@@ -18,10 +18,6 @@
         {
           "name": "Office Konkordia",
           "imageUrl": "https://gemeindekonkordia.church.tools/images/624/32f35011daea5ae5c3d8ad8b4c218f0fc89221d877be527536b898e394e2e8d7"
-        },
-        {
-          "name": "Hannah Winrow",
-          "imageUrl": null
         }
       ],
       "settings": {
@@ -219,10 +215,6 @@
         {
           "name": "Johannes Dappen",
           "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
-        },
-        {
-          "name": "Lutz Feinstein",
-          "imageUrl": null
         }
       ],
       "settings": {
@@ -271,10 +263,6 @@
         {
           "name": "Office Konkordia",
           "imageUrl": "https://gemeindekonkordia.church.tools/images/624/32f35011daea5ae5c3d8ad8b4c218f0fc89221d877be527536b898e394e2e8d7"
-        },
-        {
-          "name": "Hannah Winrow",
-          "imageUrl": null
         }
       ],
       "settings": {
@@ -503,10 +491,6 @@
       "imageUrl": "https://gemeindekonkordia.church.tools/images/652/9ee249962aac0560826bc4452f54034217c99e31ae92b6e5f4fffa83bf5fe5e4",
       "tags": [],
       "leaders": [
-        {
-          "name": "Matthias Czepl",
-          "imageUrl": null
-        },
         {
           "name": "Johannes Dappen",
           "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
@@ -995,10 +979,6 @@
         {
           "name": "Raphael Seitz",
           "imageUrl": null
-        },
-        {
-          "name": "Christopher Winrow",
-          "imageUrl": null
         }
       ],
       "settings": {
@@ -1376,10 +1356,6 @@
         {
           "name": "Johannes Dappen",
           "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
-        },
-        {
-          "name": "Hannah Winrow",
-          "imageUrl": null
         }
       ],
       "settings": {
@@ -2002,6 +1978,22 @@
       "description": null,
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/70",
       "imageUrl": "https://gemeindekonkordia.church.tools/images/430/2a39ea9521eb04391c2e79c0b7a12b32ab004a95fa412f0caa677faa850f0fca",
+      "tags": [],
+      "leaders": [],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": []
+    },
+    {
+      "id": 384,
+      "name": "Teamleiter",
+      "groupTypeId": 2,
+      "parentGroupIds": [],
+      "description": "In dieser Gruppe sind alle Teamleiter der Gemeinde in der Konkordia. Gruppenzugehörigkeit nur per Einaldung möglich.",
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/384",
+      "imageUrl": null,
       "tags": [],
       "leaders": [],
       "settings": {
