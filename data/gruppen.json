@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-19T04:30:14.075Z",
+  "generatedAt": "2026-08-20T04:30:32.826Z",
   "groups": [
     {
       "id": 124,
@@ -787,6 +787,31 @@
         291,
         331
       ]
+    },
+    {
+      "id": 387,
+      "name": "Haslach Verteiler",
+      "groupTypeId": 3,
+      "parentGroupIds": [],
+      "description": null,
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/387",
+      "imageUrl": null,
+      "tags": [],
+      "leaders": [
+        {
+          "name": "Brigitte Geiselhart",
+          "imageUrl": null
+        },
+        {
+          "name": "Jochen Geiselhart",
+          "imageUrl": null
+        }
+      ],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": []
     },
     {
       "id": 361,
