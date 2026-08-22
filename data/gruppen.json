@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-08-21T04:31:19.500Z",
+  "generatedAt": "2026-08-22T04:25:22.709Z",
   "groups": [
     {
       "id": 124,
@@ -1412,7 +1412,7 @@
     },
     {
       "id": 345,
-      "name": "Kontemplation",
+      "name": "Kontemplatives Gebet",
       "groupTypeId": 1,
       "parentGroupIds": [
         348
@@ -1541,6 +1541,10 @@
         {
           "name": "Johannes Dappen",
           "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
+        },
+        {
+          "name": "Bernhard Marzluf",
+          "imageUrl": null
         }
       ],
       "settings": {
