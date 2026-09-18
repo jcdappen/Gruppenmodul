@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-17T09:04:22.652Z",
+  "generatedAt": "2026-09-18T08:39:12.485Z",
   "groups": [
     {
       "id": 124,
@@ -762,8 +762,10 @@
         9,
         129,
         6,
+        245,
         7,
-        132
+        132,
+        390
       ]
     },
     {
@@ -1982,8 +1984,11 @@
       "id": 245,
       "name": "Schließdienst",
       "groupTypeId": 2,
-      "parentGroupIds": [],
-      "description": null,
+      "parentGroupIds": [
+        10,
+        170
+      ],
+      "description": "**WARUM**\\\nUns ist wichtig, dass wir den Raum genauso einladend und ordentlich hinterlassen, wie wir ihn vorgefunden haben – als guter Abschluss für uns als Team und ein guter Start für alle, die nach uns kommen.\n\n**WAS**\\\nOrdnungsgemäßes Schließen und Aufräumen der Räumlichkeiten nach dem Gottesdienst.\n\n**WIE**\n\n* Alle Lichter sowie Boiler (Küche) ausschalten, Kaffeemaschine Stecker ziehen\n* Aufsteller reinholen\n* Alle Raumtüren abschließen, Haustüren Schnapper raus\n* Alle Mülleimer leeren\n* In allen Räumen Fenster schließen\n* Während der Heizperiode: Heizungen auf 1–2 drehen\n* Kissen an ihren Platz und aufschütteln\n* Liegengebliebenes in die Fundkiste (Garderobe)\n* Evtl. übriges Geschirr in die Spülmaschine\n* Benutzte Handtücher und Lappen mitnehmen und waschen\n\n**Du hast Lust mitzumachen?**\\\nSchön wäre, wenn du zuverlässig bist und gerne mit anpackst, auch wenn der Sonntag schon anstrengend war. Was uns besonders am Herzen liegt: dass wir als Team gemeinsam den Tag gut abschließen und Verantwortung für unser gemeinsames Zuhause übernehmen.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/245",
       "imageUrl": null,
       "tags": [],
@@ -2070,8 +2075,10 @@
         91,
         129,
         50,
+        245,
         7,
         132,
+        390,
         374,
         85,
         380,
@@ -2196,6 +2203,30 @@
       "imageUrl": null,
       "tags": [],
       "leaders": [],
+      "settings": {
+        "isHidden": false,
+        "modules": []
+      },
+      "childGroupIds": []
+    },
+    {
+      "id": 390,
+      "name": "Vorbereitungsdienst (Godi)",
+      "groupTypeId": 2,
+      "parentGroupIds": [
+        10,
+        170
+      ],
+      "description": "**WARUM**\\\nUns ist wichtig, dass wir als Gastgeber gut vorbereitet sind und gemeinsam als Team in den Sonntag starten – damit sich jeder, der zu uns kommt, von der ersten Minute an willkommen fühlt.\n\n**WAS**\\\nVorbereitung der Räumlichkeiten und Abläufe vor dem Gottesdienst, damit alles bereit ist, wenn die ersten Gäste eintreffen.\n\n**WIE**\n\n* 9 Uhr aufschließen:\n  * beide Eingangstüren entriegeln (Schnäpper runter)\n  * beide Saaltüren öffnen, lüften\n* 9 Uhr Ablaufbesprechung\n* Lichter im Foyer einschalten: vier Schalter links und rechts gleich nach dem Eintritt ins Foyer\n* Aufsteller raus auf den Gehweg stellen (richtig rum ;)), evtl. herumliegenden Müll beseitigen\n* Toiletten auf Zustand überprüfen:\n  * Sauberkeit\n  * ausreichend Toilettenpapier und Papierhandtücher\n  * bei Bedarf Mängel beheben\n* Sofaecke kontrollieren\n* EC-Karten-Lesegerät am Willkommenspunkt aufstellen (aktuell noch im Büro neben dem Drucker)\n* Jeden zweiten Sonntag im Monat: Abendmahl vorbereiten\n* 9.30 Uhr gemeinsames Gebet\n* Vor der Predigt: ein Glas Wasser unter das Pult stellen\n\n**Du hast Lust mitzumachen?**\\\nSchön wäre, wenn du zuverlässig und pünktlich bist und ein Auge fürs Detail mitbringst. Was uns besonders am Herzen liegt: Freude daran, Gästen ein gutes Ankommen zu schenken, und dass du dich mit deiner Persönlichkeit als Gastgeber einbringst.",
+      "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/390",
+      "imageUrl": null,
+      "tags": [],
+      "leaders": [
+        {
+          "name": "Johannes Dappen",
+          "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
+        }
+      ],
       "settings": {
         "isHidden": false,
         "modules": []
