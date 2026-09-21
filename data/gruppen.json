@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-20T08:58:05.380Z",
+  "generatedAt": "2026-09-21T09:29:24.296Z",
   "groups": [
     {
       "id": 124,
@@ -519,12 +519,7 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/210",
       "imageUrl": null,
       "tags": [],
-      "leaders": [
-        {
-          "name": "Brigitte Geiselhart",
-          "imageUrl": null
-        }
-      ],
+      "leaders": [],
       "settings": {
         "isHidden": false,
         "modules": []
@@ -593,12 +588,7 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/62",
       "imageUrl": "https://gemeindekonkordia.church.tools/images/1008/6ddd82efe0a1a3356d14915e6292f49f685e29e648355823abbd90b4a3c0d381",
       "tags": [],
-      "leaders": [
-        {
-          "name": "Brigitte Geiselhart",
-          "imageUrl": null
-        }
-      ],
+      "leaders": [],
       "settings": {
         "isHidden": false,
         "modules": []
