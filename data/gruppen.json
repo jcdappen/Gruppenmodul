@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-21T09:29:24.296Z",
+  "generatedAt": "2026-09-22T08:56:56.450Z",
   "groups": [
     {
       "id": 124,
@@ -2125,10 +2125,6 @@
         {
           "name": "Johannes Dappen",
           "imageUrl": "https://gemeindekonkordia.church.tools/images/374/cd955fdb50ec706c04b139874fb4e7fcf1ba3356ae7c25d771c4dcd1d00d902c"
-        },
-        {
-          "name": "Brigitte Geiselhart",
-          "imageUrl": null
         }
       ],
       "settings": {
