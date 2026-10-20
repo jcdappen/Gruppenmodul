@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-20T09:03:02.199Z",
+  "generatedAt": "2026-10-20T18:31:07.311Z",
   "groups": [
     {
       "id": 124,
@@ -10,6 +10,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/124",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -25,8 +31,14 @@
       ],
       "description": "Nach \"Gott & die Welt\" und Alpha Kurs beginnt die Jüngerschaft - also lernen von und mit Jesus.  \nDas ist Ziel und Inhalt unserer Gruppe.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/271",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1049/2230a53eeaae7a7fd928a756287be9a8c53cfd5115de70175b8050183fcbc36d",
+      "imageUrl": "assets/images/group-271.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -42,8 +54,14 @@
       ],
       "description": "Alpha ist eine Serie von rund zehn Treffen, die in entspannter Atmosphäre stattfinden.\n\nBei jedem der Treffen gibt es ein gemeinsames Essen, ein Thema und Gesprächsgruppen.\n\nDazu laden wir herzlich ein.\n\nStart ist ab der KW 4.  \nBitte gebe bei der Anmeldung die Wochentage und die Uhrzeit an, die für dich machbar sind.  \nVielen herzlichen Dank!\n\nDeine Gemeinde in der Konkordia Bühl",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/321",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/931/0f9213a292188bed8dbde85e7c17076c8f746d7db419a0beb5ffece631f4d6bc",
+      "imageUrl": "assets/images/group-321.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -59,6 +77,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/319",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -74,6 +98,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/195",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -96,6 +126,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/19",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -113,6 +149,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/16",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -129,8 +171,14 @@
       ],
       "description": "**Warum**  \nWer zu uns kommt – ob zum ersten Mal oder schon lange dabei – soll sich wahrgenommen und willkommen fühlen. Ein herzlicher Empfang macht den Unterschied.\n\n**Was**  \nWir begrüßen Gäste und Gemeindemitglieder an Sonntagen und bei besonderen Veranstaltungen – persönlich, freundlich und mit offenen Augen für neue Gesichter.\n\n**Wie**  \n- Gebet vor dem Gottesdienst (9:30 Uhr, Gebetsraum)  \n- Begrüßung am Eingang von 9:45 bis 10:15 Uhr  \n- Erstbesucher werden ans Willkommensteam weitergeleitet  \n- Kein extra Meeting – alle Infos kommen per E-Mail\n\n**Du kannst mitmachen**  \nDu begegnest anderen gern offen und herzlich? Dann bist du genau richtig. Ein warmes Auftreten und deine Persönlichkeit – das ist alles, was du brauchst.\n\n[Detalierte Beschreibung](https://raw.githubusercontent.com/jcdappen/Gruppenmodul/main/assets/images/Begruessungsdienst.jpeg)\n\n\"Gruppenbild: KI-generiert mit Leonardo.ai, CC BY 4.0\"",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/59",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/990/9d98fd0b8c968bf85d6cb944c7d4c7c61c5f1dfb986607cb080785d43ac0487c",
+      "imageUrl": "assets/images/group-59.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -148,6 +196,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/216",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": "19:30 Uhr",
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -165,6 +219,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/32",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": "10:00",
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -180,6 +240,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/22",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -195,8 +261,14 @@
       ],
       "description": null,
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/308",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/728/3bed8d45b8480ef00f03cd3283f5778ef419ef7b6e7307b8ffab32246741e487",
+      "imageUrl": "assets/images/group-308.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -213,8 +285,14 @@
       ],
       "description": "**Warum**  \nAnsprechende Räume, in denen sich Gemeinde, Freunde und Gäste willkommen und wohl fühlen. Wir schaffen eine einladende Atmosphäre, die zum Verweilen einlädt und unseren Glauben visuell erlebbar macht.\n\n**Was**  \nWir gestalten die Gemeinderäume kreativ – jahreszeitlich und anlassbezogen.\n\n**Wie**  \n- Jahreszeitliche Dekoration der Gemeinderäume  \n- Festliche Gestaltung zu besonderen Anlässen  \n- Entwicklung von Dekorationskonzepten  \n- Gestaltung von Blumenarrangements  \n- Instandhaltung und Pflege des Dekomaterials  \n- Das Team koordiniert sich eigenverantwortlich nach Bedarf\n\n**Du kannst mitmachen**  \nDu hast ein Gespür für Ästhetik und Freude am kreativen Gestalten? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Du zauberst anderen durch Kleinigkeiten ein Lächeln aufs Gesicht und bringst dich mit deiner Persönlichkeit und Kreativität ein.\n\n[Detaillierte beschreibung]([Flyer ansehen](https://raw.githubusercontent.com/jcdappen/Gruppenmodul/main/assets/images/Dekoteam.jpeg))",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/98",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/993/5e1fd59490f6e4627e83f13abdbfae5c680fb3b442720787b51d97c2c042a13b",
+      "imageUrl": "assets/images/group-98.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -230,8 +308,14 @@
       ],
       "description": "In dieser Gruppe erarbeitest du anhand des Workbooks selbständig deine persönliche Lebensregel – anhand der neun geistlichen Praktiken (Sabbat, Stille & Einsamkeit, Gebet, Fasten, Bibel lesen, Gemeinschaft, Großzügigkeit, Dienst, Zeugnis).\n\nDas Workbook führt dich Schritt für Schritt durch Reflexion, Standortbestimmung und die Formulierung deiner eigenen Praxis.\n\n[Workbook (PDF)](https://storage1.snappages.site/S74RKH/assets/files/WorkbookLebensregel_FINAL_PDF.pdf): \n\nAlternativ gibt es eine KI-gestützte Variante zum Erstellen der Lebensregel: [LINK](https://www.gemeinde-konkordia.de/konrad)\n\nEinen gedruckten Ausdruck des Workbooks kannst du im Büro bestellen (3 €). Einfach eine Mail an office@gemeinde-konkordia.de mit Betreff „Bestellung Ausdruck Workbook Lebensregel\".\n\nBei Fragen gerne bei deinem Leiter melden.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/305",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/725/7ecbdf8ba1b4c5330b35f1c6073e34fc9071e1263535503d1ccff2acb2ee65b6",
+      "imageUrl": "assets/images/group-305.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -248,8 +332,14 @@
       ],
       "description": "**Warum**  \nMenschen unterschiedlicher Herkunft sollen sich willkommen fühlen, voneinander lernen und gemeinsam wachsen. Wir bauen Brücken zwischen Geflüchteten, Immigranten und Einheimischen – durch persönliche Begegnungen und praktische Unterstützung.\n\n**Was**  \nUnser Café ist ein Begegnungsort – mit Bewirtung, Hausaufgabenhilfe und Aktivitäten, die Integration und Gemeinschaft fördern.\n\n**Wie**  \n- Café-Bewirtung mit Kaffee, Tee und Kuchen an Montagnachmittagen  \n- Hausaufgabenbetreuung und Angebote für Kinder und Jugendliche  \n- Organisation von Begegnungsaktivitäten  \n- Unterstützung bei Beschaffung und Vorbereitung  \n- Das Team koordiniert sich eigenverantwortlich\n\n**Du kannst mitmachen**  \nDu bist weltoffen, interessierst dich für andere Kulturen und lernst gerne neue Menschen ohne Vorurteile kennen? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Freude an Gemeinschaft – ob beim Bewirten, beim Unterstützen von Kindern oder beim Gestalten von Begegnungen.\n\n[detaillierte beschreibung]([Flyer ansehen](https://raw.githubusercontent.com/jcdappen/Gruppenmodul/main/assets/images/espresso.jpeg))",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/64",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/996/e46599ae8c463b3ef3a23ba920b93c2174ca79063b2c49e34c91ad1d337c86f2",
+      "imageUrl": "assets/images/group-64.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": "15:30",
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -266,8 +356,14 @@
       ],
       "description": "**Warum**  \nMenschen in unserer Region und unserem persönlichen Umfeld mit Gott in Kontakt bringen – mit der lebensverändernden Botschaft von Jesus Christus. Wir wollen eine einladende Gemeinde sein, die Brücken baut, Vorurteile abbaut und authentische Begegnungen ermöglicht, durch die Menschen Gottes Liebe erfahren.\n\n**Was**  \nWir schaffen Plattformen, finden kreative Wege und begegnen Menschen auch außerhalb der Gemeinde – um ihnen Gottes Liebe und seinen Rettungsplan verständlich und liebevoll zu vermitteln. Als Team beten wir, dass Gott sein Reich in unserer Region baut.\n\n**Wie**  \n- Organisation und Durchführung von evangelistischen Veranstaltungen und Straßeneinsätzen  \n- Niederschwellige, attraktive Angebote für Menschen ohne Gemeindehintergrund  \n- Sichtbar sein und der Stadt dienen  \n- Plattformen für persönliche Gespräche und Gebet schaffen  \n- Entwicklung neuer Konzepte zur Evangelisation  \n- Das Team koordiniert sich eigenverantwortlich nach Bedarf\n\n**Du kannst mitmachen**  \nDu hast Leidenschaft für Jesus und Liebe zu Menschen? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Du begegnest Menschen, die nicht an Gott glauben, ohne Verurteilung – sondern mit der Liebe Gottes. Offen, authentisch, empathisch.\n\n[detaillierte beschreibung]((https://raw.githubusercontent.com/jcdappen/Gruppenmodul/main/assets/images/evteam.jpeg))",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/88",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/999/ebdbb624faaa19d6f442f8293d0cea99ef96dcab5b857aa3a13c5e37021ee4ce",
+      "imageUrl": "assets/images/group-88.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -288,6 +384,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/47",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -306,8 +408,14 @@
       ],
       "description": "**Warum**  \nFrauen jeden Alters einen Ort bieten, an dem sie sich verstanden, unterstützt und ermutigt fühlen – und ihre von Gott gegebene Identität entdecken, ihre Gaben entfalten und ihre Beziehung zu Gott vertiefen können.\n\n**Was**  \nWir schaffen Begegnungsräume, in denen Frauen Glaubenserfahrungen teilen, gemeinsam wachsen und einander im Alltag stärken.\n\n**Wie**  \n- Regelmäßige Frauenfrühstücke und Treffen  \n- Einfühlsames Zuhören und Begleiten anderer Frauen  \n- Planung und Organisation von Veranstaltungen  \n- Das Team trifft sich regelmäßig und koordiniert sich eigenverantwortlich\n\n**Du kannst mitmachen**  \nDu bist eine Frau und hast Freude daran, andere Frauen zu ermutigen und Gemeinschaft mit ihnen zu verbringen? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Ein Herz für Frauen, Einfühlungsvermögen, Offenheit und deine besonderen Talente.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/82",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1002/174e79c7b9d7c59829c2990fc3271faa49c474f9daa9ac704eebc63273c5abfb",
+      "imageUrl": "assets/images/group-82.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -323,8 +431,14 @@
       ],
       "description": "Du hast Lust auf ein Frühstück & nette Gespräche unter Frauen?\\\nDann komm vorbei - bringe deine Freundin, Mama, Oma oder Nachbarin mit und genießt zusammen mit uns den Vormittag.\n\nUm Anmeldung bis zum 7.11.2026 wird gebeten.\n\nDamit wir ein vielfältiges Frühstück haben, freuen wir uns, wenn du eine Kleinigkeit mitbringen würdest :)\\\nFür Brötchen, Wurst & Käse ist gesorgt.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/337",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/910/06df71cb67fe2a1b23a1167c2c94338057cf5b06da7d7d898a799f6637be0c73",
+      "imageUrl": "assets/images/group-337.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": "09:30 Uhr",
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -340,8 +454,14 @@
       ],
       "description": "**Keine Anmeldung mehr möglich!**\n\n**Echt und Stark**\n\nEcht Starke Männer\n\n**Echt**, weil sie unter die Oberfläche blicken und der eigenen Vergangenheit, den Schwächen und Wunden nicht länger ausweichen.\n\n**Stark**, weil ihr Glaube ein festes Fundament und gesunde Ausdrucksformen gefunden hat. \n\nAls Gastsprecher wird uns **Pastor Henry Marten** aus Halle unterstützen gemeinsam „Echt & Stark“ zu werden!\n\nWir freuen uns auf dich!  \nDeine FSQ Region Süd-West Männercrew\n\n\n\n**Das solltest du wissen**  \n26.-28.09.2025 in der Pfalz-Jugendherberge Neustadt  \nPreis Vollverpflegung 110,-€; Unterbringung im Mehrbettzimmer; Handtücher,   \nfestes Schuhwerk, Sportklamotten, wetterfeste Kleidung und Badehose einpacken.\n\n**Freitag**  \nAbendessen  \nAnkommen & Ausblick\n\n**Samstag**  \nVormittag Echt & Stark  \nNachmittag Fun & Action  \nAbend Grill & Gemeinschaft\n\n**Sonntag**  \nVormittag Echt & Stark  \nMittagessen & Abreise\n\nWenn du auf **Anmelden** klickst bekommst du von uns eine Email mit dem Anmeldeformular.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/277",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/652/9ee249962aac0560826bc4452f54034217c99e31ae92b6e5f4fffa83bf5fe5e4",
+      "imageUrl": "assets/images/group-277.png",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -357,6 +477,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/210",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -373,8 +499,14 @@
       ],
       "description": "**Warum**  \nGemeinschaft fördern und Raum schaffen, in dem Menschen nach dem Gottesdienst einander näher kennenlernen können.\n\n**Was**  \nWir bewirten nach dem Gottesdienst mit Kaffee, Tee, Kakao und Kaltgetränken – als Dienst an der Gemeinschaft.\n\n**Wie**  \n- Ausschenken von Getränken nach dem Gottesdienst  \n- Für Nachschub sorgen und Café-Bar ausstatten  \n- Abwaschen und Wegräumen aller Gläser und Tassen  \n- Aufräumen und Ordnung herstellen nach dem Dienst  \n- Das Team dient im Wechsel nach Dienstplan\n\n**Du kannst mitmachen**  \nDu bist gerne aktiv, hast Freude an klar definierten Aufgaben und führst gerne Smalltalk? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Gastfreundschaft, ein offenes Wesen und Zuverlässigkeit – damit Menschen nach dem Gottesdienst ins Gespräch kommen.\n\n[Detaillierte Beschreibung](https://raw.githubusercontent.com/jcdappen/Gruppenmodul/main/assets/images/gast.jpeg)",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/56",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1005/8881775d56711cb68bd3def1e1243edf62daaadfb139deaab33911b17029716a",
+      "imageUrl": "assets/images/group-56.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -390,8 +522,14 @@
       ],
       "description": null,
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/348",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/928/5bc7380198e7640ef5f0b012203f0eb4af6417fcd1988fe41f35cc879054d4b4",
+      "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -412,8 +550,14 @@
       ],
       "description": "**Warum**  \nGeistliche Unterstützung für Gottesdienste und Menschen. Gottes Stimme hören und seinen Plan für die Kirche und unsere Stadt erfahren – denn wo zwei oder drei in seinem Namen versammelt sind, ist er mitten unter ihnen.\n\n**Was**  \nWir beten Fürbitten für Gottesdienste und die Gemeinde – und stehen für persönliches Gebet für Menschen mit Anliegen zur Verfügung.\n\n**Wie**  \n- Gebet vor und während der Gottesdienste  \n- Ansprechbarkeit für persönliche Gebetsanliegen  \n- Vertraulicher und einfühlsamer Umgang mit Anliegen  \n- Regelmäßige Gebetstreffen für die Gemeinde  \n- Fürbitte für Gemeindeleitung und Teams  \n- Das Team koordiniert sich eigenverantwortlich nach Bedarf\n\n**Du kannst mitmachen**  \nDu bist im Glauben verwurzelt, betest gerne und hörst auf Gottes Wirken? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Aufmerksames Zuhören, Mitgefühl, Vertraulichkeit und geistliche Reife.\n\n[Detaillierte Beschreibung](https://raw.githubusercontent.com/jcdappen/Gruppenmodul/main/assets/images/gebet.jpeg)",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/62",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1008/6ddd82efe0a1a3356d14915e6292f49f685e29e648355823abbd90b4a3c0d381",
+      "imageUrl": "assets/images/group-62.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -429,6 +573,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/285",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -442,8 +592,14 @@
       "parentGroupIds": [],
       "description": null,
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/11",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/489/ffda45df776899a5900c0efbb6ef7bce4359b1600f1b6328ed3c1b914116d636",
+      "imageUrl": "assets/images/group-11.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -462,8 +618,14 @@
       ],
       "description": "**Warum**  \nMenschen einen Raum bieten, den christlichen Glauben kennenzulernen – ohne Druck, mit offenen Fragen und ehrlichen Gesprächen. Brücken bauen für Kirchenfremde und Suchende, damit sie Jesus und wertvolle Gemeinschaft in entspannter Atmosphäre entdecken können.\n\n**Was**  \nWir organisieren und führen Glaubenskurse durch (Gott & die Welt Kurs und Alphakurs) – mit Essen, Input und Diskussion für Interessierte und Suchende. Und wir beten für die Teilnehmer.\n\n**Wie**  \n- Einmal jährlich: „Gott & die Welt Kurs\" (4 Abende + 1 Samstag) als Einstieg, danach Alphakurs (12 Abende + 1 Samstag)  \n- Vorbereitung und Kochen gemeinsamer Mahlzeiten  \n- Themenimpulse per Video (Alpha) oder Powerpoint (Gott & die Welt)  \n- Leitung der Abende und Moderation der Diskussionen  \n- Persönliche Gespräche führen und Kontakte knüpfen  \n- Das Team bereitet sich gemeinsam vor, betet und dient während der Kurswochen\n\n**Du kannst mitmachen**  \nDu hast Freude an Begegnungen mit suchenden Menschen und führst gerne Gespräche? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Offenheit für Fragen, Geduld, Empathie und Gastfreundschaft – ohne Vorurteile.\n\n[Detaillierte Beschreibung](https://raw.githubusercontent.com/jcdappen/Gruppenmodul/main/assets/images/alpha.jpeg)",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/370",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1046/f448f0228df1c208e00898ba7f4383338c51d98cf466ae74ef6b027551d82c15",
+      "imageUrl": "assets/images/group-370.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -481,6 +643,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/38",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -497,8 +665,14 @@
       ],
       "description": "**Was Christen glauben**\n\nEin Seminar der Gemeinde in der Konkordia\n\nFRAGEN SIE SICH\n\nWo komme ich her?  \nWozu lebe ich?  \nWas passiert mit mir nach dem Tod?  \nGibt es Gott – und wenn ja, wie kann ich ihn kennen lernen und mit ihm leben?  \nWie kann ich ein gelingendes Leben führen?",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/115",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/474/5c82b583f3f958c37fad9657160e457b89a26d8cb84e820b301ff065a0bb60a5",
+      "imageUrl": "assets/images/group-115.png",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -516,6 +690,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/10",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -546,6 +726,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/355",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -565,6 +751,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/387",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -580,8 +772,14 @@
       ],
       "description": "**Warum**  \nTiefe Gemeinschaft und geistliches Wachstum fördern – wo Beziehungen entstehen und Glauben geteilt und kennengelernt wird. Einen Ort schaffen, an dem Menschen sich öffnen, authentisch sein dürfen und im Alltag gegenseitige Unterstützung erfahren.\n\n**Was**  \nTreffen in kleineren Gruppen mit Gemeinschaft, Gebet, Austausch und Impulsen in familiärer Atmosphäre – um gemeinsam im Glauben zu wachsen und für die Welt Salz und Licht zu sein.\n\n**Wie**  \n- Regelmäßige Treffen in privatem Rahmen (meist zu Hause)  \n- Gemeinsames Bibelstudium und Austausch über Glaubensfragen  \n- Gegenseitige Unterstützung und Gebet füreinander  \n- Praktische Hilfe im Alltag und ehrliche Gespräche über Veränderung  \n- Gemeinsam als Gruppe Salz & Licht in unserer Umgebung sein  \n- Essen und Gemeinschaft genießen\n\n**Du kannst mitmachen**  \nDu hast Freude an kleinen Gruppen und bist bereit, dein Leben mit anderen zu teilen? Dann bist du genau richtig. Offenheit. Authentizität. Menschen dürfen hier den Glauben kennenlernen – und gemeinsam wachsen wir im Glauben.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/361",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1052/b4cf3cda372a1d2791cd31bcc0a374673b362f2a1e5bd6dd441626c5eaa6be9e",
+      "imageUrl": "assets/images/group-361.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -597,8 +795,14 @@
       ],
       "description": "**Warum**  \nTiefe Gemeinschaft und geistliches Wachstum fördern – wo Beziehungen entstehen und Glauben geteilt und kennengelernt wird. Einen Ort schaffen, an dem Menschen sich öffnen, authentisch sein dürfen und im Alltag gegenseitige Unterstützung erfahren.\n\n**Was**  \nTreffen in kleineren Gruppen mit Gemeinschaft, Gebet, Austausch und Impulsen in familiärer Atmosphäre – um gemeinsam im Glauben zu wachsen und für die Welt Salz und Licht zu sein.\n\n**Wie**  \n- Regelmäßige Treffen in privatem Rahmen (meist zu Hause)  \n- Gemeinsames Bibelstudium und Austausch über Glaubensfragen  \n- Gegenseitige Unterstützung und Gebet füreinander  \n- Praktische Hilfe im Alltag und ehrliche Gespräche über Veränderung  \n- Gemeinsam als Gruppe Salz & Licht in unserer Umgebung sein  \n- Essen und Gemeinschaft genießen\n\n**Du kannst mitmachen**  \nDu hast Freude an kleinen Gruppen und bist bereit, dein Leben mit anderen zu teilen? Dann bist du genau richtig. Offenheit. Authentizität. Menschen dürfen hier den Glauben kennenlernen – und gemeinsam wachsen wir im Glauben.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/367",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1055/5a6f13ac7cca09561db17ff80717274f81f37871e58798a9cfe4291708378b0a",
+      "imageUrl": "assets/images/group-367.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -614,8 +818,14 @@
       ],
       "description": "**Warum**  \nTiefe Gemeinschaft und geistliches Wachstum fördern – wo Beziehungen entstehen und Glauben geteilt und kennengelernt wird. Einen Ort schaffen, an dem Menschen sich öffnen, authentisch sein dürfen und im Alltag gegenseitige Unterstützung erfahren.\n\n**Was**  \nTreffen in kleineren Gruppen mit Gemeinschaft, Gebet, Austausch und Impulsen in familiärer Atmosphäre – um gemeinsam im Glauben zu wachsen und für die Welt Salz und Licht zu sein.\n\n**Wie**  \n- Regelmäßige Treffen in privatem Rahmen (meist zu Hause)  \n- Gemeinsames Bibelstudium und Austausch über Glaubensfragen  \n- Gegenseitige Unterstützung und Gebet füreinander  \n- Praktische Hilfe im Alltag und ehrliche Gespräche über Veränderung  \n- Gemeinsam als Gruppe Salz & Licht in unserer Umgebung sein  \n- Essen und Gemeinschaft genießen\n\n**Du kannst mitmachen**  \nDu hast Freude an kleinen Gruppen und bist bereit, dein Leben mit anderen zu teilen? Dann bist du genau richtig. Offenheit. Authentizität. Menschen dürfen hier den Glauben kennenlernen – und gemeinsam wachsen wir im Glauben.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/167",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1058/a0ca1b3f380c65b8a4b22169345bf8c0080ea2aadf78a41c4be872e85ea12764",
+      "imageUrl": "assets/images/group-167.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -631,8 +841,14 @@
       ],
       "description": "**Warum**  \nTiefe Gemeinschaft und geistliches Wachstum fördern – wo Beziehungen entstehen und Glauben geteilt und kennengelernt wird. Einen Ort schaffen, an dem Menschen sich öffnen, authentisch sein dürfen und im Alltag gegenseitige Unterstützung erfahren.\n\n**Was**  \nTreffen in kleineren Gruppen mit Gemeinschaft, Gebet, Austausch und Impulsen in familiärer Atmosphäre – um gemeinsam im Glauben zu wachsen und für die Welt Salz und Licht zu sein.\n\n**Wie**  \n- Regelmäßige Treffen in privatem Rahmen (meist zu Hause)  \n- Gemeinsames Bibelstudium und Austausch über Glaubensfragen  \n- Gegenseitige Unterstützung und Gebet füreinander  \n- Praktische Hilfe im Alltag und ehrliche Gespräche über Veränderung  \n- Gemeinsam als Gruppe Salz & Licht in unserer Umgebung sein  \n- Essen und Gemeinschaft genießen\n\n**Du kannst mitmachen**  \nDu hast Freude an kleinen Gruppen und bist bereit, dein Leben mit anderen zu teilen? Dann bist du genau richtig. Offenheit. Authentizität. Menschen dürfen hier den Glauben kennenlernen – und gemeinsam wachsen wir im Glauben.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/358",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1061/9e363ee484f06a496ce2a7f816d8a08ec32326994094bcfd3e5df24646b0c3fd",
+      "imageUrl": "assets/images/group-358.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -648,8 +864,14 @@
       ],
       "description": "**Warum**  \nTiefe Gemeinschaft und geistliches Wachstum fördern – wo Beziehungen entstehen und Glauben geteilt und kennengelernt wird. Einen Ort schaffen, an dem Menschen sich öffnen, authentisch sein dürfen und im Alltag gegenseitige Unterstützung erfahren.\n\n**Was**  \nTreffen in kleineren Gruppen mit Gemeinschaft, Gebet, Austausch und Impulsen in familiärer Atmosphäre – um gemeinsam im Glauben zu wachsen und für die Welt Salz und Licht zu sein.\n\n**Wie**  \n- Regelmäßige Treffen in privatem Rahmen (meist zu Hause)  \n- Gemeinsames Bibelstudium und Austausch über Glaubensfragen  \n- Gegenseitige Unterstützung und Gebet füreinander  \n- Praktische Hilfe im Alltag und ehrliche Gespräche über Veränderung  \n- Gemeinsam als Gruppe Salz & Licht in unserer Umgebung sein  \n- Essen und Gemeinschaft genießen\n\n**Du kannst mitmachen**  \nDu hast Freude an kleinen Gruppen und bist bereit, dein Leben mit anderen zu teilen? Dann bist du genau richtig. Offenheit. Authentizität. Menschen dürfen hier den Glauben kennenlernen – und gemeinsam wachsen wir im Glauben.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/364",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1064/5b2e5a60d3df7e3c08a191a2998af7f84fb7edaba9534de1afd51e9746715ca9",
+      "imageUrl": "assets/images/group-364.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -665,8 +887,14 @@
       ],
       "description": "Gib einfach Stichwörter ein und dann bekommst du passende Kleingruppen vorgeschlagen.\n\nMit einem Klick auf \"Jetzt Anmelden\" kannst du den Leiter kontaktieren. Daraufhin bekommst eine E-Mail in der du die Anmeldung bestätigen musst. Bitte sieh auch in deinem Spam-Ordner nach. Der Leiter wird sich dann bei dir melden.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/95",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/377/3db5fc0c16352f575533dc45705044e75f38f65ebe822a848392b6c63fbb5251",
+      "imageUrl": "assets/images/group-95.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -690,8 +918,14 @@
       ],
       "description": null,
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/299",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/722/673a373e8b81d54351dafe899cab5f7d2a8a19381762e869bfedd51cf5065fd2",
+      "imageUrl": "assets/images/group-299.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -707,8 +941,14 @@
       ],
       "description": "**Warum**  \nAnsprechende Räume, in denen sich die Gemeinde, Freunde und Gäste wohl fühlen. Das Gemeindeleben läuft sicher, reibungslos und ordentlich.\n\n**Was**  \nWir halten die gemieteten Gemeinderäumlichkeiten instand – als Dienst an der Gemeinschaft.\n\n**Wie**  \n- Identifikation von Instandhaltungsarbeiten, die nicht in der Verantwortung des Vermieters liegen  \n- Reparatur- und Renovierungsarbeiten  \n- Unterstützung bei Umbauarbeiten  \n- Koordination von Entsorgung und Entrümplungstagen  \n- Das Team koordiniert sich eigenverantwortlich nach Bedarf\n\n**Du kannst mitmachen**  \nDu bringst etwas handwerkliches Geschick mit und gehst verantwortungsvoll mit fremdem Eigentum um? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Freude an Gemeinschaft und dass du dich mit deiner Persönlichkeit einbringst.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/294",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1011/bcfadcdddcd23279a4fe697ea130e738a6064fe4e09318b5222cbaacb262235a",
+      "imageUrl": "assets/images/group-294.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -726,6 +966,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/35",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -743,6 +989,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/316",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -760,6 +1012,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/267",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": "19:00",
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -777,6 +1035,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/288",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -792,8 +1056,14 @@
       ],
       "description": "**Warum**  \nJugendlichen einen Ort bieten, an dem sie in ihrer Persönlichkeit wachsen, ihren Glauben entdecken und sich angenommen fühlen. Die nächste Generation soll Jesus kennenlernen, im Glauben gefestigt werden und einzigartige Gaben entdecken.\n\n**Was**  \nWir schaffen Räume, in denen junge Menschen Gemeinschaft erleben und gemeinsam nach Antworten auf ihre Lebensfragen suchen.\n\n**Wie**  \n- Regelmäßige Jugendabende und -gottesdienste mit Worship, Input und Austausch  \n- Kleingruppen für Vertiefung und Beziehungsaufbau  \n- Organisation von Freizeiten und Aktionen  \n- Emotionale und geistliche Begleitung Jugendlicher  \n- Das Team trifft sich regelmäßig nach festem Terminplan\n\n**Du kannst mitmachen**  \nDu hast ein Herz für Jugendliche und nimmst ihre Fragen ernst? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Authentizität, Vorbildfunktion im Glauben, Geduld und ein erweitertes Führungszeugnis.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/26",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1014/f29748e62923a07ba4e297243ced671a76dbc261f85967c9de1a6117b95606fd",
+      "imageUrl": "assets/images/group-26.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -811,8 +1081,14 @@
       ],
       "description": null,
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/311",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/731/f926013942b73b0f962d627fe6a731a5b8f86dc70045e1ec2f9977d04f0afd23",
+      "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -831,6 +1107,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/270",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -852,6 +1134,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/150",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -869,6 +1157,12 @@
       "publicUrl": null,
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": true,
         "modules": []
@@ -886,6 +1180,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/259",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -903,6 +1203,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/135",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -919,8 +1225,14 @@
       ],
       "description": "**Warum**  \nKindern zeigen, dass sie ein Geschenk Gottes und unendlich geliebt sind – und einen Raum schaffen, in dem sie Gott kennenlernen, Jesus erleben und wertvolle Beziehungen aufbauen können.\n\n**Was**  \nWir gestalten altersgerechte Programme mit biblischen Geschichten, Liedern, Spielen und Kreativem – und beten für die Kinder und Gruppen.\n\n**Wie**  \n- Vorbereitung und Durchführung von sonntäglichen Kindergottesdiensten  \n- Drei altersentsprechende Gruppen: Kindergarten, Grundschule, weiterführende Schule  \n- Christliche Themen und Werte altersgerecht vermitteln  \n- Liebevolle, einladende und sichere Atmosphäre schaffen  \n- Das Team dient im Wechsel nach Dienstplan\n\n**Du kannst mitmachen**  \nDu gehst respekt- und liebevoll mit Kindern um und bringst Kreativität, Geduld und Zuverlässigkeit mit? Dann bist du genau richtig. Ein erweitertes Führungszeugnis ist erforderlich.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/8",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1017/2fe1c71a199d0a0a22b5709febeb5c8364f9a9f323ebca5151ff9d30ebca6d0e",
+      "imageUrl": "assets/images/group-8.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -943,6 +1255,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/155",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -959,8 +1277,14 @@
       ],
       "description": "**Warum**  \nSenioren als wertvollen und geschätzten Teil der Gemeinde erleben lassen – ihnen Wertschätzung vermitteln, ihre Lebenserfahrung würdigen und sie im Glauben stärken.\n\n**Was**  \nWir organisieren das monatliche „gott & die Welt Café\" – als Ort der Begegnung, des Austauschs und der Ermutigung für die ältere Generation.\n\n**Wie**  \n- Monatliche Gestaltung des „gott & die Welt Café\"  \n- Liebevolle Bewirtung mit Kaffee, Kuchen und gemütlicher Atmosphäre  \n- Thematische Impulse und Andachten  \n- Gemeinsames Singen von bekannten Liedern  \n- Zeit für Gespräche und persönliche Begegnungen  \n- Das Team trifft sich monatlich nach festem Terminplan\n\n**Du kannst mitmachen**  \nDu hast ein Herz für die ältere Generation und begegnest ihr mit Wertschätzung? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Geduld, Einfühlungsvermögen, ein offenes Ohr und Zeit für Gespräche.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/291",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1037/b299858eecbb27a2a7df4200c49fbc7bee23258eb60e597768dca9001f8e63d7",
+      "imageUrl": "assets/images/group-291.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -978,6 +1302,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/219",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -991,8 +1321,14 @@
       "parentGroupIds": [],
       "description": "Herzlich Willkommen in der Gemeinde in der Konkordia. Wir freuen uns, dass du mit uns Kontakt aufnehmen möchtest.\n\nGerne würden wir dich kennenlernen, deine Fragen beantworten, für dich beten und dir weitere Informationen zukommen lassen, wenn du das Formular ausfüllst.\n\nWir freuen uns auf dich!   \nDein Gemeinde in der Konkordia Team",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/251",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/533/5552379d38b9376ec5bc48a80aff1fa59e9f1e6ce3c9ae6aa99fcac666a142c3",
+      "imageUrl": "assets/images/group-251.png",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1010,6 +1346,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/345",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1027,6 +1369,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/351",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1044,8 +1392,14 @@
       "parentGroupIds": [],
       "description": null,
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/354",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/935/9843a0013d2397177a217c514f0b87a32cce993c874f4b7ff0daee60f297fe8f",
+      "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1061,8 +1415,14 @@
       "parentGroupIds": [],
       "description": null,
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/342",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/938/d19274535d0c56b7f5807b367098486c8c005ce36dea3c6704e102b2523a17dd",
+      "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1079,8 +1439,14 @@
       "parentGroupIds": [],
       "description": null,
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/302",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/941/6aaf6c8e5c66ad86a6d66d828648de055907fc35abca1f3394868fc113fb7908",
+      "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1099,8 +1465,14 @@
       "parentGroupIds": [],
       "description": "![](https://storage1.snappages.site/S74RKH/assets/images/24165573_2000x2000.svg)   \n“Du sollst den Herrn, deinen Gott, von ganzem Herzen, von ganzer Seele, mit deiner ganzen Kraft und all deinen Gedanken lieben. Und: Liebe deinen Nächsten wie dich selbst.”  \nLukas 10,27 (NLB)*\n\nWir lieben Gott mit unserem ganzen Sein.  \nWir nehmen uns Zeit Gottes Stimme zu hören und setzten das um, was er uns zeigt.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/296",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/944/24eaa6ebab04b8e6f1326bb338fbc0b67fcb932f5132ce0dad824f779bec400f",
+      "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1120,8 +1492,14 @@
       ],
       "description": "**Warum**  \nGott durch Musik die Ehre geben und Menschen helfen, ihn im Gottesdienst anzubeten und zu erleben. Musik, die verbindet – mit Gott, mit Menschen und unserer Stadt.\n\n**Was**  \nWir gestalten die Gottesdienste musikalisch mit modernen und traditionellen Lobpreisliedern – und veranstalten Lobpreisabende.\n\n**Wie**  \n- Regelmäßige Proben zur Vorbereitung der Gottesdienste (gewöhnlich donnerstagabends)  \n- Musikalische Leitung während der Worship-Zeit  \n- Auswahl passender Lobpreislieder in Abstimmung mit dem Lobpreisleiter  \n- Technische Vorbereitung und Soundcheck  \n- Gemeinsames Gebet vor den Gottesdiensten\n\n**Du kannst mitmachen**  \nDu hast eine schöne Stimme oder spielst ein Instrument? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Du liebst es, Gott durch Musik zu loben, bist zuverlässig bei Proben und Gottesdiensten und bringst dich mit deiner musikalischen Persönlichkeit ein.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/9",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1020/085b34e76984c51771ba7c655371ee136c6f01d31a702d4a3436b4d9917d9711",
+      "imageUrl": "assets/images/group-9.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1137,8 +1515,14 @@
       ],
       "description": "Bei einer Mama daheim genießen wir im Mutter-Kind-Kreis die Gemeinschaft mit anderen Müttern.  \nWir trinken Kaffee, reden, spielen und hören jeweils einen kurzen christlichen Impuls, der uns als Mamas ermutigt und weiter hilft.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/44",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/362/b753c9f3501ceb96a9bc55d02fca538a0d0d258a08cababce2a3e3c0abcd7d60",
+      "imageUrl": "assets/images/group-44.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": "09:30",
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1154,8 +1538,14 @@
       ],
       "description": "**Warum**  \nDie Botschaft der Bibel modern und zeitgemäß kommunizieren – heute genauso aktuell wie vor tausenden Jahren. Menschen auf sozialen Medien erreichen und sie einladen, Jesus nachzufolgen – mit Kreativität und Spaß.\n\n**Was**  \nWir gestalten und pflegen kreativ die Social-Media-Kanäle und Website zur Kommunikation nach außen.\n\n**Wie**  \n- Pflege und Aktualisierung von Instagram, Facebook und weiteren Kanälen  \n- Erstellung von kreativen Posts, Stories und Videos  \n- Fotografie und Videoproduktion von Gemeinde-Events  \n- Aktualisierung und Pflege der Internetseite  \n- Verfolgung neuer Trends und Formate, Webdesign und visuelle Gestaltung  \n- Das Team koordiniert sich eigenverantwortlich nach Bedarf\n\n**Du kannst mitmachen**  \nDu kennst dich mit PCs und Handys gut aus und machst gerne Videos und Bilder? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Kreativität, Offenheit für neue Trends, Zuverlässigkeit und Sprachgefühl.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/159",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/427/8bf0640b5803a2b966e212e77bc8e35bc7accdb346c9f19e9106843b6580657c",
+      "imageUrl": "assets/images/group-159.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1172,8 +1562,14 @@
       ],
       "description": "**Warum**  \nEine Zeit nur für Männer – zum Kraftschöpfen, für gute Gespräche und echte Gemeinschaft. Freundschaft leben und Siege sowie Herausforderungen des Lebens gemeinsam meistern – fest im Glauben, mannhaft und stark.\n\n**Was**  \nRegelmäßige Treffen für Männer mit Impulsen, Austausch und Gemeinschaft in entspannter Atmosphäre.\n\n**Wie**  \n- Regelmäßige Männertreffen mit Glaube, Gemeinschaft und Inspiration  \n- Impulse zu relevanten Männerthemen  \n- Offener Austausch über Siege und Herausforderungen des Lebens  \n- Raum für ehrliche Gespräche und gegenseitige Ermutigung  \n- Gemeinsame Aktivitäten und Events  \n- Das Team trifft sich regelmäßig nach festem Terminplan\n\n**Du kannst mitmachen**  \nDu schätzt echte Gemeinschaft mit Männern und willst deinen Glauben mit anderen leben? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Offenheit, Verlässlichkeit und dass du dich mit deiner Persönlichkeit einbringst.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/331",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1026/29d6faa94fdde5430a19f951975a30240977a706d61071ec01e7277aeacdd03e",
+      "imageUrl": "assets/images/group-331.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1189,8 +1585,14 @@
       ],
       "description": "**Warum**  \nGottes Liebe und Hoffnung in unserer Stadt und weltweit teilen – berufen, Menschen mit der guten Nachricht zu erreichen und nachhaltige Veränderung zu bewirken.\n\n**Was**  \nWir unterstützen und fördern Missionsprojekte im In- und Ausland und sind lokal in unserer Stadt aktiv.\n\n**Wie**  \n- Lokale Missionseinsätze und Aktionen in unserer Stadt  \n- Gebetsabende für Mission und Missionare  \n- Kreative Vermittlung von Missionsthemen in der Gemeinde  \n- Das Team koordiniert sich eigenverantwortlich nach Bedarf\n\n**Du kannst mitmachen**  \nDu hast eine Leidenschaft für Mission und ein Herz für Menschen weltweit? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Organisationstalent, Weitblick, interkulturelle Offenheit und ein aktives Gebetsleben.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/91",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1029/d7a726bacf9d8e14cac17c613716900e909aff2be4278c416f235dc611e586e1",
+      "imageUrl": "assets/images/group-91.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1206,8 +1608,14 @@
       ],
       "description": "Herzliche Einladung zum Mitarbeiter Dankefest 2023!\n\nFür Verpflegung ist gesorgt!  \nBitte gebe bei der Anmeldung an, ob du vegetarisch Essen möchtest.\n\n\nVielen Dank!\n\nWir freuen uns auch dich!",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/257",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/578/8e7d2e3a42a9bb1a613c143947beb72beddffbe3a08b05d438f5d195b7b40c86",
+      "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": "19:00 Uhr",
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1225,6 +1633,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/274",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": "15:00 Uhr",
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1240,6 +1654,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/324",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1255,6 +1675,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/327",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1270,6 +1696,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/152",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1286,8 +1718,14 @@
       ],
       "description": "**Warum**  \nGottesdienste für alle Besucher – langjährige Mitglieder wie neue Gäste – gut verständlich und einladend gestalten. Eine Atmosphäre schaffen, in der sich jeder willkommen und orientiert fühlt und Gott begegnen kann.\n\n**Was**  \nWir führen durch den Gottesdienst – mit Begrüßung, Ankündigungen und Überleitungen zwischen den Programmpunkten.\n\n**Wie**  \n- Herzliche und einfühlsame Begrüßung aller Gottesdienstbesucher  \n- Klare Ansagen und Vorstellung des Programms  \n- Persönliche Überleitungen zwischen Lobpreis, Predigt und anderen Elementen  \n- Schaffung verbindender Momente (z. B. gegenseitige Begrüßung)  \n- Verabschiedung und Ausblick  \n- Das Team dient im Wechsel nach Dienstplan\n\n**Du kannst mitmachen**  \nDu stehst gerne auf der Bühne und sprichst vor Menschen? Dann bist du genau richtig. Was uns besonders am Herzen liegt: natürliche und freundliche Ausstrahlung, Gespür für verschiedene Zielgruppen und Spontaneität.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/129",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1032/90a3785e4dff6d7240c06a00e717ff0e33cb58d940e0f141fa434e54bd2de9cb",
+      "imageUrl": "assets/images/group-129.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1305,6 +1743,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/225",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1320,6 +1764,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/238",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1335,6 +1785,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/382",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": "19.30 Uhr",
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1350,6 +1806,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/226",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1368,8 +1830,14 @@
       ],
       "description": "Dir sind Deine nicht christlichen Freunde und Deine Familie sehr wichtig, und Du möchtest gerne regelmäßig für sie beten? Komm zu uns, wir beten gemeinsam für unsere Freunde und Familien. Natürlich bewahren wir Stillschweigen über das wofür wir beten.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/158",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1067/8b5eafdb3b35dce1e4cfe63ca5aab3370b23b00ffe7c717fd11ce7b4dc3ca936",
+      "imageUrl": "assets/images/group-158.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": "16:00",
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1385,8 +1853,14 @@
       ],
       "description": null,
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/6",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/421/92a3b6ac8f981b3ed5a528ebf71a938b2e0c5c989cc129e73e78a1c159f53c1c",
+      "imageUrl": "assets/images/group-6.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1402,8 +1876,14 @@
       ],
       "description": "**Warum**  \nRäumlichkeiten schaffen, die sauber, ordentlich und einladend sind – ein Ort, an dem sich Menschen wohlfühlen und gerne Zeit verbringen. Durch Sauberkeit eine Atmosphäre schaffen, die Wertschätzung ausdrückt.\n\n**Was**  \nWir reinigen und pflegen die Gemeinderäumlichkeiten regelmäßig – als wichtiger Dienst im Hintergrund.\n\n**Wie**  \n- Regelmäßige Reinigungseinsätze in verschiedenen Bereichen des Gemeindehauses  \n- Reinigung von Räumen, Küchen, Sanitäranlagen und Gemeinschaftsbereichen  \n- Koordination der Reinigungseinsätze  \n- Pflege und Ordnung der Reinigungsmaterialien  \n- Das Team trifft sich regelmäßig nach festem Terminplan\n\n**Du kannst mitmachen**  \nDu packst gerne praktisch an? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Zuverlässigkeit, Teamgeist und eine dienende Haltung – damit sich alle in unseren Räumen willkommen fühlen. Gemeinsames Arbeiten schafft dabei nicht nur Sauberkeit, sondern auch wertvolle Gemeinschaft.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/50",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1035/ee3ed68f18051bba54137f03394dc20d4886291297a6a648f86fc24dd3ad9c11",
+      "imageUrl": "assets/images/group-50.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1422,6 +1902,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/245",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": "12:00 Uhr",
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1435,8 +1921,14 @@
       "parentGroupIds": [],
       "description": null,
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/70",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/430/2a39ea9521eb04391c2e79c0b7a12b32ab004a95fa412f0caa677faa850f0fca",
+      "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1452,6 +1944,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/384",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1469,6 +1967,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/170",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1511,8 +2015,14 @@
       ],
       "description": "**Warum**  \nEine Atmosphäre schaffen, in der es Menschen leichtfällt, Gott zu begegnen und sich wohl und willkommen zu fühlen – durch professionelle Ton-, Licht-, Präsentations- und Videotechnik.\n\n**Was**  \nWir bedienen und warten die gesamte Veranstaltungstechnik für Gottesdienste und Events.\n\n**Wie**  \n- Technische Vorbereitung und Abstimmung von Ton und Bild vor den Gottesdiensten  \n- Bedienung von Mischpult, Mikrofonen und Sound-System  \n- Steuerung von Licht und Bühnentechnik  \n- Beamer- und Präsentationsbedienung  \n- Videoaufzeichnung und Live-Streaming  \n- Wartung und Pflege der technischen Ausstattung  \n- Das Team dient im Wechsel nach Dienstplan\n\n**Du kannst mitmachen**  \nDu hast Freude an Technik, ein gutes Gehör und Lust, unsere Bands im besten Licht darzustellen? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Technisches Interesse, Zuverlässigkeit und Lernbereitschaft.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/7",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/433/8c0ce39d68de376279785610d4c627f1f63a2c928dcb04f10188d3503e9db36e",
+      "imageUrl": "assets/images/group-7.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1533,6 +2043,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/282",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1548,6 +2064,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/371",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1568,8 +2090,14 @@
       ],
       "description": "Durch Sprache ein Zuhause schaffen.  \nWir wünschen uns, dass jeder Menschen unseren Gottesdiensten in seiner Sprache folgen kann.  \nDenn da wo man versteht und verstanden wird, kann ein Ort zu einem Zuhause werden.  \nNeben den Freunden, die ein Zuhause ausmachen, ist es vor allem die Beziehung zu Gott, die ein Zuhause ermöglichen soll.  \nDafür sind wir da: Durch Sprache ein Zuhause schaffen.\n\nKoordination: Katharina Leitner",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/132",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1040/a0a7727256b86ba8dfac72e3897e32009c0af4ee5b6a310d2950767116e489d9",
+      "imageUrl": "assets/images/group-132.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1587,6 +2115,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/147",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1605,6 +2139,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/390",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": "09:00",
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1620,8 +2160,14 @@
       ],
       "description": "**Warum**  \nNiemand soll Heiligabend alleine verbringen – Gemeinschaft und Wärme in der besonderen Nacht des Jahres. Einen Ort schaffen, an dem sich jeder willkommen fühlt und die Weihnachtsbotschaft gemeinsam erlebt werden kann.\n\n**Was**  \nWir feiern gemeinsam Heiligabend – mit gutem Essen, Gemeinschaft und einem Impuls zur Weihnachtsbotschaft.\n\n**Wie**  \n- Offene Heiligabend-Feier für alle, die nicht alleine sein möchten  \n- Gemeinsames festliches Essen in warmer Atmosphäre  \n- Impuls zur Weihnachtsbotschaft  \n- Gemeinschaft und Begegnung in entspannter Runde  \n- Dekoration, festliche Gestaltung und Programmvorbereitung  \n- Das Team organisiert sich gemeinsam im Vorfeld\n\n**Du kannst mitmachen**  \nDu hast ein Herz für Menschen, die Heiligabend sonst alleine wären, und packst gerne praktisch an? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Gastfreundschaft, Offenheit und Organisationstalent.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/374",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1043/e7f8e4fe4a1c85d44b1ee651ef63fa22637ce10c44befefd9be23fa69c8ec004",
+      "imageUrl": "assets/images/group-374.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1637,6 +2183,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/377",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1652,8 +2204,14 @@
       ],
       "description": "**Warum**  \nMenschen, die zum ersten Mal kommen, bewusst wahrnehmen und willkommen heißen – damit sie sich wohlfühlen und Anschluss finden. Erste Kontakte schaffen und Menschen durch Beziehungen, Kleingruppen und Mitarbeit in die Gemeinde integrieren.\n\n**Was**  \nWir empfangen alle Gottesdienstbesucher freundlich – mit besonderer Aufmerksamkeit für neue Gesichter.\n\n**Wie**  \n- Willkommensdienst vor dem Gottesdienst an der Eingangstür  \n- Besondere Aufmerksamkeit für neue Gäste  \n- Hilfe bei der Sitzplatzfindung  \n- Information über passende Gruppen und Veranstaltungen  \n- Ausgabe von Informationsmaterial für neue Besucher  \n- Verbindung zu passenden Ansprechpartnern und Kleingruppen herstellen  \n- Das Team dient im Wechsel nach Dienstplan\n\n**Du kannst mitmachen**  \nDu schenkst anderen gerne ein Lächeln und freust dich, neue Leute kennenzulernen? Dann bist du genau richtig. Was uns besonders am Herzen liegt: Ein freundliches, offenes Wesen, Aufmerksamkeit für Details und Zuverlässigkeit.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/85",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/406/21a397213ee59fa241b0fe55dc568b86a5c4cf9b20923309938133610922c3ca",
+      "imageUrl": "assets/images/group-85.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1671,6 +2229,12 @@
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/110",
       "imageUrl": null,
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
@@ -1686,8 +2250,14 @@
       ],
       "description": "**Warum**  \nWer schon einmal Zahnschmerzen hatte, weiß, wie quälend sie sind. Viele Menschen – im Inland wie im Ausland – haben keinen Zugang zu zahnärztlicher Versorgung. Wir wollen nah am Patienten sein und professionelle Hilfe dort leisten, wo sie sonst nicht ankommt.\n\n**Was**  \nZahnärztliche Hilfseinsätze für Menschen, die sich keine Behandlung leisten können oder keinen Zugang dazu haben – in Deutschland und im Ausland.\n\n**Wie**  \n- Versorgung von Obdachlosen  \n- Versorgung von Gefängnisinsassen direkt vor Ort  \n- Versorgung von Prostituierten ohne Krankenversicherung  \n- Einsätze in Slums und ländlichen Regionen ohne zahnärztliche Versorgung  \n- Behandlungen in Flüchtlingslagern (Zähne ziehen, Füllungen)\n\n**Du kannst mitmachen**  \nDu hast ein Herz dafür, anderen Menschen zu dienen? Dann bist du herzlich willkommen. Eine zahnärztliche Ausbildung oder Erfahrung – als Zahnarzt, ZFA oder in einer anderen Helfer-Rolle – ist ein großes Plus. Was uns besonders wichtig ist: ein echtes Herz für Menschen in Not und die Bereitschaft zu Einsätzen im In- und Ausland.",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/380",
-      "imageUrl": "https://gemeindekonkordia.church.tools/images/1070/ed01b8b2184016770647ea6bef08999858d88f3ccab27413c4b4458c76f748a2",
+      "imageUrl": "assets/images/group-380.jpg",
       "tags": [],
+      "meeting": {
+        "weekday": null,
+        "time": null,
+        "targetGroup": null,
+        "ageGroups": null
+      },
       "settings": {
         "isHidden": false,
         "modules": []
