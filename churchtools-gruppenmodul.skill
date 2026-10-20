@@ -15,7 +15,9 @@ metadata:
 
 ## Projekt-Überblick
 
-Vier einbettbare iframes für gemeinde-konkordia.de, je einer pro Visionsbereich.
+Gruppenfinder für Gäste (`gruppenfinder.html`, alle vier Visionsbereiche mit Suche und Filtern) sowie
+vier einbettbare iframes für gemeinde-konkordia.de, je einer pro Visionsbereich (`embed.html`).
+Pflege-Konzept (Hierarchie + Tags `Angebot`/`Mitarbeit`/Zielgruppen) steht im README.
 Daten werden täglich automatisch aus ChurchTools abgerufen und auf GitHub Pages bereitgestellt.
 
 **Embed-URL-Schema:**
@@ -60,6 +62,7 @@ Gruppenmodul/
 ├── assets/images/
 │   ├── fallback.svg         # Platzhalter-Kreuz im Konkordia-CI
 │   └── group-{id}.jpg       # automatisch heruntergeladen
+├── gruppenfinder.html       # Gruppenfinder für Gäste
 ├── embed.html               # die vier iframes
 └── index.html               # einfache Übersichtsseite
 ```
@@ -137,6 +140,7 @@ Konkordia CI (siehe seo-audit-konkordia.skill für vollständigen Styleguide):
 
 ## DSGVO
 
-- Keine persönlichen Daten (kein Foto, keine E-Mail der Leiter) im iframe
+- Keine persönlichen Daten (keine Namen, Fotos oder E-Mails der Leiter) – auch nicht in `gruppen.json`
+- Gruppenbilder werden beim Sync nach `assets/images/` geladen, nicht direkt von church.tools eingebunden
 - Weiterleitung auf ChurchTools-Gruppenseite (`publicUrl`) für Kontakt
 - ChurchTools übernimmt dort den Datenschutz

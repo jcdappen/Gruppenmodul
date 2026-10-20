@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gruppenfinder – Gemeinde in der Konkordia</title>
+  <meta name="description" content="Finde deine Gruppe in der Gemeinde in der Konkordia Bühl: Hauskreise, Kurse, Gebet und Teams in den Bereichen Leben mit Gott, in Transformation, in Gemeinschaft und in der Welt." />
+  <link rel="icon" href="assets/logos/logo-icon.png" />
+  <style>
+    /* Schriften lokal – keine Verbindung zu Google Fonts o. Ä. (DSGVO) */
+    @font-face { font-family: 'GrotesqueSC'; src: url('assets/fonts/GrotesqueRegSC.ttf') format('truetype'); font-display: swap; }
+    @font-face { font-family: 'Gothic720'; src: url('assets/fonts/gothic720l.ttf') format('truetype'); font-weight: 300; font-display: swap; }
+    @font-face { font-family: 'Gothic720'; src: url('assets/fonts/gothic720li.ttf') format('truetype'); font-weight: 300; font-style: italic; font-display: swap; }
+    @font-face { font-family: 'Gothic725'; src: url('assets/fonts/gothic725b.ttf') format('truetype'); font-weight: 700; font-display: swap; }
+
+    :root {
+      --gidk-rot-logo:    #bb2232;
+      --gidk-rot-dunkel:  #70141e;
+      --gidk-gold-dunkel: #8e7629;
+      --gidk-teal-dunkel: #147067;
+      --gidk-olive:       #677d46;
+      --gidk-gold:        #edc544;
+      --gidk-teal:        #22bbac;
+      --gidk-gruen:       #abd075;
+      --gidk-grau-dunkel: #4d4d4d;
+      --gidk-grau-hell:   #e6e6e6;
+
+      --text:  #1c1a18;
+      --muted: #4d4d4d;
+      --line:  #e6e6e6;
+      --soft:  #f6f5f3;
+      --head:  'GrotesqueSC', 'Arial Narrow', Arial, sans-serif;
+      --body:  'Gothic720', 'Segoe UI', Helvetica, Arial, sans-serif;
+      --bold:  'Gothic725', 'Segoe UI', Helvetica, Arial, sans-serif;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body { overflow-x: hidden; }
+    body { font-family: var(--body); font-weight: 300; color: var(--text); background: #fff; line-height: 1.5; }
+    strong, b { font-family: var(--bold); font-weight: 700; }
+    .wrap { max-width: 1120px; margin: 0 auto; padding: 0 16px; }
+    button { font: inherit; color: inherit; }
+    :focus-visible { outline: 3px solid var(--text); outline-offset: 2px; }
+
+    /* ── Kopf ─────────────────────────────────── */
+    .hero { background: var(--soft); border-bottom: 4px solid var(--gidk-rot-logo); padding: 36px 0 28px; }
+    .eyebrow { font-family: var(--head); text-transform: uppercase; letter-spacing: .12em; color: var(--gidk-rot-logo); font-size: 15px; }
+    h1 { font-family: var(--head); font-weight: normal; font-size: clamp(32px, 6vw, 52px); text-transform: uppercase; line-height: 1.05; margin: 6px 0 10px; }
+    .lead { color: var(--muted); max-width: 620px; font-size: 17px; }
+
+    .search { margin-top: 20px; display: flex; align-items: center; border: 2px solid var(--text); background: #fff; max-width: 620px; }
+    .search:focus-within { outline: 3px solid var(--gidk-rot-logo); outline-offset: 2px; }
+    .search svg { flex: none; margin-left: 14px; }
+    .search input { flex: 1; min-width: 0; border: 0; padding: 14px 12px; font: inherit; font-size: 17px; outline: none; background: transparent; }
+
+    /* ── Bereichs-Kacheln ─────────────────────── */
+    .bereiche { display: grid; grid-template-columns: repeat(5, 1fr); gap: 8px; margin-top: 24px; }
+    .bereich { --c: var(--text); border: 0; cursor: pointer; text-align: left; padding: 14px 14px 12px; background: #fff; border-top: 6px solid var(--c); display: flex; flex-direction: column; gap: 4px; min-height: 96px; transition: background .15s; }
+    .bereich:hover { background: color-mix(in srgb, var(--c) 10%, #fff); }
+    .bereich[aria-pressed="true"] { background: var(--c); color: #fff; }
+    .bereich .ic { width: 28px; height: 28px; }
+    .bereich .ic svg { width: 100%; height: 100%; fill: var(--c); }
+    .bereich[aria-pressed="true"] .ic svg { fill: #fff; }
+    .bereich b { font-family: var(--head); font-weight: normal; text-transform: uppercase; font-size: 16px; letter-spacing: .03em; line-height: 1.15; }
+    .bereich small { font-size: 13px; opacity: .85; }
+
+    .intro { margin-top: 26px; padding-left: 14px; border-left: 4px solid var(--c, var(--text)); color: var(--muted); font-size: 16px; }
+    .intro b { font-family: var(--head); font-weight: normal; text-transform: uppercase; letter-spacing: .03em; color: var(--text); }
+
+    /* ── Filterleiste ─────────────────────────── */
+    .toolbar { display: flex; flex-wrap: wrap; gap: 12px 20px; align-items: center; margin: 22px 0 18px; }
+    .seg { display: inline-flex; border: 2px solid var(--text); }
+    .seg button { border: 0; background: #fff; font-family: var(--bold); font-weight: 700; padding: 9px 16px; cursor: pointer; }
+    .seg button[aria-pressed="true"] { background: var(--text); color: #fff; }
+    .seg span { font-family: var(--body); font-weight: 300; opacity: .75; }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; }
+    .chip { border: 1.5px solid #999; background: #fff; padding: 6px 12px; font-size: 14px; cursor: pointer; }
+    .chip[aria-pressed="true"] { border-color: var(--text); background: var(--text); color: #fff; }
+    .reset { border: 0; background: none; color: var(--gidk-rot-logo); text-decoration: underline; cursor: pointer; font-size: 14px; }
+    .count { margin-left: auto; color: var(--muted); font-size: 14px; }
+
+    /* ── Karten ───────────────────────────────── */
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 18px; padding-bottom: 48px; }
+    .card { border: 0; padding: 0; text-align: left; background: #fff; cursor: pointer; display: flex; flex-direction: column; box-shadow: 0 0 0 1px var(--line); transition: transform .15s, box-shadow .15s; }
+    .card:hover { transform: translateY(-3px); box-shadow: 0 0 0 1px var(--line), 0 10px 24px rgba(0,0,0,.08); }
+    .media { --c: var(--text); aspect-ratio: 16 / 9; background: var(--c); position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; }
+    .media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+    .media svg { width: 64px; height: 64px; fill: rgba(255,255,255,.55); }
+    .media.placeholder::after { content: ""; position: absolute; right: -30px; bottom: -30px; width: 110px; height: 110px; background: rgba(255,255,255,.12); transform: rotate(45deg); }
+    .badge { position: absolute; left: 0; top: 12px; z-index: 1; background: #fff; border-left: 5px solid var(--c); font-family: var(--head); font-size: 13px; text-transform: uppercase; letter-spacing: .06em; padding: 2px 10px; }
+    .card-body { padding: 14px 16px 16px; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+    .card h3 { font-family: var(--head); font-weight: normal; font-size: 20px; text-transform: uppercase; letter-spacing: .02em; line-height: 1.15; }
+    .card p { color: var(--muted); font-size: 15px; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+    .when { font-family: var(--bold); font-weight: 700; font-size: 14px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin-top: auto; padding-top: 6px; }
+    .tag { font-size: 12px; background: var(--soft); padding: 2px 8px; }
+    .more { font-family: var(--bold); font-weight: 700; color: var(--gidk-rot-logo); font-size: 14px; }
+
+    .empty { grid-column: 1 / -1; text-align: center; padding: 48px 16px; background: var(--soft); }
+    .empty p + p { margin-top: 8px; }
+    .empty a, .empty button { color: var(--gidk-rot-logo); font-family: var(--bold); font-weight: 700; background: none; border: 0; cursor: pointer; text-decoration: underline; }
+    .status { padding: 48px 0; text-align: center; color: var(--muted); }
+
+    /* ── Detail ───────────────────────────────── */
+    dialog { border: 0; padding: 0; width: 100%; max-width: 640px; max-height: 90vh; margin: auto; overflow: auto; }
+    dialog::backdrop { background: rgba(20,18,16,.55); }
+    dialog .media { aspect-ratio: 21 / 9; }
+    .close { position: absolute; right: 10px; top: 10px; z-index: 2; width: 42px; height: 42px; border: 0; background: #fff; font-size: 26px; line-height: 1; cursor: pointer; }
+    .sheet-body { padding: 22px 24px 8px; }
+    .sheet-body h2 { font-family: var(--head); font-weight: normal; text-transform: uppercase; font-size: 30px; line-height: 1.1; margin: 4px 0 12px; }
+    .facts { display: flex; flex-wrap: wrap; gap: 6px 18px; margin-bottom: 14px; font-size: 15px; }
+    .facts div b { display: block; font-size: 11px; text-transform: uppercase; letter-spacing: .08em; color: var(--muted); }
+    .desc { overflow-wrap: anywhere; }
+    .desc p { margin: 0 0 10px; }
+    .desc a { color: var(--gidk-rot-logo); }
+    dialog .badge { display: none; }
+    .desc ul { margin: 0 0 10px 20px; }
+    .actions { position: sticky; bottom: 0; background: #fff; padding: 14px 24px 12px; border-top: 1px solid var(--line); display: flex; gap: 10px; flex-wrap: wrap; }
+    .btn { display: inline-flex; align-items: center; justify-content: center; padding: 13px 20px; font-family: var(--bold); font-weight: 700; text-decoration: none; cursor: pointer; border: 2px solid var(--gidk-rot-logo); }
+    .btn-primary { background: var(--gidk-rot-logo); color: #fff; flex: 1; }
+    .btn-primary:hover { background: var(--gidk-rot-dunkel); border-color: var(--gidk-rot-dunkel); }
+    .btn-ghost { background: #fff; color: var(--gidk-rot-logo); }
+    .privacy { font-size: 12px; color: var(--muted); padding: 0 24px 16px; }
+
+    @media (max-width: 760px) {
+      .bereiche { grid-template-columns: repeat(5, minmax(128px, 1fr)); overflow-x: auto; scroll-snap-type: x mandatory; margin-right: -16px; padding-right: 16px; }
+      .bereich { scroll-snap-align: start; }
+      .count { margin-left: 0; width: 100%; }
+      dialog:not(.embedded) { max-width: none; margin: auto 0 0; max-height: 88vh; }
+    }
+    @media (prefers-reduced-motion: reduce) { .card, .bereich { transition: none; } .card:hover { transform: none; } }
+  </style>
+</head>
+<body>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="eyebrow">Gemeinde in der Konkordia</div>
+    <h1>Finde deinen Platz</h1>
+    <p class="lead">Ob du neu bist oder schon lange dabei: Hier findest du Gruppen, Kurse und Teams, in denen du Glauben und Gemeinschaft erleben kannst.</p>
+    <label class="search">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-4-4"/></svg>
+      <input id="q" type="search" placeholder="Wonach suchst du? z. B. Hauskreis, Alpha, Gebet …" aria-label="Gruppen durchsuchen" autocomplete="off" />
+    </label>
+    <div class="bereiche" id="bereiche" role="group" aria-label="Bereich wählen"></div>
+  </div>
+</header>
+
+<main class="wrap">
+  <div class="intro" id="intro"></div>
+  <div class="toolbar">
+    <div class="seg" role="group" aria-label="Art des Angebots">
+      <button data-typ="angebot" aria-pressed="true">Dabei sein <span id="n-angebot"></span></button>
+      <button data-typ="mitarbeit" aria-pressed="false">Mitarbeiten <span id="n-mitarbeit"></span></button>
+    </div>
+    <div class="chips" id="chips" role="group" aria-label="Für wen"></div>
+    <div class="count" id="count" aria-live="polite"></div>
+  </div>
+  <div class="grid" id="grid"><p class="status">Gruppen werden geladen …</p></div>
+</main>
+
+<dialog id="sheet" aria-labelledby="sheet-title">
+  <button class="close" id="sheet-close" aria-label="Schließen">×</button>
+  <div class="media" id="sheet-media"></div>
+  <div class="sheet-body">
+    <div class="eyebrow" id="sheet-vb"></div>
+    <h2 id="sheet-title"></h2>
+    <div class="facts" id="sheet-facts"></div>
+    <div class="desc" id="sheet-desc"></div>
+  </div>
+  <div class="actions">
+    <a class="btn btn-primary" id="sheet-cta" target="_blank" rel="noopener noreferrer"></a>
+    <button class="btn btn-ghost" id="sheet-share">Link teilen</button>
+  </div>
+  <p class="privacy">Kontakt und Anmeldung laufen über ChurchTools. Dort gelten die Datenschutzhinweise der Gemeinde.</p>
+</dialog>
+
+<script>
+'use strict';
+
+const CONTACT_URL = 'https://www.gemeinde-konkordia.de/kontakt';
+
+// Pfeil-Icons der Visionsbereiche (aus gruppen-embed.html)
+const ARROWS = {
+  up:     '<svg viewBox="0 0 2000 2000"><path d="M1069.61,441.27c-38.04-37.91-100.86-38.22-139.23,0l-295.23,293.69c-38.45,38.25-38.45,100.21,0,138.45,38.45,38.25,100.73,38.25,139.18,0l127.26-126.58v742.73c0,54.06,44.08,97.9,98.42,97.9s98.42-43.85,98.42-97.9v-742.73l127.26,126.58c19.22,19.13,44.39,28.68,69.57,28.68s50.36-9.55,69.59-28.68c38.45-38.23,38.45-100.19,0-138.45l-295.23-293.69Z"/><path d="M1000,1779.99c-430.08,0-780-349.9-780-779.98S569.92,220.01,1000,220.01s780,349.92,780,780-349.92,779.98-780,779.98ZM1000,25.01C462.37,25.01,25,462.38,25,1000.01s437.37,974.98,975,974.98,975-437.37,975-974.98S1537.58,25.01,1000,25.01Z"/></svg>',
+  cycle:  '<svg viewBox="0 0 2000 2000"><path d="M1000,25.01C462.42,25.01,25,462.38,25,999.99s437.42,975,975,975,975-437.37,975-975S1537.63,25.01,1000,25.01ZM1000,1779.99c-430.08,0-780-349.92-780-780S569.92,220.01,1000,220.01s780,349.9,780,779.98-349.92,780-780,780Z"/><path d="M1433.28,926.81c-45.29,0-82.13,37.05-82.13,82.6,0,23.81-2.36,47.55-7.04,70.8l-4.42,17.36c-13.03,51.14-37.82,99.65-71.71,140.27-33.58,40.26-76.25,73-123.38,94.69l-.22.1c-.7.33-1.4.65-2.11.97l-.33.15c-57.88,26.18-124.76,35.87-188.32,27.29-60.78-8.2-118.46-32.46-166.85-70.21-1.89-1.47-3.77-2.96-5.63-4.47h26.3c30.17,0,54.67-11.76,68.99-33.12,17.21-25.67,15.88-59.17,6.94-80.94-12.7-31.05-42.51-51.11-75.93-51.11h-240.71c-45.3,0-82.15,37.05-82.15,82.6v242.96c0,33.49,19.87,63.43,50.61,76.26,10.02,4.21,20.63,6.34,31.54,6.34,32.53,0,58.99-15.75,72.59-43.21,9.09-18.35,9.55-36.03,9.55-39.39v-57.45c2.08,1.96,4.18,3.91,6.29,5.84l-.42,1.09,18.9,15.64c69.96,57.91,154.11,96.19,243.38,110.7,1.1.18,2.22.35,3.32.51l.19.03c6.05.95,11.41,1.71,16.29,2.32,1.71.22,3.43.39,5.16.57.64.06,1.28.13,1.91.2,35.67,3.82,71.02,4.08,105.06.78,55.13-5.35,108.65-19.48,159.04-41.99l.13-.06c.66-.3,1.33-.6,1.99-.91.53-.24,1.05-.48,1.58-.72l.13-.06c89.18-40.71,164.87-105.92,218.88-188.58,55.43-84.83,84.73-183.47,84.73-285.26,0-45.54-36.85-82.6-82.13-82.6Z"/><path d="M1464.82,478.98c-10.02-4.21-20.63-6.34-31.54-6.34-32.53,0-58.99,15.75-72.59,43.21-9.09,18.35-9.55,36.03-9.55,39.39v57.45c-2.02-1.9-4.05-3.79-6.1-5.66l.44-1.09-19.11-15.82c-69.96-57.92-154.13-96.2-243.4-110.71-1.09-.18-2.2-.35-3.3-.51l-.35-.05c-42.7-6.33-85.8-7.54-128.11-3.61h0c-55.08,5.12-108.64,19.17-159.2,41.76l-.13.06c-.66.3-1.33.6-1.99.91-.53.24-1.05.48-1.58.72l-.13.06c-89.18,40.71-164.87,105.92-218.88,188.58-55.43,84.83-84.73,183.47-84.73,285.26,0,45.54,36.85,82.6,82.13,82.6s82.13-37.05,82.13-82.6c0-23.81,2.36-47.55,7.04-70.8l4.42-17.37c13.03-51.14,37.82-99.65,71.71-140.27,33.58-40.26,76.25-73,123.38-94.69l.24-.11c.69-.33,1.4-.65,2.11-.96,100.08-44.03,216.37-39.02,311.06,13.39,7.01,3.88,13.94,8.05,20.6,12.39,4.2,2.74,8.3,5.53,12.13,8.27l.16.12c1,.72,2,1.43,3,2.17l.1.07c2.84,2.07,5.66,4.2,8.45,6.37,1.89,1.47,3.77,2.96,5.63,4.47h-26.3c-30.17,0-54.67,11.76-68.99,33.12-17.21,25.67-15.88,59.17-6.94,80.94,12.7,31.05,42.51,51.12,75.93,51.12h240.71c45.3,0,82.15-37.05,82.15-82.6v-242.96c0-33.49-19.87-63.43-50.61-76.26Z"/></svg>',
+  down:   '<svg viewBox="0 0 2000 2000"><path d="M1069.61,1558.73c-38.04,37.91-100.86,38.22-139.23,0l-295.23-293.69c-38.45-38.25-38.45-100.21,0-138.45,38.45-38.25,100.73-38.25,139.18,0l127.26,126.58V510.45c0-54.06,44.08-97.9,98.42-97.9s98.42,43.85,98.42,97.9v742.73l127.26-126.58c19.22-19.13,44.39-28.68,69.57-28.68s50.36,9.55,69.59,28.68c38.45,38.23,38.45,100.19,0,138.45l-295.23,293.69Z"/><path d="M1000,220.01c-430.08,0-780,349.9-780,779.98s349.92,780,780,780,780-349.92,780-780S1430.08,220.01,1000,220.01ZM1000,1974.99c-537.63,0-975-437.37-975-975S462.37,25.01,1000,25.01s975,437.37,975,974.98-437.42,975-975,975Z"/></svg>',
+  branch: '<svg viewBox="0 0 2000 2000"><path d="M1605.28,752.49l-180.89-180.91c-16.69-16.69-38.87-25.88-62.46-25.88s-45.77,9.19-62.46,25.88-25.88,38.87-25.88,62.46,9.19,45.77,25.88,62.46l31.28,31.27c-68.21,4.76-134.65,25.09-193.82,59.51-53.49,31.12-100.21,73.15-136.97,122.92-36.75-49.78-83.48-91.81-136.96-122.92-59.16-34.42-125.6-54.75-193.81-59.51l31.28-31.28c34.44-34.44,34.44-90.47,0-124.91-16.69-16.69-38.86-25.88-62.45-25.88s-45.76,9.19-62.45,25.88l-180.83,180.85c-16.71,16.62-25.92,38.87-25.91,62.65,0,23.71,9.21,45.91,25.85,62.45l180.9,180.92c34.43,34.4,90.45,34.4,124.88,0,34.44-34.44,34.44-90.47,0-124.91l-28.04-28.04c134.69,16.97,239.21,132.24,239.21,271.46v310.76c0,48.7,39.62,88.32,88.32,88.32s88.32-39.62,88.32-88.32v-310.76c0-139.22,104.52-254.49,239.22-271.46l-28.04,28.04c-16.69,16.69-25.88,38.87-25.88,62.46s9.19,45.77,25.88,62.46c34.43,34.4,90.46,34.4,124.9,0l180.85-180.87c16.71-16.64,25.91-38.86,25.91-62.55s-9.2-45.93-25.87-62.53Z"/><path d="M1000,25.01C462.37,25.01,25,462.38,25,1000.01s437.37,974.98,975,974.98,975-437.37,975-974.98S1537.58,25.01,1000,25.01ZM1000,1779.99c-430.08,0-780-349.9-780-779.98S569.92,220.01,1000,220.01s780,349.92,780,780-349.92,779.98-780,779.98Z"/></svg>',
+  all:    '<svg viewBox="0 0 24 24"><rect x="2" y="2" width="9" height="9"/><rect x="13" y="2" width="9" height="9"/><rect x="2" y="13" width="9" height="9"/><rect x="13" y="13" width="9" height="9"/></svg>',
+};
+
+// Die vier Visionsbereiche. "match" wird gegen den Namen der ChurchTools-Gruppe (Gruppentyp 5) geprüft.
+const BEREICHE = [
+  { slug: 'leben-mit-gott',          match: 'mit gott',       name: 'Leben mit Gott',          short: 'Gebet & Glauben',        color: '#c9a21c', arrow: 'up',     text: 'Wir lieben Gott mit unserem ganzen Sein und nehmen uns Zeit, seine Stimme zu hören.' },
+  { slug: 'leben-in-transformation', match: 'transformation', name: 'Leben in Transformation', short: 'Wachsen & Jüngerschaft', color: '#1a9c8f', arrow: 'cycle',  text: 'Wir stehen in einem Prozess, Jesus in unserem ganzen Wesen ähnlicher zu werden.' },
+  { slug: 'leben-in-gemeinschaft',   match: 'gemeinschaft',   name: 'Leben in Gemeinschaft',   short: 'Hauskreise & Treffs',    color: '#677d46', arrow: 'down',   text: 'Als Gottes Familie teilen wir Leben, wachsen geistlich und geben Raum für alle Menschen.' },
+  { slug: 'leben-in-der-welt',       match: 'welt',           name: 'Leben in der Welt',       short: 'Mission & Diakonie',     color: '#bb2232', arrow: 'branch', text: 'Wir gehen auf Menschen zu und tragen die Gute Nachricht in Wort und Tat in die Welt.' },
+];
+const ALLE = { slug: 'alle', name: 'Alle Bereiche', short: 'Alles auf einen Blick', color: '#1c1a18', arrow: 'all', text: 'Stöbere durch alle Gruppen oder wähle einen der vier Bereiche unseres Gemeindelebens.' };
+
+// Tags mit Sonderbedeutung – erscheinen nicht als Filter
+const TYP_TAGS = { angebot: 'angebot', mitarbeit: 'mitarbeit' };
+const TEAM_GROUP_TYPE = 2;
+
+const state = { bereich: 'alle', typ: 'angebot', tags: new Set(), q: '' };
+let gruppen = [];
+
+const $ = id => document.getElementById(id);
+const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+const norm = s => (s || '').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ß/g, 'ss');
+const bereichOf = slug => BEREICHE.find(b => b.slug === slug) || ALLE;
+const isEmbedded = window.self !== window.top;
+
+// Markdown-light wie in index.html: **fett**, Absätze, Zeilenumbrüche, dazu "- " Listen und Links
+const LINK = '<a href="$2" target="_blank" rel="noopener noreferrer">$1</a>';
+function markdown(text) {
+  return esc(text).split(/\n\s*\n/).map(block => {
+    const lines = block.split('\n').map(l => l.trim()).filter(Boolean);
+    const inline = l => l
+      .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+      .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g, LINK)
+      .replace(/(^|[\s(])(https?:\/\/[^\s<)]*[^\s<).,;:!?])/g, '$1<a href="$2" target="_blank" rel="noopener noreferrer">$2</a>');
+    if (lines.length && lines.every(l => /^[-•]\s/.test(l))) {
+      return '<ul>' + lines.map(l => `<li>${inline(l.replace(/^[-•]\s/, ''))}</li>`).join('') + '</ul>';
+    }
+    return `<p>${lines.map(inline).join('<br>')}</p>`;
+  }).join('');
+}
+const plain = md => (md || '').replace(/\*\*/g, '').replace(/\[([^\]]+)\]\([^)]*\)/g, '$1').replace(/^\s*[-•]\s*/gm, '').replace(/\s+/g, ' ').trim();
+
+// Aus den Rohdaten die Karten für Gäste ableiten
+function prepare(groups) {
+  const byId = new Map(groups.map(g => [g.id, g]));
+  const vbIds = new Map();
+  for (const g of groups) {
+    if (g.groupTypeId !== 5) continue;
+    const b = BEREICHE.find(b => norm(g.name).includes(b.match));
+    if (b) vbIds.set(g.id, b.slug);
+  }
+
+  // Alle Visionsbereiche über sämtliche Vorfahren (zyklensicher)
+  function bereicheOf(g) {
+    const found = new Set(), seen = new Set(), stack = [...(g.parentGroupIds || [])];
+    while (stack.length) {
+      const id = stack.pop();
+      if (seen.has(id)) continue;
+      seen.add(id);
+      if (vbIds.has(id)) found.add(vbIds.get(id));
+      const p = byId.get(id);
+      if (p) stack.push(...(p.parentGroupIds || []));
+    }
+    return BEREICHE.map(b => b.slug).filter(s => found.has(s));
+  }
+
+  return groups
+    .filter(g => g.groupTypeId !== 5 && g.description && g.publicUrl && !g.settings?.isHidden)
+    .map(g => {
+      const tagsNorm = (g.tags || []).map(norm);
+      const typ = tagsNorm.includes(TYP_TAGS.angebot) ? 'angebot'
+                : tagsNorm.includes(TYP_TAGS.mitarbeit) ? 'mitarbeit'
+                : g.groupTypeId === TEAM_GROUP_TYPE ? 'mitarbeit' : 'angebot';
+      // Nur selbst gehostete Bilder – keine Requests an church.tools aus dem Browser der Besucher
+      const image = g.imageUrl && !/^https?:/i.test(g.imageUrl) ? g.imageUrl : null;
+      return {
+        id: g.id,
+        name: g.name.trim(),
+        description: g.description,
+        url: g.publicUrl,
+        image,
+        typ,
+        tags: (g.tags || []).filter(t => !Object.values(TYP_TAGS).includes(norm(t))),
+        meeting: g.meeting || {},
+        bereiche: bereicheOf(g),
+        haystack: norm([g.name, plain(g.description), ...(g.tags || [])].join(' ')),
+      };
+    })
+    .filter(g => g.bereiche.length)
+    .sort((a, b) => a.name.localeCompare(b.name, 'de'));
+}
+
+function matches(g, { ignoreBereich = false, ignoreTyp = false } = {}) {
+  const q = norm(state.q).split(/\s+/).filter(Boolean);
+  return (ignoreTyp || g.typ === state.typ)
+    && (ignoreBereich || state.bereich === 'alle' || g.bereiche.includes(state.bereich))
+    && [...state.tags].every(t => g.tags.includes(t))
+    && q.every(w => g.haystack.includes(w));
+}
+
+function whenText(m) {
+  return [m.weekday, m.time].filter(Boolean).join(', ');
+}
+
+function mediaHtml(g, b) {
+  const badge = `<span class="badge">${esc(b.name.replace(/^Leben /, ''))}</span>`;
+  return g.image
+    ? `${badge}<img src="${esc(g.image)}" alt="" loading="lazy" onerror="this.remove();this.parentNode.classList.add('placeholder')">${ARROWS[b.arrow]}`
+    : `${badge}${ARROWS[b.arrow]}`;
+}
+
+function primaryBereich(g) {
+  return bereichOf(state.bereich !== 'alle' && g.bereiche.includes(state.bereich) ? state.bereich : g.bereiche[0]);
+}
+
+// ── Rendering ────────────────────────────────────
+function renderBereiche() {
+  $('bereiche').innerHTML = [ALLE, ...BEREICHE].map(b => `
+    <button class="bereich" style="--c:${b.color}" data-bereich="${b.slug}" aria-pressed="${state.bereich === b.slug}">
+      <span class="ic" aria-hidden="true">${ARROWS[b.arrow]}</span>
+      <b>${esc(b.name)}</b><small>${esc(b.short)}</small>
+    </button>`).join('');
+  const b = bereichOf(state.bereich);
+  $('intro').style.setProperty('--c', b.color);
+  $('intro').innerHTML = `<b>${esc(b.name)}</b> · ${esc(b.text)}`;
+}
+
+function renderChips() {
+  const pool = gruppen.filter(g => g.typ === state.typ && (state.bereich === 'alle' || g.bereiche.includes(state.bereich)));
+  const tags = [...new Set([...pool.flatMap(g => g.tags), ...state.tags])].sort((a, b) => a.localeCompare(b, 'de'));
+  $('chips').innerHTML = tags.map(t => `<button class="chip" data-tag="${esc(t)}" aria-pressed="${state.tags.has(t)}">${esc(t)}</button>`).join('')
+    + (state.tags.size ? '<button class="reset" data-reset>Filter zurücksetzen</button>' : '');
+}
+
+function renderGrid() {
+  for (const typ of ['angebot', 'mitarbeit']) {
+    const n = gruppen.filter(g => g.typ === typ && matches(g, { ignoreTyp: true })).length;
+    $('n-' + typ).textContent = `(${n})`;
+  }
+
+  const list = gruppen.filter(g => matches(g));
+  $('count').textContent = list.length === 1 ? '1 Gruppe' : `${list.length} Gruppen`;
+
+  if (!list.length) {
+    const elsewhere = state.bereich !== 'alle' && gruppen.some(g => matches(g, { ignoreBereich: true }));
+    $('grid').innerHTML = `<div class="empty">
+      <p><strong>Hier haben wir gerade nichts Passendes.</strong></p>
+      ${elsewhere ? '<p><button data-bereich="alle">In allen Bereichen suchen</button></p>' : ''}
+      <p>Schreib uns gern, wir helfen dir persönlich weiter: <a href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">Zum Kontaktformular</a></p>
+    </div>`;
+    return;
+  }
+
+  $('grid').innerHTML = list.map(g => {
+    const b = primaryBereich(g);
+    const when = whenText(g.meeting);
+    return `<button class="card" data-id="${g.id}">
+      <div class="media${g.image ? '' : ' placeholder'}" style="--c:${b.color}">${mediaHtml(g, b)}</div>
+      <div class="card-body">
+        <h3>${esc(g.name)}</h3>
+        ${when ? `<div class="when">${esc(when)}</div>` : ''}
+        <p>${esc(plain(g.description))}</p>
+        ${g.tags.length ? `<div class="tags">${g.tags.map(t => `<span class="tag">${esc(t)}</span>`).join('')}</div>` : ''}
+        <span class="more">Mehr erfahren →</span>
+      </div>
+    </button>`;
+  }).join('');
+}
+
+function render() {
+  renderBereiche();
+  renderChips();
+  renderGrid();
+}
+
+// ── Detail ───────────────────────────────────────
+function openGroup(id, anchor) {
+  const g = gruppen.find(x => x.id === id);
+  if (!g) return;
+  const b = primaryBereich(g);
+  const sheet = $('sheet');
+
+  const media = $('sheet-media');
+  media.style.setProperty('--c', b.color);
+  media.className = 'media' + (g.image ? '' : ' placeholder');
+  media.innerHTML = mediaHtml(g, b);
+
+  $('sheet-vb').textContent = g.bereiche.map(s => bereichOf(s).name).join(' · ');
+  $('sheet-vb').style.color = b.color;
+  $('sheet-title').textContent = g.name;
+
+  const facts = [
+    ['Wann', whenText(g.meeting)],
+    ['Für wen', [g.meeting.targetGroup, g.meeting.ageGroups].filter(Boolean).join(', ') || g.tags.join(', ')],
+  ].filter(([, v]) => v);
+  $('sheet-facts').innerHTML = facts.map(([k, v]) => `<div><b>${k}</b>${esc(v)}</div>`).join('');
+  $('sheet-desc').innerHTML = markdown(g.description);
+
+  $('sheet-cta').href = g.url;
+  $('sheet-cta').textContent = g.typ === 'mitarbeit' ? 'Ich möchte mitarbeiten →' : 'Kontakt aufnehmen / Anmelden →';
+
+  history.replaceState(null, '', `${location.pathname}${location.search}#gruppe-${id}`);
+
+  // Im iframe wächst die Seite mit dem Inhalt – den Dialog deshalb neben der angeklickten Karte öffnen
+  sheet.classList.toggle('embedded', isEmbedded);
+  if (isEmbedded) {
+    const top = anchor ? anchor.getBoundingClientRect().top - 40 : 16;
+    const y = Math.max(16, Math.min(top, innerHeight - 660));
+    sheet.style.margin = `${y}px auto auto`;
+    sheet.style.maxHeight = `${Math.max(320, innerHeight - y - 16)}px`;
+  }
+  sheet.showModal();
+  sheet.scrollTop = 0;
+}
+
+$('sheet').addEventListener('close', () => history.replaceState(null, '', location.pathname + location.search));
+$('sheet').addEventListener('click', e => { if (e.target === $('sheet')) $('sheet').close(); });
+$('sheet-close').addEventListener('click', () => $('sheet').close());
+$('sheet-share').addEventListener('click', async () => {
+  const btn = $('sheet-share');
+  const url = location.href;
+  try {
+    if (navigator.share) await navigator.share({ title: $('sheet-title').textContent, url });
+    else { await navigator.clipboard.writeText(url); btn.textContent = 'Link kopiert ✓'; }
+  } catch { /* abgebrochen oder nicht erlaubt */ }
+  setTimeout(() => { btn.textContent = 'Link teilen'; }, 1800);
+});
+
+// ── Interaktion ──────────────────────────────────
+document.addEventListener('click', e => {
+  const el = e.target.closest('[data-bereich], [data-tag], [data-reset], [data-typ], .card');
+  if (!el) return;
+  if (el.dataset.bereich) { state.bereich = el.dataset.bereich; render(); }
+  else if (el.dataset.tag) { state.tags.has(el.dataset.tag) ? state.tags.delete(el.dataset.tag) : state.tags.add(el.dataset.tag); renderChips(); renderGrid(); }
+  else if (el.hasAttribute('data-reset')) { state.tags.clear(); renderChips(); renderGrid(); }
+  else if (el.dataset.typ) {
+    state.typ = el.dataset.typ;
+    document.querySelectorAll('[data-typ]').forEach(b => b.setAttribute('aria-pressed', b === el));
+    renderChips(); renderGrid();
+  }
+  else openGroup(+el.dataset.id, el);
+});
+$('q').addEventListener('input', e => { state.q = e.target.value; renderGrid(); });
+
+// ── Start ────────────────────────────────────────
+async function main() {
+  const res = await fetch('data/gruppen.json', { cache: 'no-cache' });
+  if (!res.ok) throw new Error(`HTTP ${res.status}`);
+  gruppen = prepare((await res.json()).groups || []);
+
+  // ?v=leben-mit-gott wählt einen Bereich vor, ?typ=mitarbeit den Umschalter
+  const params = new URLSearchParams(location.search);
+  if (BEREICHE.some(b => b.slug === params.get('v'))) state.bereich = params.get('v');
+  if (params.get('typ') === 'mitarbeit') {
+    state.typ = 'mitarbeit';
+    document.querySelectorAll('[data-typ]').forEach(b => b.setAttribute('aria-pressed', b.dataset.typ === 'mitarbeit'));
+  }
+  render();
+
+  openFromHash();
+}
+
+// #gruppe-321 öffnet eine Gruppe direkt (geteilte Links)
+function openFromHash() {
+  const m = location.hash.match(/^#gruppe-(\d+)$/);
+  if (m && !$('sheet').open) openGroup(+m[1]);
+}
+window.addEventListener('hashchange', openFromHash);
+
+renderBereiche();
+main().catch(err => {
+  console.error(err);
+  $('grid').innerHTML = `<p class="status">Die Gruppen konnten gerade nicht geladen werden. <a href="${CONTACT_URL}" target="_blank" rel="noopener noreferrer">Kontaktiere uns gern direkt.</a></p>`;
+});
+
+// Auto-Höhe für die Einbettung per iframe (gleiches Snippet wie embed.html)
+function meldeHoehe() {
+  window.parent.postMessage({ type: 'gidk-resize', height: Math.ceil(document.body.getBoundingClientRect().height) }, '*');
+}
+if (isEmbedded) {
+  new ResizeObserver(meldeHoehe).observe(document.body);
+  window.addEventListener('load', meldeHoehe);
+}
+</script>
+</body>
+</html>
