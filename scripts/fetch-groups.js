@@ -4,7 +4,9 @@
 const BASE_URL  = 'https://gemeindekonkordia.church.tools';
 const API_BASE  = `${BASE_URL}/api`;
 const TOKEN     = process.env.CHURCHTOOLS_TOKEN;
-const OUT_PATH  = require('path').join(__dirname, '..', 'data', 'gruppen.json');
+const fs        = require('fs');
+const path      = require('path');
+const OUT_PATH  = path.join(__dirname, '..', 'data', 'gruppen.json');
 
 if (!TOKEN) {
   console.error('Fehler: CHURCHTOOLS_TOKEN ist nicht gesetzt.');
@@ -70,44 +72,55 @@ async function getGroupTags(groupId) {
   }
 }
 
-async function getLeaderRoleIds() {
+// Gruppenbild mit Auth herunterladen und lokal ablegen, damit Besucher
+// keine Verbindung zu church.tools aufbauen müssen (DSGVO).
+const IMG_DIR = path.join(__dirname, '..', 'assets', 'images');
+const IMG_EXT = { 'image/jpeg': 'jpg', 'image/png': 'png', 'image/webp': 'webp', 'image/gif': 'gif' };
+
+async function downloadImage(groupId, url) {
+  // Bei einem Fehler das zuletzt gespeicherte Bild behalten
+  const previous = () => fs.readdirSync(IMG_DIR).find(f => f.startsWith(`group-${groupId}.`)) || null;
   try {
-    const data = await apiGet('/group/roles');
-    const items = data.data ?? [];
-    return new Set(items.filter(r => r.type === 'leader').map(r => r.id));
+    const res = await fetch(url, { headers: { Authorization: `Login ${TOKEN}` } });
+    if (!res.ok) return previous();
+    const ext = IMG_EXT[(res.headers.get('content-type') || '').split(';')[0].trim()];
+    if (!ext) return previous();
+    const buf  = Buffer.from(await res.arrayBuffer());
+    const file = `group-${groupId}.${ext}`;
+    const full = path.join(IMG_DIR, file);
+    if (!fs.existsSync(full) || !buf.equals(fs.readFileSync(full))) fs.writeFileSync(full, buf);
+    return file;
   } catch {
-    return new Set();
+    return previous();
   }
 }
 
-async function getGroupLeaders(groupId, leaderRoleIds) {
-  try {
-    const data = await apiGet(`/groups/${groupId}/members`);
-    const items = data.data ?? [];
-    return items
-      .filter(m => m.person && leaderRoleIds.has(m.groupTypeRoleId))
-      .map(m => {
-        const attrs = m.person.domainAttributes ?? {};
-        const name  = `${attrs.firstName ?? ''} ${attrs.lastName ?? ''}`.trim();
-        const imageUrl = m.person.imageUrl || null;
-        return { name, imageUrl };
-      })
-      .filter(l => l.name);
-  } catch {
-    return [];
+// Bilder von Gruppen entfernen, die es nicht mehr gibt oder die kein Bild mehr haben
+function pruneImages(keep) {
+  for (const file of fs.readdirSync(IMG_DIR)) {
+    if (/^group-\d+\.\w+$/.test(file) && !keep.has(file)) fs.unlinkSync(path.join(IMG_DIR, file));
   }
+}
+
+// Feld aus ChurchTools kann String, Objekt ({ name / nameTranslated }) oder Liste sein.
+// Reine IDs (Zahlen) sind für Gäste nicht lesbar und werden ignoriert.
+function label(value) {
+  if (value == null || value === '' || typeof value === 'number' || /^\d+$/.test(value)) return null;
+  if (Array.isArray(value)) {
+    const list = value.map(label).filter(Boolean);
+    return list.length ? list.join(', ') : null;
+  }
+  if (typeof value === 'object') return value.nameTranslated || value.name || null;
+  return String(value).trim() || null;
 }
 
 async function main() {
-  console.log('Lade Leiter-Rollen …');
-  const leaderRoleIds = await getLeaderRoleIds();
-  console.log(`Leiter-Rollen-IDs: ${[...leaderRoleIds].join(', ') || '(keine)'}\n`);
-
   console.log('Lade alle Gruppen …');
   const allGroups = await getAllPages('/groups');
   console.log(`${allGroups.length} Gruppen gefunden.\n`);
 
   const byId = new Map();
+  const images = new Set();
   for (const group of allGroups) {
     const id = group.id;
     process.stdout.write(`[${id}] ${group.name} … `);
@@ -116,17 +129,12 @@ async function main() {
     const info     = details?.information ?? {};
     const settings = details?.settings ?? {};
 
-    // DEBUG (einmalig): Alle information-Felder ausgeben
-    if (!main._debugLogged) {
-      main._debugLogged = true;
-      console.log('\n=== DEBUG information fields ===\n' + JSON.stringify(info, null, 2) + '\n================================\n');
-    }
-
-    const imageUrl  = info.imageUrl || null;
+    const imageFile = info.imageUrl ? await downloadImage(id, info.imageUrl) : null;
+    if (imageFile) images.add(imageFile);
+    const imageUrl  = imageFile ? `assets/images/${imageFile}` : null;
     const isHidden  = settings.isHidden ?? false;
     const publicUrl = isHidden ? null : `${BASE_URL}/publicgroup/${id}`;
     const tags      = await getGroupTags(id);
-    const leaders   = await getGroupLeaders(id, leaderRoleIds);
 
     byId.set(id, {
       id,
@@ -137,7 +145,13 @@ async function main() {
       publicUrl,
       imageUrl,
       tags,
-      leaders,
+      // Treffpunkt-Infos für Gäste – keine personenbezogenen Daten
+      meeting: {
+        weekday:     label(info.weekday),
+        time:        label(info.meetingTime),
+        targetGroup: label(info.targetGroup),
+        ageGroups:   label(info.ageGroups),
+      },
       settings: {
         isHidden: settings.isHidden ?? null,
         modules:  settings.modules  ?? [],
@@ -145,9 +159,8 @@ async function main() {
       childGroupIds: [],
     });
 
-    const tagStr     = tags.length    ? ` [${tags.join(', ')}]` : '';
-    const leaderStr  = leaders.length ? ` (${leaders.map(l => l.name).join(', ')})` : '';
-    console.log(imageUrl ? `OK (Bild)${tagStr}${leaderStr}` : `OK${tagStr}${leaderStr}`);
+    const tagStr = tags.length ? ` [${tags.join(', ')}]` : '';
+    console.log(imageUrl ? `OK (Bild)${tagStr}` : `OK${tagStr}`);
   }
 
   console.log('\nBaue Hierarchie über /children …');
@@ -171,9 +184,11 @@ async function main() {
   }
   console.log(`${linkedCount} Gruppen verknüpft.\n`);
 
+  pruneImages(images);
+
   const result = [...byId.values()];
   const output = { generatedAt: new Date().toISOString(), groups: result };
-  require('fs').writeFileSync(OUT_PATH, JSON.stringify(output, null, 2), 'utf8');
+  fs.writeFileSync(OUT_PATH, JSON.stringify(output, null, 2), 'utf8');
   console.log(`Gespeichert: ${OUT_PATH} (${result.length} Gruppen)`);
 }
 

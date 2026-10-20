@@ -91,35 +91,8 @@
       letter-spacing: 0.03em;
       color: var(--rot);
       line-height: 1.25;
-      margin-bottom: 0.6rem;
       overflow-wrap: break-word;
       word-break: break-word;
-    }
-
-    .team-leiter {
-      font-size: 0.9rem;
-      color: var(--grau-mittel);
-    }
-
-    .team-leiter .label {
-      display: block;
-      font-size: 0.72rem;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-      color: var(--grau-mittel);
-      opacity: 0.75;
-      margin-bottom: 0.15rem;
-    }
-
-    .team-leiter .namen {
-      color: var(--grau-dunkel);
-      font-weight: 600;
-    }
-
-    .team-card.offen .team-leiter .namen {
-      color: var(--grau-mittel);
-      font-weight: 400;
-      font-style: italic;
     }
 
     /* ── Leer-/Lade-Zustand ───────────────────────── */
@@ -177,11 +150,8 @@
 
       const grid = document.getElementById('teams');
       teams.forEach(t => {
-        const namen = (t.leaders || []).map(l => l.name).filter(Boolean);
-        const offen = namen.length === 0;
-
         const card = document.createElement(t.publicUrl ? 'a' : 'div');
-        card.className = 'team-card' + (offen ? ' offen' : '');
+        card.className = 'team-card';
         if (t.publicUrl) {
           card.href = t.publicUrl;
           card.target = '_blank';
@@ -192,12 +162,6 @@
         name.className = 'team-name';
         name.textContent = t.name;
         card.appendChild(name);
-
-        const leiter = document.createElement('div');
-        leiter.className = 'team-leiter';
-        leiter.innerHTML = `<span class="label">Leitung</span><span class="namen"></span>`;
-        leiter.querySelector('.namen').textContent = offen ? 'noch offen' : namen.join(', ');
-        card.appendChild(leiter);
 
         grid.appendChild(card);
       });
