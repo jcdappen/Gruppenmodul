@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-04T11:50:23.626Z",
+  "generatedAt": "2026-11-05T11:47:13.834Z",
   "groups": [
     {
       "id": 124,
@@ -1081,7 +1081,7 @@
       ],
       "description": null,
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/311",
-      "imageUrl": null,
+      "imageUrl": "assets/images/group-311.jpg",
       "tags": [],
       "meeting": {
         "weekday": null,
