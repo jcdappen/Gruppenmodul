@@ -1,0 +1,49 @@
+name: Gruppen-PDF bauen
+
+on:
+  workflow_run:
+    workflows: ['Gruppen abrufen']   # nach dem täglichen Sync
+    types: [completed]
+  workflow_dispatch:
+    inputs:
+      mit_leitung:
+        description: 'Leitung der Teams ins PDF aufnehmen'
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+jobs:
+  pdf:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v7
+        with:
+          ref: main
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: '24'
+
+      - name: Abhängigkeiten und Chromium installieren
+        run: |
+          npm install --no-audit --no-fund
+          npx playwright install --with-deps chromium
+
+      # Leitung (Namen) nur im Job – wird nie committet und nie auf GitHub Pages veröffentlicht
+      - name: Leitung der Teams abrufen
+        if: ${{ github.event_name != 'workflow_dispatch' || inputs.mit_leitung }}
+        env:
+          CHURCHTOOLS_TOKEN: ${{ secrets.CHURCHTOOLS_TOKEN }}
+        run: node scripts/fetch-leaders.js
+
+      - name: PDF erzeugen
+        run: node scripts/build-pdf.js
+
+      # Artifact enthält Namen → kurze Aufbewahrung, nur für Berechtigte im Repository
+      - uses: actions/upload-artifact@v4
+        with:
+          name: gruppen-pdf
+          path: build/gruppen.pdf
+          retention-days: 14
