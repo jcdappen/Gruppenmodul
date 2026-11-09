@@ -2,7 +2,7 @@
 'use strict';
 
 // Baut das Gruppen-PDF (A4) aus data/gruppen.json:
-//   Teil 1  "Dabei sein"   – Angebote als Übergruppen (z. B. "Hauskreise"), je mit QR-Code
+//   Teil 1  "Dabei sein"   – Angebote als Übergruppen (z. B. "Kleingruppen"), je mit QR-Code
 //   Teil 2  "Mitarbeiten"  – jedes Team einzeln mit Beschreibung, Leitung und QR-Code
 //
 // Aufruf:  node scripts/build-pdf.js        →  build/gruppen.pdf
@@ -157,7 +157,7 @@ h1,h2,h3 { font-family:var(--head); font-weight:normal; text-transform:uppercase
 </section>
 
 <section class="page-break">
-  <div class="section-head"><h2>Dabei sein</h2><p>Unsere Angebote für dich. Zu manchen gibt es mehrere Gruppen, zum Beispiel Hauskreise an verschiedenen Orten – über den QR-Code findest du die passende.</p></div>
+  <div class="section-head"><h2>Dabei sein</h2><p>Unsere Angebote für dich. Zu manchen gibt es mehrere Gruppen, zum Beispiel Kleingruppen an verschiedenen Orten – über den QR-Code findest du die passende.</p></div>
   <div class="cards">${angeboteHtml}</div>
 </section>
 

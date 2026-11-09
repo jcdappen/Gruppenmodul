@@ -145,7 +145,7 @@ Visionsbereich "Gebet"
 
 `node scripts/build-pdf.js` erzeugt `build/gruppen.pdf` (ca. 12 Seiten):
 
-- **Dabei sein** – Angebote als Übergruppen (z. B. „Hauskreise“, nicht jeder einzelne), je mit QR-Code
+- **Dabei sein** – Angebote als Übergruppen (z. B. „Kleingruppen“, nicht jeder einzelne), je mit QR-Code
 - **Mitarbeiten** – jedes Team einzeln mit Beschreibung, QR-Code und Leitung
 
 Der Workflow `build-pdf.yml` läuft nach dem täglichen Sync und legt das PDF als Artifact ab.

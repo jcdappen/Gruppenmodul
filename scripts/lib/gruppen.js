@@ -64,7 +64,7 @@ function selectTeams(groups) {
 }
 
 // Angebote: nur die Übergruppen. Eine Gruppe, deren Elterngruppe denselben Gruppentyp hat
-// (z. B. jeder einzelne Hauskreis unter "Hauskreise in der Konkordia"), wird nicht einzeln
+// (z. B. jede einzelne Kleingruppe unter der Übergruppe "Kleingruppen"), wird nicht einzeln
 // gelistet – die Elterngruppe steht stellvertretend für alle.
 function selectAngebote(groups) {
   const { byId, visible, card } = prepare(groups);
@@ -79,7 +79,7 @@ function selectAngebote(groups) {
     for (let p = sameTypeParent(top); p; p = sameTypeParent(top)) top = p;
     const tc = cards.get(top.id);
     if (top !== g && !tc.bereiche.length) tc.bereiche = c.bereiche;
-    // Übergruppe ohne Visionsbereich in ChurchTools (z. B. "Hauskreise"): unter Gemeinschaft einsortieren
+    // Übergruppe ohne Visionsbereich in ChurchTools (z. B. "Kleingruppen"): unter Gemeinschaft einsortieren
     if (top !== g && !tc.bereiche.length) tc.bereiche = ['leben-in-gemeinschaft'];
     if (tc.typ === 'angebot' && tc.bereiche.length) result.set(top.id, tc);
   }
