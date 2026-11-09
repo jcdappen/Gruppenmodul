@@ -138,3 +138,17 @@ Visionsbereich "Gebet"
 - **Hosting:** GitHub Pages
 - **Daten-Update:** Automatisch täglich via GitHub Actions
 - **Kein Backend:** Alles statisch; Daten werden als JSON versioniert
+
+---
+
+## Gruppen-PDF (A4)
+
+`node scripts/build-pdf.js` erzeugt `build/gruppen.pdf` (ca. 12 Seiten):
+
+- **Dabei sein** – Angebote als Übergruppen (z. B. „Hauskreise“, nicht jeder einzelne), je mit QR-Code
+- **Mitarbeiten** – jedes Team einzeln mit Beschreibung, QR-Code und Leitung
+
+Der Workflow `build-pdf.yml` läuft nach dem täglichen Sync und legt das PDF als Artifact ab.
+Die Leitung kommt aus `scripts/fetch-leaders.js` → `data/leiter.private.json`. Diese Datei enthält Namen,
+ist per `.gitignore` ausgeschlossen und darf nie committet werden (GitHub Pages veröffentlicht das ganze Repo).
+Ohne Leitung bauen: `OHNE_LEITER=1 node scripts/build-pdf.js`.
