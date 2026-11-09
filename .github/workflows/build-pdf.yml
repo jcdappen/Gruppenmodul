@@ -19,8 +19,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v7
-        with:
-          ref: main
 
       - uses: actions/setup-node@v7
         with:
@@ -41,9 +39,14 @@ jobs:
       - name: PDF erzeugen
         run: node scripts/build-pdf.js
 
+      - name: Sichttafel-PDF erzeugen (20 Seiten)
+        run: node scripts/build-tafeln.js
+
       # Artifact enthält Namen → kurze Aufbewahrung, nur für Berechtigte im Repository
       - uses: actions/upload-artifact@v4
         with:
           name: gruppen-pdf
-          path: build/gruppen.pdf
+          path: |
+            build/gruppen.pdf
+            build/sichttafeln.pdf
           retention-days: 14

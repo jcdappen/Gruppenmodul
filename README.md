@@ -152,3 +152,21 @@ Der Workflow `build-pdf.yml` läuft nach dem täglichen Sync und legt das PDF al
 Die Leitung kommt aus `scripts/fetch-leaders.js` → `data/leiter.private.json`. Diese Datei enthält Namen,
 ist per `.gitignore` ausgeschlossen und darf nie committet werden (GitHub Pages veröffentlicht das ganze Repo).
 Ohne Leitung bauen: `OHNE_LEITER=1 node scripts/build-pdf.js`.
+
+---
+
+## Sichttafel-PDF (20 Seiten)
+
+`node scripts/build-tafeln.js` erzeugt `build/sichttafeln.pdf` für das Sichttafelsystem (10 Tafeln, vorne und hinten = **genau 20 A4-Seiten**).
+Das Skript bricht ab, wenn es mehr oder weniger Seiten werden oder ein Text nicht in seine Karte passt.
+
+| Seite | Inhalt |
+|---|---|
+| 1–6 | Broschüre „Willkommen daheim“ (v6): Titel, Willkommen, Über uns, Vision, Auftrag, Freikirche |
+| 7–15 | **Du kannst mitmachen**: alle Teams aus „Teams Verzeichnis“ mit Kurztext, Leitung und QR-Code |
+| 16 | **Kleine Gruppen finden**: Kleingruppen und Jüngerschaftsgruppen (Übergruppen, QR-Code) |
+| 17 | Sonstige Gruppen (Kinder der Gruppe „Gruppen“) |
+| 18–20 | Häufige Fragen, Dein nächster Schritt, Alle Angebote (QR-Code zu `/mitmachen`) |
+
+Die Broschürenseiten liegen als Bausteine in `design/broschuere/` (A5, werden auf A4 vergrößert).
+Leitung und Datenschutz: wie beim Gruppen-PDF, `OHNE_LEITER=1` lässt die Namen weg.
