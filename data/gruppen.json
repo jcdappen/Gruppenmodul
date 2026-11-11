@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-10T12:01:51.723Z",
+  "generatedAt": "2026-11-11T11:40:07.746Z",
   "groups": [
     {
       "id": 124,
@@ -1940,7 +1940,7 @@
       "name": "Teamleiter",
       "groupTypeId": 2,
       "parentGroupIds": [],
-      "description": "In dieser Gruppe sind alle Teamleiter der Gemeinde in der Konkordia. Gruppenzugehörigkeit nur per Einaldung möglich.",
+      "description": "In dieser Gruppe sind alle Teamleiter der Gemeinde in der Konkordia. Gruppenzugehörigkeit nur per Einaldung möglich.\n\n<br />\n\nWiki Seite:\n\n[https://gemeindekonkordia.church.tools/wiki/5](https://gemeindekonkordia.church.tools/wiki/5/main?ctmd_layout=mention)",
       "publicUrl": "https://gemeindekonkordia.church.tools/publicgroup/384",
       "imageUrl": null,
       "tags": [],
